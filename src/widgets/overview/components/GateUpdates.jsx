@@ -10,33 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function GateUpdates({ isStatic, gate }) {
-  // Dummy gate data for testing
-  // const dummyGate = {
-  //   summary: {
-  //     activeWalkins: {
-  //       visitor_in: 12,
-  //       total_pass: 20,
-  //     },
-  //     preApprovedCheckins: {
-  //       expected_pass_scanned: 8,
-  //       total_expected_pass: 15,
-  //     },
-  //   },
-  //   chart: [
-  //     { hour: 8, walkins: 5, preApproved: 3 },
-  //     { hour: 9, walkins: 8, preApproved: 5 },
-  //     { hour: 10, walkins: 12, preApproved: 7 },
-  //     { hour: 11, walkins: 15, preApproved: 9 },
-  //     { hour: 12, walkins: 10, preApproved: 6 },
-  //     { hour: 13, walkins: 6, preApproved: 4 },
-  //     { hour: 14, walkins: 9, preApproved: 5 },
-  //     { hour: 15, walkins: 14, preApproved: 10 },
-  //     { hour: 16, walkins: 11, preApproved: 8 },
-  //     { hour: 17, walkins: 7, preApproved: 5 },
-  //   ],
-  // };
-  const gateData = gate || {};
+function GateUpdates({ isStatic, data }) {
   const COLORS = {
     green: "#12B981",
     red: "#EF4645",
@@ -51,10 +25,10 @@ function GateUpdates({ isStatic, gate }) {
     slate: "#64748B",
   };
 
-  const activeWalkins = gateData?.summary?.activeWalkins || {};
-  const preApproved = gateData?.summary?.preApprovedCheckins || {};
+  const activeWalkins = data?.summary?.activeWalkins || {};
+  const preApproved = data?.summary?.preApprovedCheckins || {};
   const chartData =
-    gateData?.chart?.map((d) => ({
+    data?.chart?.map((d) => ({
       time: `${d?.hour ?? 0}:00`,
       walkins: Number(d?.walkins ?? 0),
       checkins: Number(d?.preApproved ?? 0),

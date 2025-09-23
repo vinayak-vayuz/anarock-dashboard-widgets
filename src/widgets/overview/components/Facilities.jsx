@@ -10,48 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Facilities({ isStatic, facility }) {
-  // Dummy data when no facility is provided
-  // const dummyFacility = {
-  //   totalBookings: 35,
-  //   totalSlots: 50,
-  //   utilizationRate: 70,
-  //   slots: [
-  //     {
-  //       slot_start_time: "08:00",
-  //       slot_end_time: "09:00",
-  //       slot_bookings: 5,
-  //       total_slots: 10,
-  //     },
-  //     {
-  //       slot_start_time: "09:00",
-  //       slot_end_time: "10:00",
-  //       slot_bookings: 8,
-  //       total_slots: 10,
-  //     },
-  //     {
-  //       slot_start_time: "10:00",
-  //       slot_end_time: "11:00",
-  //       slot_bookings: 6,
-  //       total_slots: 10,
-  //     },
-  //     {
-  //       slot_start_time: "11:00",
-  //       slot_end_time: "12:00",
-  //       slot_bookings: 10,
-  //       total_slots: 10,
-  //     },
-  //     {
-  //       slot_start_time: "12:00",
-  //       slot_end_time: "13:00",
-  //       slot_bookings: 6,
-  //       total_slots: 10,
-  //     },
-  //   ],
-  // };
-
-  const data = facility || {};
-
+function Facilities({ isStatic, data }) {
   const totalBookings = Number(data.totalBookings || 0);
   const totalSlots = Number(data.totalSlots || 0);
   const utilizationRate = Number(data.utilizationRate || 0);

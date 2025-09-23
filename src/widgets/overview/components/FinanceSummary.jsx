@@ -1,26 +1,9 @@
 import Card from "../../../components/ui/Card";
 import { LuReceiptText } from "react-icons/lu";
 
-function FinanceSummary({ isStatic, financial }) {
-  // Dummy data when nothing is passed
-  // const dummyData = {
-  //   incomeSummary: {
-  //     opening_balance: 25000,
-  //     income: 15000,
-  //     collection: 12000,
-  //     closing_balance: 52000,
-  //   },
-  //   expenditureSummary: {
-  //     opening_balance: 18000,
-  //     expenditure: 10000,
-  //     payment: 8000,
-  //     outstanding: 20000,
-  //   },
-  // };
-
-  const income = financial?.incomeSummary || {};
-  const expenditure =
-    financial?.expenditureSummary || dummyData.expenditureSummary;
+function FinanceSummary({ isStatic, data }) {
+  const income = data?.incomeSummary || {};
+  const expenditure = data?.expenditureSummary || {};
 
   function formatCurrency(value) {
     if (value === null || value === undefined || isNaN(value)) return "0";

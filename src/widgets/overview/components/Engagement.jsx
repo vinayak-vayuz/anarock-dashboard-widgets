@@ -11,17 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Engagement({ isStatic, engagement }) {
-  // Dummy data when nothing is passed
-  // const dummyEngagement = {
-  //   total_notices: 15,
-  //   total_topics: 30,
-  //   total_polls: 12,
-  //   total_surveys: 8,
-  // };
-
-  const data = engagement || {};
-
+function Engagement({ isStatic, data }) {
   const engagementBars = [
     { name: "Notice", value: Number(data?.total_notices || 0) },
     { name: "Post", value: Number(data?.total_topics || 0) },

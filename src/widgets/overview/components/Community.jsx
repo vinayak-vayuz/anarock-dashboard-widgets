@@ -8,18 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Community({ isStatic, community }) {
-  // Dummy data if nothing is passed
-  // const dummyCommunity = {
-  //   thisMonthMoveIns: 25,
-  //   thisMonthMoveOuts: 15,
-  //   moveInPercentChange: 12,
-  //   moveOutPercentChange: -5,
-  //   lastMonthMoveIns: 20,
-  //   lastMonthMoveOuts: 18,
-  // };
-
-  const data = community || {};
+function Community({ isStatic, data }) {
 
   const Chip = ({ value }) => {
     const isPositive = value >= 0;

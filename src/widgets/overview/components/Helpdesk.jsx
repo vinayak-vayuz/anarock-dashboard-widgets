@@ -8,18 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Helpdesk({ isStatic, complaints }) {
-  // Dummy data if no complaints are passed
-  // const dummyComplaints = {
-  //   today_open_complaints: 18,
-  //   percent_change: 5,
-  //   today_L1: 7,
-  //   today_L2: 5,
-  //   today_L3: 3,
-  //   today_NoLevel: 3,
-  // };
-
-  const data = complaints || {};
+function Helpdesk({ isStatic, data }) {
 
   const Chip = ({ value }) => {
     if (value === null || value === undefined || isNaN(value)) {
