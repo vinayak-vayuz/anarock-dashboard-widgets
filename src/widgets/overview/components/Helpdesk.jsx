@@ -81,12 +81,12 @@ function Helpdesk({ isStatic, data }) {
               Open Complaints
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]">
-              {complaints?.today_open_complaints ?? 0}
+              {data?.today_open_complaints ?? 0}
             </div>
           </div>
 
           <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1">
-            <Chip value={complaints?.percent_change} />
+            <Chip value={data?.percent_change} />
             <span className="whitespace-nowrap">Compared to yesterday</span>
           </div>
         </div>

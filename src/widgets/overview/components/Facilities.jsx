@@ -16,7 +16,7 @@ function Facilities({ isStatic, data }) {
   const utilizationRate = Number(data.utilizationRate || 0);
 
   const chartData =
-    facility?.slots?.map((slot, index) => ({
+    data?.slots?.map((slot, index) => ({
       time: slot?.slot_start_time
         ? `${slot.slot_start_time} - ${slot.slot_end_time}`
         : `Slot ${index + 1}`,

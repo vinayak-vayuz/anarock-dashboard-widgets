@@ -18155,7 +18155,7 @@ function dU({ isStatic: e, data: t }) {
   );
 }
 function hU({ isStatic: e, data: t }) {
-  const r = Number(t.totalBookings || 0), n = Number(t.totalSlots || 0), i = Number(t.utilizationRate || 0), a = facility?.slots?.map((s, l) => ({
+  const r = Number(t.totalBookings || 0), n = Number(t.totalSlots || 0), i = Number(t.utilizationRate || 0), a = t?.slots?.map((s, l) => ({
     time: s?.slot_start_time ? `${s.slot_start_time} - ${s.slot_end_time}` : `Slot ${l + 1}`,
     bookings: Number(s?.slot_bookings || 0),
     total: Number(s?.total_slots || 0)
@@ -18529,10 +18529,10 @@ function gU({ isStatic: e, data: t }) {
         /* @__PURE__ */ y.jsxs("div", { className: "w-[50%] flex flex-col gap-7", children: [
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-2", children: [
             /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Open Complaints" }),
-            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]", children: complaints?.today_open_complaints ?? 0 })
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]", children: t?.today_open_complaints ?? 0 })
           ] }),
           /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1", children: [
-            /* @__PURE__ */ y.jsx(r, { value: complaints?.percent_change }),
+            /* @__PURE__ */ y.jsx(r, { value: t?.percent_change }),
             /* @__PURE__ */ y.jsx("span", { className: "whitespace-nowrap", children: "Compared to yesterday" })
           ] })
         ] }),
