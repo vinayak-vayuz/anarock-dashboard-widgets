@@ -27,7 +27,7 @@ const Card = ({
         </span>
       )}
     </div>
-    <div className={`flex-1 min-h-0 space-y-6 ${childrenClassName}`}>
+    <div className={`flex-1 min-h-0 space-y-6 ${childrenClassName ? childrenClassName : ""}`}>
       {children}
     </div>
     {footer && (

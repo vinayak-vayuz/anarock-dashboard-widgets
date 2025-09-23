@@ -1,4 +1,5 @@
 import './index.css';
+import './styles/tailwind.css';
 
 export { default as Card } from "./components/ui/Card";
 

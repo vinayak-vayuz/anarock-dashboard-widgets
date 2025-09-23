@@ -660,7 +660,7 @@ const me = ({
         ] }),
         r && /* @__PURE__ */ y.jsx("span", { className: "!text-xs !leading-[16px] !text-[#64748B]", children: r })
       ] }),
-      /* @__PURE__ */ y.jsx("div", { className: `flex-1 min-h-0 space-y-6 ${o}`, children: n }),
+      /* @__PURE__ */ y.jsx("div", { className: `flex-1 min-h-0 space-y-6 ${o || ""}`, children: n }),
       i && /* @__PURE__ */ y.jsx("div", { className: "mt-3 pt-3 border-t border-gray-100 text-xs text-[#64748B]", children: i })
     ]
   }
