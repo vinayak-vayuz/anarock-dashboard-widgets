@@ -1,0 +1,7 @@
+# Ignore development files
+src/
+node_modules/
+.vscode/
+.idea/
+*.log
+*.env
