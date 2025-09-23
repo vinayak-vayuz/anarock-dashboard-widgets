@@ -6,18 +6,19 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.js'), // your main export
-      name: 'AnarockWidgets',
-      fileName: (format) => `index.${format}.js`, // dist/index.esm.js and dist/index.umd.js
+      entry: path.resolve(__dirname, 'src/index.js'),
+      name: 'Widgets',
+      fileName: (format) => `index.${format}.js`,
+      formats: ['es', 'cjs', 'umd']
     },
     rollupOptions: {
-      external: ['react', 'react-dom'], // peer dependencies
+      external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM',
-        },
-      },
-    },
-  },
+          'react-dom': 'ReactDOM'
+        }
+      }
+    }
+  }
 });
