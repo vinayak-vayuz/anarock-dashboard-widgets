@@ -11,9 +11,50 @@ import {
 } from "recharts";
 
 function Facilities({ isStatic, facility }) {
-  const totalBookings = Number(facility?.totalBookings || 0);
-  const totalSlots = Number(facility?.totalSlots || 0);
-  const utilizationRate = Number(facility?.utilizationRate || 0);
+  // Dummy data when no facility is provided
+  // const dummyFacility = {
+  //   totalBookings: 35,
+  //   totalSlots: 50,
+  //   utilizationRate: 70,
+  //   slots: [
+  //     {
+  //       slot_start_time: "08:00",
+  //       slot_end_time: "09:00",
+  //       slot_bookings: 5,
+  //       total_slots: 10,
+  //     },
+  //     {
+  //       slot_start_time: "09:00",
+  //       slot_end_time: "10:00",
+  //       slot_bookings: 8,
+  //       total_slots: 10,
+  //     },
+  //     {
+  //       slot_start_time: "10:00",
+  //       slot_end_time: "11:00",
+  //       slot_bookings: 6,
+  //       total_slots: 10,
+  //     },
+  //     {
+  //       slot_start_time: "11:00",
+  //       slot_end_time: "12:00",
+  //       slot_bookings: 10,
+  //       total_slots: 10,
+  //     },
+  //     {
+  //       slot_start_time: "12:00",
+  //       slot_end_time: "13:00",
+  //       slot_bookings: 6,
+  //       total_slots: 10,
+  //     },
+  //   ],
+  // };
+
+  const data = facility || {};
+
+  const totalBookings = Number(data.totalBookings || 0);
+  const totalSlots = Number(data.totalSlots || 0);
+  const utilizationRate = Number(data.utilizationRate || 0);
 
   const chartData =
     facility?.slots?.map((slot, index) => ({
@@ -57,28 +98,28 @@ function Facilities({ isStatic, facility }) {
     >
       <div className="grid grid-cols-3 gap-6 mb-4">
         <div className="flex flex-col gap-1">
-          <h4 className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
             Bookings
-          </h4>
-          <p className="!m-0 !text-[24px] !leading-[28px] !font-medium text-[#8B5CF6]">
+          </div>
+          <div className="!m-0 !text-[24px] !leading-[28px] !font-medium text-[#8B5CF6]">
             {totalBookings}
-          </p>
+          </div>
         </div>
         <div className="flex flex-col gap-1">
-          <h4 className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
             Total Slots
-          </h4>
-          <p className="!m-0 !text-[24px] !leading-[28px] !font-medium text-[#F59E0B]">
+          </div>
+          <div className="!m-0 !text-[24px] !leading-[28px] !font-medium text-[#F59E0B]">
             {totalSlots}
-          </p>
+          </div>
         </div>
         <div className="flex flex-col gap-1">
-          <h4 className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
             Utilisation Rate
-          </h4>
-          <p className="!m-0 !text-[24px] !leading-[28px] !font-medium !text-[#329DFF]">
+          </div>
+          <div className="!m-0 !text-[24px] !leading-[28px] !font-medium !text-[#329DFF]">
             {utilizationRate.toFixed(2)}%
-          </p>
+          </div>
         </div>
       </div>
 

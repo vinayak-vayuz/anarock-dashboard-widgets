@@ -13,12 +13,12 @@ const Card = ({
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
         {icon}
-        <h2
+        <div
           style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
           className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
           >
           {title}
-        </h2>
+        </div>
       </div>
 
       {period && (

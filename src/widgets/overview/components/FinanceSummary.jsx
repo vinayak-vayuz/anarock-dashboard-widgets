@@ -2,8 +2,25 @@ import Card from "../../../components/ui/Card";
 import { LuReceiptText } from "react-icons/lu";
 
 function FinanceSummary({ isStatic, financial }) {
+  // Dummy data when nothing is passed
+  // const dummyData = {
+  //   incomeSummary: {
+  //     opening_balance: 25000,
+  //     income: 15000,
+  //     collection: 12000,
+  //     closing_balance: 52000,
+  //   },
+  //   expenditureSummary: {
+  //     opening_balance: 18000,
+  //     expenditure: 10000,
+  //     payment: 8000,
+  //     outstanding: 20000,
+  //   },
+  // };
+
   const income = financial?.incomeSummary || {};
-  const expenditure = financial?.expenditureSummary || {};
+  const expenditure =
+    financial?.expenditureSummary || dummyData.expenditureSummary;
 
   function formatCurrency(value) {
     if (value === null || value === undefined || isNaN(value)) return "0";
@@ -47,12 +64,12 @@ function FinanceSummary({ isStatic, financial }) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <LuReceiptText className="text-2xl text-red-600" />
-          <h2
+          <div
             style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
             className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
           >
             Expenditure
-          </h2>
+          </div>
         </div>
 
         <span className="!text-xs !leading-[16px] !text-[#64748B]">

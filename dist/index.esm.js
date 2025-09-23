@@ -650,7 +650,7 @@ const me = ({
         /* @__PURE__ */ y.jsxs("div", { className: "flex items-center gap-3", children: [
           t,
           /* @__PURE__ */ y.jsx(
-            "h2",
+            "div",
             {
               style: { fontWeight: 500, fontSize: "16px", lineHeight: "20px" },
               className: "!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]",
@@ -17984,47 +17984,45 @@ var TB = {
   });
 });
 function fU({ isStatic: e, community: t }) {
-  const r = ({ value: u }) => {
-    const f = u >= 0;
+  const r = t || {}, n = ({ value: f }) => {
+    const d = f >= 0;
     return /* @__PURE__ */ y.jsx(
       "span",
       {
-        className: `p-1 rounded text-[10px] leading-[14px] font-medium ${f ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
-        children: f ? `+${u}%` : `${u}%`
+        className: `p-1 rounded text-[10px] leading-[14px] font-medium ${d ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
+        children: d ? `+${f}%` : `${f}%`
       }
     );
-  }, n = Number(
-    t?.thisMonthMoveIns ?? t?.lastMonthMoveIns ?? 0
-  ), i = Number(
-    t?.thisMonthMoveOuts ?? t?.lastMonthMoveOuts ?? 0
-  ), a = Number(
-    t?.moveInPercentChange ?? t?.moveInChange ?? 0
+  }, i = Number(r?.thisMonthMoveIns ?? r?.lastMonthMoveIns ?? 0), a = Number(
+    r?.thisMonthMoveOuts ?? r?.lastMonthMoveOuts ?? 0
   ), o = Number(
-    t?.moveOutPercentChange ?? t?.moveOutChange ?? 0
-  ), s = [
-    { name: "Move-ins", value: n },
-    { name: "Move-outs", value: i }
-  ], l = {
+    r?.moveInPercentChange ?? r?.moveInChange ?? 0
+  ), s = Number(
+    r?.moveOutPercentChange ?? r?.moveOutChange ?? 0
+  ), l = [
+    { name: "Move-ins", value: i },
+    { name: "Move-outs", value: a }
+  ], c = {
     purple: "#8B5CF6",
     indigo: "#6366F1"
-  }, c = ({ active: u, payload: f }) => !u || !f || !f.length ? null : /* @__PURE__ */ y.jsx("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: f.map((d, h) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
+  }, u = ({ active: f, payload: d }) => !f || !d || !d.length ? null : /* @__PURE__ */ y.jsx("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: d.map((h, m) => /* @__PURE__ */ y.jsxs("div", { className: "capitalize leading-relaxed", children: [
     /* @__PURE__ */ y.jsx(
-      "span",
+      "div",
       {
         style: {
           display: "inline-block",
           width: 8,
           height: 8,
           borderRadius: "50%",
-          backgroundColor: d.color,
+          backgroundColor: h.color,
           marginRight: 6
         }
       }
     ),
-    d.name,
+    h.name,
     ": ",
-    /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: d.value })
-  ] }, h)) });
+    /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: h.value })
+  ] }, m)) });
   return /* @__PURE__ */ y.jsx(
     me,
     {
@@ -18035,49 +18033,49 @@ function fU({ isStatic: e, community: t }) {
       children: /* @__PURE__ */ y.jsxs("div", { className: "flex", children: [
         /* @__PURE__ */ y.jsxs("div", { className: "w-[50%] flex flex-col gap-7", children: [
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-2", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Move-in/Out Count" }),
-            /* @__PURE__ */ y.jsx("p", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium !text-[#8B5CF6]", children: n + i })
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Move-in/Out Count" }),
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium !text-[#8B5CF6]", children: i + a })
           ] }),
-          /* @__PURE__ */ y.jsxs("p", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1", children: [
-            /* @__PURE__ */ y.jsx(r, { value: ((a + o) / 2).toFixed(2) }),
-            /* @__PURE__ */ y.jsx("span", { className: "whitespace-nowrap", children: "Compared to last month" })
+          /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1", children: [
+            /* @__PURE__ */ y.jsx(n, { value: ((o + s) / 2).toFixed(2) }),
+            /* @__PURE__ */ y.jsx("div", { className: "whitespace-nowrap", children: "Compared to last month" })
           ] })
         ] }),
         /* @__PURE__ */ y.jsx("div", { className: "w-[50%] h-[111px] flex justify-end", children: /* @__PURE__ */ y.jsx(Ai, { width: "75%", height: "100%", children: /* @__PURE__ */ y.jsxs(wc, { children: [
           /* @__PURE__ */ y.jsxs(
             Lo,
             {
-              data: s,
+              data: l,
               innerRadius: 36,
               outerRadius: 52,
               paddingAngle: 2,
               dataKey: "value",
               children: [
-                /* @__PURE__ */ y.jsx(Fr, { fill: l.purple }),
-                /* @__PURE__ */ y.jsx(Fr, { fill: l.indigo })
+                /* @__PURE__ */ y.jsx(Fr, { fill: c.purple }),
+                /* @__PURE__ */ y.jsx(Fr, { fill: c.indigo })
               ]
             }
           ),
-          /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(c, {}) })
+          /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(u, {}) })
         ] }) }) })
       ] })
     }
   );
 }
 function dU({ isStatic: e, engagement: t }) {
-  const r = [
-    { name: "Notice", value: Number(t?.total_notices || 0) },
-    { name: "Post", value: Number(t?.total_topics || 0) },
-    { name: "Poll", value: Number(t?.total_polls || 0) },
-    { name: "Survey", value: Number(t?.total_surveys || 0) }
-  ], n = {
+  const r = t || {}, n = [
+    { name: "Notice", value: Number(r?.total_notices || 0) },
+    { name: "Post", value: Number(r?.total_topics || 0) },
+    { name: "Poll", value: Number(r?.total_polls || 0) },
+    { name: "Survey", value: Number(r?.total_surveys || 0) }
+  ], i = {
     Notice: "#8B5CF6",
     Post: "#22C55E",
     Poll: "#3B82F6",
     Survey: "#F59E0B"
-  }, i = ({ active: a, payload: o, label: s }) => !a || !o || !o.length ? null : /* @__PURE__ */ y.jsxs("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: [
-    s && /* @__PURE__ */ y.jsx("p", { className: "font-medium mb-1", children: s }),
-    o.map((l, c) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
+  }, a = ({ active: o, payload: s, label: l }) => !o || !s || !s.length ? null : /* @__PURE__ */ y.jsxs("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: [
+    l && /* @__PURE__ */ y.jsx("div", { className: "font-medium mb-1", children: l }),
+    s.map((c, u) => /* @__PURE__ */ y.jsxs("div", { className: "capitalize leading-relaxed", children: [
       /* @__PURE__ */ y.jsx(
         "span",
         {
@@ -18086,15 +18084,15 @@ function dU({ isStatic: e, engagement: t }) {
             width: 8,
             height: 8,
             borderRadius: "50%",
-            backgroundColor: l.color,
+            backgroundColor: c.color,
             marginRight: 6
           }
         }
       ),
-      l.name,
+      c.name,
       ": ",
-      /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: l.value })
-    ] }, c))
+      /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: c.value })
+    ] }, u))
   ] });
   return /* @__PURE__ */ y.jsx(
     me,
@@ -18106,7 +18104,7 @@ function dU({ isStatic: e, engagement: t }) {
       children: /* @__PURE__ */ y.jsx(Ai, { width: "100%", height: "100%", children: /* @__PURE__ */ y.jsxs(
         AB,
         {
-          data: r,
+          data: n,
           layout: "vertical",
           margin: { top: 4, right: 8, left: 8, bottom: 0 },
           children: [
@@ -18148,8 +18146,8 @@ function dU({ isStatic: e, engagement: t }) {
                 }
               }
             ),
-            /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(i, {}) }),
-            /* @__PURE__ */ y.jsx(hO, { dataKey: "value", barSize: 40, isAnimationActive: !1, children: r.map((a) => /* @__PURE__ */ y.jsx(Fr, { fill: n[a.name] }, a.name)) })
+            /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(a, {}) }),
+            /* @__PURE__ */ y.jsx(hO, { dataKey: "value", barSize: 40, isAnimationActive: !1, children: n.map((o) => /* @__PURE__ */ y.jsx(Fr, { fill: i[o.name] }, o.name)) })
           ]
         }
       ) })
@@ -18157,13 +18155,13 @@ function dU({ isStatic: e, engagement: t }) {
   );
 }
 function hU({ isStatic: e, facility: t }) {
-  const r = Number(t?.totalBookings || 0), n = Number(t?.totalSlots || 0), i = Number(t?.utilizationRate || 0), a = t?.slots?.map((s, l) => ({
-    time: s?.slot_start_time ? `${s.slot_start_time} - ${s.slot_end_time}` : `Slot ${l + 1}`,
-    bookings: Number(s?.slot_bookings || 0),
-    total: Number(s?.total_slots || 0)
-  })) || [], o = ({ active: s, payload: l, label: c }) => !s || !l || !l.length ? null : /* @__PURE__ */ y.jsxs("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: [
-    c && /* @__PURE__ */ y.jsx("p", { className: "font-medium mb-1", children: c }),
-    l.map((u, f) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
+  const r = t || {}, n = Number(r.totalBookings || 0), i = Number(r.totalSlots || 0), a = Number(r.utilizationRate || 0), o = t?.slots?.map((l, c) => ({
+    time: l?.slot_start_time ? `${l.slot_start_time} - ${l.slot_end_time}` : `Slot ${c + 1}`,
+    bookings: Number(l?.slot_bookings || 0),
+    total: Number(l?.total_slots || 0)
+  })) || [], s = ({ active: l, payload: c, label: u }) => !l || !c || !c.length ? null : /* @__PURE__ */ y.jsxs("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: [
+    u && /* @__PURE__ */ y.jsx("p", { className: "font-medium mb-1", children: u }),
+    c.map((f, d) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
       /* @__PURE__ */ y.jsx(
         "span",
         {
@@ -18172,15 +18170,15 @@ function hU({ isStatic: e, facility: t }) {
             width: 8,
             height: 8,
             borderRadius: "50%",
-            backgroundColor: u.color,
+            backgroundColor: f.color,
             marginRight: 6
           }
         }
       ),
-      u.name,
+      f.name,
       ": ",
-      /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: u.value })
-    ] }, f))
+      /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: f.value })
+    ] }, d))
   ] });
   return /* @__PURE__ */ y.jsxs(
     me,
@@ -18192,17 +18190,17 @@ function hU({ isStatic: e, facility: t }) {
       children: [
         /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-3 gap-6 mb-4", children: [
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-1", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Bookings" }),
-            /* @__PURE__ */ y.jsx("p", { className: "!m-0 !text-[24px] !leading-[28px] !font-medium text-[#8B5CF6]", children: r })
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Bookings" }),
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[24px] !leading-[28px] !font-medium text-[#8B5CF6]", children: n })
           ] }),
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-1", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Total Slots" }),
-            /* @__PURE__ */ y.jsx("p", { className: "!m-0 !text-[24px] !leading-[28px] !font-medium text-[#F59E0B]", children: n })
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Total Slots" }),
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[24px] !leading-[28px] !font-medium text-[#F59E0B]", children: i })
           ] }),
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-1", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Utilisation Rate" }),
-            /* @__PURE__ */ y.jsxs("p", { className: "!m-0 !text-[24px] !leading-[28px] !font-medium !text-[#329DFF]", children: [
-              i.toFixed(2),
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Utilisation Rate" }),
+            /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[24px] !leading-[28px] !font-medium !text-[#329DFF]", children: [
+              a.toFixed(2),
               "%"
             ] })
           ] })
@@ -18210,7 +18208,7 @@ function hU({ isStatic: e, facility: t }) {
         /* @__PURE__ */ y.jsx("div", { className: "w-full h-[200px]", children: /* @__PURE__ */ y.jsx(Ai, { width: "100%", height: "100%", children: /* @__PURE__ */ y.jsxs(
           zO,
           {
-            data: a,
+            data: o,
             margin: { top: 0, right: 0, left: 0, bottom: 0 },
             children: [
               /* @__PURE__ */ y.jsx(yc, { strokeDasharray: "3 3", stroke: "#EBEBEB" }),
@@ -18233,7 +18231,7 @@ function hU({ isStatic: e, facility: t }) {
                 xc,
                 {
                   yAxisId: "left",
-                  domain: [0, Math.max(...a.map((s) => s.total), 5)],
+                  domain: [0, Math.max(...o.map((l) => l.total), 5)],
                   tick: {
                     fontSize: 10,
                     lineHeight: 14,
@@ -18244,7 +18242,7 @@ function hU({ isStatic: e, facility: t }) {
                   tickLine: !1
                 }
               ),
-              /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(o, {}) }),
+              /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(s, {}) }),
               /* @__PURE__ */ y.jsx(
                 oo,
                 {
@@ -18278,7 +18276,7 @@ function hU({ isStatic: e, facility: t }) {
   );
 }
 function pU({ isStatic: e, financial: t }) {
-  const r = t?.incomeSummary || {}, n = t?.expenditureSummary || {};
+  const r = t?.incomeSummary || {}, n = t?.expenditureSummary || dummyData.expenditureSummary;
   function i(a) {
     if (a == null || isNaN(a)) return "0";
     const o = Number(a);
@@ -18321,7 +18319,7 @@ function pU({ isStatic: e, financial: t }) {
           /* @__PURE__ */ y.jsxs("div", { className: "flex items-center gap-3", children: [
             /* @__PURE__ */ y.jsx(Wm, { className: "text-2xl text-red-600" }),
             /* @__PURE__ */ y.jsx(
-              "h2",
+              "div",
               {
                 style: { fontWeight: 500, fontSize: "16px", lineHeight: "20px" },
                 className: "!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]",
@@ -18360,16 +18358,16 @@ function pU({ isStatic: e, financial: t }) {
   );
 }
 function mU({ isStatic: e, gate: t }) {
-  const r = {
+  const r = t || {}, n = {
     green: "#12B981",
     amber: "#F69E0A"
-  }, n = t?.summary?.activeWalkins || {}, i = t?.summary?.preApprovedCheckins || {}, a = t?.chart?.map((s) => ({
-    time: `${s?.hour ?? 0}:00`,
-    walkins: Number(s?.walkins ?? 0),
-    checkins: Number(s?.preApproved ?? 0)
-  })) ?? [], o = ({ active: s, payload: l, label: c }) => !s || !l || !l.length ? null : /* @__PURE__ */ y.jsxs("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: [
-    c && /* @__PURE__ */ y.jsx("p", { className: "font-medium mb-1", children: c }),
-    l.map((u, f) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
+  }, i = r?.summary?.activeWalkins || {}, a = r?.summary?.preApprovedCheckins || {}, o = r?.chart?.map((l) => ({
+    time: `${l?.hour ?? 0}:00`,
+    walkins: Number(l?.walkins ?? 0),
+    checkins: Number(l?.preApproved ?? 0)
+  })) ?? [], s = ({ active: l, payload: c, label: u }) => !l || !c || !c.length ? null : /* @__PURE__ */ y.jsxs("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: [
+    u && /* @__PURE__ */ y.jsx("p", { className: "font-medium mb-1", children: u }),
+    c.map((f, d) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
       /* @__PURE__ */ y.jsx(
         "span",
         {
@@ -18378,15 +18376,15 @@ function mU({ isStatic: e, gate: t }) {
             width: 8,
             height: 8,
             borderRadius: "50%",
-            backgroundColor: u.color,
+            backgroundColor: f.color,
             marginRight: 6
           }
         }
       ),
-      u.name,
+      f.name,
       ": ",
-      /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: u.value })
-    ] }, f))
+      /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: f.value })
+    ] }, d))
   ] });
   return /* @__PURE__ */ y.jsxs(
     me,
@@ -18398,22 +18396,22 @@ function mU({ isStatic: e, gate: t }) {
       children: [
         /* @__PURE__ */ y.jsxs("div", { className: "flex flex-wrap gap-x-2 gap-y-2 text-sm mb-2 ", children: [
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-2", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B]", children: "Active Walk-ins" }),
-            /* @__PURE__ */ y.jsxs("p", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B]", children: [
-              n.visitor_in ?? 0,
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B]", children: "Active Walk-ins" }),
+            /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B]", children: [
+              i.visitor_in ?? 0,
               /* @__PURE__ */ y.jsxs("span", { className: "!m-0 !text-[20px] !leading-[32px] !text-[#64748B]", children: [
                 "/",
-                n.total_pass ?? 0
+                i.total_pass ?? 0
               ] })
             ] })
           ] }),
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-2", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B]", children: "Pre-approved Check-ins" }),
-            /* @__PURE__ */ y.jsxs("p", { className: "!m-0 text-[28px] leading-[32px] font-medium text-[#E7A015]", children: [
-              i.expected_pass_scanned ?? 0,
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B]", children: "Pre-approved Check-ins" }),
+            /* @__PURE__ */ y.jsxs("div", { className: "!m-0 text-[28px] leading-[32px] font-medium text-[#E7A015]", children: [
+              a.expected_pass_scanned ?? 0,
               /* @__PURE__ */ y.jsxs("span", { className: "text-[20px] leading-[32px] text-[#64748B]", children: [
                 "/",
-                i.total_expected_pass ?? 0
+                a.total_expected_pass ?? 0
               ] })
             ] })
           ] })
@@ -18421,7 +18419,7 @@ function mU({ isStatic: e, gate: t }) {
         /* @__PURE__ */ y.jsx(Ai, { width: "100%", height: "60%", children: /* @__PURE__ */ y.jsxs(
           zO,
           {
-            data: a,
+            data: o,
             margin: { top: 0, right: 0, left: 0, bottom: 0 },
             children: [
               /* @__PURE__ */ y.jsx(
@@ -18454,13 +18452,13 @@ function mU({ isStatic: e, gate: t }) {
                 }
               ),
               /* @__PURE__ */ y.jsx(yc, { strokeDasharray: "3 3", stroke: "#f3f4f6" }),
-              /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(o, {}) }),
+              /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(s, {}) }),
               /* @__PURE__ */ y.jsx(
                 oo,
                 {
                   type: "monotone",
                   dataKey: "walkins",
-                  stroke: r.green,
+                  stroke: n.green,
                   strokeWidth: 2,
                   dot: !1,
                   name: "Walk-ins"
@@ -18471,7 +18469,7 @@ function mU({ isStatic: e, gate: t }) {
                 {
                   type: "monotone",
                   dataKey: "checkins",
-                  stroke: r.amber,
+                  stroke: n.amber,
                   strokeWidth: 2,
                   strokeDasharray: "5 5",
                   dot: !1,
@@ -18486,24 +18484,23 @@ function mU({ isStatic: e, gate: t }) {
   );
 }
 function gU({ isStatic: e, complaints: t }) {
-  console.log(t, "complaintscomplaintscomplaints");
-  const r = ({ value: c }) => {
-    if (c == null || isNaN(c))
+  const r = t || {}, n = ({ value: u }) => {
+    if (u == null || isNaN(u))
       return null;
-    const u = c >= 0;
+    const f = u >= 0;
     return /* @__PURE__ */ y.jsx(
       "span",
       {
-        className: `p-1 rounded text-[10px] leading-[14px] font-medium ${u ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
-        children: u ? `+${c}%` : `${c}%`
+        className: `p-1 rounded text-[10px] leading-[14px] font-medium ${f ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
+        children: f ? `+${u}%` : `${u}%`
       }
     );
-  }, n = [
-    { name: "L1", value: Number(t?.today_L1 || 0) },
-    { name: "L2", value: Number(t?.today_L2 || 0) },
-    { name: "L3", value: Number(t?.today_L3 || 0) },
-    { name: "No Level", value: Number(t?.today_NoLevel || 0) }
-  ], a = n.reduce((c, u) => c + u.value, 0) === 0 ? [{ name: "No Data", value: 1 }] : n, o = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"], s = ({ color: c }) => /* @__PURE__ */ y.jsx(
+  }, i = [
+    { name: "L1", value: Number(r?.today_L1 || 0) },
+    { name: "L2", value: Number(r?.today_L2 || 0) },
+    { name: "L3", value: Number(r?.today_L3 || 0) },
+    { name: "No Level", value: Number(r?.today_NoLevel || 0) }
+  ], o = i.reduce((u, f) => u + f.value, 0) === 0 ? [{ name: "No Data", value: 1 }] : i, s = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"], l = ({ color: u }) => /* @__PURE__ */ y.jsx(
     "span",
     {
       style: {
@@ -18511,16 +18508,16 @@ function gU({ isStatic: e, complaints: t }) {
         width: "8px",
         height: "8px",
         borderRadius: "50%",
-        backgroundColor: c,
+        backgroundColor: u,
         marginRight: "6px"
       }
     }
-  ), l = ({ active: c, payload: u }) => !c || !u || !u.length ? null : /* @__PURE__ */ y.jsx("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: u.map((f, d) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
-    /* @__PURE__ */ y.jsx(s, { color: f.color }),
-    f.name,
+  ), c = ({ active: u, payload: f }) => !u || !f || !f.length ? null : /* @__PURE__ */ y.jsx("div", { className: "bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg", children: f.map((d, h) => /* @__PURE__ */ y.jsxs("p", { className: "capitalize leading-relaxed", children: [
+    /* @__PURE__ */ y.jsx(l, { color: d.color }),
+    d.name,
     ": ",
-    /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: f.value })
-  ] }, d)) });
+    /* @__PURE__ */ y.jsx("span", { className: "font-semibold", children: d.value })
+  ] }, h)) });
   return /* @__PURE__ */ y.jsx(
     me,
     {
@@ -18531,11 +18528,11 @@ function gU({ isStatic: e, complaints: t }) {
       children: /* @__PURE__ */ y.jsxs("div", { className: "flex gap-3 h-fit", children: [
         /* @__PURE__ */ y.jsxs("div", { className: "w-[50%] flex flex-col gap-7", children: [
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-2", children: [
-            /* @__PURE__ */ y.jsx("h4", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Open Complaints" }),
-            /* @__PURE__ */ y.jsx("p", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]", children: t?.today_open_complaints ?? 0 })
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-xs !leading-[16px] !text-[#64748B]", children: "Open Complaints" }),
+            /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]", children: t?.today_open_complaints ?? 0 })
           ] }),
-          /* @__PURE__ */ y.jsxs("p", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1", children: [
-            /* @__PURE__ */ y.jsx(r, { value: t?.percent_change }),
+          /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1", children: [
+            /* @__PURE__ */ y.jsx(n, { value: t?.percent_change }),
             /* @__PURE__ */ y.jsx("span", { className: "whitespace-nowrap", children: "Compared to yesterday" })
           ] })
         ] }),
@@ -18543,15 +18540,15 @@ function gU({ isStatic: e, complaints: t }) {
           /* @__PURE__ */ y.jsx(
             Lo,
             {
-              data: a,
+              data: o,
               innerRadius: 36,
               outerRadius: 52,
               paddingAngle: 2,
               dataKey: "value",
-              children: a.map((c, u) => /* @__PURE__ */ y.jsx(Fr, { fill: o[u] || "#CBD5E1" }, c.name))
+              children: o.map((u, f) => /* @__PURE__ */ y.jsx(Fr, { fill: s[f] || "#CBD5E1" }, u.name))
             }
           ),
-          /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(l, {}) })
+          /* @__PURE__ */ y.jsx(Oi, { content: /* @__PURE__ */ y.jsx(c, {}) })
         ] }) }) })
       ] })
     }

@@ -11,6 +11,32 @@ import {
 } from "recharts";
 
 function GateUpdates({ isStatic, gate }) {
+  // Dummy gate data for testing
+  // const dummyGate = {
+  //   summary: {
+  //     activeWalkins: {
+  //       visitor_in: 12,
+  //       total_pass: 20,
+  //     },
+  //     preApprovedCheckins: {
+  //       expected_pass_scanned: 8,
+  //       total_expected_pass: 15,
+  //     },
+  //   },
+  //   chart: [
+  //     { hour: 8, walkins: 5, preApproved: 3 },
+  //     { hour: 9, walkins: 8, preApproved: 5 },
+  //     { hour: 10, walkins: 12, preApproved: 7 },
+  //     { hour: 11, walkins: 15, preApproved: 9 },
+  //     { hour: 12, walkins: 10, preApproved: 6 },
+  //     { hour: 13, walkins: 6, preApproved: 4 },
+  //     { hour: 14, walkins: 9, preApproved: 5 },
+  //     { hour: 15, walkins: 14, preApproved: 10 },
+  //     { hour: 16, walkins: 11, preApproved: 8 },
+  //     { hour: 17, walkins: 7, preApproved: 5 },
+  //   ],
+  // };
+  const gateData = gate || {};
   const COLORS = {
     green: "#12B981",
     red: "#EF4645",
@@ -25,10 +51,10 @@ function GateUpdates({ isStatic, gate }) {
     slate: "#64748B",
   };
 
-  const activeWalkins = gate?.summary?.activeWalkins || {};
-  const preApproved = gate?.summary?.preApprovedCheckins || {};
+  const activeWalkins = gateData?.summary?.activeWalkins || {};
+  const preApproved = gateData?.summary?.preApprovedCheckins || {};
   const chartData =
-    gate?.chart?.map((d) => ({
+    gateData?.chart?.map((d) => ({
       time: `${d?.hour ?? 0}:00`,
       walkins: Number(d?.walkins ?? 0),
       checkins: Number(d?.preApproved ?? 0),
@@ -67,27 +93,27 @@ function GateUpdates({ isStatic, gate }) {
     >
       <div className="flex flex-wrap gap-x-2 gap-y-2 text-sm mb-2 ">
         <div className="flex flex-col gap-2">
-          <h4 className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
+          <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
             Active Walk-ins
-          </h4>
-          <p className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B]">
+          </div>
+          <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B]">
             {activeWalkins.visitor_in ?? 0}
             <span className="!m-0 !text-[20px] !leading-[32px] !text-[#64748B]">
               /{activeWalkins.total_pass ?? 0}
             </span>
-          </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">
-          <h4 className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
+          <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
             Pre-approved Check-ins
-          </h4>
-          <p className="!m-0 text-[28px] leading-[32px] font-medium text-[#E7A015]">
+          </div>
+          <div className="!m-0 text-[28px] leading-[32px] font-medium text-[#E7A015]">
             {preApproved.expected_pass_scanned ?? 0}
             <span className="text-[20px] leading-[32px] text-[#64748B]">
               /{preApproved.total_expected_pass ?? 0}
             </span>
-          </p>
+          </div>
         </div>
       </div>
 

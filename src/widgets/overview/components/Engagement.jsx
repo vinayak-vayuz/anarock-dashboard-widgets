@@ -12,11 +12,21 @@ import {
 } from "recharts";
 
 function Engagement({ isStatic, engagement }) {
+  // Dummy data when nothing is passed
+  // const dummyEngagement = {
+  //   total_notices: 15,
+  //   total_topics: 30,
+  //   total_polls: 12,
+  //   total_surveys: 8,
+  // };
+
+  const data = engagement || {};
+
   const engagementBars = [
-    { name: "Notice", value: Number(engagement?.total_notices || 0) },
-    { name: "Post", value: Number(engagement?.total_topics || 0) },
-    { name: "Poll", value: Number(engagement?.total_polls || 0) },
-    { name: "Survey", value: Number(engagement?.total_surveys || 0) },
+    { name: "Notice", value: Number(data?.total_notices || 0) },
+    { name: "Post", value: Number(data?.total_topics || 0) },
+    { name: "Poll", value: Number(data?.total_polls || 0) },
+    { name: "Survey", value: Number(data?.total_surveys || 0) },
   ];
 
   const COLORS = {
@@ -30,9 +40,9 @@ function Engagement({ isStatic, engagement }) {
     if (!active || !payload || !payload.length) return null;
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
-        {label && <p className="font-medium mb-1">{label}</p>}
+        {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <p key={i} className="capitalize leading-relaxed">
+          <div key={i} className="capitalize leading-relaxed">
             <span
               style={{
                 display: "inline-block",
@@ -44,7 +54,7 @@ function Engagement({ isStatic, engagement }) {
               }}
             ></span>
             {item.name}: <span className="font-semibold">{item.value}</span>
-          </p>
+          </div>
         ))}
       </div>
     );
