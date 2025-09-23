@@ -1,5 +1,7 @@
-import './index.css';
-import './styles/tailwind.css';
+import styleInject from 'style-inject';
+import css from './index.css?inline'; 
+
+styleInject(css);
 
 export { default as Card } from "./components/ui/Card";
 

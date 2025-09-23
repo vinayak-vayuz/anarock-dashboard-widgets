@@ -1,9 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+/* Tailwind base imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom CSS */
 :root {
-  --anarock-font: 'Outfit !important;', sans-serif;
+  --anarock-font: "Outfit !important", sans-serif;
 }
 
-body, button, input, textarea, select {
+body, button, input, select, textarea {
   font-family: var(--anarock-font);
+}
+
+.my-custom-class {
+  color: #123456;
+  padding: 10px;
 }
