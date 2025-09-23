@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import Card from "../../../components/ui/Card";
 import { LuReceiptText } from "react-icons/lu";
 
 function FinanceSummary({ isStatic, financial }) {

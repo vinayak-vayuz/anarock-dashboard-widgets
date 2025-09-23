@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import Card from "../../../components/ui/Card";
 import { LuWrench } from "react-icons/lu";
 import {
   PieChart,

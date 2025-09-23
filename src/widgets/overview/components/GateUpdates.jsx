@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import Card from "../../../components/ui/Card";
 import { LuWaves } from "react-icons/lu";
 import {
   LineChart,
