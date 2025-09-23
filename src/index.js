@@ -1,3 +1,5 @@
+import './index.css';
+
 export { default as Community } from "./widgets/overview/components/Community";
 export { default as Engagement } from "./widgets/overview/components/Engagement";
 export { default as Facilities } from "./widgets/overview/components/Facilities";
