@@ -644,7 +644,7 @@ const me = ({
 }) => /* @__PURE__ */ y.jsxs(
   "div",
   {
-    className: `relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-xl !shadow-[0_0_12px_0_#EAF2FF] p-4 flex flex-col gap-6 ${a} h-full `,
+    className: `relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-xl !shadow-[0_0_12px_0_#EAF2FF] p-4 flex flex-col gap-6 ${a} `,
     children: [
       /* @__PURE__ */ y.jsxs("div", { className: "flex items-center justify-between", children: [
         /* @__PURE__ */ y.jsxs("div", { className: "flex items-center gap-3", children: [
