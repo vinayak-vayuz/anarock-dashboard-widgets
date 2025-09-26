@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(),  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
