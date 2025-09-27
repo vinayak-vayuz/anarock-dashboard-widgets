@@ -4,7 +4,7 @@ import { GoPeople } from "react-icons/go";
 import { CiWarning } from "react-icons/ci";
 import { PiShieldWarningBold } from "react-icons/pi";
 import { LuCar } from "react-icons/lu";
-import Card from "../../../components/ui/Card";
+import Card from "../../components/Card";
 
 function StatCardGrid({
   title,

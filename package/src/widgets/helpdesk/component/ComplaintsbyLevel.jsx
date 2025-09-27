@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,7 +8,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import Card from "../../../components/ui/Card";
+import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -32,19 +33,31 @@ const BlockWiseOccupancyCard = ({
         label: "Closed",
         data: owners,
         backgroundColor: "#12B981",
-        barThickness: 36,
+        barThickness: 44,
+      },
+      {
+        label: "",
+        data: owners.map(() => 2),
+        backgroundColor: "transparent",
+        barThickness: 44,
       },
       {
         label: "In Progress",
         data: rented,
         backgroundColor: "#F59D0D",
-        barThickness: 36,
+        barThickness: 44,
+      },
+      {
+        label: "",
+        data: owners.map(() => 2),
+        backgroundColor: "transparent",
+        barThickness: 44,
       },
       {
         label: "Open",
         data: vacant,
         backgroundColor: "#EF4444",
-        barThickness: 36,
+        barThickness: 44,
       },
     ],
   };
@@ -88,7 +101,7 @@ const BlockWiseOccupancyCard = ({
   return (
     <Card
       title="Complaints by Level"
-      className="w-full"
+      className="w-full h-[362px]"
       period={<OpenInNewOutlinedIcon className="text-xl text-[#884EA7]" />}
     >
       <Bar data={data} options={options} />

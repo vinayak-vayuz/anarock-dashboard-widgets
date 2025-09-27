@@ -9,7 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import Card from "../../../components/ui/Card";
+import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
 ChartJS.register(
@@ -51,18 +51,18 @@ const MoveInOutTrendsCard = ({
       {
         label: "Move-in",
         data: moveIn,
-        borderColor: "#10B981",
+        borderColor: "#12B981",
         backgroundColor: "rgba(16,185,129,0.15)",
-        pointBackgroundColor: "#10B981",
+        pointBackgroundColor: "#12B981",
         pointStyle: "rectRot",
         fill: false,
       },
       {
         label: "Move-out",
         data: moveOut,
-        borderColor: "#7C3AED",
+        borderColor: "#8B5CF6",
         backgroundColor: "rgba(124,58,237,0.15)",
-        pointBackgroundColor: "#7C3AED",
+        pointBackgroundColor: "#8B5CF6",
         pointStyle: "rectRot",
         fill: false,
       },
@@ -117,7 +117,7 @@ const MoveInOutTrendsCard = ({
   return (
     <Card
       title="Move-in/Out Trends"
-      className="w-full"
+      className="w-full h-[360px]"
       period={<OpenInNewOutlinedIcon className="text-xl text-[#884EA7]" />}
     >
       <Line data={data} options={options} />

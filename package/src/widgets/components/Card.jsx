@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Card = ({
   title,
   icon,
@@ -13,12 +15,12 @@ const Card = ({
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
         {icon}
-        <div
+        <h2
           style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
           className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
           >
           {title}
-        </div>
+        </h2>
       </div>
 
       {period && (
@@ -27,7 +29,7 @@ const Card = ({
         </span>
       )}
     </div>
-    <div className={`flex-1 min-h-0 space-y-6 ${childrenClassName ? childrenClassName : ""}`}>
+    <div className={`flex-1 min-h-0 space-y-6 ${childrenClassName}`}>
       {children}
     </div>
     {footer && (

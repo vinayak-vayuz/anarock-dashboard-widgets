@@ -1,9 +1,12 @@
-import Card from "../../../components/ui/Card";
+import React from "react";
+import Card from "../../components/Card";
 import { LuReceiptText } from "react-icons/lu";
 
-function FinanceSummary({ isStatic, data }) {
-  const income = data?.incomeSummary || {};
-  const expenditure = data?.expenditureSummary || {};
+function FinanceSummary({ financial, data }) {
+  console.log(data, "data");
+  console.log(financial, "financial");
+  const income = financial?.incomeSummary || {};
+  const expenditure = financial?.expenditureSummary || {};
 
   function formatCurrency(value) {
     if (value === null || value === undefined || isNaN(value)) return "0";
@@ -26,52 +29,54 @@ function FinanceSummary({ isStatic, data }) {
       title="Income"
       period="This Month"
       icon={<LuReceiptText className="text-2xl text-green-600" />}
-      className="mb-4 break-inside-avoid "
+      className="!gap-4 break-inside-avoid h-[232px] overflow-hidden"
     >
-      <div className="grid grid-cols-4 text-xs text-gray-500 mb-2">
-        <span>Opening</span>
-        <span>Income</span>
-        <span>Collection</span>
-        <span>Closing</span>
-      </div>
+      <div>
+        <div className="grid grid-cols-4 text-xs text-[#64748B] mb-2">
+          <div>Opening</div>
+          <div>Income</div>
+          <div>Collection</div>
+          <div>Closing</div>
+        </div>
 
-      <div className="grid grid-cols-4 text-sm font-medium text-gray-900 mb-4">
-        <span>{formatCurrency(income.opening_balance)} AED</span>
-        <span>{formatCurrency(income.income)} AED</span>
-        <span>{formatCurrency(income.collection)} AED</span>
-        <span>{formatCurrency(income.closing_balance)} AED</span>
-      </div>
+        <div className="grid grid-cols-4 text-xs font-medium text-[#121212] mb-2">
+          <div>{formatCurrency(income.opening_balance)} AED</div>
+          <div>{formatCurrency(income.income)} AED</div>
+          <div>{formatCurrency(income.collection)} AED</div>
+          <div>{formatCurrency(income.closing_balance)} AED</div>
+        </div>
 
-      <hr className="my-2 border-t border-dashed border-gray-300" />
+        <hr className="my-4 border-t border-dashed border-gray-300" />
 
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <LuReceiptText className="text-2xl text-red-600" />
-          <div
-            style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
-            className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
-          >
-            Expenditure
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <LuReceiptText className="text-2xl text-red-600" />
+            <div
+              style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
+              className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
+            >
+              Expenditure
+            </div>
+          </div>
+
+          <div className="!text-xs !leading-[16px] !text-[#64748B]">
+            This Month
           </div>
         </div>
 
-        <span className="!text-xs !leading-[16px] !text-[#64748B]">
-          This Month
-        </span>
-      </div>
+        <div className="grid grid-cols-4 text-xs text-[#64748B] mt-4 mb-2">
+          <div>Opening</div>
+          <div>Expenditure</div>
+          <div>Payment</div>
+          <div>Outstanding</div>
+        </div>
 
-      <div className="grid grid-cols-4 text-xs text-gray-500 mb-2">
-        <span>Opening</span>
-        <span>Expenditure</span>
-        <span>Payment</span>
-        <span>Outstanding</span>
-      </div>
-
-      <div className="grid grid-cols-4 text-sm font-medium text-gray-900">
-        <span>{formatCurrency(expenditure.opening_balance)} AED</span>
-        <span>{formatCurrency(expenditure.expenditure)} AED</span>
-        <span>{formatCurrency(expenditure.payment)} AED</span>
-        <span>{formatCurrency(expenditure.outstanding)} AED</span>
+        <div className="grid grid-cols-4 text-xs font-medium text-[#121212]">
+          <div>{formatCurrency(expenditure.opening_balance)} AED</div>
+          <div>{formatCurrency(expenditure.expenditure)} AED</div>
+          <div>{formatCurrency(expenditure.payment)} AED</div>
+          <div>{formatCurrency(expenditure.outstanding)} AED</div>
+        </div>
       </div>
     </Card>
   );

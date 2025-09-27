@@ -7,10 +7,10 @@ function Engagement() {
     return (
         <div>
             <Header title="Engagement" description="Insights on community activity" />
-            <StatCardGrid isStatic={false} />
+            <StatCardGrid isStatic={true} />
             <div className="px-5 grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-                <NoticeBoardStatus isStatic={false}/>
-                <EventsUtilisation isStatic={false}/>
+                <NoticeBoardStatus isStatic={true}/>
+                <EventsUtilisation isStatic={true}/>
             </div>
         </div>
     );

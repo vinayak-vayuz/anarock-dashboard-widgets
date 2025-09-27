@@ -1,4 +1,5 @@
-import Card from "../../../components/ui/Card";
+import React from "react";
+import Card from "../../components/Card";
 import { LuMessageSquare } from "react-icons/lu";
 import {
   Cell,
@@ -11,12 +12,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Engagement({ isStatic, data }) {
+function Engagement({ isStatic, engagement }) {
   const engagementBars = [
-    { name: "Notice", value: Number(data?.total_notices || 0) },
-    { name: "Post", value: Number(data?.total_topics || 0) },
-    { name: "Poll", value: Number(data?.total_polls || 0) },
-    { name: "Survey", value: Number(data?.total_surveys || 0) },
+    { name: "Notice", value: Number(engagement?.total_notices || 0) },
+    { name: "Post", value: Number(engagement?.total_topics || 0) },
+    { name: "Poll", value: Number(engagement?.total_polls || 0) },
+    { name: "Survey", value: Number(engagement?.total_surveys || 0) },
   ];
 
   const COLORS = {
@@ -30,9 +31,9 @@ function Engagement({ isStatic, data }) {
     if (!active || !payload || !payload.length) return null;
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
-        {label && <div className="font-medium mb-1">{label}</div>}
+        {label && <p className="font-medium mb-1">{label}</p>}
         {payload.map((item, i) => (
-          <div key={i} className="capitalize leading-relaxed">
+          <p key={i} className="capitalize leading-relaxed">
             <span
               style={{
                 display: "inline-block",
@@ -44,7 +45,7 @@ function Engagement({ isStatic, data }) {
               }}
             ></span>
             {item.name}: <span className="font-semibold">{item.value}</span>
-          </div>
+          </p>
         ))}
       </div>
     );
@@ -55,7 +56,7 @@ function Engagement({ isStatic, data }) {
       title="Engagement"
       period="This Month"
       icon={<LuMessageSquare className="text-2xl text-[#DBB467]" />}
-      className={`${isStatic && "max-h-[303px]"}`}
+      className={`${isStatic && "max-h-[303px]"} h-[303px]`}
     >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
@@ -95,7 +96,10 @@ function Engagement({ isStatic, data }) {
             }}
           />
 
-          <RTooltip content={<CustomTooltip />} />
+          <RTooltip
+            content={<CustomTooltip />}
+            cursor={{ fill: "transparent" }}
+          />
 
           <Bar dataKey="value" barSize={40} isAnimationActive={false}>
             {engagementBars.map((entry) => (

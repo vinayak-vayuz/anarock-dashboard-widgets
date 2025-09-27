@@ -4,7 +4,7 @@ import { LuTicketCheck } from "react-icons/lu";
 import { TbTicket } from "react-icons/tb";
 import { LiaMoneyBillSolid } from "react-icons/lia";
 import { AiOutlinePercentage } from "react-icons/ai";
-import Card from "../../../components/ui/Card";
+import Card from "../../components/Card";
 
 function StatCardGrid({
   title,

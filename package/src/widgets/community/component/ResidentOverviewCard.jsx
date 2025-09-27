@@ -2,7 +2,7 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { GoHome } from "react-icons/go";
-import Card from "../../../components/ui/Card";
+import Card from "../../components/Card";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -50,7 +50,7 @@ const ResidentOverviewCard = ({
     datasets: [
       {
         data: [ownerResiding, tenantCount, nonResidingOwners],
-        backgroundColor: ["#3B82F6", "#10B981", "#8B5CF6"],
+        backgroundColor: ["#3C81F6", "#08B6D4", "#8B5CF6"],
         borderWidth: 2,
         hoverOffset: 4,
       },
@@ -79,36 +79,42 @@ const ResidentOverviewCard = ({
   return (
     <Card
       title="Resident Overview"
-      icon={<GoHome className="h-6 w-6 text-purple-600" />}
-      childrenClassName="flex-1 min-h-0 grid grid-cols-12 gap-4 items-center"
+      icon={<GoHome className="h-6 w-6 text-[#8B5CF6]" />}
+      className="h-[238px]"
     >
-      <div className="col-span-5 space-y-3">
+      <div className=" flex-1 min-h-0 grid grid-cols-12 gap-4 items-center">
+      <div className="col-span-5">
         <div>
-          <div className="text-xs text-slate-500">Total Owners</div>
-          <div className="text-3xl font-semibold text-[#3B82F6]">
+          <div className="text-[12px] text-[#64748B] leading-[16px]">Total Owners</div>
+          <div className="text-[28px] leading-[32px ]  text-[#3C81F6]">
             {ownerCount}
           </div>
         </div>
         <div>
-          <div className="text-xs text-slate-500">Total Tenants</div>
-          <div className="text-3xl font-semibold text-[#08B6D4]">
+          <div className="text-[12px] text-[#64748B]  leading-[16px]">
+            Total Tenants
+          </div>
+          <div className="text-[28px] leading-[32px ] text-[#08B6D4]">
             {tenantCount}
           </div>
         </div>
-        <div className="text-xs text-emerald-600">
+        <div className="text-xs text-[#1FA05B] flex gap-2">
           {growthPct}{" "}
-          <span className="text-slate-500">Compared to last month</span>
+          <div className="text-[#64748B] text-[10px]">
+            Compared to last month
+          </div>
         </div>
       </div>
 
       <div className="col-span-7">
-        <div className="h-[162px] w-[163px] ml-auto mr-2">
+        <div className="h-[162px] w-[162px] ml-auto mr-2">
           <Doughnut
             data={data}
             options={options}
             plugins={[centerTextPlugin]}
           />
         </div>
+      </div>
       </div>
     </Card>
   );
