@@ -1,13 +1,18 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import tailwindcss from '@tailwindcss/vite'
 import path from "path";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react()],
   resolve: {
     alias: {
-      "@anarock/widgets": path.resolve(__dirname, "../src"),
+      "@anarock/widgets": path.resolve(__dirname, "../package/src"),
+    },
+  },
+  server: {
+    fs: {
+      // Allow serving files from one level up (../package)
+      allow: [".."],
     },
   },
 });

@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@anarock/widgets": "file:..",
-    "@tailwindcss/vite": "^4.1.13",
-    "react": "^18.0",
-    "react-dom": "^18.0",
-    "tailwindcss": "^4.1.13"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.2",
+    "@mui/material": "^7.3.2",
+    "postcss": "^8.5.6",
+    "react": "^18.0.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^18.0.0",
+    "react-icons": "^5.5.0",
+    "recharts": "^3.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
