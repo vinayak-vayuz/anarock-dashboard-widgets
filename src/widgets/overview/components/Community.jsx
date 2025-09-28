@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Community({ isStatic, community }) {
+function Community({ isStatic, data }) {
   const Chip = ({ value }) => {
     const isPositive = value >= 0;
     return (
@@ -26,17 +26,17 @@ function Community({ isStatic, community }) {
   };
 
   const moveIns = Number(
-    community?.thisMonthMoveIns ?? community?.lastMonthMoveIns ?? 0
+    data?.thisMonthMoveIns ?? data?.lastMonthMoveIns ?? 0
   );
   const moveOuts = Number(
-    community?.thisMonthMoveOuts ?? community?.lastMonthMoveOuts ?? 0
+    data?.thisMonthMoveOuts ?? data?.lastMonthMoveOuts ?? 0
   );
 
   const moveInChange = Number(
-    community?.moveInPercentChange ?? community?.moveInChange ?? 0
+    data?.moveInPercentChange ?? data?.moveInChange ?? 0
   );
   const moveOutChange = Number(
-    community?.moveOutPercentChange ?? community?.moveOutChange ?? 0
+    data?.moveOutPercentChange ?? data?.moveOutChange ?? 0
   );
 
   const communitySplit = [
