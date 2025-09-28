@@ -22438,7 +22438,7 @@ var Qz = {
     ref: t
   });
 });
-function bU({ isStatic: e, community: t }) {
+function bU({ isStatic: e, data: t }) {
   const r = ({ value: u }) => {
     const f = u >= 0;
     return /* @__PURE__ */ y.jsx(
@@ -22762,7 +22762,7 @@ function _U({ data: e }) {
   function n(i) {
     if (i == null || isNaN(i)) return "0";
     const a = Number(i);
-    return a >= 1e9 ? (a / 1e9).toFixed(2) + "B" : a >= 1e6 ? (a / 1e6).toFixed(2) + "M" : a >= 1e3 ? (a / 1e3).toFixed(2) + "K" : a.toFixed(2);
+    return a >= 1e9 ? (a / 1e9).toFixed(a % 1e9 === 0 ? 0 : 2) + "B" : a >= 1e6 ? (a / 1e6).toFixed(a % 1e6 === 0 ? 0 : 2) + "M" : a >= 1e3 ? (a / 1e3).toFixed(a % 1e3 === 0 ? 0 : 2) + "K" : a.toFixed(a % 1 === 0 ? 0 : 2);
   }
   return /* @__PURE__ */ y.jsx(
     _e,

@@ -7,14 +7,9 @@ const isPlayground = true;
 
 export default defineConfig({
   plugins: [react()],
-  root: isPlayground ? path.resolve(__dirname, "src/playground") : undefined, // use playground root in dev
+  root: isPlayground ? path.resolve(__dirname, "src/playground") : undefined,
   build: isPlayground
-    ? {
-        outDir: "../../dist-playground", // playground build folder
-        rollupOptions: {
-          input: path.resolve(__dirname, "src/playground/main.jsx"),
-        },
-      }
+    ? false
     : {
         lib: {
           entry: path.resolve(__dirname, "src/index.js"), // library entry

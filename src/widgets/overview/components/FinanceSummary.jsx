@@ -13,13 +13,15 @@ function FinanceSummary({ data }) {
     const num = Number(value);
 
     if (num >= 1_000_000_000) {
-      return (num / 1_000_000_000).toFixed(2) + "B";
+      return (
+        (num / 1_000_000_000).toFixed(num % 1_000_000_000 === 0 ? 0 : 2) + "B"
+      );
     } else if (num >= 1_000_000) {
-      return (num / 1_000_000).toFixed(2) + "M";
+      return (num / 1_000_000).toFixed(num % 1_000_000 === 0 ? 0 : 2) + "M";
     } else if (num >= 1_000) {
-      return (num / 1_000).toFixed(2) + "K";
+      return (num / 1_000).toFixed(num % 1_000 === 0 ? 0 : 2) + "K";
     } else {
-      return num.toFixed(2);
+      return num.toFixed(num % 1 === 0 ? 0 : 2);
     }
   }
 
