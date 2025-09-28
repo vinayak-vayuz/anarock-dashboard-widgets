@@ -22756,13 +22756,13 @@ function wU({ isStatic: e, facility: t }) {
     }
   );
 }
-function _U({ financial: e, data: t }) {
-  console.log(t, "data"), console.log(e, "financial");
-  const r = e?.incomeSummary || {}, n = e?.expenditureSummary || {};
-  function i(a) {
-    if (a == null || isNaN(a)) return "0";
-    const o = Number(a);
-    return o >= 1e9 ? (o / 1e9).toFixed(2) + "B" : o >= 1e6 ? (o / 1e6).toFixed(2) + "M" : o >= 1e3 ? (o / 1e3).toFixed(2) + "K" : o.toFixed(2);
+function _U({ data: e }) {
+  console.log(e, "financial");
+  const t = e?.incomeSummary || {}, r = e?.expenditureSummary || {};
+  function n(i) {
+    if (i == null || isNaN(i)) return "0";
+    const a = Number(i);
+    return a >= 1e9 ? (a / 1e9).toFixed(2) + "B" : a >= 1e6 ? (a / 1e6).toFixed(2) + "M" : a >= 1e3 ? (a / 1e3).toFixed(2) + "K" : a.toFixed(2);
   }
   return /* @__PURE__ */ y.jsx(
     _e,
@@ -22780,19 +22780,19 @@ function _U({ financial: e, data: t }) {
         ] }),
         /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 text-xs font-medium text-[#121212] mb-2", children: [
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(r.opening_balance),
+            n(t.opening_balance),
             " AED"
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(r.income),
+            n(t.income),
             " AED"
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(r.collection),
+            n(t.collection),
             " AED"
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(r.closing_balance),
+            n(t.closing_balance),
             " AED"
           ] })
         ] }),
@@ -22819,19 +22819,19 @@ function _U({ financial: e, data: t }) {
         ] }),
         /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 text-xs font-medium text-[#121212]", children: [
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(n.opening_balance),
+            n(r.opening_balance),
             " AED"
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(n.expenditure),
+            n(r.expenditure),
             " AED"
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(n.payment),
+            n(r.payment),
             " AED"
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
-            i(n.outstanding),
+            n(r.outstanding),
             " AED"
           ] })
         ] })

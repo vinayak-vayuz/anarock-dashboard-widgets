@@ -2,11 +2,10 @@ import React from "react";
 import Card from "../../components/Card";
 import { LuReceiptText } from "react-icons/lu";
 
-function FinanceSummary({ financial, data }) {
-  console.log(data, "data");
-  console.log(financial, "financial");
-  const income = financial?.incomeSummary || {};
-  const expenditure = financial?.expenditureSummary || {};
+function FinanceSummary({ data }) {
+  console.log(data, "financial");
+  const income = data?.incomeSummary || {};
+  const expenditure = data?.expenditureSummary || {};
 
   function formatCurrency(value) {
     if (value === null || value === undefined || isNaN(value)) return "0";
