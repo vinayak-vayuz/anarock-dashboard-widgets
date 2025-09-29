@@ -8,16 +8,21 @@ const Card = ({
   footer,
   className = "",
   childrenClassName,
-}) => (
-  <div
-    className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-xl !shadow-[0_0_12px_0_#EAF2FF] p-4 flex flex-col gap-6 ${className} `}
+  titleWeight, 
+}) => {
+  const fontWeightValue =
+    titleWeight === "semi-bold" ? 600 : 500; 
+ 
+    return (
+    <div
+      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-xl !shadow-[0_0_12px_0_#EAF2FF] p-4 flex flex-col gap-6 ${className}`}
     >
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
         {icon}
         <h2
-          style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
-          className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
+          style={{ fontWeight: fontWeightValue, fontSize: "16px", lineHeight: "20px" }}
+          className="!my-0 !text-[16px] !leading-[20px] !text-[#121212]"
           >
           {title}
         </h2>
@@ -38,6 +43,6 @@ const Card = ({
       </div>
     )}
     </div>
-);
+  )}
 
 export default Card

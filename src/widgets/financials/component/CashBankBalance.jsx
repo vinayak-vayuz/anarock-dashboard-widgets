@@ -24,6 +24,7 @@ const CashBankBalance = () => {
       period={
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
+      titleWeight="semi-bold"
       childrenClassName="divide-y divide-slate-100"
     >
       {accounts.map((acc, i) => (

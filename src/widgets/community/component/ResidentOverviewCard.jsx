@@ -98,9 +98,9 @@ const ResidentOverviewCard = ({
             {tenantCount}
           </div>
         </div>
-        <div className="text-xs text-[#1FA05B] flex gap-2">
+        <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center">
           {growthPct}{" "}
-          <div className="text-[#64748B] text-[10px]">
+          <div className="text-[#64748B] ">
             Compared to last month
           </div>
         </div>

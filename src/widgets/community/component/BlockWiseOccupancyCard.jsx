@@ -103,6 +103,7 @@ const BlockWiseOccupancyCard = ({
       title="Block-wise Occupancy"
       period={<OpenInNewOutlinedIcon className="text-xl text-[#884EA7]" />}
       className="w-full h-[360px]"
+       titleWeight="semi-bold"
     >
       <Bar data={data} options={options} />
     </Card>

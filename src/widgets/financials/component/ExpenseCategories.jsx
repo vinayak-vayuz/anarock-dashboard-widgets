@@ -63,16 +63,16 @@ const ExpenseCategories = () => {
       period={
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
-      childrenClassName="space-y-6"
+      titleWeight="semi-bold"
     >
-      <div className="relative h-[254px] flex justify-center items-center">
+      <div className="relative h-[259px] flex justify-center items-center">
         <Doughnut data={data} options={options} />
 
         <div className="absolute text-center">
-          <div className="text-xl font-bold">
+          <div className="text-2xl font-medium leading-[28px] text-[#121212]">
             AED {(total / 1000000).toFixed(2)}M
           </div>
-          <div className="text-gray-500 text-sm">Total Expenses</div>
+          <div className="text-[#121212] leading-[18px] text-sm">Total Expenses</div>
         </div>
       </div>
 
@@ -82,14 +82,14 @@ const ExpenseCategories = () => {
             key={label}
             className="flex justify-between items-center text-sm pb-2"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-xs leading-[16px] text-[#64748B]">
               <div
-                className="w-3 h-3 rotate-45"
+                className="w-[7px] h-[7px] rotate-45"
                 style={{ backgroundColor: data.datasets[0].backgroundColor[i] }}
               ></div>
               {label}
             </div>
-            <div className="font-semibold text-gray-400">
+            <div className="leading-[16px] text-xs text-[#64748B]">
               AED {(values[i] / 1000).toFixed(0)}K
             </div>
           </div>

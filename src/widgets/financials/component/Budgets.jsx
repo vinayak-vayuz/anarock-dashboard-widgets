@@ -94,6 +94,7 @@ const BudgetVsActuals = () => {
       period={
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
+      titleWeight="semi-bold"
     >
       <Bar data={data} options={options} />
     </Card>
