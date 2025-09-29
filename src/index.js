@@ -2,6 +2,7 @@ import './index.css';
 
 export { default as Card } from "./widgets/components/Card";
 export { default as Header } from "./widgets/components/Header";
+export { default as MainHeader } from "./widgets/components/MainHeader";
 
 export { default as Community } from "./widgets/overview/components/Community";
 export { default as Engagement } from "./widgets/overview/components/Engagement";
