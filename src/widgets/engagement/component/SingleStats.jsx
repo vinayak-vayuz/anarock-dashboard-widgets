@@ -1,6 +1,7 @@
 import React from "react";
 import { RiBillLine } from "react-icons/ri";
 import { DescriptionOutlined as DescriptionOutlinedIcon } from "@mui/icons-material";
+import Card from "../../components/Card";
 
 function StatCardGrid({
   title,
@@ -13,31 +14,33 @@ function StatCardGrid({
   iconBg = "bg-emerald-50",
 }) {
   return (
-    <div className="bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[132px] flex flex-col justify-between ">
-      <div className="flex items-center gap-2">
+    <Card
+      title={title}
+      icon={
         <div className={`h-6 w-6 grid place-items-center rounded-md ${iconBg}`}>
           <Icon className={`h-4 w-4 ${iconColor}`} />
         </div>
-        <span className="text-sm font-semibold text-slate-800">{title}</span>
-      </div>
-
-      <div className="text-4xl font-semibold tracking-tight text-[#121212]">
+}
+      className="h-[132px]">
+      <div>
+          <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
         {value}
       </div>
 
-      <div className="flex items-center gap-2 text-sm">
+      <div className="flex items-center gap-2 pt-[8px] text-xs leading-[16px]">
         <div
           className={
             positive
-              ? "text-emerald-600 font-medium"
+              ? "text-[#1FA05B] font-medium"
               : "text-rose-600 font-medium"
           }
         >
           {delta}
         </div>
-        <div className="text-slate-500">{deltaLabel}</div>
+        <div className="text-[#64748B]">{deltaLabel}</div>
       </div>
-    </div>
+      </div>
+    </Card>
   );
 }
 

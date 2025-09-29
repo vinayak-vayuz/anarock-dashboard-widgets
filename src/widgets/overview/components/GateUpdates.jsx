@@ -44,7 +44,7 @@ function groupGateDataIntoFourHours(data) {
   return Object.values(grouped);
 }
 
-function GateUpdates({ isStatic, gate }) {
+function GateUpdates({ isStatic, data }) {
   const COLORS = {
     green: "#12B981",
     red: "#EF4645",
@@ -59,20 +59,20 @@ function GateUpdates({ isStatic, gate }) {
     slate: "#64748B",
   };
 
-  const activeWalkins = gate?.summary?.activeWalkins || {};
-  const preApproved = gate?.summary?.preApprovedCheckins || {};
-  const staffAttendance = gate?.summary?.staffAttendance || {};
+  const activeWalkins = data?.summary?.activeWalkins || {};
+  const preApproved = data?.summary?.preApprovedCheckins || {};
+  const staffAttendance = data?.summary?.staffAttendance || {};
   const chartData =
-    gate?.chart?.length > 0 ? groupGateDataIntoFourHours(gate.chart) : [];
+    data?.chart?.length > 0 ? groupGateDataIntoFourHours(data.chart) : [];
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload || !payload.length) return null;
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
-        {label && <p className="font-medium mb-1">{label}</p>}
+        {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <p key={i} className="capitalize leading-relaxed">
-            <span
+          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+            <div
               style={{
                 display: "inline-block",
                 width: 8,
@@ -81,9 +81,9 @@ function GateUpdates({ isStatic, gate }) {
                 backgroundColor: item.color,
                 marginRight: 6,
               }}
-            ></span>
-            {item.name}: <span className="font-semibold">{item.value}</span>
-          </p>
+            ></div>
+            {item.name}: <div className="font-semibold">{item.value}</div>
+          </div>
         ))}
       </div>
     );

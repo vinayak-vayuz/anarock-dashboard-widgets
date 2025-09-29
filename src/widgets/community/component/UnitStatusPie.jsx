@@ -87,11 +87,11 @@ const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
             <div className="text-xs lending-[16px] text-[#64748B]">Unsold</div>
             <div className="text-[28px] leading-[32px] text-[#EF4444]">{unsold}</div>
           </div>
-          <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center">
+          <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center ">
             {growthPct}{" "}
-            <span className="text-[#64748B] text-[10px]">
+            <div className="text-[#64748B] text-[10px]">
               Compared to last month
-            </span>
+            </div>
           </div>
         </div>
 

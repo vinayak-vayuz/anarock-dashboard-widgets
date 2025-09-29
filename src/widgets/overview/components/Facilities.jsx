@@ -54,24 +54,24 @@ function groupSlotsIntoTwoHours(slots) {
   return Object.values(grouped);
 }
 
-function Facilities({ isStatic, facility }) {
-  const totalBookings = Number(facility?.totalBookings || 0);
-  const totalSlots = Number(facility?.totalSlots || 0);
-  const utilizationRate = Number(facility?.utilizationRate || 0);
+function Facilities({ isStatic, data }) {
+  const totalBookings = Number(data?.totalBookings || 0);
+  const totalSlots = Number(data?.totalSlots || 0);
+  const utilizationRate = Number(data?.utilizationRate || 0);
 
   const chartData = useMemo(() => {
-    if (!facility?.slots?.length) return [];
-    return groupSlotsIntoTwoHours(facility.slots);
-  }, [facility]);
+    if (!data?.slots?.length) return [];
+    return groupSlotsIntoTwoHours(data.slots);
+  }, [data]);
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload || !payload.length) return null;
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
-        {label && <p className="font-medium mb-1">{label}</p>}
+        {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <p key={i} className="capitalize leading-relaxed">
-            <span
+          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+            <div
               style={{
                 display: "inline-block",
                 width: 8,
@@ -81,8 +81,8 @@ function Facilities({ isStatic, facility }) {
                 marginRight: 6,
               }}
             />
-            {item.name}: <span className="font-semibold">{item.value}</span>
-          </p>
+            {item.name}: <div className="font-semibold">{item.value}</div>
+          </div>
         ))}
       </div>
     );

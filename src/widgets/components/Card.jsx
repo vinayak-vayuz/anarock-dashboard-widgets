@@ -20,18 +20,18 @@ const Card = ({
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
         {icon}
-        <h2
+        <div
           style={{ fontWeight: fontWeightValue, fontSize: "16px", lineHeight: "20px" }}
           className="!my-0 !text-[16px] !leading-[20px] !text-[#121212]"
           >
           {title}
-        </h2>
+        </div>
       </div>
 
       {period && (
-        <span className="!text-xs !leading-[16px] !text-[#64748B]">
+        <div className="!text-xs !leading-[16px] !text-[#64748B]">
           {period}
-        </span>
+        </div>
       )}
     </div>
     <div className={`flex-1 min-h-0 space-y-6 ${childrenClassName}`}>

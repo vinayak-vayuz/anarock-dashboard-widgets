@@ -13,7 +13,7 @@ function Community({ isStatic, data }) {
   const Chip = ({ value }) => {
     const isPositive = value >= 0;
     return (
-      <span
+      <div
         className={`p-1 rounded text-[10px] leading-[14px] font-medium ${
           isPositive
             ? "bg-[#F7FEFA] text-[#1FA05B]"
@@ -21,7 +21,7 @@ function Community({ isStatic, data }) {
         }`}
       >
         {isPositive ? `+${value}%` : `${value}%`}
-      </span>
+      </div>
     );
   };
 
@@ -54,8 +54,8 @@ function Community({ isStatic, data }) {
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
         {payload.map((item, i) => (
-          <p key={i} className="capitalize leading-relaxed">
-            <span
+          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+            <div
               style={{
                 display: "inline-block",
                 width: 8,
@@ -64,9 +64,9 @@ function Community({ isStatic, data }) {
                 backgroundColor: item.color,
                 marginRight: 6,
               }}
-            ></span>
-            {item.name}: <span className="font-semibold">{item.value}</span>
-          </p>
+            ></div>
+            {item.name}: <div className="font-semibold">{item.value}</div>
+          </div>
         ))}
       </div>
     );
@@ -87,9 +87,9 @@ function Community({ isStatic, data }) {
             <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
               Move-in/Out Count
             </div>
-            <p className="!m-0 !text-[28px] !leading-[32px] !font-medium !text-[#8B5CF6]">
+            <div className="!m-0 !text-[28px] !leading-[32px] !font-medium !text-[#8B5CF6]">
               {moveIns + moveOuts}
-            </p>
+            </div>
           </div>
           <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1 flex items-center">
             <Chip value={((moveInChange + moveOutChange) / 2).toFixed(2)} />

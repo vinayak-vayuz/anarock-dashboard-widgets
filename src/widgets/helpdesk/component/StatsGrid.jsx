@@ -30,7 +30,7 @@ function StatCardGrid({
         {value}
       </div>
       <div className="flex items-center gap-2 text-sm">
-        <span
+        <div
           className={
             positive
               ? "text-emerald-600 font-medium"
@@ -38,8 +38,8 @@ function StatCardGrid({
           }
         >
           {delta}
-        </span>
-        <span className="text-slate-500">{deltaLabel}</span>
+        </div>
+        <div className="text-slate-500">{deltaLabel}</div>
       </div>
     </Card>
   );

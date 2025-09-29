@@ -9,14 +9,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Helpdesk({ isStatic, complaints }) {
+function Helpdesk({ isStatic, data }) {
   const Chip = ({ value }) => {
     if (value === null || value === undefined || isNaN(value)) {
       return null;
     }
     const isPositive = value >= 0;
     return (
-      <span
+      <div
         className={`p-1 rounded text-[10px] leading-[14px] font-medium ${
           isPositive
             ? "bg-[#F7FEFA] text-[#1FA05B]"
@@ -24,15 +24,15 @@ function Helpdesk({ isStatic, complaints }) {
         }`}
       >
         {isPositive ? `+${value}%` : `${value}%`}
-      </span>
+      </div>
     );
   };
 
   const helpdeskBreakup = [
-    { name: "L1", value: Number(complaints?.today_L1 || 0) },
-    { name: "L2", value: Number(complaints?.today_L2 || 0) },
-    { name: "L3", value: Number(complaints?.today_L3 || 0) },
-    { name: "No Level", value: Number(complaints?.today_NoLevel || 0) },
+    { name: "L1", value: Number(data?.today_L1 || 0) },
+    { name: "L2", value: Number(data?.today_L2 || 0) },
+    { name: "L3", value: Number(data?.today_L3 || 0) },
+    { name: "No Level", value: Number(data?.today_NoLevel || 0) },
   ];
 
   const total = helpdeskBreakup.reduce((sum, d) => sum + d.value, 0);
@@ -58,10 +58,10 @@ function Helpdesk({ isStatic, complaints }) {
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
         {payload.map((item, i) => (
-          <p key={i} className="capitalize leading-relaxed">
+          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
             <Dot color={item.color} />
-            {item.name}: <span className="font-semibold">{item.value}</span>
-          </p>
+            {item.name}: <div className="font-semibold">{item.value}</div>
+          </div>
         ))}
       </div>
     );
@@ -79,18 +79,18 @@ function Helpdesk({ isStatic, complaints }) {
       <div className="flex gap-3 h-fit">
         <div className="w-[50%] flex flex-col gap-7">
           <div className="flex flex-col gap-2">
-            <h4 className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+            <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
               Open Complaints
-            </h4>
-            <p className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]">
+            </div>
+            <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]">
               {complaints?.today_open_complaints ?? 0}
-            </p>
+            </div>
           </div>
 
-          <p className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1">
+          <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1">
             <Chip value={complaints?.percent_change} />
-            <span className="whitespace-nowrap">Compared to yesterday</span>
-          </p>
+            <div className="whitespace-nowrap">Compared to yesterday</div>
+          </div>
         </div>
         <div className="w-[50%] h-[110px] flex justify-end">
           <ResponsiveContainer width="75%" height="100%">

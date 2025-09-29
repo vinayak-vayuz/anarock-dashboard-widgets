@@ -12,12 +12,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function Engagement({ isStatic, engagement }) {
+function Engagement({ isStatic, data }) {
   const engagementBars = [
-    { name: "Notice", value: Number(engagement?.total_notices || 0) },
-    { name: "Post", value: Number(engagement?.total_topics || 0) },
-    { name: "Poll", value: Number(engagement?.total_polls || 0) },
-    { name: "Survey", value: Number(engagement?.total_surveys || 0) },
+    { name: "Notice", value: Number(data?.total_notices || 0) },
+    { name: "Post", value: Number(data?.total_topics || 0) },
+    { name: "Poll", value: Number(data?.total_polls || 0) },
+    { name: "Survey", value: Number(data?.total_surveys || 0) },
   ];
 
   const COLORS = {
@@ -31,10 +31,10 @@ function Engagement({ isStatic, engagement }) {
     if (!active || !payload || !payload.length) return null;
     return (
       <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
-        {label && <p className="font-medium mb-1">{label}</p>}
+        {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <p key={i} className="capitalize leading-relaxed">
-            <span
+          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+            <div
               style={{
                 display: "inline-block",
                 width: 8,
@@ -43,9 +43,9 @@ function Engagement({ isStatic, engagement }) {
                 backgroundColor: item.color,
                 marginRight: 6,
               }}
-            ></span>
-            {item.name}: <span className="font-semibold">{item.value}</span>
-          </p>
+            ></div>
+            {item.name}: <div className="font-semibold">{item.value}</div>
+          </div>
         ))}
       </div>
     );
