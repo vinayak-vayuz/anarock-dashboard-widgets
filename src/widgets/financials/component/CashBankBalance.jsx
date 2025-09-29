@@ -1,6 +1,6 @@
 import React from "react";
-import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
 const CashBankBalance = () => {
   const accounts = [
@@ -24,24 +24,34 @@ const CashBankBalance = () => {
       period={
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
-      titleWeight="semi-bold"
-      childrenClassName="divide-y divide-slate-100"
     >
-      {accounts.map((acc, i) => (
-        <div key={i} className="flex justify-between items-center ">
-          <div>
-            <div className="text-base font-medium">{acc.title}</div>
-            <div className="text-xs text-slate-400">{acc.subtitle}</div>
-          </div>
-          <div className="text-[#1FA05B] font-semibold">
-            {formatCurrency(acc.amount)}
-          </div>
-        </div>
-      ))}
+      <div className="flex flex-col gap-3">
+        {accounts.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex items-center justify-between bg-[#F9FAFB] rounded-lg p-3"
+          >
+            <div className="flex flex-col">
+              <div className="text-sm font-medium text-[#121212]">
+                {item.title}
+              </div>
+              <div className="text-xs text-[#64748B]">{item?.subtitle}</div>
+            </div>
 
-      <div className="flex justify-between items-center py-3 font-semibold">
-        <div>Total</div>
-        <div className="text-emerald-600">{formatCurrency(total)}</div>
+            <div className="flex flex-col items-end">
+              <div className="text-sm text-[#1FA05B] font-semibold">
+                {formatCurrency(item.amount)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between border-t border-[#EBEBEB] h-[68px] px-3">
+        <div className="text-sm font-medium text-[#121212]">Total</div>
+        <div className="text-base text-[#1FA05B] font-bold">
+          {formatCurrency(total)}
+        </div>
       </div>
     </Card>
   );

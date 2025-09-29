@@ -2,11 +2,11 @@ import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material"
 import Card from "../../components/Card";
 function EventItem({ title, date, rsvp, utilisation, status }) {
   return (
-    <div className="mb-4 last:mb-0">
+    <div className=" bg-[#F8FAFC] h-[106px] px-3 mt-3">
       <div className="flex items-center justify-between">
-        <div className="text-sm font-medium text-[#121212]">{title}</div>
+        <div className="text-base leading-[20px] font-semibold text-[#121212]">{title}</div>
         <div
-          className={`text-xs font-medium px-2 py-0.5  ${
+          className={`text-xs font-medium leading-[16px] px-2 py-1  ${
             status === "Completed"
               ? "text-[#36AB6C] bg-[#E6F7EE]"
               : status === "Upcoming"
@@ -18,18 +18,18 @@ function EventItem({ title, date, rsvp, utilisation, status }) {
         </div>
       </div>
 
-      <div className="text-xs text-slate-500">{date}</div>
+      <div className="text-sm leading-[18px] text-[#64748B]">{date}</div>
 
-      <div className="flex justify-between items-center text-xs mt-1">
-        <div className="text-slate-600">{rsvp} RSVP</div>
-        <div className="text-[#3C82F6] font-semibold">
+      <div className="flex justify-between items-center mt-2">
+        <div className="text-sm leading-[18px] text-[#64748B]">{rsvp} RSVP</div>
+        <div className="text-[#3C82F6] text-sm leading-[18px] font-medium">
           {utilisation}% utilisation
         </div>
       </div>
 
-      <div className="w-full bg-slate-100 h-2 rounded mt-2">
+      <div className="w-full bg-[#F8FAFC] h-[6px] rounded mt-2 mb-3">
         <div
-          className="h-2 rounded bg-[#3C82F6]"
+          className="h-[6px] rounded bg-[#3C82F6]"
           style={{ width: `${utilisation}%` }}
         ></div>
       </div>
@@ -46,6 +46,7 @@ export default function EventsUtilisation() {
       }
       className="w-full h-[360px]"
     >
+      <div>
       <EventItem
         title="Holi Celebration"
         date="25 Jun 2025"
@@ -60,13 +61,7 @@ export default function EventsUtilisation() {
         utilisation={75}
         status="Completed"
       />
-      <EventItem
-        title="Security Briefing"
-        date="25 Jun 2025"
-        rsvp="45/60"
-        utilisation={75}
-        status="Completed"
-      />
+    </div>
     </Card>
   );
 }

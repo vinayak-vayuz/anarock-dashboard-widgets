@@ -11,23 +11,23 @@ function IncidentReports() {
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
       className="h-[362px]"
-    >
+    ><div>
       <div className="flex w-full text-center gap-6">
-        <div className="flex-1 py-4 bg-red-50">
-          <div className="text-2xl font-semibold text-[#AB0000]">3</div>
-          <div className="text-sm text-[#AB0000]">Open</div>
+        <div className="flex-1 py-3 bg-[#FBF4F4] h-[76px] rounded">
+          <div className="text-2xl leading-[28px] font-medium text-[#AB0000]">3</div>
+          <div className="text-xs leading-[16px] text-[#AB0000]">Open</div>
         </div>
-        <div className="flex-1 py-4 bg-yellow-50">
-          <div className="text-2xl font-semibold text-[#E7A015]">5</div>
-          <div className="text-sm text-[#E7A015]">In-progress</div>
+        <div className="flex-1 py-3 bg-[#FFFBF2] h-[76px] rounded">
+          <div className="text-2xl leading-[28px] font-medium text-[#E7A015]">5</div>
+          <div className="text-xs leading-[16px] text-[#E7A015]">In-progress</div>
         </div>
-        <div className="flex-1 py-4 bg-green-50">
-          <div className="text-2xl font-semibold text-[#1FA05B]">12</div>
-          <div className="text-sm text-[#1FA05B]">Closed</div>
+        <div className="flex-1 py-3 bg-[#F7FEFA] h-[76px] rounded">
+          <div className="text-2xl leading-[28px] font-medium text-[#1FA05B]">12</div>
+          <div className="text-xs leading-[16px] text-[#1FA05B]">Closed</div>
         </div>
       </div>
 
-      <div className="mt-4 space-y-3">
+      <div className="mt-4 ">
         <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded-full flex items-center justify-center bg-[#AB0000]">
@@ -64,6 +64,7 @@ function IncidentReports() {
           <div className="px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 text-[#1FA05B] bg-green-50">
             <div>1 - Low</div>
             <div className="w-2 h-2 rounded-full bg-[#1FA05B]" />
+          </div>
           </div>
         </div>
       </div>

@@ -21,6 +21,7 @@ function AssetValueBreakdown() {
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
       className="h-[362px]"
+      titleWeight="semi-bold"
     >
       <div className="flex flex-col items-center justify-center">
         <div className="w-[214px] h-[181px] relative">
@@ -43,10 +44,10 @@ function AssetValueBreakdown() {
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="font-semibold text-base sm:text-sm">
+            <div className="font-medium text-lg leading-[12px] ">
               AED {(total / 1000000).toFixed(2)}M
             </div>
-            <div className="text-xs sm:text-sm text-gray-500">Total Assets</div>
+            <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">Total Assets</div>
           </div>
         </div>
 
@@ -55,10 +56,10 @@ function AssetValueBreakdown() {
             {data.slice(0, 3).map((item) => (
               <div key={item.name} className="flex items-center gap-2">
                 <div
-                  className="inline-block w-2 h-2 rotate-45"
+                  className="inline-block h-[7px] w-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}
                 />
-                <div className="text-gray-600 text-xs">{item.name}</div>
+                <div className="text-[#64748B] leading-[16px] text-xs">{item.name}</div>
               </div>
             ))}
           </div>
@@ -67,10 +68,10 @@ function AssetValueBreakdown() {
             {data.slice(3).map((item) => (
               <div key={item.name} className="flex items-center gap-2">
                 <div
-                  className="inline-block w-2 h-2 rotate-45"
+                  className="inline-block h-[7px] w-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}
                 />
-                <div className="text-gray-600 text-xs">{item.name}</div>
+                <div className="text-[#64748B] leading-[16px] text-xs">{item.name}</div>
               </div>
             ))}
           </div>
