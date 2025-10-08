@@ -647,10 +647,10 @@ const ye = ({
   return /* @__PURE__ */ y.jsxs(
     "div",
     {
-      className: `relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-xl !shadow-[0_0_12px_0_#EAF2FF] p-4 flex flex-col gap-6 ${a}`,
+      className: `relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col gap-[24px] ${a}`,
       children: [
         /* @__PURE__ */ y.jsxs("div", { className: "flex items-center justify-between", children: [
-          /* @__PURE__ */ y.jsxs("div", { className: "flex items-center gap-3", children: [
+          /* @__PURE__ */ y.jsxs("div", { className: "flex items-center gap-[12px]", children: [
             t,
             /* @__PURE__ */ y.jsx(
               "div",
@@ -665,9 +665,9 @@ const ye = ({
               }
             )
           ] }),
-          r && /* @__PURE__ */ y.jsx("div", { className: "!!text-[12px] !leading-[16px] !text-[#64748B]", children: r })
+          r && /* @__PURE__ */ y.jsx("div", { className: "!text-[12px] !leading-[16px] !text-[#64748B]", children: r })
         ] }),
-        /* @__PURE__ */ y.jsx("div", { className: `flex-1 min-h-0 space-y-6 ${o}`, children: n }),
+        /* @__PURE__ */ y.jsx("div", { className: `flex-1 min-h-0 space-y-[24px] ${o}`, children: n }),
         i && /* @__PURE__ */ y.jsx("div", { className: "mt-3 pt-3 border-t border-gray-100 !text-[12px] text-[#64748B]", children: i })
       ]
     }
