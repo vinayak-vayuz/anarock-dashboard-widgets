@@ -139,7 +139,7 @@ function GateUpdates({ isStatic, data }) {
             </div>
           </div>
         </div>
-        <div className="w-full h-[95px]">
+        <div className="w-full h-[200px]">
           <ResponsiveContainer width="100%" height="60%">
             <LineChart
               data={chartData}

@@ -22998,7 +22998,7 @@ function PU({ isStatic: e, data: t }) {
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ y.jsx("div", { className: "w-full h-[95px]", children: /* @__PURE__ */ y.jsx(Ai, { width: "100%", height: "60%", children: /* @__PURE__ */ y.jsxs(
+        /* @__PURE__ */ y.jsx("div", { className: "w-full h-[200px]", children: /* @__PURE__ */ y.jsx(Ai, { width: "100%", height: "60%", children: /* @__PURE__ */ y.jsxs(
           Kd,
           {
             data: o,
