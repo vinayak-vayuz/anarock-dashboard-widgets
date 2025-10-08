@@ -29,18 +29,18 @@ function FinanceSummary({ data }) {
     <Card
       title="Income"
       period="This Month"
-      icon={<LuReceiptText className="text-2xl text-green-600" />}
+      icon={<LuReceiptText className="!text-[24px] text-green-600" />}
       className="!gap-4 break-inside-avoid h-[232px] overflow-hidden"
     >
       <div>
-        <div className="grid grid-cols-4 text-xs text-[#64748B] mb-2">
+        <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mb-2">
           <div>Opening</div>
           <div>Income</div>
           <div>Collection</div>
           <div>Closing</div>
         </div>
 
-        <div className="grid grid-cols-4 text-xs font-medium text-[#121212] mb-2">
+        <div className="grid grid-cols-4 !text-[12px] font-medium text-[#121212] mb-2">
           <div>{formatCurrency(income.opening_balance)} AED</div>
           <div>{formatCurrency(income.income)} AED</div>
           <div>{formatCurrency(income.collection)} AED</div>
