@@ -14,10 +14,10 @@ const Card = ({
 
   return (
     <div
-      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-xl !shadow-[0_0_12px_0_#EAF2FF] p-4 flex flex-col gap-6 ${className}`}
+      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col gap-[24px] ${className}`}
     >
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-[12px]">
           {icon}
           <div
             style={{
@@ -32,12 +32,12 @@ const Card = ({
         </div>
 
         {period && (
-          <div className="!!text-[12px] !leading-[16px] !text-[#64748B]">
+          <div className="!text-[12px] !leading-[16px] !text-[#64748B]">
             {period}
           </div>
         )}
       </div>
-      <div className={`flex-1 min-h-0 space-y-6 ${childrenClassName}`}>
+      <div className={`flex-1 min-h-0 space-y-[24px] ${childrenClassName}`}>
         {children}
       </div>
       {footer && (
