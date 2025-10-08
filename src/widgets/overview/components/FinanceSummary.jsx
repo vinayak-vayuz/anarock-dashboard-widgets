@@ -51,7 +51,7 @@ function FinanceSummary({ data }) {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <LuReceiptText className="text-2xl text-red-600" />
+            <LuReceiptText className="!text-[24px] text-red-600" />
             <div
               style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}
               className="!my-0 !font-medium !text-[16px] !leading-[20px] !text-[#121212]"
@@ -60,19 +60,19 @@ function FinanceSummary({ data }) {
             </div>
           </div>
 
-          <div className="!text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!text-[12px] !leading-[16px] !text-[#64748B]">
             This Month
           </div>
         </div>
 
-        <div className="grid grid-cols-4 text-xs text-[#64748B] mt-4 mb-2">
+        <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mt-4 mb-2">
           <div>Opening</div>
           <div>Expenditure</div>
           <div>Payment</div>
           <div>Outstanding</div>
         </div>
 
-        <div className="grid grid-cols-4 text-xs font-medium text-[#121212]">
+        <div className="grid grid-cols-4 !text-[12px] font-medium text-[#121212]">
           <div>{formatCurrency(expenditure.opening_balance)} AED</div>
           <div>{formatCurrency(expenditure.expenditure)} AED</div>
           <div>{formatCurrency(expenditure.payment)} AED</div>

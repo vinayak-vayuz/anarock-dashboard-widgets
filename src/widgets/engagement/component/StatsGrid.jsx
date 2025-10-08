@@ -27,22 +27,22 @@ function StatCardGrid({
       className="h-[132px]"
     >
       <div>
-          <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
-        {value}
-      </div>
-
-      <div className="flex items-center gap-2 pt-[8px] text-xs leading-[16px]">
-        <div
-          className={
-            positive
-              ? "text-[#1FA05B] font-medium"
-              : "text-rose-600 font-medium"
-          }
-        >
-          {delta}
+        <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
+          {value}
         </div>
-        <div className="text-[#64748B]">{deltaLabel}</div>
-      </div>
+
+        <div className="flex items-center gap-2 pt-[8px] !text-[12px] leading-[16px]">
+          <div
+            className={
+              positive
+                ? "text-[#1FA05B] font-medium"
+                : "text-rose-600 font-medium"
+            }
+          >
+            {delta}
+          </div>
+          <div className="text-[#64748B]">{deltaLabel}</div>
+        </div>
       </div>
     </Card>
   );

@@ -67,10 +67,13 @@ function Facilities({ isStatic, data }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload || !payload.length) return null;
     return (
-      <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
+      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
         {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+          <div
+            key={i}
+            className="capitalize flex gap-1 items-center leading-relaxed"
+          >
             <div
               style={{
                 display: "inline-block",
@@ -95,14 +98,14 @@ function Facilities({ isStatic, data }) {
     <Card
       title="Facilities"
       period="Today"
-      icon={<LuDoorOpen className="text-2xl text-[#8B5CF6]" />}
+      icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
       className={`${
         isStatic && "max-h-[305px]"
       } h-[305px] mb-4 break-inside-avoid`}
     >
       <div className="grid grid-cols-3 gap-6 mb-4">
         <div className="flex flex-col gap-1">
-          <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
             Bookings
           </div>
           <div className="!m-0 !text-[24px] !leading-[28px] !font-medium text-[#8B5CF6]">
@@ -110,7 +113,7 @@ function Facilities({ isStatic, data }) {
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
             Total Slots
           </div>
           <div className="!m-0 !text-[24px] !leading-[28px] !font-medium text-[#F59E0B]">
@@ -118,7 +121,7 @@ function Facilities({ isStatic, data }) {
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+          <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
             Utilisation Rate
           </div>
           <div className="!m-0 !text-[24px] !leading-[28px] !font-medium !text-[#329DFF]">

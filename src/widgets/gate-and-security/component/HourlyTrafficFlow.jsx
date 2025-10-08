@@ -115,7 +115,7 @@ const HourlyTrafficFlow = () => {
     <Card
       title="Hourly Traffic Flow"
       className="w-full h-[362px]"
-      period={<OpenInNewOutlinedIcon className="text-xl text-[#884EA7]" />}
+      period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
     >
       {/* <div className="h-[250px] w-full"> */}
       <Line data={data} options={options} />

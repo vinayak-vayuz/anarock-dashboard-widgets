@@ -28,7 +28,7 @@ function StatCardGrid({
       <div className="text-4xl font-semibold tracking-tight text-[#121212]">
         {value}
       </div>
-      <div className="flex items-center gap-2 text-sm">
+      <div className="flex items-center gap-2 text-[14px]">
         <div
           className={
             positive

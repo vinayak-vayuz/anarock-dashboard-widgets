@@ -72,18 +72,22 @@ const DuesAgeing = () => {
       period={
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
-       titleWeight="semi-bold"
+      titleWeight="semi-bold"
     >
       <div className="grid grid-cols-4 md:grid-cols-4 gap-3 h-[48px]">
         {labels.map((label, i) => (
           <div key={label} className="p-2 rounded-lg bg-slate-50">
             <div className="flex justify-between items-start">
-              <div className="font-medium leading-[16px] text-xs rounded">{label}</div>
+              <div className="font-medium leading-[16px] !text-[12px] rounded">
+                {label}
+              </div>
               <div className="text-right">
-                <div className="text-red-600 font-medium leading-[16px] text-xs">
+                <div className="text-red-600 font-medium leading-[16px] !text-[12px]">
                   AED {(values[i] / 1000).toFixed(1)}K
                 </div>
-                <div className=" text-gray-500 leading-[14px] text-[10px]">{units[i]} Units</div>
+                <div className=" text-gray-500 leading-[14px] text-[10px]">
+                  {units[i]} Units
+                </div>
               </div>
             </div>
           </div>

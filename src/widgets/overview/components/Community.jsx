@@ -25,9 +25,7 @@ function Community({ isStatic, data }) {
     );
   };
 
-  const moveIns = Number(
-    data?.thisMonthMoveIns ?? data?.lastMonthMoveIns ?? 0
-  );
+  const moveIns = Number(data?.thisMonthMoveIns ?? data?.lastMonthMoveIns ?? 0);
   const moveOuts = Number(
     data?.thisMonthMoveOuts ?? data?.lastMonthMoveOuts ?? 0
   );
@@ -52,9 +50,12 @@ function Community({ isStatic, data }) {
   const CustomTooltip = ({ active, payload }) => {
     if (!active || !payload || !payload.length) return null;
     return (
-      <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
+      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
         {payload.map((item, i) => (
-          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+          <div
+            key={i}
+            className="capitalize flex gap-1 items-center leading-relaxed"
+          >
             <div
               style={{
                 display: "inline-block",
@@ -76,7 +77,7 @@ function Community({ isStatic, data }) {
     <Card
       title="Community"
       period="This Month"
-      icon={<LuBuilding className="text-2xl text-[#329DFF]" />}
+      icon={<LuBuilding className="!text-[24px] text-[#329DFF]" />}
       className={`${
         isStatic && "max-h-[184px]"
       } h-[184px] mb-4 break-inside-avoid`}
@@ -84,7 +85,7 @@ function Community({ isStatic, data }) {
       <div className="flex">
         <div className="w-[50%] flex flex-col gap-7">
           <div className="flex flex-col gap-2">
-            <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+            <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
               Move-in/Out Count
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium !text-[#8B5CF6]">

@@ -30,10 +30,13 @@ function Engagement({ isStatic, data }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload || !payload.length) return null;
     return (
-      <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
+      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
         {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+          <div
+            key={i}
+            className="capitalize flex gap-1 items-center leading-relaxed"
+          >
             <div
               style={{
                 display: "inline-block",
@@ -55,7 +58,7 @@ function Engagement({ isStatic, data }) {
     <Card
       title="Engagement"
       period="This Month"
-      icon={<LuMessageSquare className="text-2xl text-[#DBB467]" />}
+      icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
       className={`${isStatic && "max-h-[303px]"} h-[303px]`}
     >
       <ResponsiveContainer width="100%" height="100%">

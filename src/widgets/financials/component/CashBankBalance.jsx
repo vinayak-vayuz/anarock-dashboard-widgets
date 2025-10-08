@@ -32,14 +32,16 @@ const CashBankBalance = () => {
             className="flex items-center justify-between bg-[#F9FAFB] rounded-lg p-3"
           >
             <div className="flex flex-col">
-              <div className="text-sm font-medium text-[#121212]">
+              <div className="text-[14px] font-medium text-[#121212]">
                 {item.title}
               </div>
-              <div className="text-xs text-[#64748B]">{item?.subtitle}</div>
+              <div className="!text-[12px] text-[#64748B]">
+                {item?.subtitle}
+              </div>
             </div>
 
             <div className="flex flex-col items-end">
-              <div className="text-sm text-[#1FA05B] font-semibold">
+              <div className="text-[14px] text-[#1FA05B] font-semibold">
                 {formatCurrency(item.amount)}
               </div>
             </div>
@@ -48,8 +50,8 @@ const CashBankBalance = () => {
       </div>
 
       <div className="flex items-center justify-between border-t border-[#EBEBEB] h-[68px] px-3">
-        <div className="text-sm font-medium text-[#121212]">Total</div>
-        <div className="text-base text-[#1FA05B] font-bold">
+        <div className="text-[14px] font-medium text-[#121212]">Total</div>
+        <div className="text-[16px] text-[#1FA05B] font-bold">
           {formatCurrency(total)}
         </div>
       </div>

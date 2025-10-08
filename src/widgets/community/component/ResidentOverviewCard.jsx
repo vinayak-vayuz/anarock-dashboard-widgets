@@ -83,38 +83,38 @@ const ResidentOverviewCard = ({
       className="h-[238px]"
     >
       <div className=" flex-1 min-h-0 grid grid-cols-12 gap-4 items-center">
-      <div className="col-span-5">
-        <div>
-          <div className="text-[12px] text-[#64748B] leading-[16px]">Total Owners</div>
-          <div className="text-[28px] leading-[32px ]  text-[#3C81F6]">
-            {ownerCount}
+        <div className="col-span-5">
+          <div>
+            <div className="!text-[12px] text-[#64748B] leading-[16px]">
+              Total Owners
+            </div>
+            <div className="text-[28px] leading-[32px ]  text-[#3C81F6]">
+              {ownerCount}
+            </div>
+          </div>
+          <div>
+            <div className="!text-[12px] text-[#64748B]  leading-[16px]">
+              Total Tenants
+            </div>
+            <div className="text-[28px] leading-[32px ] text-[#08B6D4]">
+              {tenantCount}
+            </div>
+          </div>
+          <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center">
+            {growthPct}{" "}
+            <div className="text-[#64748B] ">Compared to last month</div>
           </div>
         </div>
-        <div>
-          <div className="text-[12px] text-[#64748B]  leading-[16px]">
-            Total Tenants
-          </div>
-          <div className="text-[28px] leading-[32px ] text-[#08B6D4]">
-            {tenantCount}
-          </div>
-        </div>
-        <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center">
-          {growthPct}{" "}
-          <div className="text-[#64748B] ">
-            Compared to last month
-          </div>
-        </div>
-      </div>
 
-      <div className="col-span-7">
-        <div className="h-[162px] w-[162px] ml-auto mr-2">
-          <Doughnut
-            data={data}
-            options={options}
-            plugins={[centerTextPlugin]}
-          />
+        <div className="col-span-7">
+          <div className="h-[162px] w-[162px] ml-auto mr-2">
+            <Doughnut
+              data={data}
+              options={options}
+              plugins={[centerTextPlugin]}
+            />
+          </div>
         </div>
-      </div>
       </div>
     </Card>
   );

@@ -18,16 +18,22 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
           style={{ width: `${pct}%` }}
         />
       </div>
-      <div className={`${valueTextColor} text-xs font-bold mt-1`}>{value}</div>
-      <div className="text-xs text-[#64748B] mt-1">{label}</div>
+      <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>
+        {value}
+      </div>
+      <div className="!text-[12px] text-[#64748B] mt-1">{label}</div>
     </div>
   );
 };
 
 const StatTile = ({ title, value, suffix, valueClass = "" }) => (
   <div className="bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] h-[98px] p-4 flex flex-col justify-center">
-    <div className="text-xs leading-[16px] text-[#121212] mb-1">{title}</div>
-    <div className={`text-[28px] leading-[32px] flex item gap-1 font-medium ${valueClass}`}>
+    <div className="!text-[12px] leading-[16px] text-[#121212] mb-1">
+      {title}
+    </div>
+    <div
+      className={`text-[28px] leading-[32px] flex item gap-1 font-medium ${valueClass}`}
+    >
       {value}{" "}
       {suffix && (
         <div className="text-[28px] leading-[32px] font-medium">{suffix}</div>
@@ -63,7 +69,7 @@ const OccupancyOverviewCard = ({
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
                 {occupiedUnits}
               </div>
-              <div className="text-[#64748B] text-xl leading-[32px]">
+              <div className="text-[#64748B] text-[20px] leading-[32px]">
                 /{totalUnits}
               </div>
             </div>

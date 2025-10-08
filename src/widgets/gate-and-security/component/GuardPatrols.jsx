@@ -45,24 +45,27 @@ function GuardPatrols() {
             <div className="font-medium text-[19.35px] leading-[23.65px] ">
               {completed}/{total}
             </div>
-            <div className="text-[10.75px] leading-[15.05px] text-[#64748B]">Completed</div>
+            <div className="text-[10.75px] leading-[15.05px] text-[#64748B]">
+              Completed
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 mt-3 w-full px-6 text-sm">
+        <div className="flex flex-col gap-2 mt-3 w-full px-6 text-[14px]">
           {data.map((item) => (
-            <div
-              key={item.name}
-              className="flex items-center justify-between"
-            >
+            <div key={item.name} className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div
                   className="inline-block w-[7px] h-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}
                 />
-                <div className="leading-[16.09px] text-[12.07px] text-[#64748B]">{item.name}</div>
+                <div className="leading-[16.09px] text-[12.07px] text-[#64748B]">
+                  {item.name}
+                </div>
               </div>
-              <div className="leading-[16.09px] text-[12.07px] text-[#64748B]">{item.value}</div>
+              <div className="leading-[16.09px] text-[12.07px] text-[#64748B]">
+                {item.value}
+              </div>
             </div>
           ))}
         </div>

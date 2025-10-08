@@ -68,10 +68,13 @@ function GateUpdates({ isStatic, data }) {
   const CustomTooltip = ({ active, payload, label }) => {
     if (!active || !payload || !payload.length) return null;
     return (
-      <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
+      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
         {label && <div className="font-medium mb-1">{label}</div>}
         {payload.map((item, i) => (
-          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+          <div
+            key={i}
+            className="capitalize flex gap-1 items-center leading-relaxed"
+          >
             <div
               style={{
                 display: "inline-block",
@@ -93,13 +96,13 @@ function GateUpdates({ isStatic, data }) {
     <Card
       title="Gate Updates"
       period="Today"
-      icon={<LuWaves className="text-2xl text-[#37CC6D]" />}
+      icon={<LuWaves className="!text-[24px] text-[#37CC6D]" />}
       className={`${
         isStatic ? "max-h-[303px]" : ""
       } h-[251px] mb-4 break-inside-avoid`}
     >
       <div>
-        <div className="flex flex-wrap gap-x-2 gap-y-2 text-sm mb-2">
+        <div className="flex flex-wrap gap-x-2 gap-y-2 text-[14px] mb-2">
           <div className="flex flex-col gap-2">
             <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
               Active Walk-ins

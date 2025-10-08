@@ -56,9 +56,12 @@ function Helpdesk({ isStatic, data }) {
   const CustomTooltip = ({ active, payload }) => {
     if (!active || !payload || !payload.length) return null;
     return (
-      <div className="bg-black text-white text-xs px-3 py-2 rounded-lg shadow-lg">
+      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
         {payload.map((item, i) => (
-          <div key={i} className="capitalize flex gap-1 items-center leading-relaxed">
+          <div
+            key={i}
+            className="capitalize flex gap-1 items-center leading-relaxed"
+          >
             <Dot color={item.color} />
             {item.name}: <div className="font-semibold">{item.value}</div>
           </div>
@@ -71,7 +74,7 @@ function Helpdesk({ isStatic, data }) {
     <Card
       title="Helpdesk"
       period="Today"
-      icon={<LuWrench className="text-2xl text-[#FA7E28]" />}
+      icon={<LuWrench className="!text-[24px] text-[#FA7E28]" />}
       className={`${
         isStatic && "max-h-[186px]"
       } h-[186px] mb-4 break-inside-avoid`}
@@ -79,7 +82,7 @@ function Helpdesk({ isStatic, data }) {
       <div className="flex gap-3 h-fit">
         <div className="w-[50%] flex flex-col gap-7">
           <div className="flex flex-col gap-2">
-            <div className="!m-0 !text-xs !leading-[16px] !text-[#64748B]">
+            <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
               Open Complaints
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]">

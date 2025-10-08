@@ -22856,15 +22856,15 @@ function AU({ data: e }) {
               }
             )
           ] }),
-          /* @__PURE__ */ y.jsx("div", { className: "!text-xs !leading-[16px] !text-[#64748B]", children: "This Month" })
+          /* @__PURE__ */ y.jsx("div", { className: "!text-[12px] !leading-[16px] !text-[#64748B]", children: "This Month" })
         ] }),
-        /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 text-xs text-[#64748B] mt-4 mb-2", children: [
+        /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 !text-[12px] text-[#64748B] mt-4 mb-2", children: [
           /* @__PURE__ */ y.jsx("div", { children: "Opening" }),
           /* @__PURE__ */ y.jsx("div", { children: "Expenditure" }),
           /* @__PURE__ */ y.jsx("div", { children: "Payment" }),
           /* @__PURE__ */ y.jsx("div", { children: "Outstanding" })
         ] }),
-        /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 text-xs font-medium text-[#121212]", children: [
+        /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 !text-[12px] font-medium text-[#121212]", children: [
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(r.opening_balance),
             " AED"

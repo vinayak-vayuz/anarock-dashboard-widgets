@@ -3,9 +3,15 @@ import Card from "../../components/Card";
 function StatusCard({ label, value, subLabel, bgColor, textColor }) {
   return (
     <div className={`rounded-lg p-4 ${bgColor} h-[124px]`}>
-      <div className={`text-base font-medium ${textColor} leading-[20px]` }>{label}</div>
-      <div className="mt-4 text-[28px] leading-[32px] font-semibold text-[#121212]">{value}</div>
-      <div className="text-xs leading-[16px] text-[#64748B] mt-2">{subLabel}</div>
+      <div className={`text-[16px] font-medium ${textColor} leading-[20px]`}>
+        {label}
+      </div>
+      <div className="mt-4 text-[28px] leading-[32px] font-semibold text-[#121212]">
+        {value}
+      </div>
+      <div className="!text-[12px] leading-[16px] text-[#64748B] mt-2">
+        {subLabel}
+      </div>
     </div>
   );
 }

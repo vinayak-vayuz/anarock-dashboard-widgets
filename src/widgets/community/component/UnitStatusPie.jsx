@@ -80,12 +80,20 @@ const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
       <div className="grid grid-cols-12 gap-4 items-center">
         <div className="col-span-5 space-y-3">
           <div>
-            <div className="text-xs lending-[16px] text-[#64748B]">Sold</div>
-            <div className="text-[28px] leading-[32px] text-[#1FA05B]">{sold}</div>
+            <div className="!text-[12px] lending-[16px] text-[#64748B]">
+              Sold
+            </div>
+            <div className="text-[28px] leading-[32px] text-[#1FA05B]">
+              {sold}
+            </div>
           </div>
           <div>
-            <div className="text-xs lending-[16px] text-[#64748B]">Unsold</div>
-            <div className="text-[28px] leading-[32px] text-[#EF4444]">{unsold}</div>
+            <div className="!text-[12px] lending-[16px] text-[#64748B]">
+              Unsold
+            </div>
+            <div className="text-[28px] leading-[32px] text-[#EF4444]">
+              {unsold}
+            </div>
           </div>
           <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center ">
             {growthPct}{" "}

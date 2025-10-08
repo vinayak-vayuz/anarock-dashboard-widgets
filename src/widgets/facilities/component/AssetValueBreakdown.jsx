@@ -47,11 +47,13 @@ function AssetValueBreakdown() {
             <div className="font-medium text-lg leading-[12px] ">
               AED {(total / 1000000).toFixed(2)}M
             </div>
-            <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">Total Assets</div>
+            <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
+              Total Assets
+            </div>
           </div>
         </div>
 
-        <div className="flex justify-between w-full px-4 sm:px-8 mt-4 text-sm">
+        <div className="flex justify-between w-full px-4 sm:px-8 mt-4 text-[14px]">
           <div className="flex flex-col gap-2">
             {data.slice(0, 3).map((item) => (
               <div key={item.name} className="flex items-center gap-2">
@@ -59,7 +61,9 @@ function AssetValueBreakdown() {
                   className="inline-block h-[7px] w-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}
                 />
-                <div className="text-[#64748B] leading-[16px] text-xs">{item.name}</div>
+                <div className="text-[#64748B] leading-[16px] !text-[12px]">
+                  {item.name}
+                </div>
               </div>
             ))}
           </div>
@@ -71,7 +75,9 @@ function AssetValueBreakdown() {
                   className="inline-block h-[7px] w-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}
                 />
-                <div className="text-[#64748B] leading-[16px] text-xs">{item.name}</div>
+                <div className="text-[#64748B] leading-[16px] !text-[12px]">
+                  {item.name}
+                </div>
               </div>
             ))}
           </div>
