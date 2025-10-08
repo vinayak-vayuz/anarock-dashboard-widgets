@@ -16,6 +16,16 @@ textarea {
   font-family: var(--anarock-font);
 }
 
+@layer base {
+  :root {
+    --anarock-font: "Outfit", sans-serif;
+  }
+
+  body {
+    font-family: var(--anarock-font);
+  }
+}
+
 .my-custom-class {
   color: #123456;
   padding: 10px;
