@@ -12,12 +12,12 @@ function Financials() {
         title="Financials"
         description="Units, residents, and occupancy details"
       />
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] gap-6 mt-6">
+      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] gap-[24px] mt-6">
         <AccountingCard />
         <ExpenseCategories />
       </div>
 
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-6 mt-6">
+      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-[24px] mt-6">
         <CashBankBalance />
         <DuesAgeing />
       </div>

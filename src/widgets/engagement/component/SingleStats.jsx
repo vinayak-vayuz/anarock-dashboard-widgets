@@ -28,7 +28,7 @@ function StatCardGrid({
           {value}
         </div>
 
-        <div className="flex items-center gap-2 pt-[8px] !text-[12px] leading-[16px]">
+        <div className="flex items-center gap-[8px] pt-[8px] !text-[12px] leading-[16px]">
           <div
             className={
               positive

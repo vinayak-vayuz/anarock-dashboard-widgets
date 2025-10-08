@@ -54,9 +54,9 @@ function AssetValueBreakdown() {
         </div>
 
         <div className="flex justify-between w-full px-4 sm:px-8 mt-4 text-[14px]">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-[8px]">
             {data.slice(0, 3).map((item) => (
-              <div key={item.name} className="flex items-center gap-2">
+              <div key={item.name} className="flex items-center gap-[8px]">
                 <div
                   className="inline-block h-[7px] w-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}
@@ -68,9 +68,9 @@ function AssetValueBreakdown() {
             ))}
           </div>
 
-          <div className="flex flex-col gap-2 items-start">
+          <div className="flex flex-col gap-[8px] items-start">
             {data.slice(3).map((item) => (
-              <div key={item.name} className="flex items-center gap-2">
+              <div key={item.name} className="flex items-center gap-[8px]">
                 <div
                   className="inline-block h-[7px] w-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}

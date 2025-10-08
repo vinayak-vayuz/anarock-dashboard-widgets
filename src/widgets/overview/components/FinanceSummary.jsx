@@ -30,7 +30,7 @@ function FinanceSummary({ data }) {
       title="Income"
       period="This Month"
       icon={<LuReceiptText className="!text-[24px] text-green-600" />}
-      className="!gap-4 break-inside-avoid h-[232px] overflow-hidden"
+      className="!gap-[16px] break-inside-avoid h-[232px] overflow-hidden"
     >
       <div>
         <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mb-2">
@@ -50,7 +50,7 @@ function FinanceSummary({ data }) {
         <hr className="my-4 border-t border-dashed border-gray-300" />
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-[12px]">
             <LuReceiptText className="!text-[24px] text-red-600" />
             <div
               style={{ fontWeight: 500, fontSize: "16px", lineHeight: "20px" }}

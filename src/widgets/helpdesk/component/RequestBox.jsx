@@ -16,7 +16,7 @@ function RequestBox() {
       period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
       className="h-[362px]"
     >
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-[12px]">
         {requests.map((item, idx) => (
           <div
             key={idx}

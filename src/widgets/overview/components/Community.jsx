@@ -54,7 +54,7 @@ function Community({ isStatic, data }) {
         {payload.map((item, i) => (
           <div
             key={i}
-            className="capitalize flex gap-1 items-center leading-relaxed"
+            className="capitalize flex gap-[4px] items-center leading-relaxed"
           >
             <div
               style={{
@@ -83,8 +83,8 @@ function Community({ isStatic, data }) {
       } h-[184px] mb-4 break-inside-avoid`}
     >
       <div className="flex">
-        <div className="w-[50%] flex flex-col gap-7">
-          <div className="flex flex-col gap-2">
+        <div className="w-[50%] flex flex-col gap-[28px]">
+          <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
               Move-in/Out Count
             </div>

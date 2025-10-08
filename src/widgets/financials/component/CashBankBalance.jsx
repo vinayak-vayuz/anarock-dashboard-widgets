@@ -25,7 +25,7 @@ const CashBankBalance = () => {
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
     >
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-[12px]">
         {accounts.map((item, idx) => (
           <div
             key={idx}

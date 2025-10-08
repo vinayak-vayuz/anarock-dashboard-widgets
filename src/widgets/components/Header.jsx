@@ -13,14 +13,14 @@ function Header({ title, description }) {
         </div>
         <div className="text-gray-500 text-[14px]">{description}</div>
       </div>
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-        <div className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white shadow-sm px-2 md:px-6 py-1 rounded-sm text-[#64748B] text-sm hover:bg-slate-50">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px]">
+        <div className="w-full sm:w-auto flex items-center justify-center gap-[8px] bg-white shadow-sm px-2 md:px-6 py-1 rounded-sm text-[#64748B] text-sm hover:bg-slate-50">
           <CalendarTodayOutlinedIcon fontSize="12" />
           <div className=" whitespace-nowrap">Last 7 Days</div>
           <FaChevronDown fontSize="12" />
         </div>
 
-        <div className="w-full flex items-center justify-center gap-2 bg-white  text-[#884EA7] px-2  md:px-6 py-1 rounded-sm shadow-sm hover:bg-purple-50">
+        <div className="w-full flex items-center justify-center gap-[8px] bg-white  text-[#884EA7] px-2  md:px-6 py-1 rounded-sm shadow-sm hover:bg-purple-50">
           <div className="font-medium whitespace-nowrap">Export Report</div>
           <FileDownloadOutlinedIcon fontSize="12" />
         </div>

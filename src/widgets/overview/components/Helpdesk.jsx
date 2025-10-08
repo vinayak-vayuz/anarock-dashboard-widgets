@@ -60,7 +60,7 @@ function Helpdesk({ isStatic, data }) {
         {payload.map((item, i) => (
           <div
             key={i}
-            className="capitalize flex gap-1 items-center leading-relaxed"
+            className="capitalize flex gap-[4px] items-center leading-relaxed"
           >
             <Dot color={item.color} />
             {item.name}: <div className="font-semibold">{item.value}</div>
@@ -79,9 +79,9 @@ function Helpdesk({ isStatic, data }) {
         isStatic && "max-h-[186px]"
       } h-[186px] mb-4 break-inside-avoid`}
     >
-      <div className="flex gap-3 h-fit">
-        <div className="w-[50%] flex flex-col gap-7">
-          <div className="flex flex-col gap-2">
+      <div className="flex gap-[12px] h-fit">
+        <div className="w-[50%] flex flex-col gap-[28px]">
+          <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
               Open Complaints
             </div>

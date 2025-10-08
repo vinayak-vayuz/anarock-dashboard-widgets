@@ -29,7 +29,7 @@ function StatCardGrid({
       <div className="text-4xl font-semibold tracking-tight text-[#121212]">
         {value}
       </div>
-      <div className="flex items-center gap-2 text-[14px]">
+      <div className="flex items-center gap-[8px] text-[14px]">
         <div
           className={
             positive
@@ -86,7 +86,7 @@ function StatCard() {
   ];
 
   return (
-    <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
       {cards.map((card, index) => (
         <StatCardGrid key={index} {...card} />
       ))}

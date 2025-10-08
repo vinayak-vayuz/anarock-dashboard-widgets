@@ -51,10 +51,10 @@ function GuardPatrols() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 mt-3 w-full px-6 text-[14px]">
+        <div className="flex flex-col gap-[8px] mt-3 w-full px-6 text-[14px]">
           {data.map((item) => (
             <div key={item.name} className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-[8px]">
                 <div
                   className="inline-block w-[7px] h-[7px] rotate-45"
                   style={{ backgroundColor: item.color }}

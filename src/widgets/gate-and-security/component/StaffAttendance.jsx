@@ -12,7 +12,7 @@ function StaffAttendance() {
       className="h-[362px]"
     >
       <div>
-        <div className="flex w-full text-center h-[76px] gap-4 mb-2">
+        <div className="flex w-full text-center h-[76px] gap-[16px] mb-2">
           <div className="flex-1 py-4 bg-green-50 rounded-md">
             <div className="!text-[24px] leading-[18px] font-medium text-[#1FA05B] pb-[8px]">
               25

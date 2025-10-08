@@ -20,7 +20,7 @@ function StatusCard({
       <div className="mt-[16px] leading-[28px]  !text-[24px] font-medium text-[#121212]">
         {value}
       </div>
-      <div className="mt-[8px] flex items-center gap-2 leading-[14px] text-[10px]">
+      <div className="mt-[8px] flex items-center gap-[8px] leading-[14px] text-[10px]">
         <div
           className={
             positive
@@ -46,7 +46,7 @@ export default function AccountingCard() {
       }
       titleWeight="semi-bold"
     >
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-[16px]">
         <StatusCard
           label="Total Income"
           value="AED 5.68M"

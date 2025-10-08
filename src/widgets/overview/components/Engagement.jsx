@@ -35,7 +35,7 @@ function Engagement({ isStatic, data }) {
         {payload.map((item, i) => (
           <div
             key={i}
-            className="capitalize flex gap-1 items-center leading-relaxed"
+            className="capitalize flex gap-[4px] items-center leading-relaxed"
           >
             <div
               style={{

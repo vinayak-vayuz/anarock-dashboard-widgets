@@ -72,7 +72,7 @@ function Facilities({ isStatic, data }) {
         {payload.map((item, i) => (
           <div
             key={i}
-            className="capitalize flex gap-1 items-center leading-relaxed"
+            className="capitalize flex gap-[4px] items-center leading-relaxed"
           >
             <div
               style={{
@@ -103,8 +103,8 @@ function Facilities({ isStatic, data }) {
         isStatic && "max-h-[305px]"
       } h-[305px] mb-4 break-inside-avoid`}
     >
-      <div className="grid grid-cols-3 gap-6 mb-4">
-        <div className="flex flex-col gap-1">
+      <div className="grid grid-cols-3 gap-[24px] mb-[16px]">
+        <div className="flex flex-col gap-[4px]">
           <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
             Bookings
           </div>
@@ -112,7 +112,7 @@ function Facilities({ isStatic, data }) {
             {totalBookings}
           </div>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-[4px]">
           <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
             Total Slots
           </div>
@@ -120,7 +120,7 @@ function Facilities({ isStatic, data }) {
             {totalSlots}
           </div>
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-[4px]">
           <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
             Utilisation Rate
           </div>

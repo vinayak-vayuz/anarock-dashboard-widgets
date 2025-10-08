@@ -82,7 +82,7 @@ const ResidentOverviewCard = ({
       icon={<GoHome className="h-6 w-6 text-[#8B5CF6]" />}
       className="h-[238px]"
     >
-      <div className=" flex-1 min-h-0 grid grid-cols-12 gap-4 items-center">
+      <div className=" flex-1 min-h-0 grid grid-cols-12 gap-[16px] items-center">
         <div className="col-span-5">
           <div>
             <div className="!text-[12px] text-[#64748B] leading-[16px]">

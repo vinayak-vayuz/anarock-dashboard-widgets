@@ -74,7 +74,7 @@ const DuesAgeing = () => {
       }
       titleWeight="semi-bold"
     >
-      <div className="grid grid-cols-4 md:grid-cols-4 gap-3 h-[48px]">
+      <div className="grid grid-cols-4 md:grid-cols-4 gap-[12px] h-[48px]">
         {labels.map((label, i) => (
           <div key={label} className="p-2 rounded-lg bg-slate-50">
             <div className="flex justify-between items-start">

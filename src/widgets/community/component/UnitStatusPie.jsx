@@ -77,7 +77,7 @@ const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
       icon={<LuBuilding className="h-6 w-6 text-green-600" />}
       className="h-[238px]"
     >
-      <div className="grid grid-cols-12 gap-4 items-center">
+      <div className="grid grid-cols-12 gap-[16px] items-center">
         <div className="col-span-5 space-y-3">
           <div>
             <div className="!text-[12px] lending-[16px] text-[#64748B]">
@@ -95,7 +95,7 @@ const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
               {unsold}
             </div>
           </div>
-          <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center ">
+          <div className="text-[10px] text-[#1FA05B] flex gap-[8px] items-center ">
             {growthPct}{" "}
             <div className="text-[#64748B] text-[10px]">
               Compared to last month

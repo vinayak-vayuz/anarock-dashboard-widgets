@@ -73,7 +73,7 @@ function GateUpdates({ isStatic, data }) {
         {payload.map((item, i) => (
           <div
             key={i}
-            className="capitalize flex gap-1 items-center leading-relaxed"
+            className="capitalize flex gap-[4px] items-center leading-relaxed"
           >
             <div
               style={{
@@ -103,7 +103,7 @@ function GateUpdates({ isStatic, data }) {
     >
       <div>
         <div className="flex flex-wrap gap-x-2 gap-y-2 text-[14px] mb-2">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
               Active Walk-ins
             </div>
@@ -115,7 +115,7 @@ function GateUpdates({ isStatic, data }) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
               Pre-approved Check-ins
             </div>
@@ -127,7 +127,7 @@ function GateUpdates({ isStatic, data }) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
               Staff Attendance
             </div>
@@ -139,56 +139,57 @@ function GateUpdates({ isStatic, data }) {
             </div>
           </div>
         </div>
-
-        <ResponsiveContainer width="100%" height="60%">
-          <LineChart
-            data={chartData}
-            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-          >
-            <XAxis
-              dataKey="time"
-              tick={{
-                fontSize: 10,
-                lineHeight: 14,
-                fill: "#121212",
-                fontWeight: 400,
-              }}
-            />
-            <YAxis
-              yAxisId="left"
-              domain={[0, 30]}
-              ticks={[0, 10, 20, 30]}
-              tick={{
-                fontSize: 10,
-                lineHeight: 14,
-                fill: "#64748B",
-                fontWeight: 400,
-              }}
-              axisLine={false}
-              tickLine={false}
-              width={25}
-            />
-            <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-            <RTooltip content={<CustomTooltip />} />
-            <Line
-              type="monotone"
-              dataKey="walkins"
-              stroke={COLORS.green}
-              strokeWidth={2}
-              dot={false}
-              name="Walk-ins"
-            />
-            <Line
-              type="monotone"
-              dataKey="checkins"
-              stroke={COLORS.amber}
-              strokeWidth={2}
-              strokeDasharray="5 5"
-              dot={false}
-              name="Pre-approved"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <div className="w-full h-[95px]">
+          <ResponsiveContainer width="100%" height="60%">
+            <LineChart
+              data={chartData}
+              margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            >
+              <XAxis
+                dataKey="time"
+                tick={{
+                  fontSize: 10,
+                  lineHeight: 14,
+                  fill: "#121212",
+                  fontWeight: 400,
+                }}
+              />
+              <YAxis
+                yAxisId="left"
+                domain={[0, 30]}
+                ticks={[0, 10, 20, 30]}
+                tick={{
+                  fontSize: 10,
+                  lineHeight: 14,
+                  fill: "#64748B",
+                  fontWeight: 400,
+                }}
+                axisLine={false}
+                tickLine={false}
+                width={25}
+              />
+              <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+              <RTooltip content={<CustomTooltip />} />
+              <Line
+                type="monotone"
+                dataKey="walkins"
+                stroke={COLORS.green}
+                strokeWidth={2}
+                dot={false}
+                name="Walk-ins"
+              />
+              <LineChart
+                type="monotone"
+                dataKey="checkins"
+                stroke={COLORS.amber}
+                strokeWidth={2}
+                strokeDasharray="5 5"
+                dot={false}
+                name="Pre-approved"
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </Card>
   );

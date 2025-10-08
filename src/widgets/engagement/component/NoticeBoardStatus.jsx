@@ -25,7 +25,7 @@ export default function NoticeBoardStatus() {
       }
       className="w-full h-[360px]"
     >
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-[16px]">
         <StatusCard
           label="Active"
           value={138}

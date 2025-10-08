@@ -84,7 +84,7 @@ const ExpenseCategories = () => {
             key={label}
             className="flex justify-between items-center text-[14px] pb-2"
           >
-            <div className="flex items-center gap-2 !text-[12px] leading-[16px] text-[#64748B]">
+            <div className="flex items-center gap-[8px] !text-[12px] leading-[16px] text-[#64748B]">
               <div
                 className="w-[7px] h-[7px] rotate-45"
                 style={{ backgroundColor: data.datasets[0].backgroundColor[i] }}

@@ -32,7 +32,7 @@ const StatTile = ({ title, value, suffix, valueClass = "" }) => (
       {title}
     </div>
     <div
-      className={`text-[28px] leading-[32px] flex item gap-1 font-medium ${valueClass}`}
+      className={`text-[28px] leading-[32px] flex item gap-[4px] font-medium ${valueClass}`}
     >
       {value}{" "}
       {suffix && (
@@ -55,7 +55,7 @@ const OccupancyOverviewCard = ({
   return (
     <div>
       <div className="bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]">
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-[12px] mb-4">
           <GoPeople className="h-6 w-6 text-[#329DFF]" />
           <div className="font-medium text-[#121212]">Occupancy Overview</div>
         </div>
@@ -92,7 +92,7 @@ const OccupancyOverviewCard = ({
         </div>
       </div>
 
-      <div className="mt-2.5 grid grid-cols-2 gap-3">
+      <div className="mt-2.5 grid grid-cols-2 gap-[12px]">
         <StatTile
           title="Avg Residents Per Unit"
           value={avgResidents}
