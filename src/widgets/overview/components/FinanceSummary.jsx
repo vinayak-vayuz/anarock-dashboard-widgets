@@ -1,9 +1,7 @@
-import React from "react";
 import Card from "../../components/Card";
 import { LuReceiptText } from "react-icons/lu";
 
 function FinanceSummary({ data }) {
-  console.log(data, "financial");
   const income = data?.incomeSummary || {};
   const expenditure = data?.expenditureSummary || {};
 
