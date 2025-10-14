@@ -108,9 +108,9 @@ function GateUpdates({ isStatic, data }) {
               Active Walk-ins
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B] flex">
-              {staffAttendance.total_in_now ?? 0}
+              {activeWalkins.visitor_in ?? 0}
               <div className="!m-0 !text-[20px] !leading-[32px] !text-[#64748B]">
-                /{staffAttendance.total_in_today ?? 0}
+                /{activeWalkins.total_pass ?? 0}
               </div>
             </div>
           </div>
@@ -132,9 +132,9 @@ function GateUpdates({ isStatic, data }) {
               Staff Attendance
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B] flex">
-              {activeWalkins.visitor_in ?? 0}
+              {staffAttendance.total_in_now ?? 0}
               <div className="!m-0 !text-[20px] !leading-[32px] !text-[#64748B]">
-                /{activeWalkins.total_pass ?? 0}
+                /{staffAttendance.total_in_today ?? 0}
               </div>
             </div>
           </div>
