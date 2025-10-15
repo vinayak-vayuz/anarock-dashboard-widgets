@@ -22827,7 +22827,6 @@ function OU({ isStatic: e, data: t }) {
   );
 }
 function AU({ data: e }) {
-  console.log(e, "financial");
   const t = e?.incomeSummary || {}, r = e?.expenditureSummary || {};
   function n(i) {
     if (i == null || isNaN(i)) return "0";
@@ -22970,10 +22969,10 @@ function PU({ isStatic: e, data: t }) {
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-[8px]", children: [
             /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B]", children: "Active Walk-ins" }),
             /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B] flex", children: [
-              a.total_in_now ?? 0,
+              n.visitor_in ?? 0,
               /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[20px] !leading-[32px] !text-[#64748B]", children: [
                 "/",
-                a.total_in_today ?? 0
+                n.total_pass ?? 0
               ] })
             ] })
           ] }),
@@ -22990,10 +22989,10 @@ function PU({ isStatic: e, data: t }) {
           /* @__PURE__ */ y.jsxs("div", { className: "flex flex-col gap-[8px]", children: [
             /* @__PURE__ */ y.jsx("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B]", children: "Staff Attendance" }),
             /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B] flex", children: [
-              n.visitor_in ?? 0,
+              a.total_in_now ?? 0,
               /* @__PURE__ */ y.jsxs("div", { className: "!m-0 !text-[20px] !leading-[32px] !text-[#64748B]", children: [
                 "/",
-                n.total_pass ?? 0
+                a.total_in_today ?? 0
               ] })
             ] })
           ] })
