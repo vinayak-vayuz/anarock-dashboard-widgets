@@ -11,6 +11,40 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// const dummyGateData = {
+//   summary: {
+//     activeWalkins: { visitor_in: 12, total_pass: 50 },
+//     preApprovedCheckins: { expected_pass_scanned: 8, total_expected_pass: 20 },
+//     staffAttendance: { total_in_now: 18, total_in_today: 25 },
+//   },
+//   chart: [
+//     { hour: 0, walkins: 2, preApproved: 1, staffAttendance: 5 },
+//     { hour: 1, walkins: 0, preApproved: 0, staffAttendance: 4 },
+//     { hour: 2, walkins: 1, preApproved: 0, staffAttendance: 4 },
+//     { hour: 3, walkins: 0, preApproved: 1, staffAttendance: 3 },
+//     { hour: 4, walkins: 3, preApproved: 1, staffAttendance: 5 },
+//     { hour: 5, walkins: 1, preApproved: 0, staffAttendance: 4 },
+//     { hour: 6, walkins: 2, preApproved: 1, staffAttendance: 6 },
+//     { hour: 7, walkins: 4, preApproved: 2, staffAttendance: 7 },
+//     { hour: 8, walkins: 5, preApproved: 3, staffAttendance: 8 },
+//     { hour: 9, walkins: 6, preApproved: 4, staffAttendance: 9 },
+//     { hour: 10, walkins: 7, preApproved: 5, staffAttendance: 10 },
+//     { hour: 11, walkins: 5, preApproved: 3, staffAttendance: 8 },
+//     { hour: 12, walkins: 6, preApproved: 4, staffAttendance: 9 },
+//     { hour: 13, walkins: 7, preApproved: 5, staffAttendance: 10 },
+//     { hour: 14, walkins: 8, preApproved: 6, staffAttendance: 11 },
+//     { hour: 15, walkins: 9, preApproved: 7, staffAttendance: 12 },
+//     { hour: 16, walkins: 10, preApproved: 8, staffAttendance: 13 },
+//     { hour: 17, walkins: 9, preApproved: 7, staffAttendance: 12 },
+//     { hour: 18, walkins: 8, preApproved: 6, staffAttendance: 11 },
+//     { hour: 19, walkins: 7, preApproved: 5, staffAttendance: 10 },
+//     { hour: 20, walkins: 6, preApproved: 4, staffAttendance: 9 },
+//     { hour: 21, walkins: 4, preApproved: 3, staffAttendance: 7 },
+//     { hour: 22, walkins: 3, preApproved: 2, staffAttendance: 6 },
+//     { hour: 23, walkins: 2, preApproved: 1, staffAttendance: 5 },
+//   ],
+// };
+
 function formatHourToAMPM(hour) {
   const meridian = hour >= 12 ? "PM" : "AM";
   let h = hour % 12;
@@ -34,11 +68,13 @@ function groupGateDataIntoFourHours(data) {
         time: formatHourToAMPM(bucketEnd),
         walkins: 0,
         checkins: 0,
+        staffAttendance: 0,
       };
     }
 
     grouped[key].walkins += Number(item.walkins ?? 0);
     grouped[key].checkins += Number(item.preApproved ?? 0);
+    grouped[key].staffAttendance += Number(item.staffAttendance ?? 0);
   }
 
   return Object.values(grouped);
@@ -46,17 +82,9 @@ function groupGateDataIntoFourHours(data) {
 
 function GateUpdates({ isStatic, data }) {
   const COLORS = {
-    green: "#12B981",
-    red: "#EF4645",
-    indigo: "#EBE4F9",
-    purple: "#8B5CF6",
-    amber: "#F69E0A",
-    gamboge: "#E7A015",
-    persimmon: "#E76215",
-    blue: "#3b82f6",
-    irishBlue: "#08B6D4",
-    dodgerBlue: "#329DFF",
-    slate: "#64748B",
+    walkins: "#1FA05B", 
+    preApproved: "#E7A015",
+    staffAttendance: "#329DFF", 
   };
 
   const activeWalkins = data?.summary?.activeWalkins || {};
@@ -131,7 +159,7 @@ function GateUpdates({ isStatic, data }) {
             <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B]">
               Staff Attendance
             </div>
-            <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#1FA05B] flex">
+            <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#329DFF] flex">
               {staffAttendance.total_in_now ?? 0}
               <div className="!m-0 !text-[20px] !leading-[32px] !text-[#64748B]">
                 /{staffAttendance.total_in_today ?? 0}
@@ -156,8 +184,7 @@ function GateUpdates({ isStatic, data }) {
               />
               <YAxis
                 yAxisId="left"
-                domain={[0, 30]}
-                ticks={[0, 10, 20, 30]}
+                domain={[0, "auto"]}
                 tick={{
                   fontSize: 10,
                   lineHeight: 14,
@@ -170,22 +197,31 @@ function GateUpdates({ isStatic, data }) {
               />
               <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
               <RTooltip content={<CustomTooltip />} />
+
               <Line
                 type="monotone"
                 dataKey="walkins"
-                stroke={COLORS.green}
+                stroke={COLORS.walkins}
                 strokeWidth={2}
                 dot={false}
-                name="Walk-ins"
+                name="Active Walk-ins"
               />
-              <LineChart
+              <Line
                 type="monotone"
                 dataKey="checkins"
-                stroke={COLORS.amber}
+                stroke={COLORS.preApproved}
                 strokeWidth={2}
                 strokeDasharray="5 5"
                 dot={false}
                 name="Pre-approved"
+              />
+              <Line
+                type="monotone"
+                dataKey="staffAttendance"
+                stroke={COLORS.staffAttendance}
+                strokeWidth={2}
+                dot={false}
+                name="Staff Attendance"
               />
             </LineChart>
           </ResponsiveContainer>
