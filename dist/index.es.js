@@ -22850,19 +22850,23 @@ function AU({ data: e }) {
         /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 !text-[12px] font-medium text-[#121212] mb-2", children: [
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(t.opening_balance),
-            " AED"
+            " ",
+            t?.currency_type
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(t.income),
-            " AED"
+            " ",
+            t?.currency_type
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(t.collection),
-            " AED"
+            " ",
+            t?.currency_type
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(t.closing_balance),
-            " AED"
+            " ",
+            t?.currency_type
           ] })
         ] }),
         /* @__PURE__ */ y.jsx("hr", { className: "my-4 border-t border-dashed border-gray-300" }),
@@ -22889,19 +22893,23 @@ function AU({ data: e }) {
         /* @__PURE__ */ y.jsxs("div", { className: "grid grid-cols-4 !text-[12px] font-medium text-[#121212]", children: [
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(r.opening_balance),
-            " AED"
+            " ",
+            r?.currency_type
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(r.expenditure),
-            " AED"
+            " ",
+            r?.currency_type
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(r.payment),
-            " AED"
+            " ",
+            r?.currency_type
           ] }),
           /* @__PURE__ */ y.jsxs("div", { children: [
             n(r.outstanding),
-            " AED"
+            " ",
+            r?.currency_type
           ] })
         ] })
       ] })

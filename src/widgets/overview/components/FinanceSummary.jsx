@@ -39,10 +39,10 @@ function FinanceSummary({ data }) {
         </div>
 
         <div className="grid grid-cols-4 !text-[12px] font-medium text-[#121212] mb-2">
-          <div>{formatCurrency(income.opening_balance)} AED</div>
-          <div>{formatCurrency(income.income)} AED</div>
-          <div>{formatCurrency(income.collection)} AED</div>
-          <div>{formatCurrency(income.closing_balance)} AED</div>
+          <div>{formatCurrency(income.opening_balance)} {income?.currency_type}</div>
+          <div>{formatCurrency(income.income)} {income?.currency_type}</div>
+          <div>{formatCurrency(income.collection)} {income?.currency_type}</div>
+          <div>{formatCurrency(income.closing_balance)} {income?.currency_type}</div>
         </div>
 
         <hr className="my-4 border-t border-dashed border-gray-300" />
@@ -71,10 +71,10 @@ function FinanceSummary({ data }) {
         </div>
 
         <div className="grid grid-cols-4 !text-[12px] font-medium text-[#121212]">
-          <div>{formatCurrency(expenditure.opening_balance)} AED</div>
-          <div>{formatCurrency(expenditure.expenditure)} AED</div>
-          <div>{formatCurrency(expenditure.payment)} AED</div>
-          <div>{formatCurrency(expenditure.outstanding)} AED</div>
+          <div>{formatCurrency(expenditure.opening_balance)} {expenditure?.currency_type}</div>
+          <div>{formatCurrency(expenditure.expenditure)} {expenditure?.currency_type}</div>
+          <div>{formatCurrency(expenditure.payment)} {expenditure?.currency_type}</div>
+          <div>{formatCurrency(expenditure.outstanding)} {expenditure?.currency_type}</div>
         </div>
       </div>
     </Card>
