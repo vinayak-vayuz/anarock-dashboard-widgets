@@ -12,7 +12,8 @@ import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
 function Community({ isStatic, data }) {
   const Chip = ({ value }) => {
-    const isPositive = value >= 0;
+    const safeValue = value ?? 0; // ensure value is a number
+    const isPositive = safeValue >= 0;
     return (
       <div
         className={`w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${
@@ -22,7 +23,7 @@ function Community({ isStatic, data }) {
         }`}
       >
         {isPositive ? <FaCaretUp /> : <FaCaretDown />}
-        {Math.abs(value)}%
+        {safeValue}
       </div>
     );
   };
@@ -37,7 +38,6 @@ function Community({ isStatic, data }) {
   const moveOutChange = Number(
     data?.moveOutPercentChange ?? data?.moveOutChange ?? 0
   );
-
 
   const communitySplit = [
     { name: "Move-ins", value: moveIns },

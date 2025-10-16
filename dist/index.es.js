@@ -22497,15 +22497,14 @@ var a7 = {
 });
 function SU({ isStatic: e, data: t }) {
   const r = ({ value: u }) => {
-    const f = u >= 0;
+    const f = u ?? 0, d = f >= 0;
     return /* @__PURE__ */ y.jsxs(
       "div",
       {
-        className: `w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${f ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
+        className: `w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${d ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
         children: [
-          f ? /* @__PURE__ */ y.jsx(M1, {}) : /* @__PURE__ */ y.jsx(T1, {}),
-          Math.abs(u),
-          "%"
+          d ? /* @__PURE__ */ y.jsx(M1, {}) : /* @__PURE__ */ y.jsx(T1, {}),
+          f
         ]
       }
     );
@@ -23082,15 +23081,14 @@ function EU({ isStatic: e, data: t }) {
 }
 function CU({ isStatic: e, data: t }) {
   const r = ({ value: l }) => {
-    const c = Number(l ?? 0), u = c >= 0;
+    const c = l ?? 0, u = c >= 0;
     return /* @__PURE__ */ y.jsxs(
       "div",
       {
         className: `w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${u ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
         children: [
           u ? /* @__PURE__ */ y.jsx(M1, {}) : /* @__PURE__ */ y.jsx(T1, {}),
-          Math.abs(c),
-          "%"
+          c
         ]
       }
     );

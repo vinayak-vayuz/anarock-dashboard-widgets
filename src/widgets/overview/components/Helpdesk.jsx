@@ -12,7 +12,7 @@ import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
 function Helpdesk({ isStatic, data }) {
   const Chip = ({ value }) => {
-    const safeValue = Number(value ?? 0); // ensure value is a number
+    const safeValue = value ?? 0; // ensure value is a number
     const isPositive = safeValue >= 0;
     return (
       <div
@@ -23,7 +23,7 @@ function Helpdesk({ isStatic, data }) {
         }`}
       >
         {isPositive ? <FaCaretUp /> : <FaCaretDown />}
-        {Math.abs(safeValue)}%
+        {safeValue}
       </div>
     );
   };
