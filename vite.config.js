@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 // Use NODE_ENV or a custom flag to switch between library build and playground
-const isPlayground = false;
+const isPlayground = true;
 
 export default defineConfig({
   plugins: [react()],

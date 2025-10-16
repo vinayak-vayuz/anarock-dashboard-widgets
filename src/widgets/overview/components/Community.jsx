@@ -8,19 +8,21 @@ import {
   Tooltip as RTooltip,
   ResponsiveContainer,
 } from "recharts";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
 function Community({ isStatic, data }) {
   const Chip = ({ value }) => {
     const isPositive = value >= 0;
     return (
       <div
-        className={`p-1 rounded text-[10px] leading-[14px] font-medium ${
+        className={`w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${
           isPositive
             ? "bg-[#F7FEFA] text-[#1FA05B]"
             : "bg-[#FFF2F2] text-[#AB0000]"
         }`}
       >
-        {isPositive ? `+${value}%` : `${value}%`}
+        {isPositive ? <FaCaretUp /> : <FaCaretDown />}
+        {Math.abs(value)}%
       </div>
     );
   };
@@ -29,13 +31,13 @@ function Community({ isStatic, data }) {
   const moveOuts = Number(
     data?.thisMonthMoveOuts ?? data?.lastMonthMoveOuts ?? 0
   );
-
   const moveInChange = Number(
     data?.moveInPercentChange ?? data?.moveInChange ?? 0
   );
   const moveOutChange = Number(
     data?.moveOutPercentChange ?? data?.moveOutChange ?? 0
   );
+
 
   const communitySplit = [
     { name: "Move-ins", value: moveIns },
@@ -92,7 +94,7 @@ function Community({ isStatic, data }) {
               {moveIns + moveOuts}
             </div>
           </div>
-          <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] space-x-1 flex items-center">
+          <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] flex items-center gap-[4px]">
             <Chip value={((moveInChange + moveOutChange) / 2).toFixed(2)} />
             <div className="whitespace-nowrap">Compared to last month</div>
           </div>
