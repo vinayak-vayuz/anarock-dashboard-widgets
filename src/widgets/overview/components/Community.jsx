@@ -23,7 +23,7 @@ function Community({ isStatic, data }) {
         }`}
       >
         {isPositive ? <FaCaretUp /> : <FaCaretDown />}
-        {safeValue}
+        {safeValue}%
       </div>
     );
   };

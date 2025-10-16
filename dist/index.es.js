@@ -22504,7 +22504,8 @@ function SU({ isStatic: e, data: t }) {
         className: `w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${d ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
         children: [
           d ? /* @__PURE__ */ y.jsx(M1, {}) : /* @__PURE__ */ y.jsx(T1, {}),
-          f
+          f,
+          "%"
         ]
       }
     );
