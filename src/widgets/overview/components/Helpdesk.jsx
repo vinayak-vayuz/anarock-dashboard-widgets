@@ -17,7 +17,7 @@ const dummyHelpdeskData = {
   today_L4: 5,
 };
 
-function Helpdesk({ isStatic, data = dummyHelpdeskData }) {
+function Helpdesk({ isStatic, data }) {
   const COLORS = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"];
 
   const helpdeskBreakup = [

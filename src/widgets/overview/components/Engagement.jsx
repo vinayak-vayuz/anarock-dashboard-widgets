@@ -18,7 +18,7 @@ export const dummyEngagementData = {
   total_surveys: 5,
 };
 
-function Engagement({ isStatic, data = dummyEngagementData }) {
+function Engagement({ isStatic, data }) {
   const COLORS = ["#8B5CF6", "#22C55E", "#3B82F6", "#F59E0B"];
 
   const engagementBars = [

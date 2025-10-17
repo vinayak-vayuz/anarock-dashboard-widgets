@@ -17,7 +17,7 @@ export const dummyCommunityData = {
   moveOutPercentChange: -14.3,
 };
 
-function Community({ isStatic, data = dummyCommunityData }) {
+function Community({ isStatic, data  }) {
   const moveIns = Number(data?.thisMonthMoveIns ?? data?.lastMonthMoveIns ?? 0);
   const moveOuts = Number(
     data?.thisMonthMoveOuts ?? data?.lastMonthMoveOuts ?? 0
