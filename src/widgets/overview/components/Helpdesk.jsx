@@ -1,5 +1,4 @@
-import React from "react";
-import Card from "../../components/Card";
+import { Card, Chip, CustomTooltip } from "../../utils";
 import { LuWrench } from "react-icons/lu";
 import {
   PieChart,
@@ -8,66 +7,29 @@ import {
   Tooltip as RTooltip,
   ResponsiveContainer,
 } from "recharts";
-import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
-function Helpdesk({ isStatic, data }) {
-  const Chip = ({ value }) => {
-    const safeValue = value ?? 0; // ensure value is a number
-    const isPositive = safeValue >= 0;
-    return (
-      <div
-        className={`w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${
-          isPositive
-            ? "bg-[#F7FEFA] text-[#1FA05B]"
-            : "bg-[#FFF2F2] text-[#AB0000]"
-        }`}
-      >
-        {isPositive ? <FaCaretUp /> : <FaCaretDown />}
-        {safeValue}
-      </div>
-    );
-  };
+const dummyHelpdeskData = {
+  today_open_complaints: 42,
+  percent_change: "-12%",
+  today_L1: 15,
+  today_L2: 10,
+  today_L3: 12,
+  today_L4: 5,
+};
+
+function Helpdesk({ isStatic, data = dummyHelpdeskData }) {
+  const COLORS = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"];
 
   const helpdeskBreakup = [
-    { name: "L1", value: Number(data?.today_L1 || 0) },
-    { name: "L2", value: Number(data?.today_L2 || 0) },
-    { name: "L3", value: Number(data?.today_L3 || 0) },
-    { name: "No Level", value: Number(data?.today_NoLevel || 0) },
+    { name: "L1 Level", value: Number(data?.today_L1 || 0), color: COLORS[0] },
+    { name: "L2 Level", value: Number(data?.today_L2 || 0), color: COLORS[1] },
+    { name: "L3 Level", value: Number(data?.today_L3 || 0), color: COLORS[2] },
+    { name: "L4 Level", value: Number(data?.today_L4 || 0), color: COLORS[3] },
   ];
 
   const total = helpdeskBreakup.reduce((sum, d) => sum + d.value, 0);
+
   const chartData = helpdeskBreakup;
-
-  const COLORS = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"]; // last is for dummy slice
-
-  const Dot = ({ color }) => (
-    <span
-      style={{
-        display: "inline-block",
-        width: "8px",
-        height: "8px",
-        borderRadius: "50%",
-        backgroundColor: color,
-        marginRight: "6px",
-      }}
-    />
-  );
-  const CustomTooltip = ({ active, payload }) => {
-    if (!active || !payload || !payload.length) return null;
-    return (
-      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
-        {payload.map((item, i) => (
-          <div
-            key={i}
-            className="capitalize flex gap-[4px] items-center leading-relaxed"
-          >
-            <Dot color={item.color} />
-            {item.name}: <div className="font-semibold">{item.value}</div>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <Card

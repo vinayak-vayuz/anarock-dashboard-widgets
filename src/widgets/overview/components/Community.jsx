@@ -1,5 +1,4 @@
-import React from "react";
-import Card from "../../components/Card";
+import { Card, Chip, CustomTooltip } from "../../utils";
 import { LuBuilding } from "react-icons/lu";
 import {
   PieChart,
@@ -8,26 +7,17 @@ import {
   Tooltip as RTooltip,
   ResponsiveContainer,
 } from "recharts";
-import { FaCaretDown, FaCaretUp } from "react-icons/fa6";
 
-function Community({ isStatic, data }) {
-  const Chip = ({ value }) => {
-    const safeValue = value ?? 0; // ensure value is a number
-    const isPositive = safeValue >= 0;
-    return (
-      <div
-        className={`w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${
-          isPositive
-            ? "bg-[#F7FEFA] text-[#1FA05B]"
-            : "bg-[#FFF2F2] text-[#AB0000]"
-        }`}
-      >
-        {isPositive ? <FaCaretUp /> : <FaCaretDown />}
-        {safeValue}%
-      </div>
-    );
-  };
+export const dummyCommunityData = {
+  thisMonthMoveIns: 45,
+  thisMonthMoveOuts: 30,
+  lastMonthMoveIns: 38,
+  lastMonthMoveOuts: 35,
+  moveInPercentChange: 18.4,
+  moveOutPercentChange: -14.3,
+};
 
+function Community({ isStatic, data = dummyCommunityData }) {
   const moveIns = Number(data?.thisMonthMoveIns ?? data?.lastMonthMoveIns ?? 0);
   const moveOuts = Number(
     data?.thisMonthMoveOuts ?? data?.lastMonthMoveOuts ?? 0
@@ -39,41 +29,27 @@ function Community({ isStatic, data }) {
     data?.moveOutPercentChange ?? data?.moveOutChange ?? 0
   );
 
+  const COLORS = ["#8B5CF6", "#EBE4F9"];
+
   const communitySplit = [
-    { name: "Move-ins", value: moveIns },
-    { name: "Move-outs", value: moveOuts },
+    { name: "Move-ins", value: moveIns, color: COLORS[0] },
+    { name: "Move-outs", value: moveOuts, color: COLORS[1] },
   ];
 
-  const COLORS = {
-    purple: "#8B5CF6",
-    indigo: "#6366F1",
-  };
-
-  const CustomTooltip = ({ active, payload }) => {
-    if (!active || !payload || !payload.length) return null;
-    return (
-      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
-        {payload.map((item, i) => (
-          <div
-            key={i}
-            className="capitalize flex gap-[4px] items-center leading-relaxed"
-          >
-            <div
-              style={{
-                display: "inline-block",
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                backgroundColor: item.color,
-                marginRight: 6,
-              }}
-            ></div>
-            {item.name}: <div className="font-semibold">{item.value}</div>
-          </div>
-        ))}
-      </div>
-    );
-  };
+  /**
+   * Calculate average move-in/out percentage change
+   * @param {number} moveInPercentChange - Move-in percentage change (can be negative)
+   * @param {number} moveOutPercentChange - Move-out percentage change (can be negative)
+   * @returns {string} Average percentage as string with "%" sign
+   */
+  function calculateAverageMoveChange(
+    moveInPercentChange,
+    moveOutPercentChange
+  ) {
+    const avg =
+      (Number(moveInPercentChange) + Number(moveOutPercentChange)) / 2;
+    return avg.toFixed(2) + "%";
+  }
 
   return (
     <Card
@@ -95,7 +71,9 @@ function Community({ isStatic, data }) {
             </div>
           </div>
           <div className="!m-0 !text-[10px] !leading-[14px] !text-[#64748B] flex items-center gap-[4px]">
-            <Chip value={((moveInChange + moveOutChange) / 2).toFixed(2)} />
+            <Chip
+              value={calculateAverageMoveChange(moveInChange, moveOutChange)}
+            />
             <div className="whitespace-nowrap">Compared to last month</div>
           </div>
         </div>
@@ -110,8 +88,8 @@ function Community({ isStatic, data }) {
                 paddingAngle={2}
                 dataKey="value"
               >
-                <Cell fill={COLORS.purple} />
-                <Cell fill={COLORS.indigo} />
+                <Cell fill={COLORS[0]} />
+                <Cell fill={COLORS[1]} />
               </Pie>
               <RTooltip content={<CustomTooltip />} />
             </PieChart>

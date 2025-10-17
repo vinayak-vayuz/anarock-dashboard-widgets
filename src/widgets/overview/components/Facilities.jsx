@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import Card from "../../components/Card";
+import { Card, Chip, CustomTooltip } from "../../utils";
+import { useMemo } from "react";
 import { LuDoorOpen } from "react-icons/lu";
 import {
   LineChart,
@@ -156,7 +156,7 @@ function fillHourlyData(slots) {
   return formatted;
 }
 
-function Facilities({ isStatic, data  }) {
+function Facilities({ isStatic, data }) {
   const totalBookings = Number(data?.totalBookings || 0);
   const totalSlots = Number(data?.totalSlots || 0);
   const utilizationRate = Number(data?.utilizationRate || 0);
@@ -169,31 +169,6 @@ function Facilities({ isStatic, data  }) {
   const xTickFormatter = (time) => {
     const importantLabels = ["1 AM", "6 AM", "11 AM", "5 PM", "10 PM"];
     return importantLabels.includes(time) ? time : "";
-  };
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (!active || !payload || !payload.length) return null;
-    return (
-      <div className="bg-black text-white !text-[12px] px-3 py-2 rounded-lg shadow-lg">
-        {label && <div className="font-medium mb-1">{label}</div>}
-        {payload.map((item, i) => (
-          <div
-            key={i}
-            className="capitalize flex gap-[4px] items-center leading-relaxed"
-          >
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                backgroundColor: item.color,
-              }}
-            />
-            {item.name}: <div className="font-semibold">{item.value}</div>
-          </div>
-        ))}
-      </div>
-    );
   };
 
   const maxY =
@@ -212,7 +187,7 @@ function Facilities({ isStatic, data  }) {
         time: formatHourToAMPM(i),
         bookings: 0,
         total: 0,
-        utilizationRate: 0,
+        utilization: 0,
       }));
 
   return (
@@ -286,8 +261,6 @@ function Facilities({ isStatic, data  }) {
               tickLine={false}
             />
             <RTooltip content={<CustomTooltip />} />
-
-            {/* Left Y-axis lines */}
             <Line
               yAxisId="left"
               type="monotone"

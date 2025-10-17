@@ -1,4 +1,4 @@
-import Card from "../../components/Card";
+import { Card, Chip, CustomTooltip } from "../../utils";
 import { LuReceiptText } from "react-icons/lu";
 
 function FinanceSummary({ data }) {

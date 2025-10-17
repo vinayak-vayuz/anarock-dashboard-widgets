@@ -1,5 +1,4 @@
-import React from "react";
-import Card from "../../components/Card";
+import { Card, Chip, CustomTooltip } from "../../utils";
 import { LuWaves } from "react-icons/lu";
 import {
   LineChart,
@@ -84,33 +83,6 @@ function GateUpdates({ isStatic, data }) {
   );
   const yAxisMax = maxValue > 0 ? maxValue : 5; // minimum max if all zero
   const yAxisTicks = [0, Math.ceil(yAxisMax / 2), yAxisMax];
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (!active || !payload || !payload.length) return null;
-    return (
-      <div className="bg-black text-white text-[12px] px-3 py-2 rounded-lg shadow-lg">
-        {label && <div className="font-medium mb-1">{label}</div>}
-        {payload.map((item, i) => (
-          <div
-            key={i}
-            className="capitalize flex gap-[4px] items-center leading-relaxed"
-          >
-            <div
-              style={{
-                display: "inline-block",
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                backgroundColor: item.color,
-                marginRight: 6,
-              }}
-            />
-            {item.name}: <div className="font-semibold">{item.value}</div>
-          </div>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <Card
