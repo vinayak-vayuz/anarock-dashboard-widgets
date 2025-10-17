@@ -5509,7 +5509,7 @@ const Mg = ({ color: e }) => /* @__PURE__ */ y.jsx(
       className: `w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${r ? "bg-[#F7FEFA] text-[#1FA05B]" : "bg-[#FFF2F2] text-[#AB0000]"}`,
       children: [
         r ? /* @__PURE__ */ y.jsx(Ek, {}) : /* @__PURE__ */ y.jsx(Pk, {}),
-        t.toFixed(1),
+        Math.abs(t).toFixed(1),
         "%"
       ]
     }

@@ -50,7 +50,7 @@ export const Chip = ({ value }) => {
       }`}
     >
       {isPositive ? <FaCaretUp /> : <FaCaretDown />}
-      {numericValue.toFixed(1)}%
+      {Math.abs(numericValue).toFixed(1)}%
     </div>
   );
 };
