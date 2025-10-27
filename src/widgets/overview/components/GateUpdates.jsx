@@ -114,7 +114,7 @@ function HoverDetailCard({ type, data }) {
           } !text-[24px]`}
         />
       }
-      className="!gap-[0px] !absolute top-[20px] left-0 w-[353px] !z-[10] transition-all duration-200"
+      className="!gap-[0px] !absolute top-[20px] left-0 w-[353px] !z-[50] transition-all duration-200"
     >
       <div className="flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]">
         {cardMap[type].map(([label, value]) => (
