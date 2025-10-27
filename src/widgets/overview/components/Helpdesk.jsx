@@ -44,7 +44,7 @@ function Helpdesk({ isStatic, data }) {
         <div className="w-[50%] flex flex-col gap-[28px]">
           <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
-              Open Complaints
+              Un-resolved Complaints
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]">
               {data?.today_open_complaints ?? 0}

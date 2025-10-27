@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, Chip, CustomTooltip } from "../../utils";
 import { LuWaves } from "react-icons/lu";
 import {
@@ -64,12 +65,74 @@ function generateHourlyChartData(data) {
   });
 }
 
-function GateUpdates({ isStatic, data }) {
-  const COLORS = {
-    walkins: "#1FA05B",
-    preApproved: "#E7A015",
-    staffAttendance: "#329DFF",
+const COLORS = {
+  walkins: "#1FA05B",
+  preApproved: "#E7A015",
+  staffAttendance: "#329DFF",
+};
+
+function HoverDetailCard({ type, data }) {
+  if (!type || !data) return null;
+
+  const cardMap = {
+    activeWalkins: [
+      ["Currently Inside", data.currently_inside],
+      ["Absent Today", data.absent_today],
+      ["Total Visited Today", data.total_visited_today],
+      ["Total Staff", data.total_staff],
+    ],
+    preApprovedCheckins: [
+      ["Currently Inside", data.currently_inside],
+      ["Total Visited Today", data.total_visited_today],
+      ["No Show", data.no_show],
+      ["Total Scheduled", data.total_scheduled],
+    ],
+    staffAttendance: [
+      ["Currently Inside", data.currently_inside],
+      ["Total Visited Today", data.total_visited_today],
+    ],
   };
+
+  return (
+    <Card
+      title={
+        type === "activeWalkins"
+          ? "Active Walk-ins"
+          : type === "preApprovedCheckins"
+          ? "Pre-approved Check-ins"
+          : "Staff Checked-in"
+      }
+      period="Today"
+      icon={
+        <LuWaves
+          className={`${
+            type === "activeWalkins"
+              ? "text-[#1FA05B]"
+              : type === "preApprovedCheckins"
+              ? "text-[#E7A015]"
+              : "text-[#329DFF]"
+          } !text-[24px]`}
+        />
+      }
+      className="!gap-[0px] !absolute top-[20px] left-0 w-[353px] z-10 transition-all duration-200"
+    >
+      <div className="flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]">
+        {cardMap[type].map(([label, value]) => (
+          <div
+            key={label}
+            className="flex justify-between !text-[14px] !text-[#64748B]"
+          >
+            <div>{label}</div>
+            <div className="font-semibold text-gray-800">{value ?? 0}</div>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function GateUpdates({ isStatic, data }) {
+  const [hovered, setHovered] = useState(null);
 
   const activeWalkins = data?.summary?.activeWalkins || {};
   const preApproved = data?.summary?.preApprovedCheckins || {};
@@ -94,39 +157,60 @@ function GateUpdates({ isStatic, data }) {
       } h-[251px] mb-4 break-inside-avoid`}
     >
       <div>
-        {/* Summary */}
-        <div className="grid grid-cols-3 gap-[24px] mb-[16px]">
-          <div className="flex flex-col gap-[8px]">
-            <div className="text-[10px] text-[#64748B]">Active Walk-ins</div>
-            <div className="text-[28px] font-medium text-[#1FA05B] flex items-center">
-              {activeWalkins.visitor_in ?? 0}
-              <div className="text-[20px] text-[#64748B]">
-                /{activeWalkins.total_pass ?? 0}
+        <div className="grid grid-cols-3 gap-[24px] mb-[16px] relative">
+          {[
+            {
+              key: "activeWalkins",
+              data: activeWalkins,
+              color: COLORS.walkins,
+              label: "Active Walk-ins",
+            },
+            {
+              key: "staffAttendance",
+              data: staffAttendance,
+              color: COLORS.staffAttendance,
+              label: "Staff Checked-in",
+            },
+            {
+              key: "preApprovedCheckins",
+              data: preApproved,
+              color: COLORS.preApproved,
+              label: "Pre-approved Check-ins",
+            },
+          ].map((item) => (
+            <div
+              key={item.key}
+              className="flex flex-col gap-[8px] relative"
+              onMouseEnter={() => setHovered(item.key)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <div className="text-[10px] text-[#64748B] whitespace-nowrap">
+                {item.label}
               </div>
-            </div>
-          </div>
+              <div
+                className={`text-[28px] font-medium flex items-center`}
+                style={{ color: item.color }}
+              >
+                {item.key === "activeWalkins"
+                  ? item.data?.visitor_in ?? 0
+                  : item.key === "preApprovedCheckins"
+                  ? item.data?.expected_pass_scanned ?? 0
+                  : item.data?.total_in_now ?? 0}
+                <div className="text-[20px] text-[#64748B] ml-1">
+                  /
+                  {item.key === "activeWalkins"
+                    ? item.data?.total_pass ?? 0
+                    : item.key === "preApprovedCheckins"
+                    ? item.data?.total_expected_pass ?? 0
+                    : item.data?.total_in_today ?? 0}
+                </div>
+              </div>
 
-          <div className="flex flex-col gap-[8px]">
-            <div className="text-[10px] text-[#64748B] whitespace-nowrap">
-              Pre-approved Check-ins
+              {hovered === item.key && (
+                <HoverDetailCard type={item.key} data={item.data} />
+              )}
             </div>
-            <div className="text-[28px] font-medium text-[#E7A015] flex items-center">
-              {preApproved.expected_pass_scanned ?? 0}
-              <div className="text-[20px] text-[#64748B]">
-                /{preApproved.total_expected_pass ?? 0}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-[8px]">
-            <div className="text-[10px] text-[#64748B]">Staff Attendance</div>
-            <div className="text-[28px] font-medium text-[#329DFF] flex items-center">
-              {staffAttendance.total_in_now ?? 0}
-              <div className="text-[20px] text-[#64748B]">
-                /{staffAttendance.total_in_today ?? 0}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Chart */}
