@@ -2,6 +2,8 @@
 
 /* Tailwind base imports */
 @import "tailwindcss";
+/* @import 'tippy.js/dist/tippy.css'; */
+
 
 /* Your custom CSS */
 :root {

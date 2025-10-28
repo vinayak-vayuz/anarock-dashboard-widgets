@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import Tippy from "@tippyjs/react";
 
 const dummyGateData = {
   summary: {
@@ -71,8 +72,8 @@ const COLORS = {
   staffAttendance: "#329DFF",
 };
 
-function HoverDetailCard({ type, data }) {
-  if (!type || !data) return null;
+export function HoverDetailCard({ type, data, children }) {
+  if (!type || !data) return children;
 
   const cardMap = {
     activeWalkins: [
@@ -93,34 +94,30 @@ function HoverDetailCard({ type, data }) {
     ],
   };
 
-  return (
+  const titleMap = {
+    activeWalkins: "Active Walk-ins",
+    preApprovedCheckins: "Pre-approved Check-ins",
+    staffAttendance: "Staff Checked-in",
+  };
+
+  const colorMap = {
+    activeWalkins: "text-[#1FA05B]",
+    preApprovedCheckins: "text-[#E7A015]",
+    staffAttendance: "text-[#329DFF]",
+  };
+
+  const content = (
     <Card
-      title={
-        type === "activeWalkins"
-          ? "Active Walk-ins"
-          : type === "preApprovedCheckins"
-          ? "Pre-approved Check-ins"
-          : "Staff Checked-in"
-      }
+      title={titleMap[type]}
       period="Today"
-      icon={
-        <LuWaves
-          className={`${
-            type === "activeWalkins"
-              ? "text-[#1FA05B]"
-              : type === "preApprovedCheckins"
-              ? "text-[#E7A015]"
-              : "text-[#329DFF]"
-          } !text-[24px]`}
-        />
-      }
-      className="!gap-[0px] !absolute top-[20px] left-0 w-[353px] !z-[50] transition-all duration-200"
+      icon={<LuWaves className={`${colorMap[type]} !text-[24px]`} />}
+      className="!gap-0 w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
     >
       <div className="flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]">
         {cardMap[type].map(([label, value]) => (
           <div
             key={label}
-            className="flex justify-between !text-[14px] !text-[#64748B]"
+            className="flex justify-between text-[14px] text-[#64748B]"
           >
             <div>{label}</div>
             <div className="font-semibold text-gray-800">{value ?? 0}</div>
@@ -128,6 +125,21 @@ function HoverDetailCard({ type, data }) {
         ))}
       </div>
     </Card>
+  );
+
+  return (
+    <Tippy
+      content={content}
+      placement="bottom-start"
+      interactive={true}
+      delay={[100, 0]}
+      offset={[0, 8]}
+      appendTo={document.body}
+      theme="light-border"
+      maxWidth="none"
+    >
+      {children}
+    </Tippy>
   );
 }
 
@@ -157,7 +169,7 @@ function GateUpdates({ isStatic, data }) {
       } h-[251px] mb-4 break-inside-avoid`}
     >
       <div>
-        <div className="grid grid-cols-3 gap-[24px] mb-[16px] relative">
+        <div className="grid grid-cols-3 gap-[24px] mb-[16px]">
           {[
             {
               key: "activeWalkins",
@@ -175,41 +187,34 @@ function GateUpdates({ isStatic, data }) {
               key: "preApprovedCheckins",
               data: preApproved,
               color: COLORS.preApproved,
-              label: "Pre-approved Check-ins",
+              label: "Pre-approved",
             },
           ].map((item) => (
-            <div
-              key={item.key}
-              className="flex flex-col gap-[8px] relative"
-              onMouseEnter={() => setHovered(item.key)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div className="text-[10px] text-[#64748B] whitespace-nowrap">
-                {item.label}
-              </div>
-              <div
-                className={`text-[28px] font-medium flex items-center`}
-                style={{ color: item.color }}
-              >
-                {item.key === "activeWalkins"
-                  ? item.data?.visitor_in ?? 0
-                  : item.key === "preApprovedCheckins"
-                  ? item.data?.expected_pass_scanned ?? 0
-                  : item.data?.total_in_now ?? 0}
-                <div className="text-[20px] text-[#64748B] ml-1">
-                  /
+            <HoverDetailCard key={item.key} type={item.key} data={item.data}>
+              <div className="flex flex-col gap-[8px] cursor-pointer">
+                <div className="text-[10px] text-[#64748B] whitespace-nowrap">
+                  {item.label}
+                </div>
+                <div
+                  className="text-[28px] font-medium flex items-center"
+                  style={{ color: item.color }}
+                >
                   {item.key === "activeWalkins"
-                    ? item.data?.total_pass ?? 0
+                    ? item.data?.visitor_in ?? 0
                     : item.key === "preApprovedCheckins"
-                    ? item.data?.total_expected_pass ?? 0
-                    : item.data?.total_in_today ?? 0}
+                    ? item.data?.expected_pass_scanned ?? 0
+                    : item.data?.total_in_now ?? 0}
+                  <div className="text-[20px] text-[#64748B] ml-1">
+                    /
+                    {item.key === "activeWalkins"
+                      ? item.data?.total_pass ?? 0
+                      : item.key === "preApprovedCheckins"
+                      ? item.data?.total_expected_pass ?? 0
+                      : item.data?.total_in_today ?? 0}
+                  </div>
                 </div>
               </div>
-
-              {hovered === item.key && (
-                <HoverDetailCard type={item.key} data={item.data} />
-              )}
-            </div>
+            </HoverDetailCard>
           ))}
         </div>
 

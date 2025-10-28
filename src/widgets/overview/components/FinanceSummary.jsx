@@ -13,17 +13,27 @@ function FinanceSummary({ data }) {
     if (value === null || value === undefined || isNaN(value)) return "0";
 
     const num = Number(value);
+    const absNum = Math.abs(num);
+    const sign = num < 0 ? "-" : "";
 
-    if (num >= 1_000_000_000) {
+    if (absNum >= 1_000_000_000) {
       return (
-        (num / 1_000_000_000).toFixed(num % 1_000_000_000 === 0 ? 0 : 2) + "B"
+        sign +
+        (absNum / 1_000_000_000).toFixed(absNum % 1_000_000_000 === 0 ? 0 : 2) +
+        "B"
       );
-    } else if (num >= 1_000_000) {
-      return (num / 1_000_000).toFixed(num % 1_000_000 === 0 ? 0 : 2) + "M";
-    } else if (num >= 1_000) {
-      return (num / 1_000).toFixed(num % 1_000 === 0 ? 0 : 2) + "K";
+    } else if (absNum >= 1_000_000) {
+      return (
+        sign +
+        (absNum / 1_000_000).toFixed(absNum % 1_000_000 === 0 ? 0 : 2) +
+        "M"
+      );
+    } else if (absNum >= 1_000) {
+      return (
+        sign + (absNum / 1_000).toFixed(absNum % 1_000 === 0 ? 0 : 2) + "K"
+      );
     } else {
-      return num.toFixed(num % 1 === 0 ? 0 : 2);
+      return sign + absNum.toFixed(absNum % 1 === 0 ? 0 : 2);
     }
   }
 
