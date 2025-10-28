@@ -111,7 +111,7 @@ export function HoverDetailCard({ type, data, children }) {
       title={titleMap[type]}
       period="Today"
       icon={<LuWaves className={`${colorMap[type]} !text-[24px]`} />}
-      className="!gap-0 w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
+      className="!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
     >
       <div className="flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]">
         {cardMap[type].map(([label, value]) => (

@@ -24878,7 +24878,7 @@ function tH({ type: e, data: t, children: r }) {
       title: i[e],
       period: "Today",
       icon: /* @__PURE__ */ b.jsx(Np, { className: `${a[e]} !text-[24px]` }),
-      className: "!gap-0 w-[353px] bg-white shadow-xl rounded-lg border border-gray-200",
+      className: "!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200",
       children: /* @__PURE__ */ b.jsx("div", { className: "flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]", children: n[e].map(([s, l]) => /* @__PURE__ */ b.jsxs(
         "div",
         {
