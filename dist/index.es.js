@@ -22729,7 +22729,7 @@ function fG({ isStatic: e, data: t }) {
     aa,
     {
       title: "Facilities",
-      period: "Today",
+      period: "As of Today",
       icon: /* @__PURE__ */ b.jsx(O_, { className: "!text-[24px] text-[#8B5CF6]" }),
       className: `${e && "max-h-[305px]"} h-[305px] mb-4 break-inside-avoid`,
       children: [
@@ -22750,7 +22750,7 @@ function fG({ isStatic: e, data: t }) {
           yE,
           {
             data: o,
-            margin: { top: 0, right: -30, left: -40, bottom: 0 },
+            margin: { top: 5, right: -30, left: -35, bottom: 0 },
             children: [
               /* @__PURE__ */ b.jsx(Gu, { strokeDasharray: "3 3", stroke: "#EBEBEB" }),
               /* @__PURE__ */ b.jsx(
@@ -24813,21 +24813,21 @@ function Q9({ type: e, data: t, children: r }) {
   if (!e || !t) return r;
   const n = {
     activeWalkins: [
-      ["Visitor In", t.visitor_in],
-      ["Visitor Out", t.visitor_out],
-      ["Total Pass Issued", t.total_pass]
+      ["Currently Inside", t.visitor_in],
+      // ["Currently Out", data.visitor_out],
+      ["Total Visited Today", t.total_pass]
     ],
     preApprovedCheckins: [
-      ["Pass Scanned", t.expected_pass_scanned],
-      ["Pass Not Scanned", t.expected_pass_not_scanned],
-      ["Total Expected Pass", t.total_expected_pass],
-      ["Currently Inside", t.currently_inside]
+      ["Currently Inside", t.currently_inside],
+      ["Total Visited Today", t.expected_pass_scanned],
+      ["No show", t.expected_pass_not_scanned],
+      ["Total Scheduled", t.total_expected_pass]
     ],
     staffAttendance: [
-      ["Total In Now", t.total_in_now],
-      ["Total In Today", t.total_in_today],
-      ["Total Staff", t.total_staff],
-      ["Absent Staff", t.absent_staff]
+      ["Currently Inside", t.total_in_now],
+      ["Absent Today", t.absent_staff],
+      ["Total Visited Today", t.total_in_today],
+      ["Total Staff", t.total_staff]
     ]
   }, i = {
     activeWalkins: "Active Walk-ins",
@@ -24841,7 +24841,7 @@ function Q9({ type: e, data: t, children: r }) {
     aa,
     {
       title: i[e],
-      period: "Today",
+      period: "As of Today",
       icon: /* @__PURE__ */ b.jsx(Np, { className: `${a[e]} !text-[24px]` }),
       className: "!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200",
       children: /* @__PURE__ */ b.jsx("div", { className: "flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]", children: n[e].map(([s, l]) => /* @__PURE__ */ b.jsxs(
@@ -24924,7 +24924,7 @@ function hG({ isStatic: e, data: t }) {
           yE,
           {
             data: a,
-            margin: { top: 1, right: 0, left: -40, bottom: 0 },
+            margin: { top: 5, right: 0, left: -40, bottom: 0 },
             children: [
               /* @__PURE__ */ b.jsx(Gu, { strokeDasharray: "3 3", stroke: "#EBEBEB" }),
               /* @__PURE__ */ b.jsx(
@@ -25003,7 +25003,7 @@ function pG({ isStatic: e, data: t }) {
     aa,
     {
       title: "Helpdesk",
-      period: "Today",
+      period: "As of Today",
       icon: /* @__PURE__ */ b.jsx(kM, { className: "!text-[24px] text-[#FA7E28]" }),
       className: `${e && "max-h-[186px]"} h-[186px] mb-4 break-inside-avoid`,
       children: /* @__PURE__ */ b.jsxs("div", { className: "flex gap-[12px] h-fit", children: [

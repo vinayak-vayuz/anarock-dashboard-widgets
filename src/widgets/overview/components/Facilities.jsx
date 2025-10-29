@@ -88,7 +88,7 @@ function Facilities({ isStatic, data }) {
   return (
     <Card
       title="Facilities"
-      period="Today"
+      period="As of Today"
       icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
       className={`${
         isStatic && "max-h-[305px]"
@@ -115,7 +115,7 @@ function Facilities({ isStatic, data }) {
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={chartDataWithFallback}
-            margin={{ top: 0, right: -30, left: -40, bottom: 0 }}
+            margin={{ top: 5, right: -30, left: -35, bottom: 0 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#EBEBEB" />
             <XAxis

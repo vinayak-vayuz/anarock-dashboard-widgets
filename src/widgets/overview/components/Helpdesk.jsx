@@ -34,7 +34,7 @@ function Helpdesk({ isStatic, data }) {
   return (
     <Card
       title="Helpdesk"
-      period="Today"
+      period="As of Today"
       icon={<LuWrench className="!text-[24px] text-[#FA7E28]" />}
       className={`${
         isStatic && "max-h-[186px]"

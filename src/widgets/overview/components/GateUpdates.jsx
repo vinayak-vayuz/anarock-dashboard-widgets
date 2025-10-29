@@ -93,21 +93,21 @@ export function HoverDetailCard({ type, data, children }) {
   // match actual API response fields
   const cardMap = {
     activeWalkins: [
-      ["Visitor In", data.visitor_in],
-      ["Visitor Out", data.visitor_out],
-      ["Total Pass Issued", data.total_pass],
+      ["Currently Inside", data.visitor_in],
+      // ["Currently Out", data.visitor_out],
+      ["Total Visited Today", data.total_pass],
     ],
     preApprovedCheckins: [
-      ["Pass Scanned", data.expected_pass_scanned],
-      ["Pass Not Scanned", data.expected_pass_not_scanned],
-      ["Total Expected Pass", data.total_expected_pass],
       ["Currently Inside", data.currently_inside],
+      ["Total Visited Today", data.expected_pass_scanned],
+      ["No show", data.expected_pass_not_scanned],
+      ["Total Scheduled", data.total_expected_pass],
     ],
     staffAttendance: [
-      ["Total In Now", data.total_in_now],
-      ["Total In Today", data.total_in_today],
+      ["Currently Inside", data.total_in_now],
+      ["Absent Today", data.absent_staff],
+      ["Total Visited Today", data.total_in_today],
       ["Total Staff", data.total_staff],
-      ["Absent Staff", data.absent_staff],
     ],
   };
 
@@ -126,7 +126,7 @@ export function HoverDetailCard({ type, data, children }) {
   const content = (
     <Card
       title={titleMap[type]}
-      period="Today"
+       period="As of Today"
       icon={<LuWaves className={`${colorMap[type]} !text-[24px]`} />}
       className="!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
     >
@@ -160,7 +160,7 @@ export function HoverDetailCard({ type, data, children }) {
   );
 }
 
-function GateUpdates({ isStatic, data }) {
+function GateUpdates({ isStatic, data}) {
   const activeWalkins = data?.summary?.activeWalkins || {};
   const preApproved = data?.summary?.preApprovedCheckins || {};
   const staffAttendance = data?.summary?.staffAttendance || {};
@@ -235,7 +235,7 @@ function GateUpdates({ isStatic, data }) {
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={chartData}
-              margin={{ top: 1, right: 0, left: -40, bottom: 0 }}
+              margin={{ top: 5, right: 0, left: -40, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" stroke="#EBEBEB" />
 
