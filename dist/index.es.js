@@ -22729,7 +22729,7 @@ function fG({ isStatic: e, data: t }) {
     aa,
     {
       title: "Facilities",
-      period: "As of Today",
+      period: "Today",
       icon: /* @__PURE__ */ b.jsx(O_, { className: "!text-[24px] text-[#8B5CF6]" }),
       className: `${e && "max-h-[305px]"} h-[305px] mb-4 break-inside-avoid`,
       children: [
@@ -24841,7 +24841,7 @@ function Q9({ type: e, data: t, children: r }) {
     aa,
     {
       title: i[e],
-      period: "As of Today",
+      period: "Today",
       icon: /* @__PURE__ */ b.jsx(Np, { className: `${a[e]} !text-[24px]` }),
       className: "!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200",
       children: /* @__PURE__ */ b.jsx("div", { className: "flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]", children: n[e].map(([s, l]) => /* @__PURE__ */ b.jsxs(
@@ -24880,7 +24880,7 @@ function hG({ isStatic: e, data: t }) {
     aa,
     {
       title: "Gate Updates",
-      period: "As of Today",
+      period: "Today",
       icon: /* @__PURE__ */ b.jsx(Np, { className: "!text-[24px] text-[#37CC6D]" }),
       className: `${e ? "max-h-[303px]" : ""} h-[251px] mb-4 break-inside-avoid`,
       children: /* @__PURE__ */ b.jsxs("div", { children: [
