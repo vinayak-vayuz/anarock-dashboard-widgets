@@ -1,4 +1,4 @@
-import { Card, Chip, CustomTooltip } from "../../utils";
+import { Card, CustomTooltip } from "../../utils";
 import { useMemo } from "react";
 import { LuDoorOpen } from "react-icons/lu";
 import {
@@ -11,182 +11,77 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const dummyFacilitiesData = {
-  totalBookings: 78,
-  totalSlots: 120,
-  utilizationRate: 65, // overall utilization %
-  slots: [
-    {
-      slot_start_time: "6:00 AM",
-      slot_bookings: 3,
-      total_slots: 5,
-      utilization_rate: 60,
-    },
-    {
-      slot_start_time: "7:00 AM",
-      slot_bookings: 5,
-      total_slots: 7,
-      utilization_rate: 65,
-    },
-    {
-      slot_start_time: "8:00 AM",
-      slot_bookings: 8,
-      total_slots: 10,
-      utilization_rate: 70,
-    },
-    {
-      slot_start_time: "9:00 AM",
-      slot_bookings: 6,
-      total_slots: 9,
-      utilization_rate: 68,
-    },
-    {
-      slot_start_time: "10:00 AM",
-      slot_bookings: 7,
-      total_slots: 10,
-      utilization_rate: 72,
-    },
-    {
-      slot_start_time: "11:00 AM",
-      slot_bookings: 5,
-      total_slots: 8,
-      utilization_rate: 64,
-    },
-    {
-      slot_start_time: "12:00 PM",
-      slot_bookings: 4,
-      total_slots: 7,
-      utilization_rate: 58,
-    },
-    {
-      slot_start_time: "1:00 PM",
-      slot_bookings: 6,
-      total_slots: 9,
-      utilization_rate: 66,
-    },
-    {
-      slot_start_time: "2:00 PM",
-      slot_bookings: 8,
-      total_slots: 10,
-      utilization_rate: 72,
-    },
-    {
-      slot_start_time: "3:00 PM",
-      slot_bookings: 10,
-      total_slots: 12,
-      utilization_rate: 75,
-    },
-    {
-      slot_start_time: "4:00 PM",
-      slot_bookings: 7,
-      total_slots: 9,
-      utilization_rate: 70,
-    },
-    {
-      slot_start_time: "5:00 PM",
-      slot_bookings: 9,
-      total_slots: 11,
-      utilization_rate: 74,
-    },
-    {
-      slot_start_time: "6:00 PM",
-      slot_bookings: 6,
-      total_slots: 8,
-      utilization_rate: 68,
-    },
-    {
-      slot_start_time: "7:00 PM",
-      slot_bookings: 4,
-      total_slots: 6,
-      utilization_rate: 63,
-    },
-    {
-      slot_start_time: "8:00 PM",
-      slot_bookings: 2,
-      total_slots: 4,
-      utilization_rate: "58%",
-    },
-    {
-      slot_start_time: "9:00 PM",
-      slot_bookings: 1,
-      total_slots: 3,
-      utilization_rate: "54%",
-    },
-  ],
+export const dummyFacilitiesData = {
+  communityId: 2,
+  reportDate: "2025-10-29",
+  totalBookings: 24,
+  averageUtilizationPercentage: "0.56", // 56%
+  graph: {
+    labels: [
+      "12 AM",
+      "1 AM",
+      "2 AM",
+      "3 AM",
+      "4 AM",
+      "5 AM",
+      "6 AM",
+      "7 AM",
+      "8 AM",
+      "9 AM",
+      "10 AM",
+      "11 AM",
+      "12 PM",
+      "1 PM",
+      "2 PM",
+      "3 PM",
+      "4 PM",
+      "5 PM",
+      "6 PM",
+      "7 PM",
+      "8 PM",
+      "9 PM",
+      "10 PM",
+      "11 PM",
+    ],
+    bookings: [
+      0, 0, 0, 0, 1, 1, 2, 3, 4, 3, 2, 1, 2, 3, 2, 4, 3, 5, 4, 2, 1, 1, 0, 0,
+    ],
+    utilization: [
+      0, 0, 0, 0, 10, 15, 25, 35, 50, 45, 40, 30, 35, 50, 45, 60, 55, 70, 65,
+      50, 35, 20, 10, 5,
+    ],
+  },
 };
 
-// ---------- helpers ----------
-function timeToMinutes(timeStr) {
-  if (!timeStr) return 0;
-  const [raw, meridian] = timeStr.split(" ");
-  let [hours, minutes] = raw.split(":").map(Number);
-  if (meridian === "PM" && hours !== 12) hours += 12;
-  if (meridian === "AM" && hours === 12) hours = 0;
-  return hours * 60 + minutes;
-}
-
-function fillHourlyData(slots) {
-  const hours = Array.from({ length: 24 }, (_, i) => i); // 0–23
-  const formatted = hours.map((h) => {
-    const found = slots.find((slot) => {
-      const mins = timeToMinutes(slot.slot_start_time);
-      return Math.floor(mins / 60) === h;
-    });
-
-    const meridian = h >= 12 ? "PM" : "AM";
-    const hr = h % 12 || 12;
-    const timeLabel = `${hr} ${meridian}`;
-
-    return {
-      time: timeLabel,
-      bookings: found?.slot_bookings || 0,
-      // total: found?.total_slots || 0,
-      utilization: found?.averageUtilizationPercentage || 0,
-    };
-  });
-
-  // repeat 12 AM (next day)
-  // formatted.push({
-  //   time: "12 AM (Next)",
-  //   bookings: 0,
-  //   total: 0,
-  //   utilization: 0,
-  // });
-
-  return formatted;
-}
-
 function Facilities({ isStatic, data }) {
+  // ✅ Fallback safe defaults
   const totalBookings = Number(data?.totalBookings || 0);
-  // const totalSlots = Number(data?.totalSlots || 0);
-  const utilizationRate = Number(data?.utilizationRate || 0);
+  const utilizationRate = Number(data?.averageUtilizationPercentage || 0) * 100;
 
+  // ✅ Transform API graph data into Recharts-friendly format
   const chartData = useMemo(() => {
-    if (!data?.slots?.length) return [];
-    return fillHourlyData(data.slots);
+    if (!data?.graph) return [];
+
+    const { labels = [], bookings = [], utilization = [] } = data.graph;
+
+    return labels.map((label, index) => ({
+      time: label,
+      bookings: bookings[index] || 0,
+      utilization: utilization[index] || 0,
+    }));
   }, [data]);
 
+  // ✅ X-Axis tick simplification
   const xTickFormatter = (time) => {
-    const importantLabels = ["1 AM", "6 AM", "11 AM", "5 PM", "10 PM"];
+    const importantLabels = ["12 AM", "6 AM", "12 PM", "6 PM", "11 PM"];
     return importantLabels.includes(time) ? time : "";
   };
-
-  const maxY =
-    chartData.length > 0 ? Math.max(...chartData.map((d) => d.total), 5) : 5;
-
-  function formatHourToAMPM(hour) {
-    const meridian = hour >= 12 ? "PM" : "AM";
-    let h = hour % 12;
-    if (h === 0) h = 12;
-    return `${h} ${meridian}`;
-  }
 
   const chartDataWithFallback = chartData.length
     ? chartData
     : Array.from({ length: 24 }, (_, i) => ({
-        time: formatHourToAMPM(i),
+        time: `${i % 12 || 12} ${i >= 12 ? "PM" : "AM"}`,
         bookings: 0,
-        // total: 0,
         utilization: 0,
       }));
 
@@ -207,12 +102,6 @@ function Facilities({ isStatic, data }) {
             {totalBookings}
           </div>
         </div>
-        {/* <div>
-          <div className="!text-[12px] text-[#64748B]">Total Slots</div>
-          <div className="!text-[24px] font-medium text-[#F59E0B]">
-            {totalSlots}
-          </div>
-        </div> */}
         <div>
           <div className="!text-[12px] text-[#64748B]">Utilisation Rate</div>
           <div className="!text-[24px] font-medium text-[#329DFF]">
@@ -242,10 +131,8 @@ function Facilities({ isStatic, data }) {
               tickLine={false}
               minTickGap={0}
             />
-
             <YAxis
               yAxisId="left"
-              domain={[0, maxY]}
               tick={{ fontSize: 10, fill: "#64748B" }}
               axisLine={false}
               tickLine={false}
@@ -253,8 +140,8 @@ function Facilities({ isStatic, data }) {
             <YAxis
               yAxisId="right"
               orientation="right"
-              domain={[20, 100]}
-              ticks={[20, 40, 60, 80, 100]}
+              domain={[0, 100]}
+              ticks={[0, 20, 40, 60, 80, 100]}
               tickFormatter={(v) => `${v}%`}
               tick={{ fontSize: 10, fill: "#64748B" }}
               axisLine={false}
@@ -270,16 +157,6 @@ function Facilities({ isStatic, data }) {
               strokeWidth={2}
               dot={false}
             />
-            <Line
-              yAxisId="left"
-              type="monotone"
-              dataKey="total"
-              name="Total Slots"
-              stroke="#F59E0B"
-              strokeWidth={2}
-              dot={false}
-            />
-
             <Line
               yAxisId="right"
               type="monotone"

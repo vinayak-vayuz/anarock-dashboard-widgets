@@ -12,39 +12,54 @@ import {
 } from "recharts";
 import Tippy from "@tippyjs/react";
 
-const dummyGateData = {
+const dummyGateUpdate = {
   summary: {
-    activeWalkins: { visitor_in: 12, total_pass: 50 },
-    preApprovedCheckins: { expected_pass_scanned: 8, total_expected_pass: 20 },
-    staffAttendance: { total_in_now: 18, total_in_today: 25 },
+    activeWalkins: {
+      visitor_in: 12,
+      visitor_out: 8,
+      total_pass: 20,
+    },
+    preApprovedCheckins: {
+      expected_pass_scanned: 15,
+      expected_pass_not_scanned: 5,
+      total_expected_pass: 20,
+      currently_inside: 10,
+    },
+    staffAttendance: {
+      total_in_now: 60,
+      total_in_today: 85,
+      total_staff: 100,
+      absent_staff: 15,
+    },
   },
   chart: [
-    { hour: 0, walkins: 2, preApproved: 1, staffAttendance: 5 },
-    { hour: 1, walkins: 0, preApproved: 0, staffAttendance: 4 },
-    { hour: 2, walkins: 1, preApproved: 0, staffAttendance: 4 },
-    { hour: 3, walkins: 0, preApproved: 1, staffAttendance: 3 },
-    { hour: 4, walkins: 3, preApproved: 1, staffAttendance: 5 },
-    { hour: 5, walkins: 1, preApproved: 0, staffAttendance: 4 },
-    { hour: 6, walkins: 2, preApproved: 1, staffAttendance: 6 },
-    { hour: 7, walkins: 4, preApproved: 2, staffAttendance: 7 },
-    { hour: 8, walkins: 5, preApproved: 3, staffAttendance: 8 },
-    { hour: 9, walkins: 6, preApproved: 4, staffAttendance: 9 },
-    { hour: 10, walkins: 7, preApproved: 5, staffAttendance: 10 },
-    { hour: 11, walkins: 5, preApproved: 3, staffAttendance: 8 },
-    { hour: 12, walkins: 6, preApproved: 4, staffAttendance: 9 },
-    { hour: 13, walkins: 7, preApproved: 5, staffAttendance: 10 },
-    { hour: 14, walkins: 8, preApproved: 6, staffAttendance: 11 },
-    { hour: 15, walkins: 9, preApproved: 7, staffAttendance: 12 },
-    { hour: 16, walkins: 10, preApproved: 8, staffAttendance: 13 },
-    { hour: 17, walkins: 9, preApproved: 7, staffAttendance: 12 },
-    { hour: 18, walkins: 8, preApproved: 6, staffAttendance: 11 },
-    { hour: 19, walkins: 7, preApproved: 5, staffAttendance: 10 },
-    { hour: 20, walkins: 6, preApproved: 4, staffAttendance: 9 },
-    { hour: 21, walkins: 4, preApproved: 3, staffAttendance: 7 },
-    { hour: 22, walkins: 3, preApproved: 2, staffAttendance: 6 },
-    { hour: 23, walkins: 2, preApproved: 1, staffAttendance: 5 },
+    { hour: 0, walkins: 0, preApproved: 0, staffAttendance: 0 },
+    { hour: 1, walkins: 0, preApproved: 0, staffAttendance: 0 },
+    { hour: 2, walkins: 0, preApproved: 0, staffAttendance: 0 },
+    { hour: 3, walkins: 0, preApproved: 0, staffAttendance: 0 },
+    { hour: 4, walkins: 1, preApproved: 0, staffAttendance: 2 },
+    { hour: 5, walkins: 2, preApproved: 1, staffAttendance: 3 },
+    { hour: 6, walkins: 3, preApproved: 2, staffAttendance: 5 },
+    { hour: 7, walkins: 5, preApproved: 3, staffAttendance: 8 },
+    { hour: 8, walkins: 7, preApproved: 5, staffAttendance: 12 },
+    { hour: 9, walkins: 10, preApproved: 7, staffAttendance: 18 },
+    { hour: 10, walkins: 12, preApproved: 9, staffAttendance: 25 },
+    { hour: 11, walkins: 11, preApproved: 8, staffAttendance: 30 },
+    { hour: 12, walkins: 9, preApproved: 7, staffAttendance: 28 },
+    { hour: 13, walkins: 10, preApproved: 8, staffAttendance: 32 },
+    { hour: 14, walkins: 12, preApproved: 10, staffAttendance: 36 },
+    { hour: 15, walkins: 14, preApproved: 11, staffAttendance: 40 },
+    { hour: 16, walkins: 15, preApproved: 12, staffAttendance: 45 },
+    { hour: 17, walkins: 13, preApproved: 10, staffAttendance: 50 },
+    { hour: 18, walkins: 10, preApproved: 8, staffAttendance: 48 },
+    { hour: 19, walkins: 7, preApproved: 5, staffAttendance: 44 },
+    { hour: 20, walkins: 5, preApproved: 3, staffAttendance: 40 },
+    { hour: 21, walkins: 3, preApproved: 2, staffAttendance: 30 },
+    { hour: 22, walkins: 2, preApproved: 1, staffAttendance: 20 },
+    { hour: 23, walkins: 1, preApproved: 0, staffAttendance: 10 },
   ],
 };
+
 
 function formatHourToAMPM(hour) {
   const meridian = hour >= 12 ? "PM" : "AM";
@@ -53,7 +68,7 @@ function formatHourToAMPM(hour) {
   return `${h} ${meridian}`;
 }
 
-function generateHourlyChartData(data) {
+function generateHourlyChartData(data = []) {
   return Array.from({ length: 24 }, (_, hour) => {
     const item = data.find((d) => d.hour === hour) || {};
     return {
@@ -75,29 +90,31 @@ const COLORS = {
 export function HoverDetailCard({ type, data, children }) {
   if (!type || !data) return children;
 
+  // match actual API response fields
   const cardMap = {
     activeWalkins: [
-      ["Currently Inside", data.currently_inside],
-      ["Absent Today", data.absent_today],
-      ["Total Visited Today", data.total_visited_today],
-      ["Total Staff", data.total_staff],
+      ["Visitor In", data.visitor_in],
+      ["Visitor Out", data.visitor_out],
+      ["Total Pass Issued", data.total_pass],
     ],
     preApprovedCheckins: [
+      ["Pass Scanned", data.expected_pass_scanned],
+      ["Pass Not Scanned", data.expected_pass_not_scanned],
+      ["Total Expected Pass", data.total_expected_pass],
       ["Currently Inside", data.currently_inside],
-      ["Total Visited Today", data.total_visited_today],
-      ["No Show", data.no_show],
-      ["Total Scheduled", data.total_scheduled],
     ],
     staffAttendance: [
-      ["Currently Inside", data.currently_inside],
-      ["Total Visited Today", data.total_visited_today],
+      ["Total In Now", data.total_in_now],
+      ["Total In Today", data.total_in_today],
+      ["Total Staff", data.total_staff],
+      ["Absent Staff", data.absent_staff],
     ],
   };
 
   const titleMap = {
     activeWalkins: "Active Walk-ins",
     preApprovedCheckins: "Pre-approved Check-ins",
-    staffAttendance: "Staff Checked-in",
+    staffAttendance: "Staff Attendance",
   };
 
   const colorMap = {
@@ -144,19 +161,16 @@ export function HoverDetailCard({ type, data, children }) {
 }
 
 function GateUpdates({ isStatic, data }) {
-  const [hovered, setHovered] = useState(null);
-
   const activeWalkins = data?.summary?.activeWalkins || {};
   const preApproved = data?.summary?.preApprovedCheckins || {};
   const staffAttendance = data?.summary?.staffAttendance || {};
 
   const chartData = generateHourlyChartData(data?.chart || []);
 
-  // Dynamic Y-axis ticks
   const maxValue = Math.max(
     ...chartData.flatMap((d) => [d.walkins, d.checkins, d.staffAttendance])
   );
-  const yAxisMax = maxValue > 0 ? maxValue : 5; // minimum max if all zero
+  const yAxisMax = maxValue > 0 ? maxValue : 5;
   const yAxisTicks = [0, Math.ceil(yAxisMax / 2), yAxisMax];
 
   return (
@@ -164,9 +178,7 @@ function GateUpdates({ isStatic, data }) {
       title="Gate Updates"
       period="Today"
       icon={<LuWaves className="!text-[24px] text-[#37CC6D]" />}
-      className={`${
-        isStatic ? "max-h-[303px]" : ""
-      } h-[251px] mb-4 break-inside-avoid`}
+      className={`${isStatic ? "max-h-[303px]" : ""} h-[251px] mb-4 break-inside-avoid`}
     >
       <div>
         <div className="grid grid-cols-3 gap-[24px] mb-[16px]">
@@ -210,7 +222,7 @@ function GateUpdates({ isStatic, data }) {
                       ? item.data?.total_pass ?? 0
                       : item.key === "preApprovedCheckins"
                       ? item.data?.total_expected_pass ?? 0
-                      : item.data?.total_in_today ?? 0}
+                      : item.data?.total_staff ?? 0}
                   </div>
                 </div>
               </div>
