@@ -140,8 +140,8 @@ function fillHourlyData(slots) {
     return {
       time: timeLabel,
       bookings: found?.slot_bookings || 0,
-      total: found?.total_slots || 0,
-      utilization: found?.utilization_rate || 0,
+      // total: found?.total_slots || 0,
+      utilization: found?.averageUtilizationPercentage || 0,
     };
   });
 
@@ -158,7 +158,7 @@ function fillHourlyData(slots) {
 
 function Facilities({ isStatic, data }) {
   const totalBookings = Number(data?.totalBookings || 0);
-  const totalSlots = Number(data?.totalSlots || 0);
+  // const totalSlots = Number(data?.totalSlots || 0);
   const utilizationRate = Number(data?.utilizationRate || 0);
 
   const chartData = useMemo(() => {
@@ -186,7 +186,7 @@ function Facilities({ isStatic, data }) {
     : Array.from({ length: 24 }, (_, i) => ({
         time: formatHourToAMPM(i),
         bookings: 0,
-        total: 0,
+        // total: 0,
         utilization: 0,
       }));
 

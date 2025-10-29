@@ -22726,15 +22726,13 @@ function fV(e) {
     return {
       time: `${n % 12 || 12} ${a}`,
       bookings: i?.slot_bookings || 0,
-      total: i?.total_slots || 0,
-      utilization: i?.utilization_rate || 0
+      // total: found?.total_slots || 0,
+      utilization: i?.averageUtilizationPercentage || 0
     };
   });
 }
 function hG({ isStatic: e, data: t }) {
-  const r = Number(t?.totalBookings || 0);
-  Number(t?.totalSlots || 0);
-  const n = Number(t?.utilizationRate || 0), i = un(() => t?.slots?.length ? fV(t.slots) : [], [t]), a = (c) => ["1 AM", "6 AM", "11 AM", "5 PM", "10 PM"].includes(c) ? c : "", o = i.length > 0 ? Math.max(...i.map((c) => c.total), 5) : 5;
+  const r = Number(t?.totalBookings || 0), n = Number(t?.utilizationRate || 0), i = un(() => t?.slots?.length ? fV(t.slots) : [], [t]), a = (c) => ["1 AM", "6 AM", "11 AM", "5 PM", "10 PM"].includes(c) ? c : "", o = i.length > 0 ? Math.max(...i.map((c) => c.total), 5) : 5;
   function s(c) {
     const u = c >= 12 ? "PM" : "AM";
     let f = c % 12;
@@ -22743,7 +22741,7 @@ function hG({ isStatic: e, data: t }) {
   const l = i.length ? i : Array.from({ length: 24 }, (c, u) => ({
     time: s(u),
     bookings: 0,
-    total: 0,
+    // total: 0,
     utilization: 0
   }));
   return /* @__PURE__ */ b.jsxs(
