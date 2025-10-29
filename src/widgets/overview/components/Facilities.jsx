@@ -200,19 +200,19 @@ function Facilities({ isStatic, data }) {
       } h-[305px] mb-4 break-inside-avoid`}
     >
       {/* Summary */}
-      <div className="grid grid-cols-3 gap-[24px] mb-[16px]">
+      <div className="grid grid-cols-2 gap-[24px] mb-[16px]">
         <div>
           <div className="!text-[12px] text-[#64748B]">Bookings</div>
           <div className="!text-[24px] font-medium text-[#8B5CF6]">
             {totalBookings}
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="!text-[12px] text-[#64748B]">Total Slots</div>
           <div className="!text-[24px] font-medium text-[#F59E0B]">
             {totalSlots}
           </div>
-        </div>
+        </div> */}
         <div>
           <div className="!text-[12px] text-[#64748B]">Utilisation Rate</div>
           <div className="!text-[24px] font-medium text-[#329DFF]">
