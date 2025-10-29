@@ -22712,7 +22712,7 @@ function uG({ isStatic: e, data: t }) {
   );
 }
 function fG({ isStatic: e, data: t }) {
-  const r = Number(t?.totalBookings || 0), n = Number(t?.averageUtilizationPercentage || 0) * 100, i = un(() => {
+  const r = Number(t?.totalBookings || 0), n = Number(t?.averageUtilizationPercentage || 0), i = un(() => {
     if (!t?.graph) return [];
     const { labels: s = [], bookings: l = [], utilization: c = [] } = t.graph;
     return s.map((u, f) => ({
@@ -24880,7 +24880,7 @@ function hG({ isStatic: e, data: t }) {
     aa,
     {
       title: "Gate Updates",
-      period: "Today",
+      period: "As of Today",
       icon: /* @__PURE__ */ b.jsx(Np, { className: "!text-[24px] text-[#37CC6D]" }),
       className: `${e ? "max-h-[303px]" : ""} h-[251px] mb-4 break-inside-avoid`,
       children: /* @__PURE__ */ b.jsxs("div", { children: [

@@ -60,7 +60,6 @@ const dummyGateUpdate = {
   ],
 };
 
-
 function formatHourToAMPM(hour) {
   const meridian = hour >= 12 ? "PM" : "AM";
   let h = hour % 12;
@@ -126,7 +125,7 @@ export function HoverDetailCard({ type, data, children }) {
   const content = (
     <Card
       title={titleMap[type]}
-       period="As of Today"
+      period="As of Today"
       icon={<LuWaves className={`${colorMap[type]} !text-[24px]`} />}
       className="!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
     >
@@ -160,7 +159,7 @@ export function HoverDetailCard({ type, data, children }) {
   );
 }
 
-function GateUpdates({ isStatic, data}) {
+function GateUpdates({ isStatic, data }) {
   const activeWalkins = data?.summary?.activeWalkins || {};
   const preApproved = data?.summary?.preApprovedCheckins || {};
   const staffAttendance = data?.summary?.staffAttendance || {};
@@ -176,9 +175,11 @@ function GateUpdates({ isStatic, data}) {
   return (
     <Card
       title="Gate Updates"
-      period="Today"
+      period="As of Today"
       icon={<LuWaves className="!text-[24px] text-[#37CC6D]" />}
-      className={`${isStatic ? "max-h-[303px]" : ""} h-[251px] mb-4 break-inside-avoid`}
+      className={`${
+        isStatic ? "max-h-[303px]" : ""
+      } h-[251px] mb-4 break-inside-avoid`}
     >
       <div>
         <div className="grid grid-cols-3 gap-[24px] mb-[16px]">

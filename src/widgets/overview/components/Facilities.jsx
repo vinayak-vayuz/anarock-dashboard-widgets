@@ -56,7 +56,7 @@ export const dummyFacilitiesData = {
 function Facilities({ isStatic, data }) {
   // ✅ Fallback safe defaults
   const totalBookings = Number(data?.totalBookings || 0);
-  const utilizationRate = Number(data?.averageUtilizationPercentage || 0) * 100;
+  const utilizationRate = Number(data?.averageUtilizationPercentage || 0);
 
   // ✅ Transform API graph data into Recharts-friendly format
   const chartData = useMemo(() => {
