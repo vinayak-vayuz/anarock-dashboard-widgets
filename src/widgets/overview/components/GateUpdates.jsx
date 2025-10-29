@@ -125,7 +125,7 @@ export function HoverDetailCard({ type, data, children }) {
   const content = (
     <Card
       title={titleMap[type]}
-      period="As of Today"
+      period="Today"
       icon={<LuWaves className={`${colorMap[type]} !text-[24px]`} />}
       className="!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
     >
@@ -175,7 +175,7 @@ function GateUpdates({ isStatic, data }) {
   return (
     <Card
       title="Gate Updates"
-      period="As of Today"
+      period="Today"
       icon={<LuWaves className="!text-[24px] text-[#37CC6D]" />}
       className={`${
         isStatic ? "max-h-[303px]" : ""

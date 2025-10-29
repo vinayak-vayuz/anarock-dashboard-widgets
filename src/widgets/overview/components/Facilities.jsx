@@ -88,7 +88,7 @@ function Facilities({ isStatic, data }) {
   return (
     <Card
       title="Facilities"
-      period="As of Today"
+      period="Today"
       icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
       className={`${
         isStatic && "max-h-[305px]"
