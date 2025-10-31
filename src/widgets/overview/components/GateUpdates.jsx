@@ -215,7 +215,7 @@ function GateUpdates({ isStatic, data }) {
                   {item.key === "activeWalkins"
                     ? item.data?.visitor_in ?? 0
                     : item.key === "preApprovedCheckins"
-                    ? item.data?.expected_pass_scanned ?? 0
+                    ? item.data?.currently_inside ?? 0
                     : item.data?.total_in_now ?? 0}
                   <div className="text-[20px] text-[#64748B] ml-1">
                     /

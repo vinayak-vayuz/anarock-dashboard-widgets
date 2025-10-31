@@ -24911,7 +24911,7 @@ function hG({ isStatic: e, data: t }) {
               className: "text-[28px] font-medium flex items-center",
               style: { color: c.color },
               children: [
-                c.key === "activeWalkins" ? c.data?.visitor_in ?? 0 : c.key === "preApprovedCheckins" ? c.data?.expected_pass_scanned ?? 0 : c.data?.total_in_now ?? 0,
+                c.key === "activeWalkins" ? c.data?.visitor_in ?? 0 : c.key === "preApprovedCheckins" ? c.data?.currently_inside ?? 0 : c.data?.total_in_now ?? 0,
                 /* @__PURE__ */ b.jsxs("div", { className: "text-[20px] text-[#64748B] ml-1", children: [
                   "/",
                   c.key === "activeWalkins" ? c.data?.total_pass ?? 0 : c.key === "preApprovedCheckins" ? c.data?.total_expected_pass ?? 0 : c.data?.total_staff ?? 0
