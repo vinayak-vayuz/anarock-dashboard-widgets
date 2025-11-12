@@ -9,22 +9,26 @@ import {
 } from "recharts";
 
 const dummyHelpdeskData = {
-  today_open_complaints: 42,
+  total_open_complaints: 42,
   percent_change: "-12%",
-  today_L1: 15,
-  today_L2: 10,
-  today_L3: 12,
-  today_L4: 5,
+  total_L1: 15,
+  total_L2: 10,
+  total_L3: 12,
+  total_NoLevel: 5,
 };
 
 function Helpdesk({ isStatic, data }) {
   const COLORS = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"];
 
   const helpdeskBreakup = [
-    { name: "L1 Level", value: Number(data?.today_L1 || 0), color: COLORS[0] },
-    { name: "L2 Level", value: Number(data?.today_L2 || 0), color: COLORS[1] },
-    { name: "L3 Level", value: Number(data?.today_L3 || 0), color: COLORS[2] },
-    { name: "L4 Level", value: Number(data?.today_L4 || 0), color: COLORS[3] },
+    { name: "L1 Level", value: Number(data?.total_L1 || 0), color: COLORS[0] },
+    { name: "L2 Level", value: Number(data?.total_L2 || 0), color: COLORS[1] },
+    { name: "L3 Level", value: Number(data?.total_L3 || 0), color: COLORS[2] },
+    {
+      name: "No Level",
+      value: Number(data?.total_NoLevel || 0),
+      color: COLORS[3],
+    },
   ];
 
   const total = helpdeskBreakup.reduce((sum, d) => sum + d.value, 0);
@@ -47,7 +51,7 @@ function Helpdesk({ isStatic, data }) {
               Un-resolved Complaints
             </div>
             <div className="!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]">
-              {data?.today_open_complaints ?? 0}
+              {data?.total_open_complaints ?? 0}
             </div>
           </div>
 
