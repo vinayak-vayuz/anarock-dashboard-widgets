@@ -24992,10 +24992,14 @@ function hG({ isStatic: e, data: t }) {
 }
 function pG({ isStatic: e, data: t }) {
   const r = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"], n = [
-    { name: "L1 Level", value: Number(t?.today_L1 || 0), color: r[0] },
-    { name: "L2 Level", value: Number(t?.today_L2 || 0), color: r[1] },
-    { name: "L3 Level", value: Number(t?.today_L3 || 0), color: r[2] },
-    { name: "L4 Level", value: Number(t?.today_L4 || 0), color: r[3] }
+    { name: "L1 Level", value: Number(t?.total_L1 || 0), color: r[0] },
+    { name: "L2 Level", value: Number(t?.total_L2 || 0), color: r[1] },
+    { name: "L3 Level", value: Number(t?.total_L3 || 0), color: r[2] },
+    {
+      name: "No Level",
+      value: Number(t?.total_NoLevel || 0),
+      color: r[3]
+    }
   ];
   n.reduce((a, o) => a + o.value, 0);
   const i = n;
@@ -25010,7 +25014,7 @@ function pG({ isStatic: e, data: t }) {
         /* @__PURE__ */ b.jsxs("div", { className: "w-[50%] flex flex-col gap-[28px]", children: [
           /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col gap-[8px]", children: [
             /* @__PURE__ */ b.jsx("div", { className: "!m-0 !text-[12px] !leading-[16px] !text-[#64748B]", children: "Un-resolved Complaints" }),
-            /* @__PURE__ */ b.jsx("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]", children: t?.today_open_complaints ?? 0 })
+            /* @__PURE__ */ b.jsx("div", { className: "!m-0 !text-[28px] !leading-[32px] !font-medium text-[#FA7E28]", children: t?.total_open_complaints ?? 0 })
           ] }),
           /* @__PURE__ */ b.jsxs("div", { className: "!m-0 !text-[10px] !leading-[14px] !text-[#64748B] flex items-center gap-[4px]", children: [
             /* @__PURE__ */ b.jsx(k_, { value: t?.percent_change }),
