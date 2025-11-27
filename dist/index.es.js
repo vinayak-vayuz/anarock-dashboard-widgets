@@ -32913,7 +32913,7 @@ function XT({
   }, c = () => {
     sessionStorage.setItem(`${e}_export`, "true"), i(e);
   };
-  return /* @__PURE__ */ O.jsxs("div", { className: "flex items-center gap-2", children: [
+  return console.log(t, "options in action button"), /* @__PURE__ */ O.jsxs("div", { className: "flex items-center gap-2", children: [
     /* @__PURE__ */ O.jsx(Um, { title: "Select a community", children: /* @__PURE__ */ O.jsx($T, { size: "small", children: /* @__PURE__ */ O.jsxs(iG, { value: a, onChange: l, children: [
       /* @__PURE__ */ O.jsx(Vm, { value: "all", sx: { fontWeight: 600 }, children: "All" }),
       t?.map((u) => /* @__PURE__ */ O.jsx(Vm, { value: u.id, children: u.name }, u.id))

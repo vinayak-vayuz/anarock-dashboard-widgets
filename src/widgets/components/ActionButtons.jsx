@@ -59,6 +59,8 @@ export function ActionButtons({
     onExport(widgetId);
   };
 
+  console.log(options, "options in action button");
+
   return (
     <div className="flex items-center gap-2">
       <Tooltip title="Select a community">
