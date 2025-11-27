@@ -32928,19 +32928,19 @@ function XT({
     ) })
   ] });
 }
-function Jee({ isStatic: e, data: t }) {
-  const n = ["#8B5CF6", "#22C55E", "#3B82F6", "#F59E0B"], r = [
+function Jee({ isStatic: e, data: t, communities: n }) {
+  const r = ["#8B5CF6", "#22C55E", "#3B82F6", "#F59E0B"], i = [
     {
       name: "Notice",
       value: Number(t?.total_notices || 0),
-      color: n[0]
+      color: r[0]
     },
-    { name: "Post", value: Number(t?.total_topics || 0), color: n[1] },
-    { name: "Poll", value: Number(t?.total_polls || 0), color: n[2] },
+    { name: "Post", value: Number(t?.total_topics || 0), color: r[1] },
+    { name: "Poll", value: Number(t?.total_polls || 0), color: r[2] },
     {
       name: "Survey",
       value: Number(t?.total_surveys || 0),
-      color: n[3]
+      color: r[3]
     }
   ];
   return /* @__PURE__ */ O.jsx(
@@ -32954,15 +32954,15 @@ function Jee({ isStatic: e, data: t }) {
         XT,
         {
           widgetId: "engagement",
-          options: t?.communities,
-          onFilterChange: (i, o) => console.log(i, o),
-          onExport: (i) => console.log("Export triggered for", i)
+          options: n,
+          onFilterChange: (o, a) => console.log(o, a),
+          onExport: (o) => console.log("Export triggered for", o)
         }
       ),
       children: /* @__PURE__ */ O.jsx("div", { className: "w-full h-[235px]", children: /* @__PURE__ */ O.jsx(Yo, { width: "100%", height: "100%", children: /* @__PURE__ */ O.jsxs(
         CH,
         {
-          data: r,
+          data: i,
           layout: "vertical",
           margin: { top: 4, right: 8, left: 0, bottom: 0 },
           children: [
@@ -33011,7 +33011,7 @@ function Jee({ isStatic: e, data: t }) {
                 cursor: { fill: "transparent" }
               }
             ),
-            /* @__PURE__ */ O.jsx(AA, { dataKey: "value", barSize: 40, isAnimationActive: !1, children: r.map((i, o) => /* @__PURE__ */ O.jsx(zr, { fill: n[o] }, i.name)) })
+            /* @__PURE__ */ O.jsx(AA, { dataKey: "value", barSize: 40, isAnimationActive: !1, children: i.map((o, a) => /* @__PURE__ */ O.jsx(zr, { fill: r[a] }, o.name)) })
           ]
         }
       ) }) })
@@ -33131,15 +33131,15 @@ function Qee({ isStatic: e, data: t }) {
     }
   );
 }
-function ete({ data: e }) {
-  const t = e?.incomeSummary || {}, n = e?.expenditureSummary || {}, r = ["AED", "USD", "EUR"], i = ["Rs", "INR", "₹"];
-  function o(s) {
-    if (s == null || isNaN(s)) return "0";
-    const l = Number(s), c = Math.abs(l), u = l < 0 ? "-" : "";
-    return c >= 1e9 ? u + (c / 1e9).toFixed(c % 1e9 === 0 ? 0 : 2) + "B" : c >= 1e6 ? u + (c / 1e6).toFixed(c % 1e6 === 0 ? 0 : 2) + "M" : c >= 1e3 ? u + (c / 1e3).toFixed(c % 1e3 === 0 ? 0 : 2) + "K" : u + c.toFixed(c % 1 === 0 ? 0 : 2);
+function ete({ data: e, communities: t }) {
+  const n = e?.incomeSummary || {}, r = e?.expenditureSummary || {}, i = ["AED", "USD", "EUR"], o = ["Rs", "INR", "₹"];
+  function a(l) {
+    if (l == null || isNaN(l)) return "0";
+    const c = Number(l), u = Math.abs(c), d = c < 0 ? "-" : "";
+    return u >= 1e9 ? d + (u / 1e9).toFixed(u % 1e9 === 0 ? 0 : 2) + "B" : u >= 1e6 ? d + (u / 1e6).toFixed(u % 1e6 === 0 ? 0 : 2) + "M" : u >= 1e3 ? d + (u / 1e3).toFixed(u % 1e3 === 0 ? 0 : 2) + "K" : d + u.toFixed(u % 1 === 0 ? 0 : 2);
   }
-  function a(s, l) {
-    return l ? i.includes(l) ? `${l} ${o(s)}` : r.includes(l) ? `${o(s)} ${l}` : `${o(s)} ${l}` : o(s);
+  function s(l, c) {
+    return c ? o.includes(c) ? `${c} ${a(l)}` : i.includes(c) ? `${a(l)} ${c}` : `${a(l)} ${c}` : a(l);
   }
   return /* @__PURE__ */ O.jsx(
     Vo,
@@ -33152,9 +33152,9 @@ function ete({ data: e }) {
         XT,
         {
           widgetId: "finance_summary",
-          options: e?.communities,
-          onFilterChange: (s, l) => console.log(s, l),
-          onExport: (s) => console.log("Export triggered for", s)
+          options: t,
+          onFilterChange: (l, c) => console.log(l, c),
+          onExport: (l) => console.log("Export triggered for", l)
         }
       ),
       children: /* @__PURE__ */ O.jsxs("div", { children: [
@@ -33165,10 +33165,10 @@ function ete({ data: e }) {
           /* @__PURE__ */ O.jsx("div", { children: "Closing" })
         ] }),
         /* @__PURE__ */ O.jsxs("div", { className: "grid grid-cols-4 !text-[12px] font-medium text-[#121212] mb-2", children: [
-          /* @__PURE__ */ O.jsx("div", { children: a(t.opening_balance, t?.currency_type) }),
-          /* @__PURE__ */ O.jsx("div", { children: a(t.income, t?.currency_type) }),
-          /* @__PURE__ */ O.jsx("div", { children: a(t.collection, t?.currency_type) }),
-          /* @__PURE__ */ O.jsx("div", { children: a(t.closing_balance, t?.currency_type) })
+          /* @__PURE__ */ O.jsx("div", { children: s(n.opening_balance, n?.currency_type) }),
+          /* @__PURE__ */ O.jsx("div", { children: s(n.income, n?.currency_type) }),
+          /* @__PURE__ */ O.jsx("div", { children: s(n.collection, n?.currency_type) }),
+          /* @__PURE__ */ O.jsx("div", { children: s(n.closing_balance, n?.currency_type) })
         ] }),
         /* @__PURE__ */ O.jsx("hr", { className: "my-4 border-t border-dashed border-gray-300" }),
         /* @__PURE__ */ O.jsx("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ O.jsxs("div", { className: "flex items-center gap-[12px]", children: [
@@ -33182,13 +33182,13 @@ function ete({ data: e }) {
           /* @__PURE__ */ O.jsx("div", { children: "Outstanding" })
         ] }),
         /* @__PURE__ */ O.jsxs("div", { className: "grid grid-cols-4 !text-[12px] font-medium text-[#121212]", children: [
-          /* @__PURE__ */ O.jsx("div", { children: a(
-            n.opening_balance,
-            n?.currency_type
+          /* @__PURE__ */ O.jsx("div", { children: s(
+            r.opening_balance,
+            r?.currency_type
           ) }),
-          /* @__PURE__ */ O.jsx("div", { children: a(n.expenditure, n?.currency_type) }),
-          /* @__PURE__ */ O.jsx("div", { children: a(n.payment, n?.currency_type) }),
-          /* @__PURE__ */ O.jsx("div", { children: a(n.outstanding, n?.currency_type) })
+          /* @__PURE__ */ O.jsx("div", { children: s(r.expenditure, r?.currency_type) }),
+          /* @__PURE__ */ O.jsx("div", { children: s(r.payment, r?.currency_type) }),
+          /* @__PURE__ */ O.jsx("div", { children: s(r.outstanding, r?.currency_type) })
         ] })
       ] })
     }

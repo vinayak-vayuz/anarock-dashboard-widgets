@@ -2,7 +2,7 @@ import { ActionButtons } from "../../components/ActionButtons";
 import { Card } from "../../utils";
 import { LuReceiptText } from "react-icons/lu";
 
-function FinanceSummary({ data }) {
+function FinanceSummary({ data, communities }) {
   const income = data?.incomeSummary || {};
   const expenditure = data?.expenditureSummary || {};
 
@@ -60,7 +60,7 @@ function FinanceSummary({ data }) {
       actionButtons={
         <ActionButtons
           widgetId="finance_summary"
-          options={data?.communities}
+          options={communities}
           onFilterChange={(value, widget) => console.log(value, widget)}
           onExport={(widget) => console.log("Export triggered for", widget)}
         />

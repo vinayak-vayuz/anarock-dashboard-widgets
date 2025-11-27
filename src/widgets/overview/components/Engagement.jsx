@@ -19,7 +19,7 @@ export const dummyEngagementData = {
   total_surveys: 5,
 };
 
-function Engagement({ isStatic, data }) {
+function Engagement({ isStatic, data, communities }) {
   const COLORS = ["#8B5CF6", "#22C55E", "#3B82F6", "#F59E0B"];
 
   const engagementBars = [
@@ -46,7 +46,7 @@ function Engagement({ isStatic, data }) {
       actionButtons={
         <ActionButtons
           widgetId="engagement"
-          options={data?.communities}
+          options={communities}
           onFilterChange={(value, widget) => console.log(value, widget)}
           onExport={(widget) => console.log("Export triggered for", widget)}
         />
