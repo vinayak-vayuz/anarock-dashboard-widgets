@@ -1,13 +1,13 @@
-import { Card, Chip, CustomTooltip } from "../../utils";
+import { ActionButtons } from "../../components/ActionButtons";
+import { Card } from "../../utils";
 import { LuReceiptText } from "react-icons/lu";
 
 function FinanceSummary({ data }) {
   const income = data?.incomeSummary || {};
   const expenditure = data?.expenditureSummary || {};
 
-  // Currency position rules
-  const rightSideCurrencies = ["AED", "USD", "EUR"]; // symbols on right
-  const leftSideCurrencies = ["Rs", "INR", "₹"]; // symbols on left
+  const rightSideCurrencies = ["AED", "USD", "EUR"];
+  const leftSideCurrencies = ["Rs", "INR", "₹"];
 
   function formatCurrency(value) {
     if (value === null || value === undefined || isNaN(value)) return "0";
@@ -57,6 +57,14 @@ function FinanceSummary({ data }) {
       period="This Month"
       icon={<LuReceiptText className="!text-[24px] text-green-600" />}
       className="!gap-[16px] break-inside-avoid h-[232px] overflow-hidden"
+      actionButtons={
+        <ActionButtons
+          widgetId="finance_summary"
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div>
         {/* Header */}

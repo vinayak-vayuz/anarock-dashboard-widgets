@@ -10,6 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import { ActionButtons } from "../../components/ActionButtons";
 
 export const dummyEngagementData = {
   total_notices: 12,
@@ -42,6 +43,14 @@ function Engagement({ isStatic, data }) {
       period="This Month"
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
       className={`${isStatic && "max-h-[303px]"} h-[303px]`}
+      actionButtons={
+        <ActionButtons
+          widgetId="finance_summary"
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div className="w-full h-[235px]">
         <ResponsiveContainer width="100%" height="100%">

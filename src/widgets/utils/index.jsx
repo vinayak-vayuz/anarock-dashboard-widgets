@@ -58,6 +58,7 @@ export const Card = ({
   title,
   icon,
   period,
+  actionButtons,
   children,
   footer,
   className = "",
@@ -85,11 +86,15 @@ export const Card = ({
           </div>
         </div>
 
-        {period && (
-          <div className="!text-[12px] !leading-[16px] !text-[#64748B]">
-            {period}
-          </div>
-        )}
+        <div className="flex items-center gap-2">
+          {actionButtons && actionButtons}
+
+          {period && (
+            <div className="!text-[12px] !leading-[16px] !text-[#64748B]">
+              {period}
+            </div>
+          )}
+        </div>
       </div>
       <div className={`flex-1 min-h-0 space-y-[24px] ${childrenClassName}`}>
         {children}
