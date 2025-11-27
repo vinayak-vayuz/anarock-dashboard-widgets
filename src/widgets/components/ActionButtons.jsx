@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FormControl, MenuItem, Select, Tooltip } from "@mui/material";
 import styled from "@emotion/styled";
 import { CiExport } from "react-icons/ci";
+import { updateSession } from "../utils";
 
 const CustomSelect = styled(Select)(() => ({
   width: "fit-content",
@@ -48,14 +49,14 @@ export function ActionButtons({
     if (value === "all") {
       sessionStorage.removeItem("community_id");
     } else {
-      sessionStorage.setItem("community_id", value);
+      updateSession("community_id", value);
     }
 
     onFilterChange(value);
   };
 
   const handleExport = () => {
-    sessionStorage.setItem("export", "true");
+    updateSession("community_id", value);
     onExport();
   };
 

@@ -107,3 +107,12 @@ export const Card = ({
     </div>
   );
 };
+
+export function updateSession(key, value) {
+  sessionStorage.setItem(key, value);
+
+  // Trigger only if key is relevant
+  if (key === "community_id" || key === "export") {
+    window.dispatchEvent(new StorageEvent("dashboard-update", { key }));
+  }
+}
