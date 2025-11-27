@@ -37,7 +37,7 @@ export function ActionButtons({
   onFilterChange = () => {},
   onExport = () => {},
 }) {
-  const storedValue = sessionStorage.getItem(`${widgetId}_community_id`);
+  const storedValue = sessionStorage.getItem("community_id");
 
   const [selected, setSelected] = useState(storedValue || defaultValue);
 
@@ -46,24 +46,27 @@ export function ActionButtons({
     setSelected(value);
 
     if (value === "all") {
-      sessionStorage.removeItem(`${widgetId}_community_id`);
+      sessionStorage.removeItem("community_id");
     } else {
-      sessionStorage.setItem(`${widgetId}_community_id`, value);
+      sessionStorage.setItem("community_id", value);
     }
 
-    onFilterChange(value, widgetId);
+    onFilterChange(value);
   };
 
   const handleExport = () => {
-    sessionStorage.setItem(`${widgetId}_export`, "true");
-    onExport(widgetId);
+    sessionStorage.setItem("export", "true");
+    onExport();
   };
-
-  console.log(options, "options in action button");
 
   return (
     <div className="flex items-center gap-2">
-      <Tooltip title="Select a community">
+      <Tooltip
+        slotProps={{
+          tooltip: { sx: { fontSize: "12px" } },
+        }}
+        title="Select a community"
+      >
         <FormControl size="small">
           <CustomSelect value={selected} onChange={handleChange}>
             <MenuItem value="all" sx={{ fontWeight: 600 }}>
@@ -79,7 +82,12 @@ export function ActionButtons({
         </FormControl>
       </Tooltip>
 
-      <Tooltip title="Export CSV for this widget">
+      <Tooltip
+        slotProps={{
+          tooltip: { sx: { fontSize: "12px" } },
+        }}
+        title="Export CSV for this widget"
+      >
         <button
           onClick={handleExport}
           className="px-3 py-2 bg-[#FBF5FF] rounded cursor-pointer"
