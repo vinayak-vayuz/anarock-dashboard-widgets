@@ -71,8 +71,8 @@ export function ActionButtons({
             </MenuItem>
 
             {options?.map((item) => (
-              <MenuItem key={item.id} value={item.id}>
-                {item.name}
+              <MenuItem key={item.community_id} value={item.community_id}>
+                {item.community_name}
               </MenuItem>
             ))}
           </CustomSelect>
