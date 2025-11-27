@@ -35,6 +35,8 @@ function Helpdesk({ isStatic, data }) {
 
   const chartData = helpdeskBreakup;
 
+  console.log("Helpdesk Data:", data);
+
   return (
     <Card
       title="Helpdesk"

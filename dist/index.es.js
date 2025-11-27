@@ -33162,7 +33162,7 @@ function tte({ data: e, communities: t }) {
   function s(l, c) {
     return c ? o.includes(c) ? `${c} ${a(l)}` : i.includes(c) ? `${a(l)} ${c}` : `${a(l)} ${c}` : a(l);
   }
-  return /* @__PURE__ */ O.jsx(
+  return console.log("Finance Summary Data:", e), /* @__PURE__ */ O.jsx(
     Vo,
     {
       title: "Income",
@@ -34440,7 +34440,7 @@ function rte({ isStatic: e, data: t }) {
   ];
   r.reduce((o, a) => o + a.value, 0);
   const i = r;
-  return /* @__PURE__ */ O.jsx(
+  return console.log("Helpdesk Data:", t), /* @__PURE__ */ O.jsx(
     Vo,
     {
       title: "Helpdesk",

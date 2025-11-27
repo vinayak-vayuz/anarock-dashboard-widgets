@@ -51,6 +51,8 @@ function FinanceSummary({ data, communities }) {
     }
   }
 
+  console.log("Finance Summary Data:", data);
+
   return (
     <Card
       title="Income"
