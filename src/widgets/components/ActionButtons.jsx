@@ -56,7 +56,7 @@ export function ActionButtons({
   };
 
   const handleExport = () => {
-    updateSession("community_id", value);
+    updateSession("export", true);
     onExport();
   };
 

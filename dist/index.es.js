@@ -6155,7 +6155,7 @@ const s0 = ({ color: e }) => /* @__PURE__ */ O.jsx(
   );
 };
 function l0(e, t) {
-  sessionStorage.setItem(e, t), window.dispatchEvent(new StorageEvent("dashboard-update", { key: e }));
+  sessionStorage.setItem(e, t), (e === "community_id" || e === "export") && window.dispatchEvent(new StorageEvent("dashboard-update", { key: e }));
 }
 var Ff = {}, Bf = {}, c0;
 function oR() {
@@ -32914,7 +32914,7 @@ function ZT({
     const d = u.target.value;
     s(d), d === "all" ? sessionStorage.removeItem("community_id") : l0("community_id", d), r(d);
   }, c = () => {
-    l0("community_id", value), i();
+    l0("export", !0), i();
   };
   return /* @__PURE__ */ O.jsxs("div", { className: "flex items-center gap-2", children: [
     /* @__PURE__ */ O.jsx(
