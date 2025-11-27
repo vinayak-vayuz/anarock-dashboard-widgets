@@ -46,11 +46,11 @@ export function ActionButtons({
     const value = event.target.value;
     setSelected(value);
 
-    if (value === "all") {
-      sessionStorage.removeItem("community_id");
-    } else {
-      updateSession("community_id", value);
-    }
+    updateSession("community_id", value);
+    // if (value === "all") {
+    //   sessionStorage.removeItem("community_id");
+    // } else {
+    // }
 
     onFilterChange(value);
   };

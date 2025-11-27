@@ -32912,7 +32912,7 @@ function ZT({
 }) {
   const o = sessionStorage.getItem("community_id"), [a, s] = Rt(o || n), l = (u) => {
     const d = u.target.value;
-    s(d), d === "all" ? sessionStorage.removeItem("community_id") : l0("community_id", d), r(d);
+    s(d), l0("community_id", d), r(d);
   }, c = () => {
     l0("export", !0), i();
   };
