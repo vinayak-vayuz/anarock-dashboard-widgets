@@ -32953,7 +32953,7 @@ function Jee({ isStatic: e, data: t }) {
       actionButtons: /* @__PURE__ */ O.jsx(
         XT,
         {
-          widgetId: "finance_summary",
+          widgetId: "engagement",
           options: t?.communities,
           onFilterChange: (i, o) => console.log(i, o),
           onExport: (i) => console.log("Export triggered for", i)

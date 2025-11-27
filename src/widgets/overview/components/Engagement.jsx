@@ -45,7 +45,7 @@ function Engagement({ isStatic, data }) {
       className={`${isStatic && "max-h-[303px]"} h-[303px]`}
       actionButtons={
         <ActionButtons
-          widgetId="finance_summary"
+          widgetId="engagement"
           options={data?.communities}
           onFilterChange={(value, widget) => console.log(value, widget)}
           onExport={(widget) => console.log("Export triggered for", widget)}
