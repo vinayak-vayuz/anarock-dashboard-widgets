@@ -32923,7 +32923,6 @@ function oG({
         slotProps: {
           tooltip: { sx: { fontSize: "12px" } }
         },
-        title: "Select a community",
         children: /* @__PURE__ */ O.jsx(LT, { size: "small", children: /* @__PURE__ */ O.jsxs(iG, { value: a, onChange: l, children: [
           /* @__PURE__ */ O.jsx(Vm, { value: "all", sx: { fontWeight: 600 }, children: "All" }),
           t?.map((u) => /* @__PURE__ */ O.jsx(Vm, { value: u.community_id, children: u.community_name }, u.community_id))

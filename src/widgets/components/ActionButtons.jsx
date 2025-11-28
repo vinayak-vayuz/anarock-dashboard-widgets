@@ -66,7 +66,7 @@ export function ActionButtons({
         slotProps={{
           tooltip: { sx: { fontSize: "12px" } },
         }}
-        title="Select a community"
+        // title="Select a community"
       >
         <FormControl size="small">
           <CustomSelect value={selected} onChange={handleChange}>
