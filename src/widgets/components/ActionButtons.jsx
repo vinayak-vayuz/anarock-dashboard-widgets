@@ -82,7 +82,7 @@ export function ActionButtons({
 
   const handleExport = () => {
     updateSession("widget_id", widgetId);
-    updateSession("export", true);
+    updateSession("export", "true");
     onExport();
   };
 
@@ -101,17 +101,33 @@ export function ActionButtons({
                 .map((item) => item.community_name)
                 .join(", ");
             }}
-            MenuProps={{ PaperProps: { style: { maxHeight: 300 } } }}
+            MenuProps={{
+              PaperProps: { style: { maxHeight: 300 } },
+              autoFocus: false,
+            }}
           >
             {/* Search Box */}
-            <TextField
-              placeholder="Search..."
-              size="small"
-              variant="standard"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              sx={{ padding: "6px 12px" }}
-            />
+            <MenuItem
+              onKeyDown={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
+              disableRipple
+              sx={{
+                "&:hover": { backgroundColor: "transparent" },
+                cursor: "default",
+              }}
+            >
+              <TextField
+                placeholder="Search..."
+                size="small"
+                variant="outlined"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+                sx={{ width: "100%" }}
+                autoFocus
+              />
+            </MenuItem>
 
             {/* "All" Option */}
             <MenuItem value="all">
@@ -120,12 +136,18 @@ export function ActionButtons({
             </MenuItem>
 
             {/* Filtered List */}
-            {filteredOptions.map((item) => (
-              <MenuItem key={item.community_id} value={item.community_id}>
-                <Checkbox checked={selected.includes(item.community_id)} />
-                <ListItemText primary={item.community_name} />
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((item) => (
+                <MenuItem key={item.community_id} value={item.community_id}>
+                  <Checkbox checked={selected.includes(item.community_id)} />
+                  <ListItemText primary={item.community_name} />
+                </MenuItem>
+              ))
+            ) : (
+              <MenuItem disabled>
+                <ListItemText primary="No results found" />
               </MenuItem>
-            ))}
+            )}
           </CustomSelect>
         </FormControl>
       </Tooltip>
