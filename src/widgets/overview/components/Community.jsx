@@ -7,6 +7,7 @@ import {
   Tooltip as RTooltip,
   ResponsiveContainer,
 } from "recharts";
+import { ActionButtons } from "../../components/ActionButtons";
 
 export const dummyCommunityData = {
   thisMonthMoveIns: 45,
@@ -17,7 +18,7 @@ export const dummyCommunityData = {
   moveOutPercentChange: -14.3,
 };
 
-function Community({ isStatic, data  }) {
+function Community({ isStatic, data }) {
   const moveIns = Number(data?.thisMonthMoveIns ?? data?.lastMonthMoveIns ?? 0);
   const moveOuts = Number(
     data?.thisMonthMoveOuts ?? data?.lastMonthMoveOuts ?? 0
@@ -59,6 +60,14 @@ function Community({ isStatic, data  }) {
       className={`${
         isStatic && "max-h-[184px]"
       } h-[184px] mb-4 break-inside-avoid`}
+      actionButtons={
+        <ActionButtons
+          widgetId={data?.widget_id}
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div className="flex">
         <div className="w-[50%] flex flex-col gap-[28px]">
