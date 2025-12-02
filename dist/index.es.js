@@ -32904,37 +32904,42 @@ const oG = au(Ry)(() => ({
 function ZT({
   widgetId: e,
   options: t = [],
-  defaultValue: n = "all",
+  defaultValue: n = ["all"],
   onFilterChange: r = () => {
   },
   onExport: i = () => {
   }
 }) {
-  const o = sessionStorage.getItem("community_id"), [a, s] = Rt(o || n), l = (u) => {
-    const d = u.target.value;
-    s(d), oc("community_id", d), oc("widget_id", e), r(d);
+  const o = JSON.parse(sessionStorage.getItem("community_id")) || n, [a, s] = Rt(o), l = (u) => {
+    let d = u.target.value;
+    d.includes("all") && (d = ["all", ...t.map((f) => f.community_id)]), d.length === 0 && (d = ["all"]), s(d), oc("community_id", JSON.stringify(d)), oc("widget_id", e), r(d);
   }, c = () => {
     oc("widget_id", e), oc("export", !0), i();
   };
   return /* @__PURE__ */ O.jsxs("div", { className: "flex items-center gap-2", children: [
-    /* @__PURE__ */ O.jsx(
-      Hm,
+    /* @__PURE__ */ O.jsx(Hm, { slotProps: { tooltip: { sx: { fontSize: "12px" } } }, children: /* @__PURE__ */ O.jsx(LT, { size: "small", children: /* @__PURE__ */ O.jsxs(
+      oG,
       {
-        slotProps: {
-          tooltip: { sx: { fontSize: "12px" } }
-        },
-        children: /* @__PURE__ */ O.jsx(LT, { size: "small", children: /* @__PURE__ */ O.jsxs(oG, { multiple: !0, value: a, onChange: l, children: [
-          /* @__PURE__ */ O.jsx(Um, { value: "all", sx: { fontWeight: 600 }, children: "All" }),
-          t?.map((u) => /* @__PURE__ */ O.jsx(Um, { value: u.community_id, children: u.community_name }, u.community_id))
-        ] }) })
+        multiple: !0,
+        value: a,
+        onChange: l,
+        renderValue: (u) => u.includes("all") ? "All" : t.filter((d) => u.includes(d.community_id)).map((d) => d.community_name).join(", "),
+        children: [
+          /* @__PURE__ */ O.jsxs(Um, { value: "all", children: [
+            /* @__PURE__ */ O.jsx(Checkbox, { checked: a.includes("all") }),
+            /* @__PURE__ */ O.jsx(ListItemText, { primary: "All", sx: { fontWeight: 600 } })
+          ] }),
+          t?.map((u) => /* @__PURE__ */ O.jsxs(Um, { value: u.community_id, children: [
+            /* @__PURE__ */ O.jsx(Checkbox, { checked: a.includes(u.community_id) }),
+            /* @__PURE__ */ O.jsx(ListItemText, { primary: u.community_name })
+          ] }, u.community_id))
+        ]
       }
-    ),
+    ) }) }),
     /* @__PURE__ */ O.jsx(
       Hm,
       {
-        slotProps: {
-          tooltip: { sx: { fontSize: "12px" } }
-        },
+        slotProps: { tooltip: { sx: { fontSize: "12px" } } },
         title: "Export CSV for this widget",
         children: /* @__PURE__ */ O.jsx(
           "button",
