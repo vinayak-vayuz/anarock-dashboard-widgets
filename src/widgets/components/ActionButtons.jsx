@@ -58,31 +58,49 @@ export function ActionButtons({
   const handleChange = (event) => {
     let value = event.target.value;
 
-    // Selecting "all"
+    // Check if "all" was clicked
     if (value.includes("all")) {
-      value = ["all"];
-    } else if (selected.includes("all") && !value.includes("all")) {
-      // Removing a single item when "all" was active → remove "all"
+      // If "all" is now selected, select everything
+      const allIds = options.map((item) => item.community_id);
+      setSelected(["all", ...allIds]);
+
+      // Store all community IDs in session storage
+      updateSession("community_id", JSON.stringify(allIds));
+      updateSession("widget_id", widgetId);
+
+      onFilterChange(allIds);
+    } else {
+      // Remove "all" from the selection if it was there
       value = value.filter((v) => v !== "all");
+
+      // If nothing is selected, reset to "all"
+      if (value.length === 0) {
+        const allIds = options.map((item) => item.community_id);
+        setSelected(["all", ...allIds]);
+        updateSession("community_id", JSON.stringify(allIds));
+        updateSession("widget_id", widgetId);
+        onFilterChange(allIds);
+      } else {
+        // Check if all items are selected (without "all" being clicked)
+        const allIds = options.map((item) => item.community_id);
+        const allSelected = allIds.every((id) => value.includes(id));
+
+        if (allSelected) {
+          setSelected(["all", ...allIds]);
+        } else {
+          setSelected(value);
+        }
+
+        updateSession("community_id", JSON.stringify(value));
+        updateSession("widget_id", widgetId);
+        onFilterChange(value);
+      }
     }
-
-    // If none selected, reset to "all"
-    if (value.length === 0) {
-      value = ["all"];
-    }
-
-    setSelected(value);
-
-    const toStore = value.includes("all") ? "all" : value;
-    updateSession("community_id", JSON.stringify(toStore));
-    updateSession("widget_id", widgetId);
-
-    onFilterChange(toStore);
   };
 
   const handleExport = () => {
     updateSession("widget_id", widgetId);
-    updateSession("export", "true");
+    updateSession("export", true);
     onExport();
   };
 
