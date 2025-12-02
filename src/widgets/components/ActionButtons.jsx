@@ -45,17 +45,13 @@ export function ActionButtons({
   const handleChange = (event) => {
     const value = event.target.value;
     setSelected(value);
-
     updateSession("community_id", value);
-    // if (value === "all") {
-    //   sessionStorage.removeItem("community_id");
-    // } else {
-    // }
-
+    updateSession("widget_id", widgetId);
     onFilterChange(value);
   };
 
   const handleExport = () => {
+    updateSession("widget_id", widgetId);
     updateSession("export", true);
     onExport();
   };
@@ -69,7 +65,7 @@ export function ActionButtons({
         // title="Select a community"
       >
         <FormControl size="small">
-          <CustomSelect value={selected} onChange={handleChange}>
+          <CustomSelect multiple value={selected} onChange={handleChange}>
             <MenuItem value="all" sx={{ fontWeight: 600 }}>
               All
             </MenuItem>
