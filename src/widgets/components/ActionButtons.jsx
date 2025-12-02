@@ -6,6 +6,7 @@ import {
   Tooltip,
   Checkbox,
   ListItemText,
+  TextField,
 } from "@mui/material";
 import styled from "@emotion/styled";
 import { CiExport } from "react-icons/ci";
@@ -47,28 +48,36 @@ export function ActionButtons({
 }) {
   const storedValue =
     JSON.parse(sessionStorage.getItem("community_id")) || defaultValue;
-
   const [selected, setSelected] = useState(storedValue);
+  const [search, setSearch] = useState("");
+
+  const filteredOptions = options.filter((item) =>
+    item.community_name.toLowerCase().includes(search.toLowerCase())
+  );
 
   const handleChange = (event) => {
     let value = event.target.value;
 
-    // Handle "All" selection logic
+    // Selecting "all"
     if (value.includes("all")) {
-      value = ["all", ...options.map((o) => o.community_id)];
+      value = ["all"];
+    } else if (selected.includes("all") && !value.includes("all")) {
+      // Removing a single item when "all" was active → remove "all"
+      value = value.filter((v) => v !== "all");
     }
 
-    // If user deselects items and nothing remains, reset to "all"
+    // If none selected, reset to "all"
     if (value.length === 0) {
       value = ["all"];
     }
 
     setSelected(value);
 
-    updateSession("community_id", JSON.stringify(value));
+    const toStore = value.includes("all") ? "all" : value;
+    updateSession("community_id", JSON.stringify(toStore));
     updateSession("widget_id", widgetId);
 
-    onFilterChange(value);
+    onFilterChange(toStore);
   };
 
   const handleExport = () => {
@@ -85,20 +94,33 @@ export function ActionButtons({
             multiple
             value={selected}
             onChange={handleChange}
-            renderValue={(selectedValues) => {
-              if (selectedValues.includes("all")) return "All";
+            renderValue={(values) => {
+              if (values.includes("all")) return "All";
               return options
-                .filter((item) => selectedValues.includes(item.community_id))
+                .filter((item) => values.includes(item.community_id))
                 .map((item) => item.community_name)
                 .join(", ");
             }}
+            MenuProps={{ PaperProps: { style: { maxHeight: 300 } } }}
           >
+            {/* Search Box */}
+            <TextField
+              placeholder="Search..."
+              size="small"
+              variant="standard"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              sx={{ padding: "6px 12px" }}
+            />
+
+            {/* "All" Option */}
             <MenuItem value="all">
               <Checkbox checked={selected.includes("all")} />
               <ListItemText primary="All" sx={{ fontWeight: 600 }} />
             </MenuItem>
 
-            {options?.map((item) => (
+            {/* Filtered List */}
+            {filteredOptions.map((item) => (
               <MenuItem key={item.community_id} value={item.community_id}>
                 <Checkbox checked={selected.includes(item.community_id)} />
                 <ListItemText primary={item.community_name} />
@@ -108,10 +130,7 @@ export function ActionButtons({
         </FormControl>
       </Tooltip>
 
-      <Tooltip
-        slotProps={{ tooltip: { sx: { fontSize: "12px" } } }}
-        title="Export CSV for this widget"
-      >
+      <Tooltip title="Export CSV for this widget">
         <button
           onClick={handleExport}
           className="px-3 py-2 bg-[#FBF5FF] rounded cursor-pointer"
