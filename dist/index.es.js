@@ -34912,8 +34912,10 @@ function fk({
     else if (!g.includes("all") && a.includes("all"))
       s([]), Ci("community_id", JSON.stringify([])), Ci("widget_id", e), r([]);
     else {
-      const v = g.filter((S) => S !== "all"), y = v.length > 0 && m.every((S) => v.includes(S));
-      s(y ? ["all", ...m] : v), Ci("community_id", JSON.stringify(v)), Ci("widget_id", e), r(v);
+      const v = g.filter((x) => x !== "all"), y = v.length > 0 && m.every((x) => v.includes(x));
+      s(y ? ["all", ...m] : v);
+      const S = v.length === 1 ? v[0] : v;
+      Ci("community_id", JSON.stringify(S)), Ci("widget_id", e), r(S);
     }
   }, p = () => {
     Ci("widget_id", e), Ci("export", !0), i();

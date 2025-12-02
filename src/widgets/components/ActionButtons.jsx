@@ -91,9 +91,11 @@ export function ActionButtons({
         setSelected(filtered);
       }
 
-      updateSession("community_id", JSON.stringify(filtered));
+      // Store single value as number, multiple as array
+      const toStore = filtered.length === 1 ? filtered[0] : filtered;
+      updateSession("community_id", JSON.stringify(toStore));
       updateSession("widget_id", widgetId);
-      onFilterChange(filtered);
+      onFilterChange(toStore);
     }
   };
 
