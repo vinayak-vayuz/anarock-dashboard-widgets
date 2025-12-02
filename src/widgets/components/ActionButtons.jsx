@@ -57,43 +57,60 @@ export function ActionButtons({
 
   const handleChange = (event) => {
     let value = event.target.value;
+    const allIds = options.map((item) => item.community_id);
 
-    // Check if "all" was clicked
-    if (value.includes("all")) {
-      // If "all" is now selected, select everything
-      const allIds = options.map((item) => item.community_id);
+    // Check if "all" was just clicked
+    if (value.includes("all") && !selected.includes("all")) {
+      // User clicked "All" - select everything
       setSelected(["all", ...allIds]);
-
-      // Store all community IDs in session storage
       updateSession("community_id", JSON.stringify(allIds));
       updateSession("widget_id", widgetId);
-
       onFilterChange(allIds);
-    } else {
-      // Remove "all" from the selection if it was there
-      value = value.filter((v) => v !== "all");
+    }
+    // Check if "all" was deselected
+    else if (!value.includes("all") && selected.includes("all")) {
+      // User deselected "All" - keep only the other selected items
+      const filtered = value.filter((v) => v !== "all");
 
-      // If nothing is selected, reset to "all"
-      if (value.length === 0) {
-        const allIds = options.map((item) => item.community_id);
+      if (filtered.length === 0) {
+        // Nothing left, reset to all
         setSelected(["all", ...allIds]);
         updateSession("community_id", JSON.stringify(allIds));
         updateSession("widget_id", widgetId);
         onFilterChange(allIds);
       } else {
-        // Check if all items are selected (without "all" being clicked)
-        const allIds = options.map((item) => item.community_id);
-        const allSelected = allIds.every((id) => value.includes(id));
+        setSelected(filtered);
+        updateSession("community_id", JSON.stringify(filtered));
+        updateSession("widget_id", widgetId);
+        onFilterChange(filtered);
+      }
+    }
+    // Normal individual selection/deselection
+    else {
+      // Remove "all" from value if it's there
+      const filtered = value.filter((v) => v !== "all");
+
+      if (filtered.length === 0) {
+        // Nothing selected, reset to all
+        setSelected(["all", ...allIds]);
+        updateSession("community_id", JSON.stringify(allIds));
+        updateSession("widget_id", widgetId);
+        onFilterChange(allIds);
+      } else {
+        // Check if all items are now selected
+        const allSelected = allIds.every((id) => filtered.includes(id));
 
         if (allSelected) {
+          // All items selected, add "all" to selection
           setSelected(["all", ...allIds]);
         } else {
-          setSelected(value);
+          // Partial selection
+          setSelected(filtered);
         }
 
-        updateSession("community_id", JSON.stringify(value));
+        updateSession("community_id", JSON.stringify(filtered));
         updateSession("widget_id", widgetId);
-        onFilterChange(value);
+        onFilterChange(filtered);
       }
     }
   };
