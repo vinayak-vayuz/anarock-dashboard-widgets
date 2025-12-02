@@ -6190,7 +6190,7 @@ const v0 = ({ color: e }) => /* @__PURE__ */ w.jsx(
   );
 };
 function Ci(e, t) {
-  sessionStorage.setItem(e, t), (e === "community_id" || e === "export") && window.dispatchEvent(new StorageEvent("dashboard-update", { key: e }));
+  sessionStorage.setItem(e, t), (e === "community_id" || e === "export" || e === "widget_id") && window.dispatchEvent(new StorageEvent("dashboard-update", { key: e }));
 }
 var Qf = {}, ep = {}, y0;
 function OD() {
