@@ -35170,7 +35170,8 @@ function Jte({ isStatic: e, data: t }) {
                   name: "Bookings",
                   stroke: "#8B5CF6",
                   strokeWidth: 2,
-                  dot: !1
+                  dot: !1,
+                  isAnimationActive: !1
                 }
               ),
               /* @__PURE__ */ w.jsx(
@@ -35183,7 +35184,8 @@ function Jte({ isStatic: e, data: t }) {
                   stroke: "#329DFF",
                   strokeWidth: 2,
                   dot: !1,
-                  strokeDasharray: "2 4"
+                  strokeDasharray: "2 4",
+                  isAnimationActive: !1
                 }
               )
             ]
@@ -36453,7 +36455,8 @@ function ene({ isStatic: e, data: t }) {
                   stroke: ua.walkins,
                   strokeWidth: 2,
                   dot: !1,
-                  name: "Active Walk-ins"
+                  name: "Active Walk-ins",
+                  isAnimationActive: !1
                 }
               ),
               /* @__PURE__ */ w.jsx(
@@ -36465,7 +36468,8 @@ function ene({ isStatic: e, data: t }) {
                   strokeWidth: 2,
                   strokeDasharray: "5 5",
                   dot: !1,
-                  name: "Pre-approved"
+                  name: "Pre-approved",
+                  isAnimationActive: !1
                 }
               ),
               /* @__PURE__ */ w.jsx(
@@ -36476,7 +36480,8 @@ function ene({ isStatic: e, data: t }) {
                   stroke: ua.staffAttendance,
                   strokeWidth: 2,
                   dot: !1,
-                  name: "Staff Attendance"
+                  name: "Staff Attendance",
+                  isAnimationActive: !1
                 }
               )
             ]
