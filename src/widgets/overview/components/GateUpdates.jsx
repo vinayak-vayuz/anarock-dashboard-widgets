@@ -283,6 +283,7 @@ function GateUpdates({ isStatic, data }) {
                 strokeWidth={2}
                 dot={false}
                 name="Active Walk-ins"
+                isAnimationActive={false}
               />
               <Line
                 type="monotone"
@@ -292,6 +293,7 @@ function GateUpdates({ isStatic, data }) {
                 strokeDasharray="5 5"
                 dot={false}
                 name="Pre-approved"
+                isAnimationActive={false}
               />
               <Line
                 type="monotone"
@@ -300,6 +302,7 @@ function GateUpdates({ isStatic, data }) {
                 strokeWidth={2}
                 dot={false}
                 name="Staff Attendance"
+                isAnimationActive={false}
               />
             </LineChart>
           </ResponsiveContainer>

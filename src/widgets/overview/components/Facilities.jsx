@@ -156,6 +156,7 @@ function Facilities({ isStatic, data }) {
               stroke="#8B5CF6"
               strokeWidth={2}
               dot={false}
+              isAnimationActive={false}
             />
             <Line
               yAxisId="right"
@@ -166,6 +167,7 @@ function Facilities({ isStatic, data }) {
               strokeWidth={2}
               dot={false}
               strokeDasharray="2 4"
+              isAnimationActive={false}
             />
           </LineChart>
         </ResponsiveContainer>
