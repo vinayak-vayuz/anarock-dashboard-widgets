@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Card, Chip, CustomTooltip } from "../../utils";
 import { LuWaves } from "react-icons/lu";
 import {
@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Tippy from "@tippyjs/react";
+import { ActionButtons } from "../../components/ActionButtons";
 
 const dummyGateUpdate = {
   summary: {
@@ -164,13 +165,21 @@ function GateUpdates({ isStatic, data }) {
   const preApproved = data?.summary?.preApprovedCheckins || {};
   const staffAttendance = data?.summary?.staffAttendance || {};
 
-  const chartData = generateHourlyChartData(data?.chart || []);
-
-  const maxValue = Math.max(
-    ...chartData.flatMap((d) => [d.walkins, d.checkins, d.staffAttendance])
+  const chartData = useMemo(
+    () => generateHourlyChartData(data?.chart || []),
+    [data]
   );
-  const yAxisMax = maxValue > 0 ? maxValue : 5;
-  const yAxisTicks = [0, Math.ceil(yAxisMax / 2), yAxisMax];
+
+  const { yAxisTicks, yAxisMax } = useMemo(() => {
+    const maxValue = Math.max(
+      ...chartData.flatMap((d) => [d.walkins, d.checkins, d.staffAttendance])
+    );
+    const max = maxValue > 0 ? maxValue : 5;
+    return {
+      yAxisTicks: [0, Math.ceil(max / 2), max],
+      yAxisMax: max,
+    };
+  }, [chartData]);
 
   return (
     <Card
@@ -180,6 +189,14 @@ function GateUpdates({ isStatic, data }) {
       className={`${
         isStatic ? "max-h-[303px]" : ""
       } h-[251px] mb-4 break-inside-avoid`}
+      actionButtons={
+        <ActionButtons
+          widgetId={data?.widget_id}
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div>
         <div className="grid grid-cols-3 gap-[24px] mb-[16px]">

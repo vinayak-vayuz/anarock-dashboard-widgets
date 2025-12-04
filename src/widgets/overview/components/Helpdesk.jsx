@@ -7,6 +7,7 @@ import {
   Tooltip as RTooltip,
   ResponsiveContainer,
 } from "recharts";
+import { ActionButtons } from "../../components/ActionButtons";
 
 const dummyHelpdeskData = {
   total_open_complaints: 42,
@@ -45,6 +46,14 @@ function Helpdesk({ isStatic, data }) {
       className={`${
         isStatic && "max-h-[186px]"
       } h-[186px] mb-4 break-inside-avoid`}
+      actionButtons={
+        <ActionButtons
+          widgetId={data?.widget_id}
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div className="flex gap-[12px] h-fit">
         <div className="w-[50%] flex flex-col gap-[28px]">

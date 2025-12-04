@@ -113,8 +113,13 @@ export function ActionButtons({
             multiple
             value={selected}
             onChange={handleChange}
+            displayEmpty
             renderValue={(values) => {
-              if (values.length === 0) return "Select...";
+              if (values.length === 0) {
+                return (
+                  <span style={{ color: "#9e9e9e" }}>Select Community</span>
+                );
+              }
               if (values.includes("all")) return "All";
               return options
                 .filter((item) => values.includes(item.community_id))
