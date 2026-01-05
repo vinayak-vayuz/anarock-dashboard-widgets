@@ -56,7 +56,7 @@ function RequestBox({ data=[]}) {
 
   // Transform API data to match component structure
   const requests = Array.isArray(data)
-    ? data.map((item) => ({
+    ? data?.request_box_by_type?.map((item) => ({
         title: item.category_name || "—",
         total: item.total || 0,
         pending: item.pending || 0,
