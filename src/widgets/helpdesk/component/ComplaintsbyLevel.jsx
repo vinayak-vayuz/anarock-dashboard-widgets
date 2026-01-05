@@ -14,43 +14,37 @@ import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material"
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const STATUS_CONFIG = [
-  {
-    key: "closed_count",
-    label: "Closed",
-    color: "#12B981",
-  },
-  {
-    key: "in_progress_count",
-    label: "In Progress",
-    color: "#F59D0D",
-  },
-  {
-    key: "open_count",
-    label: "Open",
-    color: "#EF4444",
-  },
+  { key: "closed_count", label: "Closed", color: "#12B981" },
+  { key: "in_progress_count", label: "In Progress", color: "#F59D0D" },
+  { key: "open_count", label: "Open", color: "#EF4444" },
 ];
 
-const ComplaintsByLevelChart = ({ data = [] }) => {
-  console.log(data,"data for complaint");
+const ComplaintsByLevelChart = ({ data = {} }) => {
+  console.log(data, "data for complaint");
+
+  // ✅ Extract array safely
+  const levels = Array.isArray(data?.complaints_by_level)
+    ? data.complaints_by_level
+    : [];
+
   const chartConfig = useMemo(() => {
-    if (!Array.isArray(data) || data.length === 0) {
+    if (levels.length === 0) {
       return { labels: [], datasets: [] };
     }
 
-    const labels = data.map((item) => item.level ?? "—");
+    const labels = levels.map((item) => item.level || "—");
 
     const maxTotal = Math.max(
-      ...data.map((item) => Number(item.total || 0)),
+      ...levels.map((item) => Number(item.total) || 0),
       0
     );
 
-    const spacer = data.map(() => 1);
+    const spacer = levels.map(() => 1);
 
     const datasets = STATUS_CONFIG.flatMap((status, index) => [
       {
         label: status.label,
-        data: data.map((item) => Number(item[status.key] || 0)),
+        data: levels.map((item) => Number(item[status.key]) || 0),
         backgroundColor: status.color,
         barThickness: 44,
       },
@@ -66,12 +60,8 @@ const ComplaintsByLevelChart = ({ data = [] }) => {
         : []),
     ]);
 
-    return {
-      labels,
-      datasets,
-      maxTotal,
-    };
-  }, [data]);
+    return { labels, datasets, maxTotal };
+  }, [levels]);
 
   const options = {
     responsive: true,
@@ -83,7 +73,6 @@ const ComplaintsByLevelChart = ({ data = [] }) => {
           usePointStyle: true,
           boxWidth: 10,
           boxHeight: 10,
-          pointStyle: "rectRot",
         },
       },
       tooltip: {
@@ -117,7 +106,13 @@ const ComplaintsByLevelChart = ({ data = [] }) => {
       className="w-full h-[362px]"
       period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
     >
-      <Bar data={chartConfig} options={options} />
+      {levels.length > 0 ? (
+        <Bar data={chartConfig} options={options} />
+      ) : (
+        <div className="flex items-center justify-center h-full text-gray-500">
+          No data available
+        </div>
+      )}
     </Card>
   );
 };
