@@ -13,6 +13,9 @@ function RequestBox({ data = {} }) {
       }))
     : [];
 
+
+    console.log(requests,"requests");
+
   return (
     <Card
       title="Request Box"
