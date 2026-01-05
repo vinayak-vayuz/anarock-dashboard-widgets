@@ -4,6 +4,7 @@ A collection of reusable React UI widgets for the Anarock Dashboard.
 
 🚀 Development Workflow
 1️⃣ Install Dependencies
+
 npm install
 
 2️⃣ Run Playground (for previewing widgets in real-time)
