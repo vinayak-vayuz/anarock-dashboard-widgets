@@ -1,4 +1,4 @@
-📦 @anarock/widgets
+📦 anarock-widgets
 
 A collection of reusable React UI widgets for the Anarock Dashboard.
 
