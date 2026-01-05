@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,54 +13,65 @@ import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const BlockWiseOccupancyCard = ({
-  blocks = [
-    { name: "Level 1", owner: 110, rented: 24, vacant: 8 },
-    { name: "Level 2", owner: 95, rented: 18, vacant: 6 },
-    { name: "Level 3", owner: 65, rented: 12, vacant: 18 },
-    { name: "Level 4", owner: 78, rented: 16, vacant: 30 },
-  ],
-}) => {
-  const labels = blocks.map((b) => b.name);
-  const owners = blocks.map((b) => b.owner);
-  const rented = blocks.map((b) => b.rented);
-  const vacant = blocks.map((b) => b.vacant);
+const STATUS_CONFIG = [
+  {
+    key: "closed_count",
+    label: "Closed",
+    color: "#12B981",
+  },
+  {
+    key: "in_progress_count",
+    label: "In Progress",
+    color: "#F59D0D",
+  },
+  {
+    key: "open_count",
+    label: "Open",
+    color: "#EF4444",
+  },
+];
 
-  const data = {
-    labels,
-    datasets: [
+const ComplaintsByLevelChart = ({ data = [] }) => {
+  console.log(data,"data for complaint");
+  const chartConfig = useMemo(() => {
+    if (!Array.isArray(data) || data.length === 0) {
+      return { labels: [], datasets: [] };
+    }
+
+    const labels = data.map((item) => item.level ?? "—");
+
+    const maxTotal = Math.max(
+      ...data.map((item) => Number(item.total || 0)),
+      0
+    );
+
+    const spacer = data.map(() => 1);
+
+    const datasets = STATUS_CONFIG.flatMap((status, index) => [
       {
-        label: "Closed",
-        data: owners,
-        backgroundColor: "#12B981",
+        label: status.label,
+        data: data.map((item) => Number(item[status.key] || 0)),
+        backgroundColor: status.color,
         barThickness: 44,
       },
-      {
-        label: "",
-        data: owners.map(() => 2),
-        backgroundColor: "transparent",
-        barThickness: 44,
-      },
-      {
-        label: "In Progress",
-        data: rented,
-        backgroundColor: "#F59D0D",
-        barThickness: 44,
-      },
-      {
-        label: "",
-        data: owners.map(() => 2),
-        backgroundColor: "transparent",
-        barThickness: 44,
-      },
-      {
-        label: "Open",
-        data: vacant,
-        backgroundColor: "#EF4444",
-        barThickness: 44,
-      },
-    ],
-  };
+      ...(index < STATUS_CONFIG.length - 1
+        ? [
+            {
+              label: "",
+              data: spacer,
+              backgroundColor: "transparent",
+              barThickness: 44,
+            },
+          ]
+        : []),
+    ]);
+
+    return {
+      labels,
+      datasets,
+      maxTotal,
+    };
+  }, [data]);
 
   const options = {
     responsive: true,
@@ -73,12 +84,14 @@ const BlockWiseOccupancyCard = ({
           boxWidth: 10,
           boxHeight: 10,
           pointStyle: "rectRot",
-          padding: 20,
         },
       },
       tooltip: {
         callbacks: {
-          label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
+          label: (ctx) =>
+            ctx.dataset.label
+              ? `${ctx.dataset.label}: ${ctx.parsed.y}`
+              : null,
         },
       },
     },
@@ -86,14 +99,14 @@ const BlockWiseOccupancyCard = ({
       x: {
         stacked: true,
         grid: { display: false },
-        ticks: { color: "#64748B" },
       },
       y: {
         stacked: true,
         beginAtZero: true,
-        suggestedMax: 180,
-        grid: { color: "#F1F5F9" },
-        ticks: { color: "#64748B", stepSize: 20 },
+        suggestedMax: Math.ceil(chartConfig.maxTotal * 1.2) || 5,
+        ticks: {
+          stepSize: Math.max(Math.ceil(chartConfig.maxTotal / 6), 1),
+        },
       },
     },
   };
@@ -104,9 +117,9 @@ const BlockWiseOccupancyCard = ({
       className="w-full h-[362px]"
       period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
     >
-      <Bar data={data} options={options} />
+      <Bar data={chartConfig} options={options} />
     </Card>
   );
 };
 
-export default BlockWiseOccupancyCard;
+export default ComplaintsByLevelChart;
