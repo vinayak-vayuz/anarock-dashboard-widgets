@@ -87,7 +87,7 @@ export default function App() {
           title="Helpdesk"
           description="Helpdesk request overview"
         />
-        <Widgets.StatsGrid />
+        <Widgets.HelpdeskStatsGrid />
         <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
           <Widgets.ComplaintsByLevel />
           <Widgets.RequestBox />
