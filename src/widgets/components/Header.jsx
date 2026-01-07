@@ -1,232 +1,273 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  CalendarTodayOutlined as CalendarTodayOutlinedIcon,
-  FileDownloadOutlined as FileDownloadOutlinedIcon,
+  CalendarTodayOutlined,
+  FileDownloadOutlined,
 } from "@mui/icons-material";
 import { FaChevronDown } from "react-icons/fa6";
 
-function Header({ title, description }) {
+/* ================== DATE UTILS ================== */
+const startOfMonth = (d) => new Date(d.getFullYear(), d.getMonth(), 1);
+const endOfMonth = (d) => new Date(d.getFullYear(), d.getMonth() + 1, 0);
+const addMonths = (d, n) => new Date(d.getFullYear(), d.getMonth() + n, 1);
+
+const isSameDay = (a, b) =>
+  a && b && a.toDateString() === b.toDateString();
+
+const isBetween = (d, s, e) => s && e && d > s && d < e;
+
+const toISO = (d) => d.toISOString().split("T")[0];
+
+/* ================== CALENDAR ================== */
+function Calendar({ monthDate, startDate, endDate, hoverDate, onSelect, onHover }) {
+  const start = startOfMonth(monthDate);
+  const end = endOfMonth(monthDate);
+  const days = [];
+
+  for (let i = 0; i < start.getDay(); i++) days.push(null);
+  for (let d = 1; d <= end.getDate(); d++) {
+    days.push(new Date(monthDate.getFullYear(), monthDate.getMonth(), d));
+  }
+
+  return (
+    <div className="w-[260px]">
+      <div className="text-center font-medium mb-2">
+        {monthDate.toLocaleString("default", { month: "long", year: "numeric" })}
+      </div>
+
+      <div className="grid grid-cols-7 text-xs text-center text-gray-500 mb-1">
+        {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
+          <div key={d}>{d}</div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-7 gap-1 text-sm">
+        {days.map((date, i) =>
+          date ? (
+            <button
+              key={i}
+              onClick={() => onSelect(date)}
+              onMouseEnter={() => onHover(date)}
+              className={`h-8 rounded transition
+                ${
+                  isSameDay(date, startDate) || isSameDay(date, endDate)
+                    ? "bg-purple-600 text-white"
+                    : isBetween(date, startDate, hoverDate || endDate)
+                    ? "bg-purple-100"
+                    : "hover:bg-gray-100"
+                }`}
+            >
+              {date.getDate()}
+            </button>
+          ) : (
+            <div key={i} />
+          )
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ================== HEADER ================== */
+function Header({ title, description, onExport }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isExportDropdownOpen, setIsExportDropdownOpen] = useState(false);
   const [selectedRange, setSelectedRange] = useState("Last 7 Days");
   const [showCustomCalendar, setShowCustomCalendar] = useState(false);
-  const [customStartDate, setCustomStartDate] = useState("");
-  const [customEndDate, setCustomEndDate] = useState("");
-  const dropdownRef = useRef(null);
 
-  const dateRangeOptions = [
-    "Last 7 Days",
-    "Last 30 Days",
-    "This Month",
-    "Previous Month",
-    "Custom Range",
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [hoverDate, setHoverDate] = useState(null);
+  const [viewDate] = useState(new Date());
+
+  const [isExporting, setIsExporting] = useState(false);
+
+  const dropdownRef = useRef(null);
+  const exportDropdownRef = useRef(null);
+
+  /* ================== PRESETS ================== */
+  const presets = [
+    {
+      label: "Today",
+      range: () => {
+        const d = new Date();
+        return [d, d];
+      },
+    },
+    {
+      label: "Yesterday",
+      range: () => {
+        const d = new Date();
+        d.setDate(d.getDate() - 1);
+        return [d, d];
+      },
+    },
+    {
+      label: "Last 7 Days",
+      range: () => {
+        const e = new Date();
+        const s = new Date();
+        s.setDate(e.getDate() - 7);
+        return [s, e];
+      },
+    },
+    {
+      label: "Last 30 Days",
+      range: () => {
+        const e = new Date();
+        const s = new Date();
+        s.setDate(e.getDate() - 30);
+        return [s, e];
+      },
+    },
+    {
+      label: "This Month",
+      range: () => {
+        const d = new Date();
+        return [startOfMonth(d), endOfMonth(d)];
+      },
+    },
+    {
+      label: "Previous Month",
+      range: () => {
+        const d = addMonths(new Date(), -1);
+        return [startOfMonth(d), endOfMonth(d)];
+      },
+    },
   ];
 
-  // Close dropdown when clicking outside
+  /* ================== OUTSIDE CLICK ================== */
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const h = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setIsDropdownOpen(false);
         setShowCustomCalendar(false);
       }
+      if (exportDropdownRef.current && !exportDropdownRef.current.contains(e.target)) {
+        setIsExportDropdownOpen(false);
+      }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", h);
+    return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  // Read from URL on mount
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const range = params.get("dateRange");
-    const startDate = params.get("startDate");
-    const endDate = params.get("endDate");
-
-    if (range) {
-      setSelectedRange(range);
+  /* ================== RANGE CLICK ================== */
+  const handleDateSelect = (date) => {
+    if (!startDate || endDate) {
+      setStartDate(date);
+      setEndDate(null);
+    } else if (date < startDate) {
+      setStartDate(date);
+    } else {
+      setEndDate(date);
     }
-    if (startDate && endDate) {
-      setCustomStartDate(startDate);
-      setCustomEndDate(endDate);
-      setSelectedRange("Custom Range");
-    }
-  }, []);
-
-  // Calculate date range based on selection
-  const getDateRange = (option) => {
-    const today = new Date();
-    let startDate, endDate;
-
-    switch (option) {
-      case "Last 7 Days":
-        startDate = new Date(today);
-        startDate.setDate(today.getDate() - 7);
-        endDate = today;
-        break;
-
-      case "Last 30 Days":
-        startDate = new Date(today);
-        startDate.setDate(today.getDate() - 30);
-        endDate = today;
-        break;
-
-      case "This Month":
-        startDate = new Date(today.getFullYear(), today.getMonth(), 1);
-        endDate = today;
-        break;
-
-      case "Previous Month":
-        startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-        endDate = new Date(today.getFullYear(), today.getMonth(), 0);
-        break;
-
-      default:
-        return null;
-    }
-
-    return {
-      startDate: startDate.toISOString().split("T")[0],
-      endDate: endDate.toISOString().split("T")[0],
-    };
   };
 
-  // Update URL with date range
-  const updateURL = (range, startDate = null, endDate = null) => {
+  /* ================== URL UPDATE ================== */
+  const updateURL = (s, e) => {
     const params = new URLSearchParams(window.location.search);
-
-    if (range === `Custom Range` && startDate && endDate) {
-      // params.set(`${title.toLowerCase()}dateRange`, range);
-      params.set(`${title.toLowerCase()}startDate`, startDate);
-      params.set(`${title.toLowerCase()}endDate`, endDate);
-    } else if (range !== "Custom Range") {
-      const dates = getDateRange(range);
-      if (dates) {
-        // params.set(`${title}dateRange`, range);
-        params.set(`${title.toLowerCase()}startDate`, dates.startDate);
-        params.set(`${title.toLowerCase()}endDate`, dates.endDate);
-      }
-    }
-
-    const newURL = `${window.location.pathname}?${params.toString()}`;
-    window.history.pushState({}, "", newURL);
-
-    // Trigger custom event for other components to listen
+    params.set(`${title.toLowerCase()}startdate`, toISO(s));
+    params.set(`${title.toLowerCase()}enddate`, toISO(e));
+    window.history.pushState({}, "", `${window.location.pathname}?${params}`);
     window.dispatchEvent(new Event("dateRangeChange"));
   };
 
-  const handleOptionSelect = (option) => {
-    if (option === "Custom Range") {
-      setShowCustomCalendar(true);
-      setSelectedRange(option);
-    } else {
-      setSelectedRange(option);
-      setIsDropdownOpen(false);
-      setShowCustomCalendar(false);
-      updateURL(option);
-    }
-  };
+  const displayText =
+    selectedRange === "Custom Range" && startDate && endDate
+      ? `${toISO(startDate)} - ${toISO(endDate)}`
+      : selectedRange;
 
-  const handleCustomRangeApply = () => {
-    if (customStartDate && customEndDate) {
-      setIsDropdownOpen(false);
-      setShowCustomCalendar(false);
-      updateURL("Custom Range", customStartDate, customEndDate);
-    }
-  };
-
-  const getDisplayText = () => {
-    if (selectedRange === "Custom Range" && customStartDate && customEndDate) {
-      return `${customStartDate} to ${customEndDate}`;
-    }
-    return selectedRange;
-  };
-
+  /* ================== JSX ================== */
   return (
     <div className="flex items-center justify-between px-6 my-6">
       <div>
-        <div className="!text-[24px] text-[#121212] font-semibold">
-          {title}
-        </div>
-        <div className="text-gray-500 text-[14px]">{description}</div>
+        <div className="text-[24px] font-semibold">{title}</div>
+        <div className="text-gray-500 text-sm">{description}</div>
       </div>
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-[12px]">
-        {/* Date Range Dropdown */}
-        <div className="relative w-full sm:w-auto" ref={dropdownRef}>
+
+      <div className="flex gap-3">
+        {/* DATE PICKER */}
+        <div className="relative" ref={dropdownRef}>
           <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full sm:w-auto flex items-center justify-center gap-[8px] bg-white shadow-sm px-2 md:px-6 py-2.5 rounded-sm text-[#64748B] text-sm hover:bg-slate-50 transition-colors"
+            onClick={() => setIsDropdownOpen((v) => !v)}
+            className="flex items-center gap-2 px-4 py-2 bg-white shadow rounded text-sm"
           >
-            <CalendarTodayOutlinedIcon style={{ fontSize: 16 }} />
-            <div className="whitespace-nowrap text-[14px]">
-              {getDisplayText()}
-            </div>
-            <FaChevronDown
-              fontSize={12}
-              className={`transition-transform duration-200 ${
-                isDropdownOpen ? "rotate-180" : ""
-              }`}
-            />
+            <CalendarTodayOutlined fontSize="small" />
+            {displayText}
+            <FaChevronDown />
           </button>
 
-          {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute top-full mt-2 right-0 bg-white shadow-lg rounded-md border border-gray-200 z-50 min-w-[240px]">
-              {!showCustomCalendar ? (
-                <div className="py-1">
-                  {dateRangeOptions.map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => handleOptionSelect(option)}
-                      className={`w-full text-left px-4 py-2.5 text-[14px] hover:bg-gray-50 transition-colors ${
-                        selectedRange === option
-                          ? "bg-purple-50 text-[#884EA7] font-medium"
-                          : "text-[#64748B]"
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="p-4">
-                  <div className="mb-3">
-                    <label className="block text-[12px] text-[#64748B] mb-1.5 font-medium">
-                      Start Date
-                    </label>
-                    <input
-                      type="date"
-                      value={customStartDate}
-                      onChange={(e) => setCustomStartDate(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded text-[14px] focus:outline-none focus:ring-2 focus:ring-[#884EA7] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-[12px] text-[#64748B] mb-1.5 font-medium">
-                      End Date
-                    </label>
-                    <input
-                      type="date"
-                      value={customEndDate}
-                      onChange={(e) => setCustomEndDate(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded text-[14px] focus:outline-none focus:ring-2 focus:ring-[#884EA7] focus:border-transparent"
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => {
-                        setShowCustomCalendar(false);
-                        setSelectedRange("Last 7 Days");
-                      }}
-                      className="flex-1 px-3 py-2 text-[14px] text-[#64748B] border border-gray-300 rounded hover:bg-gray-50 transition-colors"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={handleCustomRangeApply}
-                      disabled={!customStartDate || !customEndDate}
-                      className="flex-1 px-3 py-2 text-[14px] bg-[#884EA7] text-white rounded hover:bg-[#7a4596] transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-                    >
-                      Apply
-                    </button>
+            <div className="absolute right-0 mt-2 bg-white border shadow-xl rounded-md z-50 flex">
+              {/* PRESETS */}
+              <div className="w-[160px] border-r">
+                {presets.map((p) => (
+                  <button
+                    key={p.label}
+                    onClick={() => {
+                      const [s, e] = p.range();
+                      setStartDate(s);
+                      setEndDate(e);
+                      setSelectedRange(p.label);
+                      setIsDropdownOpen(false);
+                      updateURL(s, e);
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    {p.label}
+                  </button>
+                ))}
+                <button
+                  onClick={() => {
+                    setSelectedRange("Custom Range");
+                    setShowCustomCalendar(true);
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 font-medium"
+                >
+                  Custom Range
+                </button>
+              </div>
+
+              {/* CALENDAR */}
+              {showCustomCalendar && (
+                <div className="p-4 flex gap-6 relative">
+                  <Calendar
+                    monthDate={viewDate}
+                    startDate={startDate}
+                    endDate={endDate}
+                    hoverDate={hoverDate}
+                    onSelect={handleDateSelect}
+                    onHover={setHoverDate}
+                  />
+                  <Calendar
+                    monthDate={addMonths(viewDate, 1)}
+                    startDate={startDate}
+                    endDate={endDate}
+                    hoverDate={hoverDate}
+                    onSelect={handleDateSelect}
+                    onHover={setHoverDate}
+                  />
+
+                  <div className="absolute bottom-0 left-0 right-0 border-t p-3 flex justify-between text-sm">
+                    <span>
+                      {startDate && endDate &&
+                        `${toISO(startDate)} - ${toISO(endDate)}`}
+                    </span>
+                    <div className="flex gap-3">
+                      <button onClick={() => setShowCustomCalendar(false)}>
+                        Cancel
+                      </button>
+                      <button
+                        disabled={!startDate || !endDate}
+                        onClick={() => {
+                          setIsDropdownOpen(false);
+                          setShowCustomCalendar(false);
+                          updateURL(startDate, endDate);
+                        }}
+                        className="bg-purple-600 text-white px-4 py-1 rounded disabled:opacity-40"
+                      >
+                        Apply
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -234,13 +275,32 @@ function Header({ title, description }) {
           )}
         </div>
 
-        {/* Export Button */}
-        <button className="w-full flex items-center justify-center gap-[8px] bg-white text-[#884EA7] px-2 md:px-6 py-2.5 rounded-sm shadow-sm hover:bg-purple-50 transition-colors">
-          <div className="font-medium whitespace-nowrap text-[14px]">
-            Export Report
-          </div>
-          <FileDownloadOutlinedIcon style={{ fontSize: 16 }} />
-        </button>
+        {/* EXPORT */}
+        <div className="relative" ref={exportDropdownRef}>
+          <button
+            disabled={isExporting}
+            onClick={() => setIsExportDropdownOpen((v) => !v)}
+            className="flex items-center gap-2 px-4 py-2 bg-white shadow rounded text-sm text-purple-600"
+          >
+            Export
+            <FileDownloadOutlined fontSize="small" />
+            <FaChevronDown />
+          </button>
+
+          {isExportDropdownOpen && (
+            <div className="absolute right-0 mt-2 bg-white border shadow rounded z-50">
+              {["xlsx", "pdf"].map((f) => (
+                <button
+                  key={f}
+                  onClick={() => onExport?.({ format: f })}
+                  className="block px-4 py-2 text-sm hover:bg-purple-50"
+                >
+                  Export {f.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -19,19 +19,41 @@ const STATUS_CONFIG = [
   { key: "open_count", label: "Open", color: "#EF4444" },
 ];
 
-const ComplaintsByLevelChart = ({ data = {} }) => {
+// 🔹 Dummy fallback data
+const DUMMY_LEVELS = [
+  {
+    level: "L1",
+    open_count: 4,
+    in_progress_count: 3,
+    closed_count: 8,
+    total: 15,
+  },
+  {
+    level: "L2",
+    open_count: 3,
+    in_progress_count: 2,
+    closed_count: 6,
+    total: 11,
+  },
+  {
+    level: "L3",
+    open_count: 2,
+    in_progress_count: 1,
+    closed_count: 4,
+    total: 7,
+  },
+];
+
+const ComplaintsByLevelChart = ({ data }) => {
   console.log(data, "data for complaint");
 
-  // ✅ Extract array safely
-  const levels = Array.isArray(data?.complaints_by_level)
-    ? data.complaints_by_level
-    : [];
+  const levels =
+    Array.isArray(data?.complaints_by_level) &&
+    data.complaints_by_level.length > 0
+      ? data.complaints_by_level
+      : DUMMY_LEVELS;
 
   const chartConfig = useMemo(() => {
-    if (levels.length === 0) {
-      return { labels: [], datasets: [] };
-    }
-
     const labels = levels.map((item) => item.level || "—");
 
     const maxTotal = Math.max(
@@ -101,18 +123,8 @@ const ComplaintsByLevelChart = ({ data = {} }) => {
   };
 
   return (
-    <Card
-      title="Complaints by Level"
-      className="w-full h-[362px]"
-      period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
-    >
-      {levels.length > 0 ? (
-        <Bar data={chartConfig} options={options} />
-      ) : (
-        <div className="flex items-center justify-center h-full text-gray-500">
-          No data available
-        </div>
-      )}
+    <Card title="Complaints by Level" className="w-full h-[362px]">
+      <Bar data={chartConfig} options={options} />
     </Card>
   );
 };
