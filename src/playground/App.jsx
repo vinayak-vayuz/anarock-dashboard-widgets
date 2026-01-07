@@ -88,15 +88,7 @@ export default function App() {
           description="Helpdesk request overview"
         />
         {/*<Widgets.HelpdeskStatsGrid />*/}
-        <Widgets.HelpdeskStatsGrid
-          id="open_complaints"
-          data={{
-            current: 12,
-            previous: 18,
-            trend_percent: "-33%",
-            direction: "bad",
-          }}
-        />
+        <Widgets.HelpdeskStatsGrid/>
 
         <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
           <Widgets.ComplaintsByLevel />

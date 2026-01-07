@@ -9,6 +9,14 @@ const DUMMY_COMPLAINTS = [
   { title: "Utilities", total: 10, pending: 4 },
 ];
 
+const cleanText = (text = "") =>
+  text
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/<[^>]*>/g, "")
+    .trim();
+
+
 function Complaints({ data }) {
   console.log(data, "complaints data");
 
@@ -16,7 +24,7 @@ function Complaints({ data }) {
     Array.isArray(data?.complaints_by_category) &&
     data.complaints_by_category.length > 0
       ? data.complaints_by_category.map((item) => ({
-          title: item.category_name || "—",
+          title: cleanText(item.category_name) || "—",
           total: item.total || 0,
           pending: item.pending || 0,
         }))
