@@ -24,25 +24,25 @@ const STAT_CONFIG = {
   open_complaints: {
     title: "Open Complaints",
     Icon: LuTicketCheck,
-    iconColor: "text-[#AB0000]",
+    iconColor: "!text-[#AB0000]",
     deltaLabel: "Compared to last month",
   },
   pending_requests: {
     title: "Pending Requests",
     Icon: IoDocumentTextOutline,
-    iconColor: "text-[#E7A015]",
+    iconColor: "!text-[#E7A015]",
     deltaLabel: "Compared to last month",
   },
   avg_response_time: {
     title: "Avg Response Time",
     Icon: FaRegClock,
-    iconColor: "text-[#1FA05B]",
+    iconColor: "!text-[#1FA05B]",
     deltaLabel: "Compared to last month",
   },
   resolution_rate: {
     title: "Resolution Rate",
     Icon: FaArrowTrendUp,
-    iconColor: "text-[#329DFF]",
+    iconColor: "!text-[#329DFF]",
     deltaLabel: "Compared to last month",
   },
 };
@@ -121,6 +121,7 @@ function SingleStatCard({ id, data }) {
           <Icon className={`h-6 w-6 ${iconColor}`} />
         </div>
       }
+      // className="!gap[16px]"
     >
       <div className="text-4xl font-semibold tracking-tight text-[#121212]">
         {value}
