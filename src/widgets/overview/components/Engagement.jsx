@@ -43,14 +43,14 @@ function Engagement({ isStatic, data, communities }) {
       period="This Month"
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
       className={`${isStatic && "max-h-[303px]"} h-[303px]`}
-      actionButtons={
-        <ActionButtons
-          widgetId={data?.widget_id}
-          options={data?.communities}
-          onFilterChange={(value, widget) => console.log(value, widget)}
-          onExport={(widget) => console.log("Export triggered for", widget)}
-        />
-      }
+      // actionButtons={
+      //   <ActionButtons
+      //     widgetId={data?.widget_id}
+      //     options={data?.communities}
+      //     onFilterChange={(value, widget) => console.log(value, widget)}
+      //     onExport={(widget) => console.log("Export triggered for", widget)}
+      //   />
+      // }
     >
       <div className="w-full h-[235px]">
         <ResponsiveContainer width="100%" height="100%">

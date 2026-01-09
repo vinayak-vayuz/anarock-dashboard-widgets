@@ -94,14 +94,14 @@ function Facilities({ isStatic, data }) {
       className={`${
         isStatic && "max-h-[305px]"
       } h-[305px] mb-4 break-inside-avoid`}
-      actionButtons={
-        <ActionButtons
-          widgetId={data?.widget_id}
-          options={data?.communities}
-          onFilterChange={(value, widget) => console.log(value, widget)}
-          onExport={(widget) => console.log("Export triggered for", widget)}
-        />
-      }
+      // actionButtons={
+      //   <ActionButtons
+      //     widgetId={data?.widget_id}
+      //     options={data?.communities}
+      //     onFilterChange={(value, widget) => console.log(value, widget)}
+      //     onExport={(widget) => console.log("Export triggered for", widget)}
+      //   />
+      // }
     >
       {/* Summary */}
       <div className="grid grid-cols-2 gap-[24px] mb-[16px]">
