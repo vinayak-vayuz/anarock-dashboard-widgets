@@ -98,6 +98,23 @@ function SingleStatCard({ id, data }) {
   const config = STAT_CONFIG[id];
   if (!config) return null;
 
+  const formatValue = (id, value) => {
+    if (value === null || value === undefined) return "—";
+
+    // Avg response time → add "hr"
+    if (id === "avg_response_time") {
+      // If API already sent "hr", don't double it
+      return typeof value === "number" ? `${value} hr` : value;
+    }
+
+    // Resolution rate → add "%"
+    if (id === "resolution_rate") {
+      return typeof value === "number" ? `${value}%` : value;
+    }
+
+    return value;
+  };
+
   const {
     title,
     Icon = DescriptionOutlinedIcon,
@@ -108,7 +125,8 @@ function SingleStatCard({ id, data }) {
   const statData =
     data && Object.keys(data).length > 0 ? data : DUMMY_STAT_DATA[id];
 
-  const value = statData?.current ?? "—";
+  const value = formatValue(id, statData?.current);
+
   const delta = statData?.trend_percent ?? "—";
   const positive =
     statData?.direction === "good" || statData?.direction === "neutral";
