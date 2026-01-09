@@ -59,14 +59,14 @@ function FinanceSummary({ data }) {
       period="This Month"
       icon={<LuReceiptText className="!text-[24px] text-green-600" />}
       className="!gap-[16px] break-inside-avoid h-[232px] overflow-hidden"
-      actionButtons={
-        <ActionButtons
-          widgetId={data?.widget_id}
-          options={data?.communities}
-          onFilterChange={(value, widget) => console.log(value, widget)}
-          onExport={(widget) => console.log("Export triggered for", widget)}
-        />
-      }
+      // actionButtons={
+      //   <ActionButtons
+      //     widgetId={data?.widget_id}
+      //     options={data?.communities}
+      //     onFilterChange={(value, widget) => console.log(value, widget)}
+      //     onExport={(widget) => console.log("Export triggered for", widget)}
+      //   />
+      // }
     >
       <div>
         {/* Header */}
