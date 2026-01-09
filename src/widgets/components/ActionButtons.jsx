@@ -107,7 +107,7 @@ export function ActionButtons({
 
   return (
     <div className="flex items-center gap-2">
-      <Tooltip slotProps={{ tooltip: { sx: { fontSize: "12px" } } }}>
+      {/*<Tooltip slotProps={{ tooltip: { sx: { fontSize: "12px" } } }}>
         <FormControl size="small">
           <CustomSelect
             multiple
@@ -131,7 +131,7 @@ export function ActionButtons({
               autoFocus: false,
             }}
           >
-            {/* Search Box */}
+            {/* Search Box *
             <MenuItem
               onKeyDown={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()}
@@ -154,13 +154,13 @@ export function ActionButtons({
               />
             </MenuItem>
 
-            {/* "All" Option */}
+             "All" Option 
             <MenuItem value="all">
               <Checkbox checked={selected.includes("all")} />
               <ListItemText primary="All" sx={{ fontWeight: 600 }} />
             </MenuItem>
 
-            {/* Filtered List */}
+            {/* Filtered List 
             {filteredOptions.length > 0 ? (
               filteredOptions.map((item) => (
                 <MenuItem key={item.community_id} value={item.community_id}>
@@ -175,7 +175,7 @@ export function ActionButtons({
             )}
           </CustomSelect>
         </FormControl>
-      </Tooltip>
+      </Tooltip> */}
 
       <Tooltip title="Export CSV for this widget">
         <button

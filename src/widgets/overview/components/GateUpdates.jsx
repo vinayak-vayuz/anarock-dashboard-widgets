@@ -189,14 +189,14 @@ function GateUpdates({ isStatic, data }) {
       className={`${
         isStatic ? "max-h-[303px]" : ""
       } h-[251px] mb-4 break-inside-avoid`}
-      // actionButtons={
-      //   <ActionButtons
-      //     widgetId={data?.widget_id}
-      //     options={data?.communities}
-      //     onFilterChange={(value, widget) => console.log(value, widget)}
-      //     onExport={(widget) => console.log("Export triggered for", widget)}
-      //   />
-      // }
+      actionButtons={
+        <ActionButtons
+          widgetId={data?.widget_id}
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div>
         <div className="grid grid-cols-3 gap-[24px] mb-[16px]">

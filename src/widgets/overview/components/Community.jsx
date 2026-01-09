@@ -60,14 +60,14 @@ function Community({ isStatic, data }) {
       className={`${
         isStatic && "max-h-[184px]"
       } h-[184px] mb-4 break-inside-avoid`}
-      // actionButtons={
-      //   <ActionButtons
-      //     widgetId={data?.widget_id}
-      //     options={data?.communities}
-      //     onFilterChange={(value, widget) => console.log(value, widget)}
-      //     onExport={(widget) => console.log("Export triggered for", widget)}
-      //   />
-      // }
+      actionButtons={
+        <ActionButtons
+          widgetId={data?.widget_id}
+          options={data?.communities}
+          onFilterChange={(value, widget) => console.log(value, widget)}
+          onExport={(widget) => console.log("Export triggered for", widget)}
+        />
+      }
     >
       <div className="flex">
         <div className="w-[50%] flex flex-col gap-[28px]">
