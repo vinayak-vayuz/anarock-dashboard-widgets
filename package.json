@@ -1,6 +1,6 @@
 {
   "name": "anarock-widgets",
-  "version": "1.0.92",
+  "version": "1.0.93",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
