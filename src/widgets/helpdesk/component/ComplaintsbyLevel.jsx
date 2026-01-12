@@ -19,36 +19,29 @@ const STATUS_CONFIG = [
 ];
 
 // 🔹 Dummy fallback data
-const DUMMY_LEVELS =
-  // [
-  //   { level: "L1", open_count: 3, in_progress_count: 0, closed_count: 0, total: 15 },
-  //   { level: "L2", open_count: 3, in_progress_count: 2, closed_count: 6, total: 11 },
-  //   { level: "L3", open_count: 2, in_progress_count: 1, closed_count: 4, total: 7 },
-  // ];
-
-  [
-    {
-      level: "L1",
-      open_count: "1",
-      in_progress_count: "0",
-      closed_count: "0",
-      total: 1,
-    },
-    {
-      level: "L2",
-      open_count: "0",
-      in_progress_count: "0",
-      closed_count: "0",
-      total: 0,
-    },
-    {
-      level: "L3",
-      open_count: "0",
-      in_progress_count: "0",
-      closed_count: "0",
-      total: 0,
-    },
-  ];
+const DUMMY_LEVELS = [
+  {
+    level: "L1",
+    open_count: "3",
+    in_progress_count: "4",
+    closed_count: "5",
+    total: 12,
+  },
+  {
+    level: "L2",
+    open_count: "1",
+    in_progress_count: "1",
+    closed_count: "1",
+    total: 3,
+  },
+  {
+    level: "L3",
+    open_count: "5",
+    in_progress_count: "2",
+    closed_count: "3",
+    total: 10,
+  },
+];
 
 const ComplaintsByLevelChart = ({ data }) => {
   // ✅ strict fallback condition
@@ -66,13 +59,21 @@ const ComplaintsByLevelChart = ({ data }) => {
       5,
     );
 
-    const spacer = levels.map(() => 1);
-
-    const datasets = STATUS_CONFIG.map((status) => ({
+    const datasets = STATUS_CONFIG.map((status, index) => ({
       label: status.label,
       data: levels.map((item) => Number(item[status.key]) || 0),
       backgroundColor: status.color,
       barThickness: 44,
+      stack: "stack1",
+
+      // ✅ THIS CREATES THE GAP
+      borderColor: "#ffffff", // chart background
+      borderWidth: {
+        top: index === STATUS_CONFIG.length - 1 ? 0 : 1.5,
+        bottom: index === 0 ? 0 : 2,
+      },
+
+      borderSkipped: false,
     }));
 
     return { labels, datasets, maxTotal };
@@ -90,31 +91,43 @@ const ComplaintsByLevelChart = ({ data }) => {
         position: "bottom",
         labels: {
           usePointStyle: true,
+          pointStyle: "rectRot", // ✅ This creates the diamond/rhombus shape
           boxWidth: 10,
           boxHeight: 10,
-          filter: (item) => item.text !== "__spacer__",
+          padding: 15,
+          font: {
+            size: 14,
+          },
         },
       },
 
       tooltip: {
+        backgroundColor: "#000000",
+        titleColor: "#ffffff",
+        bodyColor: "#ffffff",
+        padding: 12,
+        cornerRadius: 8,
+        displayColors: true,
+        usePointStyle: true,
+
         callbacks: {
           title: (items) => items[0]?.label || "",
 
-          // ❌ Disable per-dataset labels
-          label: () => null,
+          // ✅ THIS makes the tooltip marker rectRot
+          labelPointStyle: () => ({
+            pointStyle: "rectRot",
+            rotation: 90,
+          }),
 
-          // ✅ Render once per index
-          afterBody: (items) => {
-            const index = items[0]?.dataIndex;
-            const item = levels[index];
+          label: (context) => {
+            const dataIndex = context.dataIndex;
+            const item = levels[dataIndex];
+            const status = STATUS_CONFIG[context.datasetIndex];
 
-            if (!item) return [];
+            if (!item || !status) return "";
 
-            return [
-              `Open: ${Number(item.open_count) || 0}`,
-              `In Progress: ${Number(item.in_progress_count) || 0}`,
-              `Closed: ${Number(item.closed_count) || 0}`,
-            ];
+            const value = Number(item[status.key]) || 0;
+            return `${status.label}: ${value}`;
           },
         },
       },

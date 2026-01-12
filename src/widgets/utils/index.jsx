@@ -64,6 +64,7 @@ export const Card = ({
   className = "",
   childrenClassName,
   titleWeight,
+  titleColor,
 }) => {
   const fontWeightValue = titleWeight === "semi-bold" ? 600 : 500;
 

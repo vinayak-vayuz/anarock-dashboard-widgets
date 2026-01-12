@@ -4,6 +4,7 @@ import Card from "../../components/Card";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaRegClock, FaArrowTrendUp } from "react-icons/fa6";
 import { LuTicketCheck } from "react-icons/lu";
+import { Chip } from "../../components/Chip";
 
 /**
  * Supported stat ids:
@@ -24,26 +25,67 @@ const STAT_CONFIG = {
   open_complaints: {
     title: "Open Complaints",
     Icon: LuTicketCheck,
-    iconColor: "!text-[#AB0000]",
+    iconColor: "#AB0000",
     deltaLabel: "Compared to last month",
   },
   pending_requests: {
     title: "Pending Requests",
     Icon: IoDocumentTextOutline,
-    iconColor: "!text-[#E7A015]",
+    iconColor: "#E7A015",
     deltaLabel: "Compared to last month",
   },
   avg_response_time: {
     title: "Avg Response Time",
     Icon: FaRegClock,
-    iconColor: "!text-[#1FA05B]",
+    iconColor: "#1FA05B",
     deltaLabel: "Compared to last month",
   },
   resolution_rate: {
     title: "Resolution Rate",
     Icon: FaArrowTrendUp,
-    iconColor: "!text-[#329DFF]",
+    iconColor: "#329DFF",
     deltaLabel: "Compared to last month",
+  },
+};
+
+export const StatText = ({
+  children,
+  size = 28,
+  lineHeight = 32,
+  weight = 500,
+  color = "#121212",
+}) => {
+  return (
+    <div
+      style={{
+        // fontFamily: "Geist",
+        fontWeight: weight,
+        fontSize: `${size}px`,
+        lineHeight: `${lineHeight}px`,
+        color,
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const STAT_TEXT_PRESETS = {
+  primary: {
+    size: 28,
+    lineHeight: 32,
+    weight: 500,
+  },
+  secondary: {
+    size: 20,
+    lineHeight: 24,
+    weight: 500,
+  },
+  compact: {
+    size: 16,
+    lineHeight: 20,
+    weight: 400,
   },
 };
 
@@ -59,7 +101,7 @@ const DUMMY_STAT_DATA = {
     direction: "bad",
   },
   avg_response_time: {
-    current: "2.4 hrs",
+    current: "2.4 h",
     trend_percent: "+6%",
     direction: "good",
   },
@@ -104,7 +146,7 @@ function SingleStatCard({ id, data }) {
     // Avg response time → add "hr"
     if (id === "avg_response_time") {
       // If API already sent "hr", don't double it
-      return typeof value === "number" ? `${value} hr` : value;
+      return typeof value === "number" ? `${value} h` : value;
     }
 
     // Resolution rate → add "%"
@@ -134,18 +176,17 @@ function SingleStatCard({ id, data }) {
   return (
     <Card
       title={title}
+      titleColor={iconColor}
       icon={
         <div className="h-6 w-6 flex items-center justify-center">
-          <Icon className={`h-6 w-6 ${iconColor}`} />
+          <Icon className="h-6 w-6" style={{ color: iconColor }} />
         </div>
       }
       // className="!gap[16px]"
     >
-      <div className="text-4xl font-semibold tracking-tight text-[#121212]">
-        {value}
-      </div>
+      <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
 
-      <div className="flex items-center gap-[8px] text-[14px] mt-2">
+      {/*<div className="flex items-center gap-[8px] text-[14px] mt-2">
         <div
           className={
             positive
@@ -155,6 +196,10 @@ function SingleStatCard({ id, data }) {
         >
           {delta}
         </div>
+        <div className="text-slate-500">{deltaLabel}</div>
+      </div>*/}
+      <div className="flex items-center gap-[8px] text-[14px] mt-2">
+        <Chip value={delta} />
         <div className="text-slate-500">{deltaLabel}</div>
       </div>
     </Card>

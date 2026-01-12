@@ -87,9 +87,64 @@ export default function App() {
           title="Helpdesk"
           description="Helpdesk request overview"
         />
-        {/*<Widgets.HelpdeskStatsGrid />*/}
-        <Widgets.HelpdeskStatsGrid/>
-
+        {/*const DUMMY_STAT_DATA = {
+  open_complaints: {
+    current: 24,
+    trend_percent: "-8%",
+    direction: "bad",
+  },
+  pending_requests: {
+    current: 17,
+    trend_percent: "-5%",
+    direction: "bad",
+  },
+  avg_response_time: {
+    current: "2.4 h",
+    trend_percent: "+6%",
+    direction: "good",
+  },
+  resolution_rate: {
+    current: "89%",
+    trend_percent: "+4%",
+    direction: "good",
+  },
+};*/}
+        <Widgets.HelpdeskStatsGrid />
+        {/*<Widgets.HelpdeskStatsGrid
+          id="open_complaints"
+          data={{
+            current: 24,
+            trend_percent: "-8%",
+            direction: "bad",
+          }}
+        />
+        <Widgets.HelpdeskStatsGrid
+          id="pending_requests"
+          data={{
+            current: 24,
+            trend_percent: "-8%",
+            direction: "bad",
+          }}
+        />
+        <Widgets.HelpdeskStatsGrid
+          id="avg_response_time"
+          data={{
+            current: 24,
+            trend_percent: "-8%",
+            direction: "bad",
+          }}
+        />
+        <Widgets.HelpdeskStatsGrid
+          id="resolution_rate"
+          data={{
+            current: "89%",
+            trend_percent: "+4%",
+            direction: "good",
+          }}
+        />*/}
+        {/*<Widgets.HelpdeskStatsGrid/>*/}
+        {/*<Widgets.HelpdeskStatsGrid/>*/}
+        {/*<Widgets.HelpdeskStatsGrid/>*/}
         <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
           <Widgets.ComplaintsByLevel />
           <Widgets.RequestBox />

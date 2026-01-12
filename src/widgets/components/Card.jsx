@@ -7,12 +7,13 @@ const Card = ({
   className = "",
   childrenClassName,
   titleWeight,
+  titleColor,
 }) => {
   const fontWeightValue = titleWeight === "semi-bold" ? 600 : 500;
 
   return (
     <div
-      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col gap-[24px] ${className}`}
+      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col gap-[16px] ${className}`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[12px]">
@@ -22,8 +23,9 @@ const Card = ({
               fontWeight: fontWeightValue,
               fontSize: "16px",
               lineHeight: "20px",
+              color: titleColor || "#121212", // 👈 THIS is what you wanted
             }}
-            className="!my-0 !text-[16px] !leading-[20px] !text-[#121212]"
+            className="!my-0 !text-[16px] !leading-[20px]"
           >
             {title}
           </div>
@@ -35,7 +37,7 @@ const Card = ({
           </div>
         )}
       </div>
-      <div className={`flex-1 min-h-0 space-y-[24px] ${childrenClassName}`}>
+      <div className={`flex-1 min-h-0 space-y-[16px] ${childrenClassName}`}>
         {children}
       </div>
       {footer && (
