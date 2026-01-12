@@ -70,7 +70,7 @@ export const Card = ({
 
   return (
     <div
-      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col gap-[24px] ${className}`}
+      className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col ${className ? className : "gap-[24px]"}`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[12px]">
@@ -97,7 +97,7 @@ export const Card = ({
           )}
         </div>
       </div>
-      <div className={`flex-1 min-h-0 space-y-[24px] ${childrenClassName}`}>
+      <div className={`flex-1 min-h-0 ${childrenClassName ? childrenClassName : "space-y-[24px]"}`}>
         {children}
       </div>
       {footer && (

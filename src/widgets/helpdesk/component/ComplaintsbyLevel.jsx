@@ -13,10 +13,15 @@ import Card from "../../components/Card";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const STATUS_CONFIG = [
-  { key: "closed_count", label: "Closed", color: "#12B981" },
+  { key: "open_count", label: "Open", color: "#12B981" },
   { key: "in_progress_count", label: "In Progress", color: "#F59D0D" },
-  { key: "open_count", label: "Open", color: "#EF4444" },
+  { key: "closed_count", label: "Closed", color: "#EF4444" },
 ];
+// const STATUS_CONFIG = [
+//   { key: "closed_count", label: "Closed", color: "#12B981" },
+//   { key: "in_progress_count", label: "In Progress", color: "#F59D0D" },
+//   { key: "open_count", label: "Open", color: "#EF4444" },
+// ];
 
 // 🔹 Dummy fallback data
 const DUMMY_LEVELS = [

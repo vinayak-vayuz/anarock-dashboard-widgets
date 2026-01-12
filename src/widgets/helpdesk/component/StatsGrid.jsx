@@ -182,8 +182,8 @@ function SingleStatCard({ id, data }) {
           <Icon className="h-6 w-6" style={{ color: iconColor }} />
         </div>
       }
-      className="!gap-[24px]"
-      childrenClassName="!space-y-[0px] flex flex-col !gap-[14px]"
+      className="gap-[24px]"
+      childrenClassName="space-y-[14px]"
     >
       <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
 
@@ -201,7 +201,7 @@ function SingleStatCard({ id, data }) {
       </div>*/}
       <div className="flex items-center gap-[8px] text-[14px] mt-2">
         <Chip value={delta} />
-        <div className="text-slate-500">{deltaLabel}</div>
+        <div className="text-[#64748B] text-[12px]">{deltaLabel}</div>
       </div>
     </Card>
   );
