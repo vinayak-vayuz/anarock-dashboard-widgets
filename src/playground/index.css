@@ -1,1 +1,76 @@
+
 @import "tailwindcss";
+
+/* ================================
+   React DatePicker – MF Safe Fix
+================================ */
+
+.anarock-datepicker .react-datepicker {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-family: inherit;
+  background: #ffffff;
+}
+
+.anarock-datepicker .react-datepicker__header {
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 14px 0 10px;
+}
+
+.anarock-datepicker .react-datepicker__current-month {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.anarock-datepicker .react-datepicker__year-read-view {
+  padding: 4px 8px;
+}
+
+.anarock-datepicker
+.react-datepicker__year-read-view--down-arrow {
+  top: 2px;
+}
+
+.anarock-datepicker .react-datepicker__navigation {
+  top: 16px;
+}
+
+.anarock-datepicker
+.react-datepicker__navigation-icon::before {
+  border-color: #6b7280;
+}
+
+.anarock-datepicker .react-datepicker__day-name,
+.anarock-datepicker .react-datepicker__day {
+  width: 32px;
+  line-height: 32px;
+  margin: 2px;
+}
+
+.anarock-datepicker
+.react-datepicker__day--selected,
+.anarock-datepicker
+.react-datepicker__day--in-range,
+.anarock-datepicker
+.react-datepicker__day--keyboard-selected {
+  background-color: #7c3aed;
+  color: #ffffff;
+  border-radius: 6px;
+}
+
+.anarock-datepicker .react-datepicker__day--disabled {
+  color: #d1d5db;
+}
+
+.anarock-datepicker .react-datepicker__day-name {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.anarock-datepicker .react-datepicker__month {
+  margin: 8px;
+}

@@ -6,6 +6,7 @@ import {
 } from "@mui/icons-material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./datepicker.css";
 
 function Header({ title, description, onExport }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

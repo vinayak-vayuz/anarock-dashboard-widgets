@@ -53,7 +53,6 @@ const ComplaintsByLevelChart = ({ data }) => {
 
   const chartConfig = useMemo(() => {
     const labels = levels.map((item) => item.level || "—");
-
     const maxTotal = Math.max(
       ...levels.map((item) => Number(item.total) || 0),
       5,
@@ -65,14 +64,11 @@ const ComplaintsByLevelChart = ({ data }) => {
       backgroundColor: status.color,
       barThickness: 44,
       stack: "stack1",
-
-      // ✅ THIS CREATES THE GAP
-      borderColor: "#ffffff", // chart background
+      borderColor: "#ffffff",
       borderWidth: {
         top: index === STATUS_CONFIG.length - 1 ? 0 : 1.5,
         bottom: index === 0 ? 0 : 2,
       },
-
       borderSkipped: false,
     }));
 
@@ -91,43 +87,61 @@ const ComplaintsByLevelChart = ({ data }) => {
         position: "bottom",
         labels: {
           usePointStyle: true,
-          pointStyle: "rectRot", // ✅ This creates the diamond/rhombus shape
-          boxWidth: 10,
-          boxHeight: 10,
+          pointStyle: "rectRot",
+          boxWidth: 6,
+          boxHeight: 6,
           padding: 15,
           font: {
             size: 14,
           },
         },
       },
-
       tooltip: {
-        backgroundColor: "#000000",
+        backgroundColor: "#0B0B0B",
         titleColor: "#ffffff",
         bodyColor: "#ffffff",
-        padding: 12,
-        cornerRadius: 8,
+
+        padding: { top: 14, right: 40, bottom: 14, left: 18 },
+        cornerRadius: 10,
+
         displayColors: true,
         usePointStyle: true,
+        boxWidth: 10,
+        boxHeight: 6,
+
+        bodySpacing: 8,
+        titleMarginBottom: 10,
+
+        titleFont: {
+          size: 16,
+          weight: "700",
+        },
+
+        bodyFont: {
+          size: 14,
+          family: "monospace", // 🔥 REQUIRED FOR ALIGNMENT
+        },
 
         callbacks: {
           title: (items) => items[0]?.label || "",
 
-          // ✅ THIS makes the tooltip marker rectRot
           labelPointStyle: () => ({
             pointStyle: "rectRot",
             rotation: 90,
           }),
 
           label: (context) => {
-            const dataIndex = context.dataIndex;
-            const item = levels[dataIndex];
+            const item = levels[context.dataIndex];
             const status = STATUS_CONFIG[context.datasetIndex];
-
             if (!item || !status) return "";
 
             const value = Number(item[status.key]) || 0;
-            return `${status.label}: ${value}`;
+
+            // 🔥 column alignment
+            const LABEL_COL_WIDTH = 14; // tweak if needed
+            const labelText = status.label.padEnd(LABEL_COL_WIDTH, " ");
+
+            return `${labelText}${value}`;
           },
         },
       },
