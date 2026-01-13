@@ -174,20 +174,22 @@ function SingleStatCard({ id, data }) {
     statData?.direction === "good" || statData?.direction === "neutral";
 
   return (
-    <Card
-      title={title}
-      titleColor={iconColor}
-      icon={
-        <div className="h-6 w-6 flex items-center justify-center">
-          <Icon className="h-6 w-6" style={{ color: iconColor }} />
-        </div>
-      }
-      className="gap-[24px]"
-      childrenClassName="space-y-[14px]"
-    >
-      <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
+    <div className=" h-[132px]">
+      <Card
+        title={title}
+        titleColor={iconColor}
+        icon={
+          <div className="h-5 w-5 flex items-center justify-center">
+            <Icon className="h-5 w-5" style={{ color: iconColor }} />
+          </div>
+        }
+        className="gap-[16px]"
+        childrenClassName="!space-y-[10px]"
+        iconClassName="!gap-[8px]"
+      >
+        <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
 
-      {/*<div className="flex items-center gap-[8px] text-[14px] mt-2">
+        {/*<div className="flex items-center gap-[8px] text-[14px] mt-2">
         <div
           className={
             positive
@@ -199,11 +201,12 @@ function SingleStatCard({ id, data }) {
         </div>
         <div className="text-slate-500">{deltaLabel}</div>
       </div>*/}
-      <div className="flex items-center gap-[8px] text-[14px] mt-2">
-        <Chip value={delta} />
-        <div className="text-[#64748B] text-[12px]">{deltaLabel}</div>
-      </div>
-    </Card>
+        <div className="flex items-center gap-[8px] text-[14px] mt-2">
+          <Chip value={delta} />
+          <div className="text-[#64748B] text-[12px]">{deltaLabel}</div>
+        </div>
+      </Card>
+    </div>
   );
 }
 

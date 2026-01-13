@@ -8,6 +8,7 @@ const Card = ({
   childrenClassName,
   titleWeight,
   titleColor,
+  iconClassName,
 }) => {
   const fontWeightValue = titleWeight === "semi-bold" ? 600 : 500;
 
@@ -16,7 +17,7 @@ const Card = ({
       className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col gap-[16px] ${className}`}
     >
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-[12px]">
+        <div className={`flex items-center gap-[12px] ${iconClassName}`}>
           {icon}
           <div
             style={{

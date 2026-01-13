@@ -13,15 +13,39 @@ import Card from "../../components/Card";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const STATUS_CONFIG = [
-  { key: "open_count", label: "Open", color: "#12B981" },
+  { key: "closed_count", label: "Closed", color: "#12B981" },
   { key: "in_progress_count", label: "In Progress", color: "#F59D0D" },
-  { key: "closed_count", label: "Closed", color: "#EF4444" },
+  { key: "open_count", label: "Open", color: "#EF4444" },
 ];
-// const STATUS_CONFIG = [
-//   { key: "closed_count", label: "Closed", color: "#12B981" },
-//   { key: "in_progress_count", label: "In Progress", color: "#F59D0D" },
-//   { key: "open_count", label: "Open", color: "#EF4444" },
-// ];
+const TOOLTIP_CONFIG = [
+  { key: "open_count", label: "Open", color: "#EF4444", spaces: 8 },
+  {
+    key: "in_progress_count",
+    label: "In Progress",
+    color: "#F59D0D",
+    spaces: 5,
+  },
+  { key: "closed_count", label: "Closed", color: "#12B981", spaces: 7 },
+];
+const toBoldNumber = (num) => {
+  const map = {
+    0: "𝟎",
+    1: "𝟏",
+    2: "𝟐",
+    3: "𝟑",
+    4: "𝟒",
+    5: "𝟓",
+    6: "𝟔",
+    7: "𝟕",
+    8: "𝟖",
+    9: "𝟗",
+  };
+
+  return String(num)
+    .split("")
+    .map((d) => map[d] || d)
+    .join("");
+};
 
 // 🔹 Dummy fallback data
 const DUMMY_LEVELS = [
@@ -71,8 +95,8 @@ const ComplaintsByLevelChart = ({ data }) => {
       stack: "stack1",
       borderColor: "#ffffff",
       borderWidth: {
-        top: index === STATUS_CONFIG.length - 1 ? 0 : 1.5,
-        bottom: index === 0 ? 0 : 2,
+        top: index === STATUS_CONFIG.length - 1 ? 0 : 1,
+        bottom: index === 0 ? 0 : 1,
       },
       borderSkipped: false,
     }));
@@ -96,11 +120,15 @@ const ComplaintsByLevelChart = ({ data }) => {
           boxWidth: 6,
           boxHeight: 6,
           padding: 15,
-          font: {
-            size: 14,
+          font: { size: 14 },
+
+          sort: (a, b) => {
+            const order = ["Open", "In Progress", "Closed"];
+            return order.indexOf(a.text) - order.indexOf(b.text);
           },
         },
       },
+
       tooltip: {
         backgroundColor: "#0B0B0B",
         titleColor: "#ffffff",
@@ -111,42 +139,50 @@ const ComplaintsByLevelChart = ({ data }) => {
 
         displayColors: true,
         usePointStyle: true,
-        boxWidth: 10,
-        boxHeight: 6,
+        boxWidth: 8,
+        boxHeight: 8,
+        boxPadding: 0,
 
         bodySpacing: 8,
         titleMarginBottom: 10,
 
         titleFont: {
-          size: 16,
-          weight: "700",
+          size: 12,
+          weight: "900",
         },
 
         bodyFont: {
-          size: 14,
-          family: "monospace", // 🔥 REQUIRED FOR ALIGNMENT
+          size: 12,
+          weight: "400",
         },
 
         callbacks: {
           title: (items) => items[0]?.label || "",
 
-          labelPointStyle: () => ({
+          labelPointStyle: (context) => ({
             pointStyle: "rectRot",
-            rotation: 90,
+            rotation: 0,
+          }),
+
+          labelColor: (context) => ({
+            borderColor: "transparent",
+            backgroundColor: TOOLTIP_CONFIG[context.datasetIndex]?.color,
+            borderWidth: 0,
           }),
 
           label: (context) => {
             const item = levels[context.dataIndex];
-            const status = STATUS_CONFIG[context.datasetIndex];
+            const status = TOOLTIP_CONFIG[context.datasetIndex];
             if (!item || !status) return "";
 
             const value = Number(item[status.key]) || 0;
+            const boldValue = toBoldNumber(value);
 
-            // 🔥 column alignment
-            const LABEL_COL_WIDTH = 14; // tweak if needed
+            const LABEL_COL_WIDTH = 14;
             const labelText = status.label.padEnd(LABEL_COL_WIDTH, " ");
+            const spaces = ' '.repeat(status.spaces);
 
-            return `${labelText}${value}`;
+            return ` ${labelText}${spaces}${boldValue}`;
           },
         },
       },
@@ -168,7 +204,12 @@ const ComplaintsByLevelChart = ({ data }) => {
   };
 
   return (
-    <Card title="Complaints by Level" className="w-full h-[362px]">
+    <Card
+      title="Complaints by Level"
+      className="w-full h-[362px]"
+      titleWeight="semi-bold"
+      // className="!gap-[12px]"
+    >
       <Bar data={chartConfig} options={options} />
     </Card>
   );

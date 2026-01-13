@@ -31,7 +31,7 @@ function Complaints({ data }) {
       : DUMMY_COMPLAINTS;
 
   return (
-    <Card title="Complaints" className="h-[362px]">
+    <Card title="Complaints" className="h-[362px]" titleWeight="semi-bold">
       <div className="flex flex-col gap-[12px]">
         {complaints.map((item, idx) => (
           <div
