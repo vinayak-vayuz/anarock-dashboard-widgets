@@ -63,7 +63,7 @@ function Financials() {
   ];
 
   console.log(complaints);
-
+  console.log("Pushing code");
   return (
     <div>
       <Header title="Helpdesk" description="Helpdesk request overview" />
