@@ -201,7 +201,7 @@ function SingleStatCard({ id, data }) {
         </div>
         <div className="text-slate-500">{deltaLabel}</div>
       </div>*/}
-        <div className="flex items-center gap-[8px] text-[14px] mt-2">
+        <div className="flex items-center gap-[8px] text-[14px] !mt-[16px]">
           <Chip value={delta} />
           <div className="text-[#64748B] text-[12px]">{deltaLabel}</div>
         </div>

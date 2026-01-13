@@ -43,6 +43,7 @@ function Engagement({ isStatic, data, communities }) {
       period="This Month"
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
       className={`${isStatic && "max-h-[303px]"} h-[303px]`}
+      headingClassName={"mb-[20px]"}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}
@@ -52,7 +53,7 @@ function Engagement({ isStatic, data, communities }) {
         />
       }
     >
-      <div className="w-full h-[235px] !mt-[20px]">
+      <div className="w-full h-[235px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={engagementBars}

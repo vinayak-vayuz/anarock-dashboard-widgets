@@ -62,9 +62,10 @@ export const Card = ({
   children,
   footer,
   className = "",
-  childrenClassName,
   titleWeight,
   titleColor,
+  headingClassName,
+  childrenClassName,
 }) => {
   const fontWeightValue = titleWeight === "semi-bold" ? 600 : 500;
 
@@ -72,7 +73,7 @@ export const Card = ({
     <div
       className={`relative bg-white !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] p-[16px] flex flex-col ${className ? className : "gap-[24px]"}`}
     >
-      <div className="flex items-center justify-between">
+      <div className={`flex items-center justify-between ${headingClassName}`}>
         <div className="flex items-center gap-[12px]">
           {icon}
           <div
