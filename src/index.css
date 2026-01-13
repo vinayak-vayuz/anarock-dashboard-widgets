@@ -8,9 +8,9 @@
 
 /* Your custom CSS */
 /* --anarock-font: "Outfit" !important; */
-/* :root {
+:root {
   --anarock-font: "Geist" !important;
-} */
+}
 
 body,
 button,
@@ -20,7 +20,7 @@ textarea {
   font-family: var(--anarock-font);
 }
 
-@layer base {
+/* @layer base {
   :root {
     --anarock-font: "Geist", sans-serif;
   }
@@ -28,7 +28,7 @@ textarea {
   body {
     font-family: var(--anarock-font);
   }
-}
+} */
 
 .my-custom-class {
   color: #123456;
