@@ -199,7 +199,7 @@ function GateUpdates({ isStatic, data }) {
       }
     >
       <div>
-        <div className="grid grid-cols-3 gap-[24px] my-[16px]">
+        <div className="grid grid-cols-3 gap-[24px] mt-[16px] mb-[16px]">
           {[
             {
               key: "activeWalkins",
