@@ -46,7 +46,7 @@ function Helpdesk({ isStatic, data }) {
       className={`${
         isStatic && "max-h-[186px]"
       } h-[186px] mb-4 break-inside-avoid`}
-      headingClassName={"mb-[20px]"}
+      headingClassName={"sm:mb-[20px]"}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}

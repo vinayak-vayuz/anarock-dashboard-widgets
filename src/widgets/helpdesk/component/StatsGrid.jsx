@@ -4,7 +4,7 @@ import Card from "../../components/Card";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { FaRegClock, FaArrowTrendUp } from "react-icons/fa6";
 import { LuTicketCheck } from "react-icons/lu";
-import { Chip } from "../../components/Chip";
+import { Chip } from "../../utils";
 
 /**
  * Supported stat ids:
@@ -201,7 +201,7 @@ function SingleStatCard({ id, data }) {
         </div>
         <div className="text-slate-500">{deltaLabel}</div>
       </div>*/}
-        <div className="flex items-center gap-[8px] text-[14px] !mt-[16px]">
+        <div className="flex items-center gap-[8px] text-[14px] sm:mt-[16px]">
           <Chip value={delta} />
           <div className="text-[#64748B] text-[12px]">{deltaLabel}</div>
         </div>

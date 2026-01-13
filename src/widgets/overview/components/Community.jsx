@@ -60,7 +60,7 @@ function Community({ isStatic, data }) {
       className={`${
         isStatic && "max-h-[184px]"
       } h-[184px] mb-4 break-inside-avoid`}
-      headingClassName={"mb-[20px]"}
+      headingClassName={"sm:mb-[20px]"}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}
