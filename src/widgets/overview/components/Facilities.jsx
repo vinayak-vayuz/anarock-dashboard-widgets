@@ -104,7 +104,7 @@ function Facilities({ isStatic, data }) {
       }
     >
       {/* Summary */}
-      <div className="grid grid-cols-2 gap-[24px] my-[16px]">
+      <div className="grid grid-cols-2 gap-[24px] mb-[16px]">
         <div>
           <div className="!text-[12px] text-[#64748B]">Bookings</div>
           <div className="!text-[24px] font-medium text-[#8B5CF6]">

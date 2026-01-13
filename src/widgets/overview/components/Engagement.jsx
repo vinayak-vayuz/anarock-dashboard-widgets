@@ -52,7 +52,7 @@ function Engagement({ isStatic, data, communities }) {
         />
       }
     >
-      <div className="w-full h-[255px]">
+      <div className="w-full h-[235px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={engagementBars}
