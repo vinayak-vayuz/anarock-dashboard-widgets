@@ -179,8 +179,8 @@ function SingleStatCard({ id, data }) {
         title={title}
         titleColor={iconColor}
         icon={
-          <div className="h-5 w-5 flex items-center justify-center">
-            <Icon className="h-5 w-5" style={{ color: iconColor }} />
+          <div className="h-[20px] w-[20px] flex items-center justify-center">
+            <Icon className="h-[20px] w-[20px]" style={{ color: iconColor }} />
           </div>
         }
         // className="gap-[16px]"

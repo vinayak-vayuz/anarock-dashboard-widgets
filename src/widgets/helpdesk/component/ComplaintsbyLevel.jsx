@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Card from "../../components/Card";
 
 const STATUS_CONFIG = [
   { key: "closed_count", label: "Closed", color: "#12B981" },
@@ -59,25 +60,6 @@ const DUMMY_LEVELS = [
     total: 10,
   },
 ];
-
-const Card = ({
-  title,
-  children,
-  className = "",
-  titleWeight = "semi-bold",
-  titleClassName = "",
-}) => (
-  <div className={`bg-white rounded-lg shadow p-6 ${className}`}>
-    <h2
-      className={`mb-4 ${
-        titleWeight === "semi-bold" ? "font-semibold" : "font-bold"
-      } ${titleClassName}`}
-    >
-      {title}
-    </h2>
-    {children}
-  </div>
-);
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload) return null;

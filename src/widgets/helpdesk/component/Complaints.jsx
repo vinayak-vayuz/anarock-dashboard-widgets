@@ -43,7 +43,7 @@ function Complaints({ data }) {
             className="flex items-center justify-between bg-[#F9FAFB] rounded-lg p-3 h-[62px]"
           >
             <div className="flex flex-col">
-              <div className="text-[14px] leading-[18px] font-medium text-[#121212]">
+              <div className="text-[14px] leading-[18px] font-medium text-[#121212] capitalize">
                 {item.title}
               </div>
               <div className="text-[12px] leading-[16px] text-[#64748B]">
