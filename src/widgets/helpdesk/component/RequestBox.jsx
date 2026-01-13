@@ -25,7 +25,12 @@ function RequestBox({ data }) {
   console.log(requests, "requests");
 
   return (
-    <Card title="Request Box" className="h-[362px]" titleWeight="semi-bold">
+    <Card
+      title="Request Box"
+      className="h-[362px]"
+      titleWeight="semi-bold"
+      titleClassName={"!text-[20px] !leading-[24px]"}
+    >
       <div className="flex flex-col gap-[12px]">
         {requests.map((item, idx) => (
           <div

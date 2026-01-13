@@ -5,10 +5,11 @@ const Card = ({
   children,
   footer,
   className = "",
-  childrenClassName,
   titleWeight,
   titleColor,
   iconClassName,
+  titleClassName,
+  childrenClassName,
 }) => {
   const fontWeightValue = titleWeight === "semi-bold" ? 600 : 500;
 
@@ -24,9 +25,11 @@ const Card = ({
               fontWeight: fontWeightValue,
               fontSize: "16px",
               lineHeight: "20px",
-              color: titleColor || "#121212", // 👈 THIS is what you wanted
+              color: titleColor || "#121212",
             }}
-            className="!my-0 !text-[16px] !leading-[20px]"
+            className={`!my-0 ${
+              titleClassName ? titleClassName : "!text-[16px] !leading-[20px]"
+            }`}
           >
             {title}
           </div>

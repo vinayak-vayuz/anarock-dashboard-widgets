@@ -208,6 +208,7 @@ const ComplaintsByLevelChart = ({ data }) => {
       title="Complaints by Level"
       className="w-full h-[362px]"
       titleWeight="semi-bold"
+      titleClassName={"!text-[20px] !leading-[24px]"}
       // className="!gap-[12px]"
     >
       <Bar data={chartConfig} options={options} />

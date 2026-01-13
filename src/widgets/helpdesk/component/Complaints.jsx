@@ -16,7 +16,6 @@ const cleanText = (text = "") =>
     .replace(/<[^>]*>/g, "")
     .trim();
 
-
 function Complaints({ data }) {
   console.log(data, "complaints data");
 
@@ -31,7 +30,12 @@ function Complaints({ data }) {
       : DUMMY_COMPLAINTS;
 
   return (
-    <Card title="Complaints" className="h-[362px]" titleWeight="semi-bold">
+    <Card
+      title="Complaints"
+      className="h-[362px]"
+      titleWeight="semi-bold"
+      titleClassName={"!text-[20px] !leading-[24px]"}
+    >
       <div className="flex flex-col gap-[12px]">
         {complaints.map((item, idx) => (
           <div
