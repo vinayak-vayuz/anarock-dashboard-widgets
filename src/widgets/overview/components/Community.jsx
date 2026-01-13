@@ -69,7 +69,7 @@ function Community({ isStatic, data }) {
         />
       }
     >
-      <div className="flex">
+      <div className="flex mt-[20px]">
         <div className="w-[50%] flex flex-col gap-[28px]">
           <div className="flex flex-col gap-[8px]">
             <div className="!m-0 !text-[12px] !leading-[16px] !text-[#64748B]">
@@ -87,7 +87,7 @@ function Community({ isStatic, data }) {
           </div>
         </div>
 
-        <div className="w-[50%] h-[140px] flex justify-end">
+        <div className="w-[50%] h-[111px] flex justify-end">
           <ResponsiveContainer width="75%" height="100%">
             <PieChart>
               <Pie
