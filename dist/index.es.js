@@ -39163,7 +39163,7 @@ function xce({ isStatic: e, data: t }) {
           onExport: (c) => console.log("Export triggered for", c)
         }
       ),
-      children: /* @__PURE__ */ S.jsxs("div", { className: "flex", children: [
+      children: /* @__PURE__ */ S.jsxs("div", { className: "flex mt-[20px]", children: [
         /* @__PURE__ */ S.jsxs("div", { className: "w-[50%] flex flex-col gap-[28px]", children: [
           /* @__PURE__ */ S.jsxs("div", { className: "flex flex-col gap-[8px]", children: [
             /* @__PURE__ */ S.jsx("div", { className: "!m-0 !text-[12px] !leading-[16px] !text-[#64748B]", children: "Move-in/Out Count" }),
@@ -39179,7 +39179,7 @@ function xce({ isStatic: e, data: t }) {
             /* @__PURE__ */ S.jsx("div", { className: "whitespace-nowrap", children: "Compared to last month" })
           ] })
         ] }),
-        /* @__PURE__ */ S.jsx("div", { className: "w-[50%] h-[140px] flex justify-end", children: /* @__PURE__ */ S.jsx(ts, { width: "75%", height: "100%", children: /* @__PURE__ */ S.jsxs(wh, { children: [
+        /* @__PURE__ */ S.jsx("div", { className: "w-[50%] h-[111px] flex justify-end", children: /* @__PURE__ */ S.jsx(ts, { width: "75%", height: "100%", children: /* @__PURE__ */ S.jsxs(wh, { children: [
           /* @__PURE__ */ S.jsxs(
             Ou,
             {
@@ -39231,7 +39231,7 @@ function wce({ isStatic: e, data: t, communities: n }) {
           onExport: (o) => console.log("Export triggered for", o)
         }
       ),
-      children: /* @__PURE__ */ S.jsx("div", { className: "w-full h-[235px]", children: /* @__PURE__ */ S.jsx(ts, { width: "100%", height: "100%", children: /* @__PURE__ */ S.jsxs(
+      children: /* @__PURE__ */ S.jsx("div", { className: "w-full h-[235px] !mt-[20px]", children: /* @__PURE__ */ S.jsx(ts, { width: "100%", height: "100%", children: /* @__PURE__ */ S.jsxs(
         fee,
         {
           data: i,
@@ -39321,7 +39321,7 @@ function _ce({ isStatic: e, data: t }) {
         }
       ),
       children: [
-        /* @__PURE__ */ S.jsxs("div", { className: "grid grid-cols-2 gap-[24px] !my-[16px]", children: [
+        /* @__PURE__ */ S.jsxs("div", { className: "grid grid-cols-2 gap-[24px] mt-[16px] mb-[16px]", children: [
           /* @__PURE__ */ S.jsxs("div", { children: [
             /* @__PURE__ */ S.jsx("div", { className: "!text-[12px] text-[#64748B]", children: "Bookings" }),
             /* @__PURE__ */ S.jsx("div", { className: "!text-[24px] font-medium text-[#8B5CF6]", children: n })
@@ -40739,7 +40739,7 @@ function Ece({ isStatic: e, data: t }) {
           onExport: (o) => console.log("Export triggered for", o)
         }
       ),
-      children: /* @__PURE__ */ S.jsxs("div", { className: "flex gap-[12px] h-fit !mt-[20px]", children: [
+      children: /* @__PURE__ */ S.jsxs("div", { style: { marginTop: "20px !important" }, className: "flex gap-[12px] h-fit !mt-[20px]", children: [
         /* @__PURE__ */ S.jsxs("div", { className: "w-[50%] flex flex-col gap-[28px]", children: [
           /* @__PURE__ */ S.jsxs("div", { className: "flex flex-col gap-[8px]", children: [
             /* @__PURE__ */ S.jsx("div", { className: "!m-0 !text-[12px] !leading-[16px] !text-[#64748B]", children: "Un-resolved Complaints" }),
