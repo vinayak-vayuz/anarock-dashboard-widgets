@@ -183,8 +183,8 @@ function SingleStatCard({ id, data }) {
             <Icon className="h-5 w-5" style={{ color: iconColor }} />
           </div>
         }
-        className="gap-[16px]"
-        childrenClassName="!space-y-[10px]"
+        // className="gap-[16px]"
+        // childrenClassName="!space-y-[10px]"
         iconClassName="!gap-[8px]"
       >
         <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
