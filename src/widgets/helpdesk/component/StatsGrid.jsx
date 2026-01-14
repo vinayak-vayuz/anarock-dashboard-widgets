@@ -185,7 +185,7 @@ function SingleStatCard({ id, data }) {
         }
         // className="gap-[16px]"
         childrenClassName="!space-y-[10px]"
-        iconClassName="!gap-[8px]"
+        iconClassName="!gap-[12px]"
       >
         <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
 
