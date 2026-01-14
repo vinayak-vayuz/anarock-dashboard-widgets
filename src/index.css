@@ -5,12 +5,11 @@
 @import "tailwindcss";
 /* @import 'tippy.js/dist/tippy.css'; */
 
-
 /* Your custom CSS */
-/* :root { */
+:root {
   /* --anarock-font: "Outfit" !important; */
-  /* --anarock-font: "Geist" !important; */
-/* } */
+  --anarock-font: "Geist" !important;
+}
 
 body,
 button,
@@ -22,8 +21,8 @@ textarea {
 
 @layer base {
   /* :root { */
-    /* --anarock-font: "Geist", sans-serif; */
-    /* --anarock-font: "Outfit", sans-serif; */
+  /* --anarock-font: "Geist", sans-serif; */
+  /* --anarock-font: "Outfit", sans-serif; */
   /* } */
 
   /* body {
