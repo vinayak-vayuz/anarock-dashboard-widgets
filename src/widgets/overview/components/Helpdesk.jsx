@@ -45,8 +45,7 @@ function Helpdesk({ isStatic, data }) {
       icon={<LuWrench className="!text-[24px] text-[#FA7E28]" />}
       className={`${
         isStatic && "max-h-[186px]"
-      } h-[186px] mb-4 break-inside-avoid`}
-      headingClassName={"sm:mb-[20px]"}
+      } h-[186px] mb-4 break-inside-avoid gap-[20px]`}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}

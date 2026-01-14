@@ -59,8 +59,7 @@ function Community({ isStatic, data }) {
       icon={<LuBuilding className="!text-[24px] text-[#329DFF]" />}
       className={`${
         isStatic && "max-h-[184px]"
-      } h-[184px] mb-4 break-inside-avoid`}
-      headingClassName={"sm:mb-[20px]"}
+      } h-[184px] mb-4 break-inside-avoid gap-[20px]`}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}

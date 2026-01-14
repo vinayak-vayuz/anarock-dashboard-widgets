@@ -174,7 +174,7 @@ function SingleStatCard({ id, data }) {
     statData?.direction === "good" || statData?.direction === "neutral";
 
   return (
-    <div className=" h-[132px]">
+    <div className="h-[132px]">
       <Card
         title={title}
         titleColor={iconColor}
@@ -184,7 +184,7 @@ function SingleStatCard({ id, data }) {
           </div>
         }
         // className="gap-[16px]"
-        // childrenClassName="!space-y-[10px]"
+        childrenClassName="flex flex-col !gap-[12px]"
         iconClassName="!gap-[8px]"
       >
         <StatText {...STAT_TEXT_PRESETS.primary}>{value}</StatText>
@@ -201,9 +201,9 @@ function SingleStatCard({ id, data }) {
         </div>
         <div className="text-slate-500">{deltaLabel}</div>
       </div>*/}
-        <div className="flex items-center gap-[8px] text-[14px] sm:mt-[16px]">
+        <div className="flex items-center gap-[8px] text-[12px] leading-[16px]">
           <Chip value={delta} />
-          <div className="text-[#64748B] text-[12px]">{deltaLabel}</div>
+          <div className="text-[#64748B] text-[12px] leading-[16px]">{deltaLabel}</div>
         </div>
       </Card>
     </div>

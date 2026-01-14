@@ -42,8 +42,7 @@ function Engagement({ isStatic, data, communities }) {
       title="Engagement"
       period="This Month"
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
-      className={`${isStatic && "max-h-[303px]"} h-[303px]`}
-      headingClassName={"sm:mb-[20px]"}
+      className={`${isStatic && "max-h-[303px]"} h-[303px] gap-[20px]`}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}
