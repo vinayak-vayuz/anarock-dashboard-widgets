@@ -8,8 +8,8 @@
 
 /* Your custom CSS */
 :root {
-  --anarock-font: "Outfit" !important;
-  /* --anarock-font: "Geist" !important; */
+  /* --anarock-font: "Outfit" !important; */
+  --anarock-font: "Geist" !important;
 }
 
 body,
@@ -22,8 +22,8 @@ textarea {
 
 @layer base {
   :root {
-    /* --anarock-font: "Geist", sans-serif; */
-    --anarock-font: "Outfit", sans-serif;
+    --anarock-font: "Geist", sans-serif;
+    /* --anarock-font: "Outfit", sans-serif; */
   }
 
   body {
