@@ -32,6 +32,6 @@ textarea {
 }
 
 .my-custom-class {
-  color: #123456;
+  color: #123456 !important;
   padding: 10px;
 }
