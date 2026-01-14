@@ -63,7 +63,7 @@ export const StatText = ({
         fontSize: `${size}px`,
         lineHeight: `${lineHeight}px`,
         color,
-        fontVariantNumeric: "tabular-nums",
+        // fontVariantNumeric: "tabular-nums",
       }}
     >
       {children}
