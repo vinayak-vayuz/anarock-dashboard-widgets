@@ -7,10 +7,10 @@
 
 
 /* Your custom CSS */
-:root {
+/* :root { */
   /* --anarock-font: "Outfit" !important; */
-  --anarock-font: "Geist" !important;
-}
+  /* --anarock-font: "Geist" !important; */
+/* } */
 
 body,
 button,
@@ -21,14 +21,14 @@ textarea {
 }
 
 @layer base {
-  :root {
-    --anarock-font: "Geist", sans-serif;
+  /* :root { */
+    /* --anarock-font: "Geist", sans-serif; */
     /* --anarock-font: "Outfit", sans-serif; */
-  }
+  /* } */
 
-  body {
+  /* body {
     font-family: var(--anarock-font);
-  }
+  } */
 }
 
 .my-custom-class {
