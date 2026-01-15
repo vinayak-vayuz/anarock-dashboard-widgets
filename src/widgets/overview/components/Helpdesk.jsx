@@ -36,8 +36,6 @@ function Helpdesk({ isStatic, data }) {
 
   const chartData = helpdeskBreakup;
 
-  console.log("Helpdesk Data:", data);
-
   return (
     <Card
       title="Helpdesk"
@@ -50,8 +48,8 @@ function Helpdesk({ isStatic, data }) {
         <ActionButtons
           widgetId={data?.widget_id}
           options={data?.communities}
-          onFilterChange={(value, widget) => console.log(value, widget)}
-          onExport={(widget) => console.log("Export triggered for", widget)}
+          // onFilterChange={(value, widget) => console.log(value, widget)}
+          // onExport={(widget) => console.log("Export triggered for", widget)}
         />
       }
     >

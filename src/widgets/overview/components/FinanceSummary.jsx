@@ -51,7 +51,6 @@ function FinanceSummary({ data }) {
     }
   }
 
-  console.log("Finance Summary Data:", data);
 
   return (
     <Card
@@ -63,8 +62,8 @@ function FinanceSummary({ data }) {
         <ActionButtons
           widgetId={data?.widget_id}
           options={data?.communities}
-          onFilterChange={(value, widget) => console.log(value, widget)}
-          onExport={(widget) => console.log("Export triggered for", widget)}
+          // onFilterChange={(value, widget) => console.log(value, widget)}
+          // onExport={(widget) => console.log("Export triggered for", widget)}
         />
       }
     >

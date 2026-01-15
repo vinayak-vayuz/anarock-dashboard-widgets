@@ -17,8 +17,6 @@ const cleanText = (text = "") =>
     .trim();
 
 function Complaints({ data }) {
-  console.log(data, "complaints data");
-
   const complaints =
     Array.isArray(data?.complaints_by_category) &&
     data.complaints_by_category.length > 0

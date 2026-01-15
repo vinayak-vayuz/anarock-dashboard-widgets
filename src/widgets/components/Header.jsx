@@ -170,7 +170,6 @@ function Header({ title, description, onExport }) {
         start = range?.start;
         end = range?.end;
       }
-      console.log(start,end);
       await onExport?.({ format, section: title, start, end });
     } finally {
       setIsExporting(false);

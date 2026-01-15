@@ -4,7 +4,6 @@ export const Chip = ({ value }) => {
   const safeValue = value ?? 0; // ensure value is a number
   const showValue = Number(String(value).replace("%", ""));
 
-  console.log(safeValue,"safeValue");
   const isPositive = showValue >= 0;
   return (
     <div

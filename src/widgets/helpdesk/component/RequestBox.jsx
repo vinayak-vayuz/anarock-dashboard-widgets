@@ -10,7 +10,6 @@ const DUMMY_REQUESTS = [
 ];
 
 function RequestBox({ data }) {
-  console.log(data, "request box data");
 
   const requests =
     Array.isArray(data?.request_box_by_type) &&
@@ -21,8 +20,6 @@ function RequestBox({ data }) {
           pending: Number(item.pending) || 0,
         }))
       : DUMMY_REQUESTS;
-
-  console.log(requests, "requests");
 
   return (
     <Card

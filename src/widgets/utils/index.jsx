@@ -15,7 +15,7 @@ const Dot = ({ color }) => (
 
 export const CustomTooltip = ({ active, payload }) => {
   if (!active || !payload || !payload.length) return null;
-  //   console.log(payload, "payload in tooltip")
+
   return (
     <div className="bg-[#121212] text-white !text-[12px] p-3 rounded-lg shadow-lg">
       {payload.map((item, i) => {
