@@ -48,6 +48,7 @@ export { default as CommercialOccupancy } from "./widgets/commercial-dashboard/c
 export { default as EmployeeFootfall } from "./widgets/commercial-dashboard/component/employee-footfall";
 export { default as FoodBeverages } from "./widgets/commercial-dashboard/component/food-beverages";
 export { default as Amenities } from "./widgets/commercial-dashboard/component/amenities";
-export { default as TicketEscalation } from "./widgets/commercial-dashboard/component/amenities";
+export { default as TicketEscalation } from "./widgets/commercial-dashboard/component/ticket-escalation";
 export { default as TicketStatus } from "./widgets/commercial-dashboard/component/ticket-status";
 export { default as VisitorUpdates } from "./widgets/commercial-dashboard/component/visitor-updates";
+
