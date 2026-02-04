@@ -43,3 +43,11 @@ export { default as EventsUtilisation } from "./widgets/engagement/component/Eve
 export { default as NoticeBoardStatus } from "./widgets/engagement/component/NoticeBoardStatus";
 export { default as SingleStats } from "./widgets/engagement/component/SingleStats";
 export { default as EngagementStatsGrid } from "./widgets/engagement/component/StatsGrid";
+
+export { default as CommercialOccupancy } from "./widgets/commercial-dashboard/component/occupancy-overview";
+export { default as EmployeeFootfall } from "./widgets/commercial-dashboard/component/employee-footfall";
+export { default as FoodBeverages } from "./widgets/commercial-dashboard/component/food-beverages";
+export { default as Amenities } from "./widgets/commercial-dashboard/component/amenities";
+export { default as TicketEscalation } from "./widgets/commercial-dashboard/component/amenities";
+export { default as TicketStatus } from "./widgets/commercial-dashboard/component/ticket-status";
+export { default as VisitorUpdates } from "./widgets/commercial-dashboard/component/visitor-updates";

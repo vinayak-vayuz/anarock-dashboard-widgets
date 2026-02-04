@@ -1,4 +1,5 @@
 import * as Widgets from "../index";
+import CommercialDashboard from "../widgets/commercial-dashboard";
 
 export default function App() {
   return (
@@ -162,6 +163,7 @@ export default function App() {
           <Widgets.NoticeBoardStatus isStatic={true} />
           <Widgets.EventsUtilisation isStatic={true} />
         </div>
+          <CommercialDashboard/>
       </div>
     </div>
   );
