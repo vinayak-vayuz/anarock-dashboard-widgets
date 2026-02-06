@@ -1,23 +1,7 @@
 import React from "react";
-import {
-    PieChart,
-    Pie,
-    Cell,
-    ResponsiveContainer,
-    Tooltip
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/Card";
 import { LuReceiptText } from "react-icons/lu";
-
-const data = [
-    { name: "Completed", value: 156, color: "#10B981" },
-    { name: "Open", value: 12, color: "#3B82F6" },
-    { name: "In Progress", value: 8, color: "#F59E0B" },
-    { name: "On Hold", value: 5, color: "#6B7280" },
-    { name: "Cancelled", value: 3, color: "#EF4444" },
-];
-
-const total = data.reduce((sum, item) => sum + item.value, 0);
 
 const CustomTooltip = ({ active, payload }) => {
     if (!active || !payload || !payload.length) return null;
@@ -39,7 +23,28 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 
-function TicketStatus() {
+ function TicketStatus({ data = null }) {
+  const staticApiData = {
+    open: 12,
+    on_hold: 5,
+    cancelled: 3,
+    completed: 156,
+    in_progress: 8,
+    total_complaints: 184,
+  };
+
+  const finalData = data ? data : staticApiData;
+
+  const chartData = [
+    { name: "Completed", value: Number(finalData.completed), color: "#10B981" },
+    { name: "Open", value: Number(finalData.open), color: "#3B82F6" },
+    { name: "In Progress", value: Number(finalData.in_progress), color: "#F59E0B" },
+    { name: "On Hold", value: Number(finalData.on_hold), color: "#6B7280" },
+    { name: "Cancelled", value: Number(finalData.cancelled), color: "#EF4444" },
+  ];
+
+  const total = Number(finalData.total_complaints);
+
     return (
         <Card
             className="h-[267px]"
@@ -57,14 +62,14 @@ function TicketStatus() {
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
-                                data={data}
+                                data={chartData}
                                 innerRadius={55}
                                 outerRadius={85}
                                 dataKey="value"
                                 stroke="#FFFFFF"
                                 strokeWidth={2}
                             >
-                                {data.map((entry, index) => (
+                                {chartData.map((entry, index) => (
                                     <Cell key={index} fill={entry.color} />
                                 ))}
                             </Pie>
@@ -77,14 +82,19 @@ function TicketStatus() {
 
                     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                         <p className="text-lg font-semibold">
-                            156<span className="text-[18.18px] leading-[22.22px] text-[#121212]">/{total}</span>
-                        </p>
-                        <p className="text-[10.1px] leading-[14.14px] text-[#64748B]">Completed</p>
-                    </div>
-                </div>
+              {Number(finalData.completed)}
+              <span className="text-[18.18px] leading-[22.22px] text-[#121212]">
+                /{total}
+              </span>
+            </p>
+            <p className="text-[10.1px] leading-[14.14px] text-[#64748B]">
+              Completed
+            </p>
+          </div>
+        </div>
 
                 <div className="flex-1 space-y-2">
-                    {data.map((item) => (
+                    {chartData.map((item) => (
                         <div
                             key={item.name}
                             className="flex items-center justify-between text-sm"

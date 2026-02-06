@@ -13,13 +13,54 @@ import Card from "../../components/Card";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-function TicketEscalation() {
-  const data = {
-    labels: ["L1", "L2", "L3"],
+function TicketEscalation({ data = [] }) {
+  const staticData = [
+    {
+      level: "L1",
+      open_count: 55,
+      in_progress_count: 22,
+      on_hold: 15,
+      closed_count: 6,
+    },
+    {
+      level: "L2",
+      open_count: 45,
+      in_progress_count: 25,
+      on_hold: 18,
+      closed_count: 5,
+    },
+    {
+      level: "L3",
+      open_count: 58,
+      in_progress_count: 23,
+      on_hold: 14,
+      closed_count: 6,
+    },
+  ];
+
+  const finalData = data.length > 0 ? data : staticData;
+
+  const labels = [];
+  const openData = [];
+  const inProgressData = [];
+  const onHoldData = [];
+  const closedData = [];
+
+  for (let i = 0; i < finalData.length; i++) {
+    labels.push(finalData[i].level);
+
+    openData.push(Number(finalData[i].open_count));
+    inProgressData.push(Number(finalData[i].in_progress_count));
+    onHoldData.push(Number(finalData[i].on_hold));
+    closedData.push(Number(finalData[i].closed_count));
+  }
+
+  const chartData = {
+    labels,
    datasets: [
   {
     label: "Open",
-    data: [55, 45, 58],
+    data: openData,
     backgroundColor: "#3B82F6",
     borderColor: "#FFFFFF",
     borderWidth: 2,
@@ -28,7 +69,7 @@ function TicketEscalation() {
   },
   {
     label: "In Progress",
-    data: [22, 25, 23],
+    data: inProgressData,
     backgroundColor: "#F59E0B",
     borderColor: "#FFFFFF",
     borderWidth: 2,
@@ -37,7 +78,7 @@ function TicketEscalation() {
   },
   {
     label: "On-Hold",
-    data: [15, 18, 14],
+    data: onHoldData,
     backgroundColor: "#64748B",
     borderColor: "#FFFFFF",
     borderWidth: 2,
@@ -45,8 +86,8 @@ function TicketEscalation() {
     stack: "tickets",
   },
   {
-    label: "Cancelled",
-    data: [6, 5, 6],
+    label: "Closed",
+    data: closedData,
     backgroundColor: "#EF4444",
     borderColor: "#FFFFFF",
     borderWidth: 2,
@@ -113,7 +154,7 @@ function TicketEscalation() {
       period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
     >
       <div className="h-full">
-        <Bar data={data} options={options} />
+        <Bar data={chartData} options={options} />
       </div>
     </Card>
   );
