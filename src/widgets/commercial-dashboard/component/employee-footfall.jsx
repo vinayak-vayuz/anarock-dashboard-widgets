@@ -76,7 +76,7 @@ const EmployeeFootfall = () => {
       className="w-full h-[238px]"
       title={
         <div className="flex items-center gap-2">
-          <WorkOutlineIcon className="text-[#8B5CF6]" />
+          <WorkOutlineIcon className="!text-[20px] text-[#8B5CF6]" />
           <span className="font-semibold">Employee Footfall</span>
         </div>
       }

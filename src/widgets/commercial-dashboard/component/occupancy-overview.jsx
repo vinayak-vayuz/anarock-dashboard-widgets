@@ -53,7 +53,7 @@ const OccupancyOverviewCard = ({
     <div>
       <div className="bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]">
         <div className="flex items-center gap-[12px] mb-4">
-          <GoPeople className="h-6 w-6 text-[#329DFF]" />
+          <GoPeople className="!text-[20px] text-[#329DFF]" />
           <div className="font-medium text-[#121212]">Occupancy Overview</div>
         </div>
 

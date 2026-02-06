@@ -8,7 +8,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
+import { FaArrowUpShortWide } from "react-icons/fa6";
 import Card from "../../components/Card";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -106,11 +106,11 @@ function TicketEscalation() {
       className="h-[267px]"
       title={
         <div className="flex items-center gap-2">
-          <TrendingUpOutlinedIcon className="text-blue-500" />
+          <FaArrowUpShortWide className="!text-[20px] text-[#3C81F6]" />
           <span className="font-semibold">Ticket Escalation Levels</span>
         </div>
       }
-      period={<span className="text-sm text-gray-400">Today</span>}
+      period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
     >
       <div className="h-full">
         <Bar data={data} options={options} />

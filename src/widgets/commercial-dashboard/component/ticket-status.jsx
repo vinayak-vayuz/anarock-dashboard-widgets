@@ -4,9 +4,10 @@ import {
     Pie,
     Cell,
     ResponsiveContainer,
+    Tooltip
 } from "recharts";
-import ConfirmationNumberOutlinedIcon from "@mui/icons-material/ConfirmationNumberOutlined";
 import Card from "../../components/Card";
+import { LuReceiptText } from "react-icons/lu";
 
 const data = [
     { name: "Completed", value: 156, color: "#10B981" },
@@ -18,17 +19,37 @@ const data = [
 
 const total = data.reduce((sum, item) => sum + item.value, 0);
 
+const CustomTooltip = ({ active, payload }) => {
+    if (!active || !payload || !payload.length) return null;
+
+    return (
+        <div
+            style={{
+                backgroundColor: "#000000",
+                color: "#ffffff",
+                padding: "8px 10px",
+                borderRadius: "8px",
+                fontSize: "12px",
+            }}
+        >
+            <div className="font-medium">{payload[0].name}</div>
+            <div>{payload[0].value}</div>
+        </div>
+    );
+};
+
+
 function TicketStatus() {
     return (
         <Card
             className="h-[267px]"
             title={
                 <div className="flex items-center gap-2">
-                    <ConfirmationNumberOutlinedIcon className="text-red-500" />
+                    <LuReceiptText className="!text-[20px] text-[#EF4444]" />
                     <span className="font-semibold">Ticket Status</span>
                 </div>
             }
-            period={<span className="text-sm text-gray-400">Today</span>}
+            period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
         >
             <div className="flex h-full items-center gap-4">
 
@@ -47,10 +68,14 @@ function TicketStatus() {
                                     <Cell key={index} fill={entry.color} />
                                 ))}
                             </Pie>
+                            <Tooltip
+                                content={<CustomTooltip />}
+                                wrapperStyle={{ zIndex: 1000 }}
+                            />
                         </PieChart>
                     </ResponsiveContainer>
 
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                         <p className="text-lg font-semibold">
                             156<span className="text-[18.18px] leading-[22.22px] text-[#121212]">/{total}</span>
                         </p>

@@ -8,11 +8,11 @@ function FoodBeverages() {
       className="h-[324px]"
       title={
         <div className="flex items-center gap-2">
-          <RestaurantOutlinedIcon className="text-orange-500" />
+          <RestaurantOutlinedIcon className="!text-[20px] text-[#FA7E28]" />
           <span className="font-semibold">Food & Beverages</span>
         </div>
       }
-      period={<span className="text-sm text-gray-400">Today</span>}
+      period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
     >
       <div className="flex flex-col h-full">
 

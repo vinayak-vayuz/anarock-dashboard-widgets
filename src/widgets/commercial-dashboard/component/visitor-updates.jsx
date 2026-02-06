@@ -8,8 +8,8 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
 import Card from "../../components/Card";
+import { LuDoorOpen } from "react-icons/lu";
 
 const data = [
   { time: "10 AM", walkins: 22, approved: 30 },
@@ -25,7 +25,7 @@ function VisitorUpdates() {
       className="h-[377px]"
       title={
         <div className="flex items-center gap-2">
-          <EventAvailableOutlinedIcon className="text-purple-500" />
+          <LuDoorOpen className="!text-[20px] text-[#8B5CF6]" />
           <span className="font-semibold">Visitor Updates</span>
         </div>
       }
