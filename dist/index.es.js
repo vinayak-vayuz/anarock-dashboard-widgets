@@ -50573,7 +50573,7 @@ const W2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
 }) => {
   const r = t + n;
   return /* @__PURE__ */ b.jsx("div", { children: /* @__PURE__ */ b.jsxs("div", { className: "bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]", children: [
-    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-[12px] h-[20px] mb-6", children: [
+    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-[12px] h-[20px]", style: { marginBottom: "24px" }, children: [
       /* @__PURE__ */ b.jsx(ob, { className: "!text-[20px] text-[#329DFF]" }),
       /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Occupancy Overview" })
     ] }),
