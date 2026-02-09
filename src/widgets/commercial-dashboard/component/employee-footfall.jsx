@@ -62,6 +62,7 @@ const EmployeeFootfall = () => {
     color: "#64748B",
   },
   grid: {
+    display: false,  
     color: "#E5E7EB",
     borderDash: [4, 4],
     drawBorder: false,
@@ -82,7 +83,12 @@ const EmployeeFootfall = () => {
       }
       period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
     >
-      <div className="mb-4 mt-2">
+  <div
+  style={{
+    marginBottom: "16px",
+    marginTop: "8px",
+  }}
+>
         <div className="text-[12px] leading-[16px] text-[#64748B]">Employees Inside</div>
         <div className="text-[20px] leading-[24px] font-medium text-[#1FA05B]">7,500</div>
       </div>

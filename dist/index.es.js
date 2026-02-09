@@ -50652,6 +50652,7 @@ const lue = () => {
           color: "#64748B"
         },
         grid: {
+          display: !1,
           color: "#E5E7EB",
           borderDash: [4, 4],
           drawBorder: !1
@@ -50669,10 +50670,19 @@ const lue = () => {
       ] }),
       period: /* @__PURE__ */ b.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
       children: [
-        /* @__PURE__ */ b.jsxs("div", { className: "mb-4 mt-2", children: [
-          /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Employees Inside" }),
-          /* @__PURE__ */ b.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#1FA05B]", children: "7,500" })
-        ] }),
+        /* @__PURE__ */ b.jsxs(
+          "div",
+          {
+            style: {
+              marginBottom: "16px",
+              marginTop: "8px"
+            },
+            children: [
+              /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Employees Inside" }),
+              /* @__PURE__ */ b.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#1FA05B]", children: "7,500" })
+            ]
+          }
+        ),
         /* @__PURE__ */ b.jsx("div", { className: "h-[97px]", children: /* @__PURE__ */ b.jsx(Ol, { data: t, options: n }) })
       ]
     }
@@ -51024,7 +51034,7 @@ function fue({ data: e = null }) {
                     style: { backgroundColor: o.color }
                   }
                 ),
-                /* @__PURE__ */ b.jsx("div", { className: "text-gray-500", children: o.name })
+                /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: o.name })
               ] }),
               /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px] font-medium", children: o.value })
             ]

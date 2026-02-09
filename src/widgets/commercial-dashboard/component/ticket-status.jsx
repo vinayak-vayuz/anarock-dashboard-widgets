@@ -104,7 +104,7 @@ const CustomTooltip = ({ active, payload }) => {
                                     className="h-[7px] w-[16px]"
                                     style={{ backgroundColor: item.color }}
                                 />
-                                <div className="text-gray-500">{item.name}</div>
+                                <div className="text-[12px] leading-[16px] text-[#64748B]">{item.name}</div>
                             </div>
                             <div className="text-[#64748B] text-[12px] leading-[16px] font-medium">
                                 {item.value}
