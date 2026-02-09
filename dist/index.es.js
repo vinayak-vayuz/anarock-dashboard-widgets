@@ -50559,12 +50559,12 @@ const W2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
     /* @__PURE__ */ b.jsx("div", { className: "w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden", children: /* @__PURE__ */ b.jsx(
       "div",
       {
-        className: `h-3 rounded-full ${n}`,
+        className: `h-[11px] rounded-full ${n}`,
         style: { width: `${i}%` }
       }
     ) }),
     /* @__PURE__ */ b.jsx("div", { className: `${o} !text-[12px] font-bold mt-1`, children: e }),
-    /* @__PURE__ */ b.jsx("div", { className: "!text-[12px] text-[#64748B] mt-1", children: r })
+    /* @__PURE__ */ b.jsx("div", { className: "!text-[12px] leading-[16px] text-[#64748B] mt-1", children: r })
   ] });
 }, sue = ({
   occupiedUnits: e = 9e3,
@@ -50573,13 +50573,13 @@ const W2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
 }) => {
   const r = t + n;
   return /* @__PURE__ */ b.jsx("div", { children: /* @__PURE__ */ b.jsxs("div", { className: "bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]", children: [
-    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-[12px] mb-4", children: [
+    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-[12px] h-[20px] mb-6", children: [
       /* @__PURE__ */ b.jsx(ob, { className: "!text-[20px] text-[#329DFF]" }),
       /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Occupancy Overview" })
     ] }),
-    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center justify-between", children: [
+    /* @__PURE__ */ b.jsxs("div", { className: "flex items-start justify-between", children: [
       /* @__PURE__ */ b.jsxs("div", { children: [
-        /* @__PURE__ */ b.jsx("div", { className: "text-xs leading-[16px] text-[#64748B]", children: "Total Occupants" }),
+        /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B] font-normal", children: "Total Occupants" }),
         /* @__PURE__ */ b.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: e }) })
       ] }),
       /* @__PURE__ */ b.jsxs("div", { className: "flex items-end", children: [
@@ -50613,11 +50613,11 @@ const lue = () => {
       {
         data: [2e3, 1700, 1500, 1200, 900, 800],
         backgroundColor: [
-          "#3B82F6",
-          "#EF4444",
-          "#7C3AED",
-          "#F59E0B",
-          "#84CC16",
+          "#329DFF",
+          "#EF4645",
+          "#8A2E64",
+          "#F69E0A",
+          "#A2BB40",
           "#8B5CF6"
         ],
         barThickness: 34
@@ -50669,9 +50669,9 @@ const lue = () => {
       ] }),
       period: /* @__PURE__ */ b.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
       children: [
-        /* @__PURE__ */ b.jsxs("div", { className: "mb-6", children: [
-          /* @__PURE__ */ b.jsx("p", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Employees Inside" }),
-          /* @__PURE__ */ b.jsx("p", { className: "text-[20px] leading-[24px] font-medium text-[#1FA05B]", children: "7,500" })
+        /* @__PURE__ */ b.jsxs("div", { className: "mb-4 mt-2", children: [
+          /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Employees Inside" }),
+          /* @__PURE__ */ b.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#1FA05B]", children: "7,500" })
         ] }),
         /* @__PURE__ */ b.jsx("div", { className: "h-[97px]", children: /* @__PURE__ */ b.jsx(Ol, { data: t, options: n }) })
       ]

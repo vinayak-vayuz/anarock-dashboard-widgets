@@ -21,11 +21,11 @@ const EmployeeFootfall = () => {
       {
         data: [2000, 1700, 1500, 1200, 900, 800],
         backgroundColor: [
-          "#3B82F6",
-          "#EF4444",
-          "#7C3AED",
-          "#F59E0B",
-          "#84CC16",
+          "#329DFF",
+          "#EF4645",
+          "#8A2E64",
+          "#F69E0A",
+          "#A2BB40",
           "#8B5CF6",
         ],
         barThickness: 34,
@@ -82,9 +82,9 @@ const EmployeeFootfall = () => {
       }
       period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
     >
-      <div className="mb-6">
-        <p className="text-[12px] leading-[16px] text-[#64748B]">Employees Inside</p>
-        <p className="text-[20px] leading-[24px] font-medium text-[#1FA05B]">7,500</p>
+      <div className="mb-4 mt-2">
+        <div className="text-[12px] leading-[16px] text-[#64748B]">Employees Inside</div>
+        <div className="text-[20px] leading-[24px] font-medium text-[#1FA05B]">7,500</div>
       </div>
 
       <div className="h-[97px]">
