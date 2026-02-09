@@ -50577,7 +50577,7 @@ const W2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
       /* @__PURE__ */ b.jsx(ob, { className: "!text-[20px] text-[#329DFF]" }),
       /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Occupancy Overview" })
     ] }),
-    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center justify-between gap-", children: [
+    /* @__PURE__ */ b.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ b.jsxs("div", { children: [
         /* @__PURE__ */ b.jsx("div", { className: "text-xs leading-[16px] text-[#64748B]", children: "Total Occupants" }),
         /* @__PURE__ */ b.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: e }) })
@@ -50589,7 +50589,7 @@ const W2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
             value: t,
             total: r,
             colorClass: "bg-[#8B5CF6]",
-            label: "Owner"
+            label: "Employees"
           }
         ),
         /* @__PURE__ */ b.jsx(
@@ -50598,7 +50598,7 @@ const W2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
             value: n,
             total: r,
             colorClass: "bg-[#12B981]",
-            label: "Tenant"
+            label: "Admins"
           }
         )
       ] })

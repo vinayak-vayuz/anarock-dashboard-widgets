@@ -57,7 +57,7 @@ const OccupancyOverviewCard = ({
           <div className="font-medium text-[#121212]">Occupancy Overview</div>
         </div>
 
-        <div className="flex items-center justify-between gap-">
+        <div className="flex items-center justify-between">
           <div>
             <div className="text-xs leading-[16px] text-[#64748B]">
               Total Occupants
@@ -74,13 +74,13 @@ const OccupancyOverviewCard = ({
               value={EmployeesCount}
               total={barTotal}
               colorClass="bg-[#8B5CF6]"
-              label="Owner"
+              label="Employees"
             />
             <MiniPill
               value={AdminsCount}
               total={barTotal}
               colorClass="bg-[#12B981]"
-              label="Tenant"
+              label="Admins"
             />
           </div>
         </div>
