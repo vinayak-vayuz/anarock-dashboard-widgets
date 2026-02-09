@@ -39224,14 +39224,14 @@ function kce({ isStatic: e, data: t, communities: n }) {
       value: Number(t?.total_surveys || 0),
       color: r[3]
     }
-  ];
+  ], o = t?.widget === "commercial";
   return /* @__PURE__ */ b.jsx(
     ts,
     {
       title: "Engagement",
       period: "This Month",
       icon: /* @__PURE__ */ b.jsx(vC, { className: "!text-[24px] text-[#DBB467]" }),
-      className: `${e && "max-h-[303px]"} h-[303px] gap-[20px]`,
+      className: `${e && "max-h-[303px]"}  ${o ? "h-[324px]" : "h-[303px]"} gap-[20px]`,
       actionButtons: /* @__PURE__ */ b.jsx(
         wl,
         {
@@ -39291,7 +39291,7 @@ function kce({ isStatic: e, data: t, communities: n }) {
                 cursor: { fill: "transparent" }
               }
             ),
-            /* @__PURE__ */ b.jsx(hc, { dataKey: "value", barSize: 40, isAnimationActive: !1, children: i.map((o, a) => /* @__PURE__ */ b.jsx(Gr, { fill: r[a] }, o.name)) })
+            /* @__PURE__ */ b.jsx(hc, { dataKey: "value", barSize: 40, isAnimationActive: !1, children: i.map((a, s) => /* @__PURE__ */ b.jsx(Gr, { fill: r[s] }, a.name)) })
           ]
         }
       ) }) })
@@ -50665,7 +50665,7 @@ const lue = () => {
       className: "w-full h-[238px]",
       title: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ b.jsx(H5, { className: "!text-[20px] text-[#8B5CF6]" }),
-        /* @__PURE__ */ b.jsx("span", { className: "font-semibold", children: "Employee Footfall" })
+        /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Employee Footfall" })
       ] }),
       period: /* @__PURE__ */ b.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
       children: [
@@ -50685,28 +50685,28 @@ function cue() {
       className: "h-[324px]",
       title: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ b.jsx(V5, { className: "!text-[20px] text-[#FA7E28]" }),
-        /* @__PURE__ */ b.jsx("span", { className: "font-semibold", children: "Food & Beverages" })
+        /* @__PURE__ */ b.jsx("div", { className: "font-semibold", children: "Food & Beverages" })
       ] }),
-      period: /* @__PURE__ */ b.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
+      period: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
       children: /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col h-full", children: [
         /* @__PURE__ */ b.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
           /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Orders" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: "247" })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Orders" }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: "247" })
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: "₹ 82K" }),
-            /* @__PURE__ */ b.jsx("span", { className: "inline-block mt-2 text-[10px] leading-[14px] text-[#1FA05B] bg-green-50 px-2 py-1 rounded-full", children: "+8% from last month" })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: "₹ 82K" }),
+            /* @__PURE__ */ b.jsx("div", { className: "inline-block mt-2 text-[10px] leading-[14px] text-[#1FA05B] bg-green-50 px-2 py-1 rounded-full", children: "+8% from last month" })
           ] })
         ] }),
         /* @__PURE__ */ b.jsxs("div", { className: "space-y-5", children: [
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
-              /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "HP" }),
-              /* @__PURE__ */ b.jsxs("span", { className: "font-medium text-[12px] leading-[16px]", children: [
-                /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B]", children: "120 orders" }),
-                /* @__PURE__ */ b.jsx("span", { className: "mx-2 text-[#121212]", children: "₹ 45K" })
+              /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "HP" }),
+              /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
+                /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] inline-block", children: "120 orders" }),
+                /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline-block", children: "₹ 45K" })
               ] })
             ] }),
             /* @__PURE__ */ b.jsx("div", { className: "h-3 bg-gray-100 rounded-full", children: /* @__PURE__ */ b.jsx(
@@ -50719,10 +50719,10 @@ function cue() {
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
-              /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "Adobe" }),
-              /* @__PURE__ */ b.jsxs("span", { className: "font-medium text-[12px] leading-[16px]", children: [
-                /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B]", children: "85 orders" }),
-                /* @__PURE__ */ b.jsx("span", { className: "mx-2 text-[#121212]", children: "₹ 23K" })
+              /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "Adobe" }),
+              /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
+                /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] inline-block", children: "85 orders" }),
+                /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline-block", children: "₹ 23K" })
               ] })
             ] }),
             /* @__PURE__ */ b.jsx("div", { className: "h-3 bg-gray-100 rounded-full", children: /* @__PURE__ */ b.jsx(
@@ -50735,10 +50735,10 @@ function cue() {
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
-              /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "Anarock" }),
-              /* @__PURE__ */ b.jsxs("span", { className: "font-medium text-[12px] leading-[16px]", children: [
-                /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B]", children: "42 orders" }),
-                /* @__PURE__ */ b.jsx("span", { className: "mx-2 text-[#121212]", children: "₹ 14K" })
+              /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "Anarock" }),
+              /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
+                /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] inline-block", children: "42 orders" }),
+                /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline-block", children: "₹ 14K" })
               ] })
             ] }),
             /* @__PURE__ */ b.jsx("div", { className: "h-3 bg-gray-100 rounded-full", children: /* @__PURE__ */ b.jsx(
@@ -50913,6 +50913,7 @@ function due({ data: e = [] }) {
         stacked: !0,
         beginAtZero: !0,
         grid: {
+          display: !1,
           color: "#E5E7EB",
           borderDash: [4, 4],
           drawBorder: !1
@@ -50973,7 +50974,7 @@ function fue({ data: e = null }) {
       className: "h-[267px]",
       title: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ b.jsx(gv, { className: "!text-[20px] text-[#EF4444]" }),
-        /* @__PURE__ */ b.jsx("span", { className: "font-semibold", children: "Ticket Status" })
+        /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Ticket Status" })
       ] }),
       period: /* @__PURE__ */ b.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
       children: /* @__PURE__ */ b.jsxs("div", { className: "flex h-full items-center gap-4", children: [
@@ -51000,14 +51001,14 @@ function fue({ data: e = null }) {
             )
           ] }) }),
           /* @__PURE__ */ b.jsxs("div", { className: "absolute inset-0 flex flex-col items-center justify-center pointer-events-none", children: [
-            /* @__PURE__ */ b.jsxs("p", { className: "text-lg font-semibold", children: [
-              Number(n.completed),
-              /* @__PURE__ */ b.jsxs("span", { className: "text-[18.18px] leading-[22.22px] text-[#121212]", children: [
+            /* @__PURE__ */ b.jsxs("div", { className: "flex items-baseline text-[18px] leading-[22px] font-medium text-[#121212]", children: [
+              /* @__PURE__ */ b.jsx("div", { children: Number(n.completed) }),
+              /* @__PURE__ */ b.jsxs("div", { className: "text-[18.18px] leading-[22.22px] text-[#121212]", children: [
                 "/",
                 i
               ] })
             ] }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[10.1px] leading-[14.14px] text-[#64748B]", children: "Completed" })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[10.1px] leading-[14.14px] text-[#64748B]", children: "Completed" })
           ] })
         ] }),
         /* @__PURE__ */ b.jsx("div", { className: "flex-1 space-y-2", children: r.map((o) => /* @__PURE__ */ b.jsxs(
@@ -51017,15 +51018,15 @@ function fue({ data: e = null }) {
             children: [
               /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
                 /* @__PURE__ */ b.jsx(
-                  "span",
+                  "div",
                   {
                     className: "h-[7px] w-[16px]",
                     style: { backgroundColor: o.color }
                   }
                 ),
-                /* @__PURE__ */ b.jsx("span", { className: "text-gray-500", children: o.name })
+                /* @__PURE__ */ b.jsx("div", { className: "text-gray-500", children: o.name })
               ] }),
-              /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px] font-medium", children: o.value })
+              /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px] font-medium", children: o.value })
             ]
           },
           o.name
@@ -51087,36 +51088,36 @@ function pue({ data: e }) {
       className: "h-[377px]",
       title: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ b.jsx(rb, { className: "!text-[20px] text-[#8B5CF6]" }),
-        /* @__PURE__ */ b.jsx("span", { className: "font-semibold", children: "Visitor Updates" })
+        /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Visitor Updates" })
       ] }),
-      period: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2 text-sm text-gray-400", children: [
-        /* @__PURE__ */ b.jsx("span", { className: "h-2 w-2 rounded-full bg-green-500" }),
+      period: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-1 text-[12px] leading-[16px] text-[#64748B]", children: [
+        /* @__PURE__ */ b.jsx("div", { className: "h-[5px] w-[5px] rounded-full bg-[#12B981]" }),
         "Today at 04:00 PM"
       ] }),
-      children: /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col ", children: [
+      children: /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col mt-2 ", children: [
         /* @__PURE__ */ b.jsxs("div", { className: "grid grid-cols-2 gap-y-4 gap-x-6 mb-6", children: [
           /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Total Visitors" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[20px] leading-[24px] font-medium text-[#08B6D4]", children: n.totalVisitorsToday })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Total Visitors" }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#08B6D4]", children: n.totalVisitorsToday })
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Peak Time" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[20px] leading-[24px] font-medium text-[#8B5CF6]", children: n.peakTime })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Peak Time" }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#8B5CF6]", children: n.peakTime })
           ] }),
-          /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Active Walk-ins" }),
-            /* @__PURE__ */ b.jsxs("p", { className: "text-xl font-medium", children: [
-              /* @__PURE__ */ b.jsx("span", { className: "text-[28px] leading-[32px] text-[#1FA05B]", children: r.walkins.currently_inside }),
+          /* @__PURE__ */ b.jsxs("div", { className: "mt-2", children: [
+            /* @__PURE__ */ b.jsx("div", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Active Walk-ins" }),
+            /* @__PURE__ */ b.jsxs("div", { className: "text-xl font-medium", children: [
+              /* @__PURE__ */ b.jsx("span", { className: "text-[28px] font-medium leading-[32px] text-[#1FA05B]", children: r.walkins.currently_inside }),
               /* @__PURE__ */ b.jsxs("span", { className: "text-gray-400", children: [
                 "/",
                 r.walkins.total_visited_today
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Pre-approved Check-ins" }),
-            /* @__PURE__ */ b.jsxs("p", { className: "text-xl font-medium", children: [
-              /* @__PURE__ */ b.jsx("span", { className: "text-[28px] leading-[32px] text-[#E7A015]", children: r.preApproved.completed_visits }),
+          /* @__PURE__ */ b.jsxs("div", { className: "mt-2", children: [
+            /* @__PURE__ */ b.jsx("div", { className: "text-[10px] leading-[14px] text-[#64748B]", children: "Pre-approved Check-ins" }),
+            /* @__PURE__ */ b.jsxs("div", { className: "text-xl font-medium", children: [
+              /* @__PURE__ */ b.jsx("span", { className: "text-[28px] font-medium leading-[32px] text-[#E7A015]", children: r.preApproved.completed_visits }),
               /* @__PURE__ */ b.jsxs("span", { className: "text-gray-400", children: [
                 "/",
                 r.preApproved.total_expected_today
@@ -51137,7 +51138,7 @@ function pue({ data: e }) {
             vl,
             {
               dataKey: "time",
-              tick: { fill: "#64748B", fontSize: 12 },
+              tick: { fill: "#121212", fontSize: 12 },
               axisLine: !1,
               tickLine: !1
             }

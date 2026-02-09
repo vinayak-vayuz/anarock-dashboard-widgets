@@ -131,6 +131,7 @@ function TicketEscalation({ data = [] }) {
         stacked: true,
         beginAtZero: true,
         grid: {
+          display: false,   
           color: "#E5E7EB",
           borderDash: [4, 4],
           drawBorder: false,

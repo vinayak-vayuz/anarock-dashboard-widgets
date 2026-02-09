@@ -79,54 +79,54 @@ function VisitorUpdates({ data }) {
       title={
         <div className="flex items-center gap-2">
           <LuDoorOpen className="!text-[20px] text-[#8B5CF6]" />
-          <span className="font-semibold">Visitor Updates</span>
+          <div className="font-medium text-[#121212]">Visitor Updates</div>
         </div>
       }
       period={
-        <div className="flex items-center gap-2 text-sm text-gray-400">
-          <span className="h-2 w-2 rounded-full bg-green-500" />
+        <div className="flex items-center gap-1 text-[12px] leading-[16px] text-[#64748B]">
+          <div className="h-[5px] w-[5px] rounded-full bg-[#12B981]" />
           Today at 04:00 PM
         </div>
       }
     >
-      <div className="flex flex-col ">
+      <div className="flex flex-col mt-2 ">
         <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-6">
           <div>
-            <p className="text-[10px] leading-[14px] text-[#64748B]">Total Visitors</p>
-            <p className="text-[20px] leading-[24px] font-medium text-[#08B6D4]">{summary.totalVisitorsToday}</p>
+            <div className="text-[10px] leading-[14px] text-[#64748B]">Total Visitors</div>
+            <div className="text-[20px] leading-[24px] font-medium text-[#08B6D4]">{summary.totalVisitorsToday}</div>
           </div>
 
           <div>
-            <p className="text-[10px] leading-[14px] text-[#64748B]">Peak Time</p>
-            <p className="text-[20px] leading-[24px] font-medium text-[#8B5CF6]">
+            <div className="text-[10px] leading-[14px] text-[#64748B]">Peak Time</div>
+            <div className="text-[20px] leading-[24px] font-medium text-[#8B5CF6]">
               {summary.peakTime}
-            </p>
+            </div>
           </div>
 
-          <div>
-            <p className="text-[10px] leading-[14px] text-[#64748B]">Active Walk-ins</p>
-           <p className="text-xl font-medium">
-              <span className="text-[28px] leading-[32px] text-[#1FA05B]">
+          <div className="mt-2">
+            <div className="text-[10px] leading-[14px] text-[#64748B]">Active Walk-ins</div>
+           <div className="text-xl font-medium">
+              <span className="text-[28px] font-medium leading-[32px] text-[#1FA05B]">
                 {popup.walkins.currently_inside}
               </span>
               <span className="text-gray-400">
                 /{popup.walkins.total_visited_today}
               </span>
-            </p>
+            </div>
           </div>
 
-          <div>
-            <p className="text-[10px] leading-[14px] text-[#64748B]">
+          <div className="mt-2">
+            <div className="text-[10px] leading-[14px] text-[#64748B]">
               Pre-approved Check-ins
-            </p>
-            <p className="text-xl font-medium">
-              <span className="text-[28px] leading-[32px] text-[#E7A015]">
+            </div>
+            <div className="text-xl font-medium">
+              <span className="text-[28px] font-medium leading-[32px] text-[#E7A015]">
                 {popup.preApproved.completed_visits}
               </span>
               <span className="text-gray-400">
                 /{popup.preApproved.total_expected_today}
               </span>
-            </p>
+            </div>
           </div>
         </div>
 
@@ -140,7 +140,7 @@ function VisitorUpdates({ data }) {
               />
               <XAxis
                 dataKey="time"
-                tick={{ fill: "#64748B", fontSize: 12 }}
+                tick={{ fill: "#121212", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
               />

@@ -51,7 +51,7 @@ const CustomTooltip = ({ active, payload }) => {
             title={
                 <div className="flex items-center gap-2">
                     <LuReceiptText className="!text-[20px] text-[#EF4444]" />
-                    <span className="font-semibold">Ticket Status</span>
+                    <div className="font-medium text-[#121212]">Ticket Status</div>
                 </div>
             }
             period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
@@ -81,18 +81,18 @@ const CustomTooltip = ({ active, payload }) => {
                     </ResponsiveContainer>
 
                     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                        <p className="text-lg font-semibold">
-              {Number(finalData.completed)}
-              <span className="text-[18.18px] leading-[22.22px] text-[#121212]">
-                /{total}
-              </span>
-            </p>
-            <p className="text-[10.1px] leading-[14.14px] text-[#64748B]">
+                      <div className="flex items-baseline text-[18px] leading-[22px] font-medium text-[#121212]">
+  <div>{Number(finalData.completed)}</div>
+  <div className="text-[18.18px] leading-[22.22px] text-[#121212]">
+    /{total}
+  </div>
+</div>
+
+            <div className="text-[10.1px] leading-[14.14px] text-[#64748B]">
               Completed
-            </p>
+            </div>
           </div>
         </div>
-
                 <div className="flex-1 space-y-2">
                     {chartData.map((item) => (
                         <div
@@ -100,15 +100,15 @@ const CustomTooltip = ({ active, payload }) => {
                             className="flex items-center justify-between text-sm"
                         >
                             <div className="flex items-center gap-2">
-                                <span
+                                <div
                                     className="h-[7px] w-[16px]"
                                     style={{ backgroundColor: item.color }}
                                 />
-                                <span className="text-gray-500">{item.name}</span>
+                                <div className="text-gray-500">{item.name}</div>
                             </div>
-                            <span className="text-[#64748B] text-[12px] leading-[16px] font-medium">
+                            <div className="text-[#64748B] text-[12px] leading-[16px] font-medium">
                                 {item.value}
-                            </span>
+                            </div>
                         </div>
                     ))}
                 </div>

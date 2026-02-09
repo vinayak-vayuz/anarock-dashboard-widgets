@@ -37,12 +37,13 @@ function Engagement({ isStatic, data, communities }) {
     },
   ];
 
+  const isCommercial = data?.widget === "commercial";
   return (
     <Card
       title="Engagement"
       period="This Month"
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
-      className={`${isStatic && "max-h-[303px]"} h-[303px] gap-[20px]`}
+      className={`${isStatic && "max-h-[303px]"}  ${isCommercial ? "h-[324px]" : "h-[303px]"} gap-[20px]`}
       actionButtons={
         <ActionButtons
           widgetId={data?.widget_id}
