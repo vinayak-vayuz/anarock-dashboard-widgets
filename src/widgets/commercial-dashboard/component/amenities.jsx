@@ -3,104 +3,138 @@ import Card from "../../components/Card";
 import { FaSwimmingPool } from "react-icons/fa";
 
 function Amenities({ data }) {
-    const { amenitySummary, chartData } = data || {};
+  const overviewAmenities = data?.OVERVIEW_AMENITIES || {};
+  const amenitySummary = overviewAmenities?.amenitySummary || {};
+  const chartData = Array.isArray(overviewAmenities?.chartData)
+    ? overviewAmenities.chartData
+    : [];
 
-    const amenitiesList = Array.isArray(chartData) ? chartData : [];
+  const totalBookings = amenitySummary?.totalBookings || 0;
 
+  const totalForProgress = chartData.reduce((sum, item) => {
+    const bookings = item?.isPaid
+      ? item?.paid_bookings || 0
+      : item?.unpaid_bookings || 0;
 
-    console.log("Amenities data:", amenitySummary);
-    console.log("Dattttttaaaa", data);
-    return (
-        <Card
-            className="h-[324px]"
-            title={
-                <div className="flex items-center gap-2">
-                    <FaSwimmingPool className="!text-[20px] text-[#884EA7]" />
-                    <span className="font-semibold">Amenities</span>
-                </div>
-            }
-            period={
-                <span className="text-[12px] leading-[16px] text-[#64748B]">
-                    Today
-                </span>
-            }
-        >
-            <div className="flex flex-col h-full">
-                <div className="grid grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <p className="text-[12px] leading-[16px] text-[#64748B]">
-                            Total Bookings
-                        </p>
-                        <p className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
-                            {amenitySummary?.totalBookings ?? 0}
-                        </p>
-                    </div>
+    return sum + bookings;
+  }, 0);
 
-                    <div>
-                        <p className="text-[12px] leading-[16px] text-[#64748B]">
-                            Revenue Generated
-                        </p>
-                        <p className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
-                            {amenitySummary?.todayPaidRevenue ?? "₹0.0"}
-                        </p>
+  const amenitiesList = chartData.map((item) => {
+    const bookings = item?.isPaid
+      ? item?.paid_bookings || 0
+      : item?.unpaid_bookings || 0;
 
-                        {amenitySummary?.growth && (
-                            <span
-                                className={`inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full
-                                ${
-                                    amenitySummary.growth.isPositive
-                                        ? "text-[#1FA05B] bg-green-50"
-                                        : "text-red-600 bg-red-50"
-                                }`}
-                            >
-                                {amenitySummary.growth.percentage}{" "}
-                                {amenitySummary.growth.label}
-                            </span>
-                        )}
-                    </div>
-                </div>
+    const revenue = item?.isPaid ? `₹${item?.paid_revenue || "0.00"}` : "₹0.00";
 
-                <div className="space-y-5">
-                    {amenitiesList.length > 0 ? (
-                        amenitiesList.map((item, index) => (
-                            <div key={index}>
-                                <div className="flex justify-between text-sm mb-2">
-                                    <span className="text-[#64748B] text-[12px] leading-[16px]">
-                                        {item.name}
-                                    </span>
-                                    <span className="font-medium text-[12px] leading-[16px]">
-                                        <span className="text-[#64748B]">
-                                            {item.bookings} bookings
-                                        </span>
-                                        <span className="mx-2 text-[#121212]">
-                                            {item.revenue}
-                                        </span>
-                                    </span>
-                                </div>
+    const percentage =
+      totalForProgress > 0 ? Math.round((bookings / totalForProgress) * 100) : 0;
 
-                                <div className="h-3 bg-gray-100 rounded-full">
-                                    <div
-                                        className={`h-3 rounded-full ${
-                                            item.color || "bg-slate-400"
-                                        }`}
-                                        style={{
-                                            width: `${item.percentage || 0}%`,
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <div className="flex items-center justify-center h-[120px]">
-                            <p className="text-[12px] text-[#94A3B8]">
-                                No amenity usage data available
-                            </p>
-                        </div>
-                    )}
-                </div>
+    return {
+      name: item?.facility_name || "Unknown",
+      bookings,
+      revenue,
+      percentage,
+      color: item?.isPaid ? "bg-violet-500" : "bg-slate-400",
+      isPaid: item?.isPaid,
+    };
+  });
+
+  const growthPercentage =
+    typeof amenitySummary?.growth_percentage === "number"
+      ? amenitySummary.growth_percentage
+      : null;
+
+  const isGrowthPositive = growthPercentage !== null ? growthPercentage >= 0 : true;
+
+  return (
+    <Card
+      className="h-[324px]"
+      title={
+        <div className="flex items-center gap-2">
+          <FaSwimmingPool className="!text-[20px] text-[#884EA7]" />
+          <div className="font-semibold">Amenities</div>
+        </div>
+      }
+      period={
+        <div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>
+      }
+    >
+      <div className="flex flex-col h-full">
+        <div className="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <div className="text-[12px] leading-[16px] text-[#64748B]">
+              Total Bookings
             </div>
-        </Card>
-    );
+            <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
+              {totalBookings}
+            </div>
+          </div>
+
+          <div>
+            <div className="text-[12px] leading-[16px] text-[#64748B]">
+              Revenue Generated
+            </div>
+
+            <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
+              ₹{amenitySummary?.todayPaidRevenue ?? "0.00"}
+            </div>
+
+            {growthPercentage !== null && (
+              <div
+                className={`inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full
+                ${
+                  isGrowthPositive
+                    ? "text-[#1FA05B] bg-green-50"
+                    : "text-red-600 bg-red-50"
+                }`}
+              >
+                {growthPercentage}% from last month
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="space-y-5">
+          {amenitiesList.length > 0 ? (
+            amenitiesList.map((item, index) => (
+              <div key={index}>
+                <div className="flex justify-between text-sm mb-2">
+                  <div className="text-[#64748B] text-[12px] leading-[16px]">
+                    {item.name}
+                  </div>
+
+                  <div className="font-medium text-[12px] leading-[16px]">
+                    <div className="text-[#64748B] inline">
+                      {item.bookings} bookings
+                    </div>
+
+                    <div className="mx-2 text-[#121212] inline">
+                      {item.revenue}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-3 bg-gray-100 rounded-full">
+                  <div
+                    className={`h-3 rounded-full ${item.color}`}
+                    style={{
+                      width: `${item.percentage}%`,
+                    }}
+                  />
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="flex items-center justify-center h-[120px]">
+              <div className="text-[12px] text-[#94A3B8]">
+                No amenity usage data available
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </Card>
+  );
 }
 
 export default Amenities;

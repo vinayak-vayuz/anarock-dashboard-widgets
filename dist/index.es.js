@@ -50766,60 +50766,75 @@ function uue() {
   );
 }
 function due({ data: e }) {
-  const { amenitySummary: t, chartData: n } = e || {}, r = Array.isArray(n) ? n : [];
-  return console.log("Amenities data:", t), console.log("Dattttttaaaa", e), /* @__PURE__ */ b.jsx(
+  const t = e?.OVERVIEW_AMENITIES || {}, n = t?.amenitySummary || {}, r = Array.isArray(t?.chartData) ? t.chartData : [], i = n?.totalBookings || 0, o = r.reduce((c, u) => {
+    const d = u?.isPaid ? u?.paid_bookings || 0 : u?.unpaid_bookings || 0;
+    return c + d;
+  }, 0), a = r.map((c) => {
+    const u = c?.isPaid ? c?.paid_bookings || 0 : c?.unpaid_bookings || 0, d = c?.isPaid ? `₹${c?.paid_revenue || "0.00"}` : "₹0.00", f = o > 0 ? Math.round(u / o * 100) : 0;
+    return {
+      name: c?.facility_name || "Unknown",
+      bookings: u,
+      revenue: d,
+      percentage: f,
+      color: c?.isPaid ? "bg-violet-500" : "bg-slate-400",
+      isPaid: c?.isPaid
+    };
+  }), s = typeof n?.growth_percentage == "number" ? n.growth_percentage : null, l = s !== null ? s >= 0 : !0;
+  return /* @__PURE__ */ b.jsx(
     Fe,
     {
       className: "h-[324px]",
       title: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ b.jsx(B3, { className: "!text-[20px] text-[#884EA7]" }),
-        /* @__PURE__ */ b.jsx("span", { className: "font-semibold", children: "Amenities" })
+        /* @__PURE__ */ b.jsx("div", { className: "font-semibold", children: "Amenities" })
       ] }),
-      period: /* @__PURE__ */ b.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
+      period: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
       children: /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col h-full", children: [
         /* @__PURE__ */ b.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
           /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: t?.totalBookings ?? 0 })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: i })
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
-            /* @__PURE__ */ b.jsx("p", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: t?.todayPaidRevenue ?? "₹0.0" }),
-            t?.growth && /* @__PURE__ */ b.jsxs(
-              "span",
+            /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
+            /* @__PURE__ */ b.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
+              "₹",
+              n?.todayPaidRevenue ?? "0.00"
+            ] }),
+            s !== null && /* @__PURE__ */ b.jsxs(
+              "div",
               {
                 className: `inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full
-                                ${t.growth.isPositive ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
+                ${l ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
                 children: [
-                  t.growth.percentage,
-                  " ",
-                  t.growth.label
+                  s,
+                  "% from last month"
                 ]
               }
             )
           ] })
         ] }),
-        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: r.length > 0 ? r.map((i, o) => /* @__PURE__ */ b.jsxs("div", { children: [
+        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: a.length > 0 ? a.map((c, u) => /* @__PURE__ */ b.jsxs("div", { children: [
           /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
-            /* @__PURE__ */ b.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: i.name }),
-            /* @__PURE__ */ b.jsxs("span", { className: "font-medium text-[12px] leading-[16px]", children: [
-              /* @__PURE__ */ b.jsxs("span", { className: "text-[#64748B]", children: [
-                i.bookings,
+            /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: c.name }),
+            /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px]", children: [
+              /* @__PURE__ */ b.jsxs("div", { className: "text-[#64748B] inline", children: [
+                c.bookings,
                 " bookings"
               ] }),
-              /* @__PURE__ */ b.jsx("span", { className: "mx-2 text-[#121212]", children: i.revenue })
+              /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline", children: c.revenue })
             ] })
           ] }),
           /* @__PURE__ */ b.jsx("div", { className: "h-3 bg-gray-100 rounded-full", children: /* @__PURE__ */ b.jsx(
             "div",
             {
-              className: `h-3 rounded-full ${i.color || "bg-slate-400"}`,
+              className: `h-3 rounded-full ${c.color}`,
               style: {
-                width: `${i.percentage || 0}%`
+                width: `${c.percentage}%`
               }
             }
           ) })
-        ] }, o)) : /* @__PURE__ */ b.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ b.jsx("p", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
+        ] }, u)) : /* @__PURE__ */ b.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
       ] })
     }
   );
