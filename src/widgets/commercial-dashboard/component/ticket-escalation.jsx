@@ -88,7 +88,7 @@ function TicketEscalation({ data = [] }) {
   {
     label: "Closed",
     data: closedData,
-    backgroundColor: "#EF4444",
+    backgroundColor: "#10B981",
     borderColor: "#FFFFFF",
     borderWidth: 2,
     barThickness: 38,
