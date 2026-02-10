@@ -3,11 +3,13 @@ import Card from "../../components/Card";
 import { FaSwimmingPool } from "react-icons/fa";
 
 function Amenities({ data }) {
-  const overviewAmenities = data?.OVERVIEW_AMENITIES || {};
-  const amenitySummary = overviewAmenities?.amenitySummary || {};
-  const chartData = Array.isArray(overviewAmenities?.chartData)
-    ? overviewAmenities.chartData
-    : [];
+  const amenitySummary = data?.amenitySummary || {};
+  const chartData = Array.isArray(data?.chartData) ? data.chartData : [];
+
+  const allUnpaid =
+    chartData.length > 0 && chartData.every((item) => item?.isPaid === false);
+
+    console.log(allUnpaid)
 
   const totalBookings = amenitySummary?.totalBookings || 0;
 
@@ -55,9 +57,7 @@ function Amenities({ data }) {
           <div className="font-semibold">Amenities</div>
         </div>
       }
-      period={
-        <div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>
-      }
+      period={<div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>}
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
@@ -69,6 +69,8 @@ function Amenities({ data }) {
               {totalBookings}
             </div>
           </div>
+{
+    !allUnpaid &&
 
           <div>
             <div className="text-[12px] leading-[16px] text-[#64748B]">
@@ -81,8 +83,7 @@ function Amenities({ data }) {
 
             {growthPercentage !== null && (
               <div
-                className={`inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full
-                ${
+                className={`inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
                   isGrowthPositive
                     ? "text-[#1FA05B] bg-green-50"
                     : "text-red-600 bg-red-50"
@@ -92,6 +93,7 @@ function Amenities({ data }) {
               </div>
             )}
           </div>
+}
         </div>
 
         <div className="space-y-5">
@@ -117,9 +119,7 @@ function Amenities({ data }) {
                 <div className="h-3 bg-gray-100 rounded-full">
                   <div
                     className={`h-3 rounded-full ${item.color}`}
-                    style={{
-                      width: `${item.percentage}%`,
-                    }}
+                    style={{ width: `${item.percentage}%` }}
                   />
                 </div>
               </div>

@@ -86,7 +86,7 @@ function TicketEscalation({ data = [] }) {
     stack: "tickets",
   },
   {
-    label: "Cancelled",
+    label: "Closed",
     data: closedData,
     backgroundColor: "#EF4444",
     borderColor: "#FFFFFF",

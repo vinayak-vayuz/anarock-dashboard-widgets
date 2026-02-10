@@ -50766,10 +50766,12 @@ function uue() {
   );
 }
 function due({ data: e }) {
-  const t = e?.OVERVIEW_AMENITIES || {}, n = t?.amenitySummary || {}, r = Array.isArray(t?.chartData) ? t.chartData : [], i = n?.totalBookings || 0, o = r.reduce((c, u) => {
+  const t = e?.amenitySummary || {}, n = Array.isArray(e?.chartData) ? e.chartData : [], r = n.length > 0 && n.every((c) => c?.isPaid === !1);
+  console.log(r);
+  const i = t?.totalBookings || 0, o = n.reduce((c, u) => {
     const d = u?.isPaid ? u?.paid_bookings || 0 : u?.unpaid_bookings || 0;
     return c + d;
-  }, 0), a = r.map((c) => {
+  }, 0), a = n.map((c) => {
     const u = c?.isPaid ? c?.paid_bookings || 0 : c?.unpaid_bookings || 0, d = c?.isPaid ? `₹${c?.paid_revenue || "0.00"}` : "₹0.00", f = o > 0 ? Math.round(u / o * 100) : 0;
     return {
       name: c?.facility_name || "Unknown",
@@ -50779,7 +50781,7 @@ function due({ data: e }) {
       color: c?.isPaid ? "bg-violet-500" : "bg-slate-400",
       isPaid: c?.isPaid
     };
-  }), s = typeof n?.growth_percentage == "number" ? n.growth_percentage : null, l = s !== null ? s >= 0 : !0;
+  }), s = typeof t?.growth_percentage == "number" ? t.growth_percentage : null, l = s !== null ? s >= 0 : !0;
   return /* @__PURE__ */ b.jsx(
     Fe,
     {
@@ -50795,17 +50797,16 @@ function due({ data: e }) {
             /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
             /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: i })
           ] }),
-          /* @__PURE__ */ b.jsxs("div", { children: [
+          !r && /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
             /* @__PURE__ */ b.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
               "₹",
-              n?.todayPaidRevenue ?? "0.00"
+              t?.todayPaidRevenue ?? "0.00"
             ] }),
             s !== null && /* @__PURE__ */ b.jsxs(
               "div",
               {
-                className: `inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full
-                ${l ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
+                className: `inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${l ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
                 children: [
                   s,
                   "% from last month"
@@ -50829,9 +50830,7 @@ function due({ data: e }) {
             "div",
             {
               className: `h-3 rounded-full ${c.color}`,
-              style: {
-                width: `${c.percentage}%`
-              }
+              style: { width: `${c.percentage}%` }
             }
           ) })
         ] }, u)) : /* @__PURE__ */ b.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
@@ -50897,7 +50896,7 @@ function fue({ data: e = [] }) {
         stack: "tickets"
       },
       {
-        label: "Cancelled",
+        label: "Closed",
         data: s,
         backgroundColor: "#EF4444",
         borderColor: "#FFFFFF",
