@@ -35,15 +35,19 @@ const CustomTooltip = ({ active, payload }) => {
 
   const finalData = data ? data : staticApiData;
 
-  const chartData = [
-    { name: "Completed", value: Number(finalData.completed), color: "#10B981" },
-    { name: "Open", value: Number(finalData.open), color: "#3B82F6" },
-    { name: "In Progress", value: Number(finalData.in_progress), color: "#F59E0B" },
-    { name: "On Hold", value: Number(finalData.on_hold), color: "#6B7280" },
-    { name: "Cancelled", value: Number(finalData.cancelled), color: "#EF4444" },
-  ];
+  const safeNumber = (value) => {
+  const num = Number(value);
+  return isNaN(num) ? 0 : num;
+};
+const chartData = [
+  { name: "Completed", value: safeNumber(finalData.completed), color: "#10B981" },
+  { name: "Open", value: safeNumber(finalData.open), color: "#3B82F6" },
+  { name: "In Progress", value: safeNumber(finalData.in_progress), color: "#F59E0B" },
+  { name: "On Hold", value: safeNumber(finalData.on_hold), color: "#6B7280" },
+  { name: "Cancelled", value: safeNumber(finalData.cancelled), color: "#EF4444" },
+];
 
-  const total = Number(finalData.total_complaints);
+  const total = safeNumber(finalData.total_complaints);
 
     return (
         <Card
@@ -82,7 +86,7 @@ const CustomTooltip = ({ active, payload }) => {
 
                     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                       <div className="flex items-baseline text-[18px] leading-[22px] font-medium text-[#121212]">
-  <div>{Number(finalData.completed)}</div>
+  <div>{safeNumber(finalData.completed)}</div>
   <div className="text-[18.18px] leading-[22.22px] text-[#121212]">
     /{total}
   </div>

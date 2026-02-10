@@ -82,6 +82,7 @@ function Engagement({ isStatic, data, communities }) {
 
             <XAxis
               type="number"
+              allowDecimals={false}
               axisLine={false}
               tickLine={false}
               tick={{

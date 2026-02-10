@@ -8,8 +8,14 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light-border.css";
+
 import Card from "../../components/Card";
 import { LuDoorOpen } from "react-icons/lu";
+
+/* -------------------- STATIC DATA -------------------- */
 
 const staticData = {
   visitorSummary: {
@@ -21,12 +27,10 @@ const staticData = {
   },
   popupData: {
     walkins: {
-      label: "18/58",
       currently_inside: 18,
       total_visited_today: 58,
     },
     preApproved: {
-      label: "3/5",
       completed_visits: 3,
       total_expected_today: 5,
     },
@@ -40,28 +44,62 @@ const staticData = {
   ],
 };
 
-function VisitorUpdates({ data }) {
-  const finalData = data && Object.keys(data).length > 0 ? data : staticData;
 
-  const summary = finalData?.visitorSummary || staticData.visitorSummary;
-  const popup = finalData?.popupData || staticData.popupData;
+function HoverDetailCard({ title, color, rows, children }) {
+  const content = (
+    <div className="bg-white rounded-xl min-w-[260px] p-4  ">
+      <div className="flex items-center gap-2 font-medium text-[#121212]">
+        <LuDoorOpen className={`text-[20px] ${color}`} />
+        <div>{title}</div>
+      </div>
+
+      <div className="mt-3 pt-3 border-t border-dashed border-gray-200 space-y-2">
+        {rows.map(({ label, value, valueColor }) => (
+          <div
+            key={label}
+            className="flex justify-between text-[14px]"
+          >
+            <div>{label}</div>
+            <div
+              className="font-semibold"
+              style={{ color: valueColor || "#121212" }}
+            >
+              {value}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <Tippy
+      content={content}
+      placement="right-start"
+      interactive
+      delay={[100, 0]}
+      offset={[6, 0]}
+      appendTo={() => document.body}
+      theme="light-border"
+      maxWidth="none"
+    >
+      {children}
+    </Tippy>
+  );
+}
+
+
+function VisitorUpdates({ data }) {
+  const finalData = data && Object.keys(data).length ? data : staticData;
+
+  const summary = finalData.visitorSummary;
+  const popup = finalData.popupData;
 
   const chartData = useMemo(() => {
-    const apiChart = finalData?.chartData || [];
-
-    let hasAnyValue = false;
-
-    for (let i = 0; i < apiChart.length; i++) {
-      if (apiChart[i].walkins > 0 || apiChart[i].preApproved > 0) {
-        hasAnyValue = true;
-        break;
-      }
-    }
-
-    if (!apiChart.length || !hasAnyValue) return staticData.chartData;
+    const apiChart = finalData.chartData || [];
+    if (!apiChart.length) return staticData.chartData;
 
     const formatted = [];
-
     for (let i = 0; i < apiChart.length; i++) {
       formatted.push({
         time: apiChart[i].hour,
@@ -69,9 +107,14 @@ function VisitorUpdates({ data }) {
         approved: apiChart[i].preApproved,
       });
     }
-
     return formatted;
   }, [finalData]);
+
+  const currentTime = new Date().toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
 
   return (
     <Card
@@ -79,57 +122,105 @@ function VisitorUpdates({ data }) {
       title={
         <div className="flex items-center gap-2">
           <LuDoorOpen className="!text-[20px] text-[#8B5CF6]" />
-          <div className="font-medium text-[#121212]">Visitor Updates</div>
+          <div className="font-medium text-[#121212]">
+            Visitor Updates
+          </div>
         </div>
       }
       period={
-        <div className="flex items-center gap-1 text-[12px] leading-[16px] text-[#64748B]">
+        <div className="flex items-center gap-1 text-[12px] text-[#64748B]">
           <div className="h-[5px] w-[5px] rounded-full bg-[#12B981]" />
-          Today at 04:00 PM
+          <div>Today at {currentTime}</div>
         </div>
       }
     >
-      <div className="flex flex-col mt-2 ">
+      <div className="flex flex-col mt-2">
+        {/* SUMMARY */}
         <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-6">
           <div>
-            <div className="text-[10px] leading-[14px] text-[#64748B]">Total Visitors</div>
-            <div className="text-[20px] leading-[24px] font-medium text-[#08B6D4]">{summary.totalVisitorsToday}</div>
+            <div className="text-[10px] text-[#64748B]">
+              Total Visitors
+            </div>
+            <div className="text-[20px] font-medium text-[#08B6D4]">
+              {summary.totalVisitorsToday}
+            </div>
           </div>
 
           <div>
-            <div className="text-[10px] leading-[14px] text-[#64748B]">Peak Time</div>
-            <div className="text-[20px] leading-[24px] font-medium text-[#8B5CF6]">
+            <div className="text-[10px] text-[#64748B]">
+              Peak Time
+            </div>
+            <div className="text-[20px] font-medium text-[#8B5CF6]">
               {summary.peakTime}
             </div>
           </div>
 
           <div className="mt-2">
-            <div className="text-[10px] leading-[14px] text-[#64748B]">Active Walk-ins</div>
-           <div className="text-xl font-medium">
-              <span className="text-[28px] font-medium leading-[32px] text-[#1FA05B]">
+            <div className="text-[10px] text-[#64748B]">
+              Active Walk-ins
+            </div>
+
+            <div className="flex items-baseline text-xl font-medium leading-[32px]">
+              <div className="text-[28px] text-[#1FA05B] leading-[32px]">
                 {popup.walkins.currently_inside}
-              </span>
-              <span className="text-gray-400">
-                /{popup.walkins.total_visited_today}
-              </span>
+              </div>
+
+              <HoverDetailCard
+                title="Active Walk-ins"
+                color="text-[#1FA05B]"
+                rows={[
+                  {
+                    label: "Currently Inside",
+                    value: popup.walkins.currently_inside,
+                    valueColor: "#1FA05B",
+                  },
+                  {
+                    label: "Total Visited Today",
+                    value: popup.walkins.total_visited_today,
+                  },
+                ]}
+              >
+                <div className="text-gray-400 cursor-pointer ml-1 leading-[32px]">
+                  /{popup.walkins.total_visited_today}
+                </div>
+              </HoverDetailCard>
             </div>
           </div>
 
           <div className="mt-2">
-            <div className="text-[10px] leading-[14px] text-[#64748B]">
+            <div className="text-[10px] text-[#64748B]">
               Pre-approved Check-ins
             </div>
-            <div className="text-xl font-medium">
-              <span className="text-[28px] font-medium leading-[32px] text-[#E7A015]">
+
+            <div className="flex items-baseline text-xl font-medium leading-[32px]">
+              <div className="text-[28px] text-[#E7A015] leading-[32px]">
                 {popup.preApproved.completed_visits}
-              </span>
-              <span className="text-gray-400">
-                /{popup.preApproved.total_expected_today}
-              </span>
+              </div>
+
+              <HoverDetailCard
+                title="Pre-approved Check-ins"
+                color="text-[#E7A015]"
+                rows={[
+                  {
+                    label: "Completed Visits",
+                    value: popup.preApproved.completed_visits,
+                    valueColor: "#E7A015",
+                  },
+                  {
+                    label: "Total Expected Check-ins Today",
+                    value: popup.preApproved.total_expected_today,
+                  },
+                ]}
+              >
+                <div className="text-gray-400 cursor-pointer ml-1 leading-[32px]">
+                  /{popup.preApproved.total_expected_today}
+                </div>
+              </HoverDetailCard>
             </div>
           </div>
         </div>
 
+        {/* CHART */}
         <div className="w-full h-[179px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
@@ -140,24 +231,17 @@ function VisitorUpdates({ data }) {
               />
               <XAxis
                 dataKey="time"
-                tick={{ fill: "#121212", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
+                tick={{ fill: "#121212", fontSize: 12 }}
               />
               <YAxis
                 width={30}
-                tick={{ fill: "#64748B", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
+                tick={{ fill: "#64748B", fontSize: 12 }}
               />
-              <RTooltip
-                contentStyle={{
-                  backgroundColor: "#0F172A",
-                  border: "none",
-                  borderRadius: 8,
-                  color: "#fff",
-                }}
-              />
+              <RTooltip />
               <Line
                 type="monotone"
                 dataKey="walkins"
