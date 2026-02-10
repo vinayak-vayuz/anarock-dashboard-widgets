@@ -15,7 +15,7 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
       <div className="w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden">
         <div
           className={`h-[11px] rounded-full ${colorClass}`}
-          style={{ width: `${pct}%` }}
+          style={{ width:colorClass === "bg-[#12B981]" ? `${pct + 45}%` : `${pct}%`}}
         />
       </div>
       <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>

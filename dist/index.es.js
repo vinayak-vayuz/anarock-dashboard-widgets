@@ -39232,7 +39232,7 @@ function Cce({ isStatic: e, data: t, communities: n }) {
       period: "This Month",
       icon: /* @__PURE__ */ b.jsx(yC, { className: "!text-[24px] text-[#DBB467]" }),
       className: `${e && "max-h-[303px]"}  ${o ? "h-[324px]" : "h-[303px]"} gap-[20px]`,
-      actionButtons: /* @__PURE__ */ b.jsx(
+      actionButtons: !o && /* @__PURE__ */ b.jsx(
         wl,
         {
           widgetId: t?.widget_id,
@@ -50561,7 +50561,7 @@ const B2 = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
       "div",
       {
         className: `h-[11px] rounded-full ${n}`,
-        style: { width: `${i}%` }
+        style: { width: n === "bg-[#12B981]" ? `${i + 45}%` : `${i}%` }
       }
     ) }),
     /* @__PURE__ */ b.jsx("div", { className: `${o} !text-[12px] font-bold mt-1`, children: e }),
@@ -50767,7 +50767,7 @@ function uue() {
 }
 function due({ data: e }) {
   const { amenitySummary: t, chartData: n } = e || {}, r = Array.isArray(n) ? n : [];
-  return /* @__PURE__ */ b.jsx(
+  return console.log("Amenities data:", t), console.log("Dattttttaaaa", e), /* @__PURE__ */ b.jsx(
     Fe,
     {
       className: "h-[324px]",
@@ -50784,7 +50784,7 @@ function due({ data: e }) {
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsx("p", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
-            /* @__PURE__ */ b.jsx("p", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: t?.revenueGenerated ?? "₹0.0" }),
+            /* @__PURE__ */ b.jsx("p", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: t?.todayPaidRevenue ?? "₹0.0" }),
             t?.growth && /* @__PURE__ */ b.jsxs(
               "span",
               {
@@ -50882,7 +50882,7 @@ function fue({ data: e = [] }) {
         stack: "tickets"
       },
       {
-        label: "Closed",
+        label: "Cancelled",
         data: s,
         backgroundColor: "#EF4444",
         borderColor: "#FFFFFF",
@@ -50930,7 +50930,10 @@ function fue({ data: e = [] }) {
           drawBorder: !1
         },
         ticks: {
-          color: "#64748B"
+          color: "#64748B",
+          stepSize: 1,
+          precision: 0,
+          callback: (u) => Math.round(u)
         }
       }
     }

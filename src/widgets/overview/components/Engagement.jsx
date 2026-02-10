@@ -45,7 +45,7 @@ function Engagement({ isStatic, data, communities }) {
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
       className={`${isStatic && "max-h-[303px]"}  ${isCommercial ? "h-[324px]" : "h-[303px]"} gap-[20px]`}
       actionButtons={
-        <ActionButtons
+       !isCommercial && <ActionButtons
           widgetId={data?.widget_id}
           options={data?.communities}
           // onFilterChange={(value, widget) => console.log(value, widget)}

@@ -7,6 +7,9 @@ function Amenities({ data }) {
 
     const amenitiesList = Array.isArray(chartData) ? chartData : [];
 
+
+    console.log("Amenities data:", amenitySummary);
+    console.log("Dattttttaaaa", data);
     return (
         <Card
             className="h-[324px]"
@@ -38,7 +41,7 @@ function Amenities({ data }) {
                             Revenue Generated
                         </p>
                         <p className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
-                            {amenitySummary?.revenueGenerated ?? "₹0.0"}
+                            {amenitySummary?.todayPaidRevenue ?? "₹0.0"}
                         </p>
 
                         {amenitySummary?.growth && (
