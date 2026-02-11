@@ -6,29 +6,38 @@ function Amenities({ data }) {
   const amenitySummary = data?.amenitySummary || {};
   const chartData = Array.isArray(data?.chartData) ? data.chartData : [];
 
-  const allUnpaid =
-    chartData.length > 0 && chartData.every((item) => item?.isPaid === false);
+  const normalizedChartData = chartData.map((item) => ({
+    ...item,
+    isPaid: item?.isPaid == 1, 
+  }));
 
+  const allUnpaid =
+    normalizedChartData.length > 0 &&
+    normalizedChartData.every((item) => item?.isPaid === false);
 
   const totalBookings = amenitySummary?.totalBookings || 0;
 
-  const totalForProgress = chartData.reduce((sum, item) => {
+  const totalForProgress = normalizedChartData.reduce((sum, item) => {
     const bookings = item?.isPaid
-      ? item?.paid_bookings || 0
-      : item?.unpaid_bookings || 0;
+      ? item?.paid_bookings || item?.total_bookings || 0
+      : item?.unpaid_bookings || item?.total_bookings || 0;
 
     return sum + bookings;
   }, 0);
 
-  const amenitiesList = chartData.map((item) => {
+  const amenitiesList = normalizedChartData.map((item) => {
     const bookings = item?.isPaid
-      ? item?.paid_bookings || 0
-      : item?.unpaid_bookings || 0;
+      ? item?.paid_bookings || item?.total_bookings || 0
+      : item?.unpaid_bookings || item?.total_bookings || 0;
 
-    const revenue = item?.isPaid ? `₹${item?.paid_revenue || "0.00"}` : "";
+    const revenue = item?.isPaid
+      ? `₹${item?.paid_revenue || "0.00"}`
+      : "";
 
     const percentage =
-      totalForProgress > 0 ? Math.round((bookings / totalForProgress) * 100) : 0;
+      totalForProgress > 0
+        ? Math.round((bookings / totalForProgress) * 100)
+        : 0;
 
     return {
       name: item?.facility_name || "Unknown",
@@ -40,12 +49,19 @@ function Amenities({ data }) {
     };
   });
 
-  const growthPercentage =
-    typeof amenitySummary?.growth_percentage === "number"
-      ? amenitySummary.growth_percentage
-      : null;
+  const rawGrowth = amenitySummary?.growth_percentage;
+  let growthPercentage = null;
 
-  const isGrowthPositive = growthPercentage !== null ? growthPercentage >= 0 : true;
+  if (typeof rawGrowth === "number") {
+    growthPercentage = rawGrowth;
+  } else if (typeof rawGrowth === "string") {
+    const cleaned = rawGrowth.replace("%", "").trim();
+    const parsed = Number(cleaned);
+    growthPercentage = isNaN(parsed) ? null : parsed;
+  }
+
+  const isGrowthPositive =
+    growthPercentage !== null ? growthPercentage >= 0 : true;
 
   return (
     <Card
@@ -56,7 +72,11 @@ function Amenities({ data }) {
           <div className="font-medium text-[#121212]">Amenities</div>
         </div>
       }
-      period={<div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>}
+      period={
+        <div className="text-[12px] leading-[16px] text-[#64748B]">
+          Today
+        </div>
+      }
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
@@ -68,37 +88,37 @@ function Amenities({ data }) {
               {totalBookings}
             </div>
           </div>
-{
-    !allUnpaid &&
 
-          <div>
-            <div className="text-[12px] leading-[16px] text-[#64748B]">
-              Revenue Generated
-            </div>
-
-            <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
-              ₹{amenitySummary?.todayPaidRevenue ?? "0.00"}
-            </div>
-
-            {growthPercentage !== null && (
-              <div
-                className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${isGrowthPositive
-                    ? "text-[#1FA05B] bg-green-50"
-                    : "text-red-600 bg-red-50"
-                }`}
-              >
-              {isGrowthPositive ? <FaCaretUp /> : <FaCaretDown />}
-                {growthPercentage}%
-                <span>from last month</span>
+          {!allUnpaid && (
+            <div>
+              <div className="text-[12px] leading-[16px] text-[#64748B]">
+                Revenue Generated
               </div>
-            )}
-          </div>
-        }
+
+              <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
+                ₹{amenitySummary?.todayPaidRevenue ?? "0.00"}
+              </div>
+
+              {growthPercentage !== null && (
+                <div
+                  className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
+                    isGrowthPositive
+                      ? "text-[#1FA05B] bg-green-50"
+                      : "text-red-600 bg-red-50"
+                  }`}
+                >
+                  {isGrowthPositive ? <FaCaretUp /> : <FaCaretDown />}
+                  {growthPercentage}%
+                  <span>from last month</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="space-y-5">
-          {amenitiesList?.length > 0 ? (
-            amenitiesList?.map((item, index) => (
+          {amenitiesList.length > 0 ? (
+            amenitiesList.map((item, index) => (
               <div key={index}>
                 <div className="flex justify-between text-sm mb-2">
                   <div className="text-[#64748B] text-[12px] leading-[16px]">
@@ -106,10 +126,10 @@ function Amenities({ data }) {
                   </div>
 
                   <div className="font-medium text-[12px] leading-[16px]">
-                   <div className="text-[#64748B] inline">
-  {item?.bookings} {item?.bookings <= 1 ? "booking" : "bookings"}
-</div>
-
+                    <div className="text-[#64748B] inline">
+                      {item?.bookings}{" "}
+                      {item?.bookings <= 1 ? "booking" : "bookings"}
+                    </div>
 
                     {item?.isPaid && (
                       <div className="mx-2 text-[#121212] inline">

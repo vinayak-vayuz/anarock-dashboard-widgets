@@ -50786,20 +50786,31 @@ function fue() {
   );
 }
 function pue({ data: e }) {
-  const t = e?.amenitySummary || {}, n = Array.isArray(e?.chartData) ? e.chartData : [], r = n.length > 0 && n.every((c) => c?.isPaid === !1), i = t?.totalBookings || 0, o = n.reduce((c, u) => {
-    const d = u?.isPaid ? u?.paid_bookings || 0 : u?.unpaid_bookings || 0;
-    return c + d;
-  }, 0), a = n.map((c) => {
-    const u = c?.isPaid ? c?.paid_bookings || 0 : c?.unpaid_bookings || 0, d = c?.isPaid ? `₹${c?.paid_revenue || "0.00"}` : "", f = o > 0 ? Math.round(u / o * 100) : 0;
+  const t = e?.amenitySummary || {}, r = (Array.isArray(e?.chartData) ? e.chartData : []).map((d) => ({
+    ...d,
+    isPaid: d?.isPaid == 1
+  })), i = r.length > 0 && r.every((d) => d?.isPaid === !1), o = t?.totalBookings || 0, a = r.reduce((d, f) => {
+    const p = f?.isPaid ? f?.paid_bookings || f?.total_bookings || 0 : f?.unpaid_bookings || f?.total_bookings || 0;
+    return d + p;
+  }, 0), s = r.map((d) => {
+    const f = d?.isPaid ? d?.paid_bookings || d?.total_bookings || 0 : d?.unpaid_bookings || d?.total_bookings || 0, p = d?.isPaid ? `₹${d?.paid_revenue || "0.00"}` : "", m = a > 0 ? Math.round(f / a * 100) : 0;
     return {
-      name: c?.facility_name || "Unknown",
-      bookings: u,
-      revenue: d,
-      percentage: f,
-      color: c?.isPaid ? "bg-violet-500" : "bg-slate-400",
-      isPaid: c?.isPaid
+      name: d?.facility_name || "Unknown",
+      bookings: f,
+      revenue: p,
+      percentage: m,
+      color: d?.isPaid ? "bg-violet-500" : "bg-slate-400",
+      isPaid: d?.isPaid
     };
-  }), s = typeof t?.growth_percentage == "number" ? t.growth_percentage : null, l = s !== null ? s >= 0 : !0;
+  }), l = t?.growth_percentage;
+  let c = null;
+  if (typeof l == "number")
+    c = l;
+  else if (typeof l == "string") {
+    const d = l.replace("%", "").trim(), f = Number(d);
+    c = isNaN(f) ? null : f;
+  }
+  const u = c !== null ? c >= 0 : !0;
   return /* @__PURE__ */ b.jsx(
     Fe,
     {
@@ -50813,21 +50824,21 @@ function pue({ data: e }) {
         /* @__PURE__ */ b.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
-            /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: i })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: o })
           ] }),
-          !r && /* @__PURE__ */ b.jsxs("div", { children: [
+          !i && /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
             /* @__PURE__ */ b.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
               "₹",
               t?.todayPaidRevenue ?? "0.00"
             ] }),
-            s !== null && /* @__PURE__ */ b.jsxs(
+            c !== null && /* @__PURE__ */ b.jsxs(
               "div",
               {
-                className: `inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${l ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
+                className: `inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${u ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
                 children: [
-                  l ? /* @__PURE__ */ b.jsx(yC, {}) : /* @__PURE__ */ b.jsx(B3, {}),
-                  s,
+                  u ? /* @__PURE__ */ b.jsx(yC, {}) : /* @__PURE__ */ b.jsx(B3, {}),
+                  c,
                   "%",
                   /* @__PURE__ */ b.jsx("span", { children: "from last month" })
                 ]
@@ -50835,26 +50846,26 @@ function pue({ data: e }) {
             )
           ] })
         ] }),
-        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: a?.length > 0 ? a?.map((c, u) => /* @__PURE__ */ b.jsxs("div", { children: [
+        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: s.length > 0 ? s.map((d, f) => /* @__PURE__ */ b.jsxs("div", { children: [
           /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
-            /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: c?.name }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: d?.name }),
             /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px]", children: [
               /* @__PURE__ */ b.jsxs("div", { className: "text-[#64748B] inline", children: [
-                c?.bookings,
+                d?.bookings,
                 " ",
-                c?.bookings <= 1 ? "booking" : "bookings"
+                d?.bookings <= 1 ? "booking" : "bookings"
               ] }),
-              c?.isPaid && /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline", children: c?.revenue })
+              d?.isPaid && /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline", children: d?.revenue })
             ] })
           ] }),
           /* @__PURE__ */ b.jsx("div", { className: "h-3 bg-gray-100 rounded-full", children: /* @__PURE__ */ b.jsx(
             "div",
             {
-              className: `h-3 rounded-full ${c?.color}`,
-              style: { width: `${c?.percentage}%` }
+              className: `h-3 rounded-full ${d?.color}`,
+              style: { width: `${d?.percentage}%` }
             }
           ) })
-        ] }, u)) : /* @__PURE__ */ b.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
+        ] }, f)) : /* @__PURE__ */ b.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
       ] })
     }
   );
