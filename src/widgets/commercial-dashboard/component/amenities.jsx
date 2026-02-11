@@ -66,17 +66,9 @@ function Amenities({ data }) {
   return (
     <Card
       className="h-[324px]"
-      title={
-        <div className="flex items-center gap-2">
-          <FaSwimmingPool className="!text-[20px] text-[#884EA7]" />
-          <div className="font-medium text-[#121212]">Amenities</div>
-        </div>
-      }
-      period={
-        <div className="text-[12px] leading-[16px] text-[#64748B]">
-          Today
-        </div>
-      }
+      title="Amenities"
+      period="Today"
+      icon={<FaSwimmingPool className="!text-[24px] text-[#884EA7]" />}
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
@@ -139,9 +131,9 @@ function Amenities({ data }) {
                   </div>
                 </div>
 
-                <div className="h-3 bg-gray-100 rounded-full">
+                <div className="h-[11px] bg-gray-100 rounded-full">
                   <div
-                    className={`h-3 rounded-full ${item?.color}`}
+                    className={`h-[11px] rounded-full ${item?.color}`}
                     style={{ width: `${item?.percentage}%` }}
                   />
                 </div>

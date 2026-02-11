@@ -12,17 +12,9 @@ function FoodBeverages() {
   return (
     <Card
       className="h-[324px]"
-      title={
-        <div className="flex items-center gap-2">
-          <RestaurantOutlinedIcon className="!text-[20px] text-[#FA7E28]" />
-          <div className="font-medium text-[#121212]">
-            Food & Beverages (Static Data)
-          </div>
-        </div>
-      }
-      period={
-        <div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>
-      }
+       title="Food & Beverages (Static Data)"
+           period="Today"
+           icon={<RestaurantOutlinedIcon className="!text-[24px] text-[#FA7E28]" />}
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
@@ -69,9 +61,9 @@ function FoodBeverages() {
               </div>
             </div>
 
-            <div className="h-3 bg-gray-100 rounded-full">
+            <div className="h-[11px] bg-gray-100 rounded-full">
               <div
-                className="h-3 bg-blue-500 rounded-full"
+                className="h-[11px] bg-blue-500 rounded-full"
                 style={{ width: "70%" }}
               />
             </div>
@@ -89,9 +81,9 @@ function FoodBeverages() {
               </div>
             </div>
 
-            <div className="h-3 bg-gray-100 rounded-full">
+            <div className="h-[11px] bg-gray-100 rounded-full">
               <div
-                className="h-3 bg-red-500 rounded-full"
+                className="h-[11px] bg-red-500 rounded-full"
                 style={{ width: "50%" }}
               />
             </div>
@@ -109,9 +101,9 @@ function FoodBeverages() {
               </div>
             </div>
 
-            <div className="h-3 bg-gray-100 rounded-full">
+            <div className="h-[11px] bg-gray-100 rounded-full">
               <div
-                className="h-3 bg-purple-700 rounded-full"
+                className="h-[11px] bg-purple-700 rounded-full"
                 style={{ width: "25%" }}
               />
             </div>

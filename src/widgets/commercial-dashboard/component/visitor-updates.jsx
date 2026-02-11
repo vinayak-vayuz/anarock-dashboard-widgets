@@ -124,19 +124,9 @@ const popup = {
   return (
     <Card
       className="h-[377px]"
-      title={
-        <div className="flex items-center gap-2">
-          <LuDoorOpen className="!text-[20px] text-[#8B5CF6]" />
-          <div className="font-medium text-[#121212]">
-            Visitor Updates
-          </div>
-        </div>
-      }
-      period={
-        <div className="flex items-center gap-1 text-[12px] text-[#64748B]">
-          <div>Today at {currentTime}</div>
-        </div>
-      }
+     title="Visitor Updates"
+            period="Today"
+            icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
     >
       <div className="flex flex-col mt-2">
         {/* SUMMARY */}

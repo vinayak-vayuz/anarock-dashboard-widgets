@@ -160,13 +160,9 @@ function TicketEscalation({ data = [] }) {
   return (
     <Card
       className="h-[267px]"
-      title={
-        <div className="flex items-center gap-2">
-          <FaArrowUpShortWide className="!text-[20px] text-[#3C81F6]" />
-          <div className="font-medium text-[#121212]">Ticket Escalation Levels</div>
-        </div>
-      }
-      period={<div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>}
+        title="Ticket Escalation Levels"
+                              period="Today"
+                              icon={<FaArrowUpShortWide className="!text-[24px] text-[#3C81F6]" />}
     >
       <div className="h-full">
         <Bar data={chartData} options={options} />

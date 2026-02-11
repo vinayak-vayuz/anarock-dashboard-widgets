@@ -38,7 +38,7 @@ const OccupancyOverviewCard = ({
       <div className="bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]">
         <div className="flex items-center gap-[12px] h-[20px]" style={{marginBottom :"24px"}}>
           <GoPeople className="!text-[20px] text-[#329DFF]" />
-          <div className="font-medium text-[#121212]">Occupancy Overview (Static Data)</div>
+          <div className="font-medium text-[#121212] text-[16px] leading-[20px]">Occupancy Overview (Static Data)</div>
         </div>
 
       <div className="flex items-start justify-between">
@@ -53,7 +53,7 @@ const OccupancyOverviewCard = ({
             </div>
           </div>
 
-          <div className="flex items-end">
+          <div className="flex items-end gap-1">
             <MiniPill
               value={EmployeesCount}
               total={barTotal}

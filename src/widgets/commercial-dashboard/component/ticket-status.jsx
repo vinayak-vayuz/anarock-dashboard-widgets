@@ -52,13 +52,9 @@ const chartData = [
     return (
         <Card
             className="h-[267px]"
-            title={
-                <div className="flex items-center gap-2">
-                    <LuReceiptText className="!text-[20px] text-[#EF4444]" />
-                    <div className="font-medium text-[#121212]">Ticket Status</div>
-                </div>
-            }
-            period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}
+             title="Ticket Status"
+                        period="Today"
+                        icon={<LuReceiptText className="!text-[24px] text-[#EF4444]" />}
         >
             <div className="flex h-full items-center gap-4">
 
