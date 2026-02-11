@@ -89,7 +89,16 @@ function VisitorUpdates({ data }) {
     data && Object.keys(data).length ? data : staticData;
 
   const summary = finalData?.visitorSummary ?? {};
-  const popup = finalData?.popupData ?? {};
+const popup = {
+  walkins: {
+    currently_inside: Number(finalData?.walkinsPopupData?.walkinsInside ?? 0),
+    total_visited_today: Number(finalData?.walkinsPopupData?.totalWalkins ?? 0),
+  },
+  preApproved: {
+    completed_visits: Number(finalData?.preApprovedPopupData?.preApprovedCheckIns ?? 0),
+    total_expected_today: Number(finalData?.preApprovedPopupData?.totalPreApprovedCheckIns ?? 0),
+  },
+};
 
   const chartData = useMemo(() => {
     const apiChart = finalData?.chartData ?? [];

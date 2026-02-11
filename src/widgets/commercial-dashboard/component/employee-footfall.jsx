@@ -78,7 +78,7 @@ const EmployeeFootfall = () => {
       title={
         <div className="flex items-center gap-2">
           <WorkOutlineIcon className="!text-[20px] text-[#8B5CF6]" />
-          <div className="font-medium text-[#121212]">Employee Footfall</div>
+          <div className="font-medium text-[#121212]">Employee Footfall (Static Data)</div>
         </div>
       }
       period={<span className="text-[12px] leading-[16px] text-[#64748B]">Today</span>}

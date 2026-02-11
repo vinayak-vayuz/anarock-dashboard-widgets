@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../../components/Card";
-import { FaSwimmingPool } from "react-icons/fa";
+import { FaSwimmingPool, FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 function Amenities({ data }) {
   const amenitySummary = data?.amenitySummary || {};
@@ -9,7 +9,6 @@ function Amenities({ data }) {
   const allUnpaid =
     chartData.length > 0 && chartData.every((item) => item?.isPaid === false);
 
-    console.log(allUnpaid)
 
   const totalBookings = amenitySummary?.totalBookings || 0;
 
@@ -26,7 +25,7 @@ function Amenities({ data }) {
       ? item?.paid_bookings || 0
       : item?.unpaid_bookings || 0;
 
-    const revenue = item?.isPaid ? `₹${item?.paid_revenue || "0.00"}` : "₹0.00";
+    const revenue = item?.isPaid ? `₹${item?.paid_revenue || "0.00"}` : "";
 
     const percentage =
       totalForProgress > 0 ? Math.round((bookings / totalForProgress) * 100) : 0;
@@ -54,7 +53,7 @@ function Amenities({ data }) {
       title={
         <div className="flex items-center gap-2">
           <FaSwimmingPool className="!text-[20px] text-[#884EA7]" />
-          <div className="font-semibold">Amenities</div>
+          <div className="font-medium text-[#121212]">Amenities</div>
         </div>
       }
       period={<div className="text-[12px] leading-[16px] text-[#64748B]">Today</div>}
@@ -83,17 +82,18 @@ function Amenities({ data }) {
 
             {growthPercentage !== null && (
               <div
-                className={`inline-block mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
-                  isGrowthPositive
+                className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${isGrowthPositive
                     ? "text-[#1FA05B] bg-green-50"
                     : "text-red-600 bg-red-50"
                 }`}
               >
-                {growthPercentage}% from last month
+              {isGrowthPositive ? <FaCaretUp /> : <FaCaretDown />}
+                {growthPercentage}%
+                <span>from last month</span>
               </div>
             )}
           </div>
-}
+        }
         </div>
 
         <div className="space-y-5">
@@ -110,9 +110,11 @@ function Amenities({ data }) {
                       {item.bookings} bookings
                     </div>
 
-                    <div className="mx-2 text-[#121212] inline">
-                      {item.revenue}
-                    </div>
+                    {item.isPaid && (
+                      <div className="mx-2 text-[#121212] inline">
+                        {item.revenue}
+                      </div>
+                    )}
                   </div>
                 </div>
 
