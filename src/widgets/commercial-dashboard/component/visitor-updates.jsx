@@ -44,27 +44,23 @@ const staticData = {
   ],
 };
 
-
-function HoverDetailCard({ title, color, rows, children }) {
+function HoverDetailCard({ title, color, rows = [], children }) {
   const content = (
-    <div className="bg-white rounded-xl min-w-[260px] p-4  ">
+    <div className="bg-white rounded-xl min-w-[260px] p-4">
       <div className="flex items-center gap-2 font-medium text-[#121212]">
         <LuDoorOpen className={`text-[20px] ${color}`} />
-        <div>{title}</div>
+        <div>{title ?? ""}</div>
       </div>
 
       <div className="mt-3 pt-3 border-t border-dashed border-gray-200 space-y-2">
-        {rows.map(({ label, value, valueColor }) => (
-          <div
-            key={label}
-            className="flex justify-between text-[14px]"
-          >
-            <div>{label}</div>
+        {rows?.map(({ label, value, valueColor }) => (
+          <div key={label} className="flex justify-between text-[14px]">
+            <div>{label ?? ""}</div>
             <div
               className="font-semibold"
               style={{ color: valueColor || "#121212" }}
             >
-              {value}
+              {value ?? 0}
             </div>
           </div>
         ))}
@@ -88,23 +84,23 @@ function HoverDetailCard({ title, color, rows, children }) {
   );
 }
 
-
 function VisitorUpdates({ data }) {
-  const finalData = data && Object.keys(data).length ? data : staticData;
+  const finalData =
+    data && Object.keys(data).length ? data : staticData;
 
-  const summary = finalData.visitorSummary;
-  const popup = finalData.popupData;
+  const summary = finalData?.visitorSummary ?? {};
+  const popup = finalData?.popupData ?? {};
 
   const chartData = useMemo(() => {
-    const apiChart = finalData.chartData || [];
+    const apiChart = finalData?.chartData ?? [];
     if (!apiChart.length) return staticData.chartData;
 
     const formatted = [];
     for (let i = 0; i < apiChart.length; i++) {
       formatted.push({
-        time: apiChart[i].hour,
-        walkins: apiChart[i].walkins,
-        approved: apiChart[i].preApproved,
+        time: apiChart[i]?.hour ?? "-",
+        walkins: apiChart[i]?.walkins ?? 0,
+        approved: apiChart[i]?.preApproved ?? 0,
       });
     }
     return formatted;
@@ -129,7 +125,6 @@ function VisitorUpdates({ data }) {
       }
       period={
         <div className="flex items-center gap-1 text-[12px] text-[#64748B]">
-          <div className="h-[5px] w-[5px] rounded-full bg-[#12B981]" />
           <div>Today at {currentTime}</div>
         </div>
       }
@@ -142,7 +137,7 @@ function VisitorUpdates({ data }) {
               Total Visitors
             </div>
             <div className="text-[20px] font-medium text-[#08B6D4]">
-              {summary.totalVisitorsToday}
+              {summary?.totalVisitorsToday ?? 0}
             </div>
           </div>
 
@@ -151,7 +146,7 @@ function VisitorUpdates({ data }) {
               Peak Time
             </div>
             <div className="text-[20px] font-medium text-[#8B5CF6]">
-              {summary.peakTime}
+              {summary?.peakTime ?? "-"}
             </div>
           </div>
 
@@ -162,7 +157,7 @@ function VisitorUpdates({ data }) {
 
             <div className="flex items-baseline text-xl font-medium leading-[32px]">
               <div className="text-[28px] text-[#1FA05B] leading-[32px]">
-                {popup.walkins.currently_inside}
+                {popup?.walkins?.currently_inside ?? 0}
               </div>
 
               <HoverDetailCard
@@ -171,17 +166,17 @@ function VisitorUpdates({ data }) {
                 rows={[
                   {
                     label: "Currently Inside",
-                    value: popup.walkins.currently_inside,
+                    value: popup?.walkins?.currently_inside ?? 0,
                     valueColor: "#1FA05B",
                   },
                   {
                     label: "Total Visited Today",
-                    value: popup.walkins.total_visited_today,
+                    value: popup?.walkins?.total_visited_today ?? 0,
                   },
                 ]}
               >
                 <div className="text-gray-400 cursor-pointer ml-1 leading-[32px]">
-                  /{popup.walkins.total_visited_today}
+                  /{popup?.walkins?.total_visited_today ?? 0}
                 </div>
               </HoverDetailCard>
             </div>
@@ -194,7 +189,7 @@ function VisitorUpdates({ data }) {
 
             <div className="flex items-baseline text-xl font-medium leading-[32px]">
               <div className="text-[28px] text-[#E7A015] leading-[32px]">
-                {popup.preApproved.completed_visits}
+                {popup?.preApproved?.completed_visits ?? 0}
               </div>
 
               <HoverDetailCard
@@ -203,17 +198,19 @@ function VisitorUpdates({ data }) {
                 rows={[
                   {
                     label: "Completed Visits",
-                    value: popup.preApproved.completed_visits,
+                    value:
+                      popup?.preApproved?.completed_visits ?? 0,
                     valueColor: "#E7A015",
                   },
                   {
                     label: "Total Expected Check-ins Today",
-                    value: popup.preApproved.total_expected_today,
+                    value:
+                      popup?.preApproved?.total_expected_today ?? 0,
                   },
                 ]}
               >
                 <div className="text-gray-400 cursor-pointer ml-1 leading-[32px]">
-                  /{popup.preApproved.total_expected_today}
+                  /{popup?.preApproved?.total_expected_today ?? 0}
                 </div>
               </HoverDetailCard>
             </div>
@@ -223,7 +220,7 @@ function VisitorUpdates({ data }) {
         {/* CHART */}
         <div className="w-full h-[179px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData}>
+            <LineChart data={chartData ?? []}>
               <CartesianGrid
                 stroke="#E5E7EB"
                 strokeDasharray="4 4"

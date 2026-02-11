@@ -51092,30 +51092,23 @@ const W2 = {
     { hour: "6 PM", walkins: 25, preApproved: 40 }
   ]
 };
-function z2({ title: e, color: t, rows: n, children: r }) {
-  const i = /* @__PURE__ */ b.jsxs("div", { className: "bg-white rounded-xl min-w-[260px] p-4  ", children: [
+function z2({ title: e, color: t, rows: n = [], children: r }) {
+  const i = /* @__PURE__ */ b.jsxs("div", { className: "bg-white rounded-xl min-w-[260px] p-4", children: [
     /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2 font-medium text-[#121212]", children: [
       /* @__PURE__ */ b.jsx(Yp, { className: `text-[20px] ${t}` }),
-      /* @__PURE__ */ b.jsx("div", { children: e })
+      /* @__PURE__ */ b.jsx("div", { children: e ?? "" })
     ] }),
-    /* @__PURE__ */ b.jsx("div", { className: "mt-3 pt-3 border-t border-dashed border-gray-200 space-y-2", children: n.map(({ label: o, value: a, valueColor: s }) => /* @__PURE__ */ b.jsxs(
-      "div",
-      {
-        className: "flex justify-between text-[14px]",
-        children: [
-          /* @__PURE__ */ b.jsx("div", { children: o }),
-          /* @__PURE__ */ b.jsx(
-            "div",
-            {
-              className: "font-semibold",
-              style: { color: s || "#121212" },
-              children: a
-            }
-          )
-        ]
-      },
-      o
-    )) })
+    /* @__PURE__ */ b.jsx("div", { className: "mt-3 pt-3 border-t border-dashed border-gray-200 space-y-2", children: n?.map(({ label: o, value: a, valueColor: s }) => /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-[14px]", children: [
+      /* @__PURE__ */ b.jsx("div", { children: o ?? "" }),
+      /* @__PURE__ */ b.jsx(
+        "div",
+        {
+          className: "font-semibold",
+          style: { color: s || "#121212" },
+          children: a ?? 0
+        }
+      )
+    ] }, o)) })
   ] });
   return /* @__PURE__ */ b.jsx(
     mj,
@@ -51133,15 +51126,15 @@ function z2({ title: e, color: t, rows: n, children: r }) {
   );
 }
 function hue({ data: e }) {
-  const t = e && Object.keys(e).length ? e : W2, n = t.visitorSummary, r = t.popupData, i = jn(() => {
-    const a = t.chartData || [];
+  const t = e && Object.keys(e).length ? e : W2, n = t?.visitorSummary ?? {}, r = t?.popupData ?? {}, i = jn(() => {
+    const a = t?.chartData ?? [];
     if (!a.length) return W2.chartData;
     const s = [];
     for (let l = 0; l < a.length; l++)
       s.push({
-        time: a[l].hour,
-        walkins: a[l].walkins,
-        approved: a[l].preApproved
+        time: a[l]?.hour ?? "-",
+        walkins: a[l]?.walkins ?? 0,
+        approved: a[l]?.preApproved ?? 0
       });
     return s;
   }, [t]), o = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-IN", {
@@ -51157,27 +51150,24 @@ function hue({ data: e }) {
         /* @__PURE__ */ b.jsx(Yp, { className: "!text-[20px] text-[#8B5CF6]" }),
         /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Visitor Updates" })
       ] }),
-      period: /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-1 text-[12px] text-[#64748B]", children: [
-        /* @__PURE__ */ b.jsx("div", { className: "h-[5px] w-[5px] rounded-full bg-[#12B981]" }),
-        /* @__PURE__ */ b.jsxs("div", { children: [
-          "Today at ",
-          o
-        ] })
-      ] }),
+      period: /* @__PURE__ */ b.jsx("div", { className: "flex items-center gap-1 text-[12px] text-[#64748B]", children: /* @__PURE__ */ b.jsxs("div", { children: [
+        "Today at ",
+        o
+      ] }) }),
       children: /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col mt-2", children: [
         /* @__PURE__ */ b.jsxs("div", { className: "grid grid-cols-2 gap-y-4 gap-x-6 mb-6", children: [
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Total Visitors" }),
-            /* @__PURE__ */ b.jsx("div", { className: "text-[20px] font-medium text-[#08B6D4]", children: n.totalVisitorsToday })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[20px] font-medium text-[#08B6D4]", children: n?.totalVisitorsToday ?? 0 })
           ] }),
           /* @__PURE__ */ b.jsxs("div", { children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Peak Time" }),
-            /* @__PURE__ */ b.jsx("div", { className: "text-[20px] font-medium text-[#8B5CF6]", children: n.peakTime })
+            /* @__PURE__ */ b.jsx("div", { className: "text-[20px] font-medium text-[#8B5CF6]", children: n?.peakTime ?? "-" })
           ] }),
           /* @__PURE__ */ b.jsxs("div", { className: "mt-2", children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Active Walk-ins" }),
             /* @__PURE__ */ b.jsxs("div", { className: "flex items-baseline text-xl font-medium leading-[32px]", children: [
-              /* @__PURE__ */ b.jsx("div", { className: "text-[28px] text-[#1FA05B] leading-[32px]", children: r.walkins.currently_inside }),
+              /* @__PURE__ */ b.jsx("div", { className: "text-[28px] text-[#1FA05B] leading-[32px]", children: r?.walkins?.currently_inside ?? 0 }),
               /* @__PURE__ */ b.jsx(
                 z2,
                 {
@@ -51186,17 +51176,17 @@ function hue({ data: e }) {
                   rows: [
                     {
                       label: "Currently Inside",
-                      value: r.walkins.currently_inside,
+                      value: r?.walkins?.currently_inside ?? 0,
                       valueColor: "#1FA05B"
                     },
                     {
                       label: "Total Visited Today",
-                      value: r.walkins.total_visited_today
+                      value: r?.walkins?.total_visited_today ?? 0
                     }
                   ],
                   children: /* @__PURE__ */ b.jsxs("div", { className: "text-gray-400 cursor-pointer ml-1 leading-[32px]", children: [
                     "/",
-                    r.walkins.total_visited_today
+                    r?.walkins?.total_visited_today ?? 0
                   ] })
                 }
               )
@@ -51205,7 +51195,7 @@ function hue({ data: e }) {
           /* @__PURE__ */ b.jsxs("div", { className: "mt-2", children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Pre-approved Check-ins" }),
             /* @__PURE__ */ b.jsxs("div", { className: "flex items-baseline text-xl font-medium leading-[32px]", children: [
-              /* @__PURE__ */ b.jsx("div", { className: "text-[28px] text-[#E7A015] leading-[32px]", children: r.preApproved.completed_visits }),
+              /* @__PURE__ */ b.jsx("div", { className: "text-[28px] text-[#E7A015] leading-[32px]", children: r?.preApproved?.completed_visits ?? 0 }),
               /* @__PURE__ */ b.jsx(
                 z2,
                 {
@@ -51214,24 +51204,24 @@ function hue({ data: e }) {
                   rows: [
                     {
                       label: "Completed Visits",
-                      value: r.preApproved.completed_visits,
+                      value: r?.preApproved?.completed_visits ?? 0,
                       valueColor: "#E7A015"
                     },
                     {
                       label: "Total Expected Check-ins Today",
-                      value: r.preApproved.total_expected_today
+                      value: r?.preApproved?.total_expected_today ?? 0
                     }
                   ],
                   children: /* @__PURE__ */ b.jsxs("div", { className: "text-gray-400 cursor-pointer ml-1 leading-[32px]", children: [
                     "/",
-                    r.preApproved.total_expected_today
+                    r?.preApproved?.total_expected_today ?? 0
                   ] })
                 }
               )
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ b.jsx("div", { className: "w-full h-[179px]", children: /* @__PURE__ */ b.jsx(Ai, { width: "100%", height: "100%", children: /* @__PURE__ */ b.jsxs(ex, { data: i, children: [
+        /* @__PURE__ */ b.jsx("div", { className: "w-full h-[179px]", children: /* @__PURE__ */ b.jsx(Ai, { width: "100%", height: "100%", children: /* @__PURE__ */ b.jsxs(ex, { data: i ?? [], children: [
           /* @__PURE__ */ b.jsx(
             gl,
             {
