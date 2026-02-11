@@ -45,6 +45,7 @@ function TicketEscalation({ data = [] }) {
   const inProgressData = [];
   const onHoldData = [];
   const closedData = [];
+  const cancelledData = [];
 
   for (let i = 0; i < finalData.length; i++) {
     labels.push(finalData[i].level);
@@ -53,6 +54,7 @@ function TicketEscalation({ data = [] }) {
     inProgressData.push(Number(finalData[i].in_progress_count));
     onHoldData.push(Number(finalData[i].on_hold));
     closedData.push(Number(finalData[i].closed_count));
+    cancelledData.push(Number(finalData[i].cancelled));
   }
 
   const chartData = {
@@ -89,6 +91,15 @@ function TicketEscalation({ data = [] }) {
     label: "Closed",
     data: closedData,
     backgroundColor: "#10B981",
+    borderColor: "#FFFFFF",
+    borderWidth: 2,
+    barThickness: 38,
+    stack: "tickets",
+  },
+  {
+    label: "Cancelled",
+    data: cancelledData,
+    backgroundColor: "#FB2C36",
     borderColor: "#FFFFFF",
     borderWidth: 2,
     barThickness: 38,

@@ -50894,10 +50894,10 @@ function hue({ data: e = [] }) {
       on_hold: 14,
       closed_count: 6
     }
-  ], n = e.length > 0 ? e : t, r = [], i = [], o = [], a = [], s = [];
-  for (let u = 0; u < n.length; u++)
-    r.push(n[u].level), i.push(Number(n[u].open_count)), o.push(Number(n[u].in_progress_count)), a.push(Number(n[u].on_hold)), s.push(Number(n[u].closed_count));
-  const l = {
+  ], n = e.length > 0 ? e : t, r = [], i = [], o = [], a = [], s = [], l = [];
+  for (let d = 0; d < n.length; d++)
+    r.push(n[d].level), i.push(Number(n[d].open_count)), o.push(Number(n[d].in_progress_count)), a.push(Number(n[d].on_hold)), s.push(Number(n[d].closed_count)), l.push(Number(n[d].cancelled));
+  const c = {
     labels: r,
     datasets: [
       {
@@ -50935,9 +50935,18 @@ function hue({ data: e = [] }) {
         borderWidth: 2,
         barThickness: 38,
         stack: "tickets"
+      },
+      {
+        label: "Cancelled",
+        data: l,
+        backgroundColor: "#FB2C36",
+        borderColor: "#FFFFFF",
+        borderWidth: 2,
+        barThickness: 38,
+        stack: "tickets"
       }
     ]
-  }, c = {
+  }, u = {
     responsive: !0,
     maintainAspectRatio: !1,
     plugins: {
@@ -50979,7 +50988,7 @@ function hue({ data: e = [] }) {
           color: "#64748B",
           stepSize: 1,
           precision: 0,
-          callback: (u) => Math.round(u)
+          callback: (d) => Math.round(d)
         }
       }
     }
@@ -50993,7 +51002,7 @@ function hue({ data: e = [] }) {
         /* @__PURE__ */ b.jsx("div", { className: "font-medium text-[#121212]", children: "Ticket Escalation Levels" })
       ] }),
       period: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Today" }),
-      children: /* @__PURE__ */ b.jsx("div", { className: "h-full", children: /* @__PURE__ */ b.jsx(Ol, { data: l, options: c }) })
+      children: /* @__PURE__ */ b.jsx("div", { className: "h-full", children: /* @__PURE__ */ b.jsx(Ol, { data: c, options: u }) })
     }
   );
 }
