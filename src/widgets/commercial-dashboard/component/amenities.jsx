@@ -97,22 +97,23 @@ function Amenities({ data }) {
         </div>
 
         <div className="space-y-5">
-          {amenitiesList.length > 0 ? (
-            amenitiesList.map((item, index) => (
+          {amenitiesList?.length > 0 ? (
+            amenitiesList?.map((item, index) => (
               <div key={index}>
                 <div className="flex justify-between text-sm mb-2">
                   <div className="text-[#64748B] text-[12px] leading-[16px]">
-                    {item.name}
+                    {item?.name}
                   </div>
 
                   <div className="font-medium text-[12px] leading-[16px]">
-                    <div className="text-[#64748B] inline">
-                      {item.bookings} bookings
-                    </div>
+                   <div className="text-[#64748B] inline">
+  {item?.bookings} {item?.bookings <= 1 ? "booking" : "bookings"}
+</div>
 
-                    {item.isPaid && (
+
+                    {item?.isPaid && (
                       <div className="mx-2 text-[#121212] inline">
-                        {item.revenue}
+                        {item?.revenue}
                       </div>
                     )}
                   </div>
@@ -120,8 +121,8 @@ function Amenities({ data }) {
 
                 <div className="h-3 bg-gray-100 rounded-full">
                   <div
-                    className={`h-3 rounded-full ${item.color}`}
-                    style={{ width: `${item.percentage}%` }}
+                    className={`h-3 rounded-full ${item?.color}`}
+                    style={{ width: `${item?.percentage}%` }}
                   />
                 </div>
               </div>

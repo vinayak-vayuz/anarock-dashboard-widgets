@@ -11,6 +11,7 @@ import FoodBeverages from "./component/food-beverages";
 
 function CommercialDashboard() {
 
+
   return (
     <>
       <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-6 mt-6 auto-rows-fr">

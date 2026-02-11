@@ -50835,22 +50835,23 @@ function pue({ data: e }) {
             )
           ] })
         ] }),
-        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: a.length > 0 ? a.map((c, u) => /* @__PURE__ */ b.jsxs("div", { children: [
+        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: a?.length > 0 ? a?.map((c, u) => /* @__PURE__ */ b.jsxs("div", { children: [
           /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
-            /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: c.name }),
+            /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: c?.name }),
             /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px]", children: [
               /* @__PURE__ */ b.jsxs("div", { className: "text-[#64748B] inline", children: [
-                c.bookings,
-                " bookings"
+                c?.bookings,
+                " ",
+                c?.bookings <= 1 ? "booking" : "bookings"
               ] }),
-              c.isPaid && /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline", children: c.revenue })
+              c?.isPaid && /* @__PURE__ */ b.jsx("div", { className: "mx-2 text-[#121212] inline", children: c?.revenue })
             ] })
           ] }),
           /* @__PURE__ */ b.jsx("div", { className: "h-3 bg-gray-100 rounded-full", children: /* @__PURE__ */ b.jsx(
             "div",
             {
-              className: `h-3 rounded-full ${c.color}`,
-              style: { width: `${c.percentage}%` }
+              className: `h-3 rounded-full ${c?.color}`,
+              style: { width: `${c?.percentage}%` }
             }
           ) })
         ] }, u)) : /* @__PURE__ */ b.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ b.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
