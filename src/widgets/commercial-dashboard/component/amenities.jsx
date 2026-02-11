@@ -116,10 +116,10 @@ function Amenities({ data }) {
           )}
         </div>
 
-        <div className="space-y-5">
+        <div className="mt-[16px]">
           {amenitiesList.length > 0 ? (
             amenitiesList.map((item, index) => (
-              <div key={index}>
+              <div key={index} className="mb-[16px]">
                 <div className="flex justify-between text-sm mb-2">
                   <div className="text-[#64748B] text-[12px] leading-[16px]">
                     {item?.name}

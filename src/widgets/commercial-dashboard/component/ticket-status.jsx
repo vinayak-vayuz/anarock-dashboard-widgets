@@ -101,7 +101,7 @@ const chartData = [
                     {chartData.map((item) => (
                         <div
                             key={item.name}
-                            className="flex items-center justify-between text-sm"
+                            className="flex items-center justify-between text-[12px] leading-[17px] mt-[12px]"
                         >
                             <div className="flex items-center gap-2">
                                 <div

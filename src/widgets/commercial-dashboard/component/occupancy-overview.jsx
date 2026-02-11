@@ -12,7 +12,7 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
       : "text-slate-600";
   return (
     <div className="flex flex-col items-start">
-      <div className="w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden">
+      <div className="w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden">
         <div
           className={`h-[11px] rounded-full ${colorClass}`}
           style={{ width:colorClass === "bg-[#12B981]" ? `${pct + 45}%` : `${pct}%`}}

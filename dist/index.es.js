@@ -50563,7 +50563,7 @@ function cue() {
 const BP = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) => {
   const i = Math.max(0, Math.min(100, e / (t || 1) * 100)), o = n === "bg-[#8B5CF6]" ? "text-[#8B5CF6]" : n === "bg-[#12B981]" ? "text-[#12B981]" : "text-slate-600";
   return /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col items-start", children: [
-    /* @__PURE__ */ b.jsx("div", { className: "w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden", children: /* @__PURE__ */ b.jsx(
+    /* @__PURE__ */ b.jsx("div", { className: "w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden", children: /* @__PURE__ */ b.jsx(
       "div",
       {
         className: `h-[11px] rounded-full ${n}`,
@@ -50653,10 +50653,12 @@ const due = () => {
       },
       y: {
         beginAtZero: !0,
+        min: 0,
         max: 2e3,
         ticks: {
           stepSize: 500,
-          color: "#64748B"
+          color: "#64748B",
+          callback: (r) => r
         },
         grid: {
           display: !1,
@@ -50690,7 +50692,7 @@ const due = () => {
             ]
           }
         ),
-        /* @__PURE__ */ b.jsx("div", { className: "h-[97px]", children: /* @__PURE__ */ b.jsx(Ol, { data: t, options: n }) })
+        /* @__PURE__ */ b.jsx("div", { className: "h-[110px]", children: /* @__PURE__ */ b.jsx(Ol, { data: t, options: n }) })
       ]
     }
   );
@@ -50731,8 +50733,8 @@ function fue() {
             )
           ] })
         ] }),
-        /* @__PURE__ */ b.jsxs("div", { className: "space-y-5", children: [
-          /* @__PURE__ */ b.jsxs("div", { children: [
+        /* @__PURE__ */ b.jsxs("div", { className: "mt-[16px]", children: [
+          /* @__PURE__ */ b.jsxs("div", { className: "mb-[16px]", children: [
             /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
               /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "HP" }),
               /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
@@ -50748,7 +50750,7 @@ function fue() {
               }
             ) })
           ] }),
-          /* @__PURE__ */ b.jsxs("div", { children: [
+          /* @__PURE__ */ b.jsxs("div", { className: "mb-[16px]", children: [
             /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
               /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "Adobe" }),
               /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
@@ -50764,7 +50766,7 @@ function fue() {
               }
             ) })
           ] }),
-          /* @__PURE__ */ b.jsxs("div", { children: [
+          /* @__PURE__ */ b.jsxs("div", { className: "mb-[16px]", children: [
             /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
               /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: "Anarock" }),
               /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
@@ -50846,7 +50848,7 @@ function pue({ data: e }) {
             )
           ] })
         ] }),
-        /* @__PURE__ */ b.jsx("div", { className: "space-y-5", children: s.length > 0 ? s.map((d, f) => /* @__PURE__ */ b.jsxs("div", { children: [
+        /* @__PURE__ */ b.jsx("div", { className: "mt-[16px]", children: s.length > 0 ? s.map((d, f) => /* @__PURE__ */ b.jsxs("div", { className: "mb-[16px]", children: [
           /* @__PURE__ */ b.jsxs("div", { className: "flex justify-between text-sm mb-2", children: [
             /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: d?.name }),
             /* @__PURE__ */ b.jsxs("div", { className: "font-medium text-[12px] leading-[16px]", children: [
@@ -51086,7 +51088,7 @@ function mue({ data: e = null }) {
         /* @__PURE__ */ b.jsx("div", { className: "flex-1 space-y-2", children: i.map((a) => /* @__PURE__ */ b.jsxs(
           "div",
           {
-            className: "flex items-center justify-between text-sm",
+            className: "flex items-center justify-between text-[12px] leading-[17px] mt-[12px]",
             children: [
               /* @__PURE__ */ b.jsxs("div", { className: "flex items-center gap-2", children: [
                 /* @__PURE__ */ b.jsx(
@@ -51096,7 +51098,7 @@ function mue({ data: e = null }) {
                     style: { backgroundColor: a.color }
                   }
                 ),
-                /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: a.name })
+                /* @__PURE__ */ b.jsx("div", { className: "text-[12px] leading-[16px]  text-[#64748B]", children: a.name })
               ] }),
               /* @__PURE__ */ b.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px] font-medium", children: a.value })
             ]

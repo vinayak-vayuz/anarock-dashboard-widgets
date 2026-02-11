@@ -58,8 +58,8 @@ function FoodBeverages() {
           </div>
         </div>
 
-        <div className="space-y-5">
-          <div>
+        <div className="mt-[16px]">
+          <div className="mb-[16px]">
             <div className="flex justify-between text-sm mb-2">
               <div className="text-[#64748B] text-[12px] leading-[16px]">HP</div>
 
@@ -77,7 +77,7 @@ function FoodBeverages() {
             </div>
           </div>
 
-          <div>
+          <div className="mb-[16px]">
             <div className="flex justify-between text-sm mb-2">
               <div className="text-[#64748B] text-[12px] leading-[16px]">
                 Adobe
@@ -97,7 +97,7 @@ function FoodBeverages() {
             </div>
           </div>
 
-          <div>
+          <div className="mb-[16px]">
             <div className="flex justify-between text-sm mb-2">
               <div className="text-[#64748B] text-[12px] leading-[16px]">
                 Anarock

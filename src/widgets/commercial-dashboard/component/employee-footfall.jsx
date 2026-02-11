@@ -56,10 +56,12 @@ const EmployeeFootfall = () => {
       },
      y: {
   beginAtZero: true,
+  min: 0,
   max: 2000,
   ticks: {
     stepSize: 500,
     color: "#64748B",
+    callback: (value) => value,
   },
   grid: {
     display: false,  
@@ -93,7 +95,7 @@ const EmployeeFootfall = () => {
         <div className="text-[20px] leading-[24px] font-medium text-[#1FA05B]">7,500</div>
       </div>
 
-      <div className="h-[97px]">
+      <div className="h-[110px]">
         <Bar data={data} options={options} />
       </div>
     </Card>
