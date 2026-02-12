@@ -51203,27 +51203,27 @@ function gue({ data: e }) {
       total_expected_today: Number(t?.preApprovedPopupData?.totalPreApprovedCheckIns ?? 0)
     }
   }, i = jn(() => {
-    const o = t?.chartData ?? [];
-    if (!o.length) return B2.chartData;
-    const a = [];
-    for (let s = 0; s < o.length; s++)
-      a.push({
-        time: o[s]?.hour ?? "-",
-        walkins: o[s]?.walkins ?? 0,
-        approved: o[s]?.preApproved ?? 0
+    const a = t?.chartData ?? [];
+    if (!a.length) return B2.chartData;
+    const s = [];
+    for (let l = 0; l < a.length; l++)
+      s.push({
+        time: a[l]?.hour ?? "-",
+        walkins: a[l]?.walkins ?? 0,
+        approved: a[l]?.preApproved ?? 0
       });
-    return a;
-  }, [t]);
-  return (/* @__PURE__ */ new Date()).toLocaleTimeString("en-IN", {
+    return s;
+  }, [t]), o = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-IN", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: !0
-  }), /* @__PURE__ */ b.jsx(
+  });
+  return /* @__PURE__ */ b.jsx(
     Fe,
     {
       className: "h-[377px]",
       title: "Visitor Updates",
-      period: "Today",
+      period: `Today at ${o}`,
       icon: /* @__PURE__ */ b.jsx(Yp, { className: "!text-[24px] text-[#8B5CF6]" }),
       children: /* @__PURE__ */ b.jsxs("div", { className: "flex flex-col mt-2", children: [
         /* @__PURE__ */ b.jsxs("div", { className: "grid grid-cols-2 gap-y-4 gap-x-6 mb-6", children: [

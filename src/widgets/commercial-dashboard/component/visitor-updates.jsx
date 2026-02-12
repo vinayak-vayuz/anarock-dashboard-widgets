@@ -125,7 +125,7 @@ const popup = {
     <Card
       className="h-[377px]"
      title="Visitor Updates"
-            period="Today"
+            period={`Today at ${currentTime}`}
             icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
     >
       <div className="flex flex-col mt-2">
