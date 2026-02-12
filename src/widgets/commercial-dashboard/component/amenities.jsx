@@ -31,7 +31,7 @@ function Amenities({ data }) {
       : item?.unpaid_bookings || item?.total_bookings || 0;
 
    const revenue = item?.isPaid
-  ? `₹ ${formatAmount(item?.paid_revenue || "0.00")}`
+  ? `₹ ${item?.paid_revenue || "0.00"}`
   : "";
 
     const percentage =
@@ -90,7 +90,7 @@ function Amenities({ data }) {
               </div>
 
               <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
-                ₹ {formatAmount(amenitySummary?.todayPaidRevenue ?? "0.00")}
+                ₹ {amenitySummary?.todayPaidRevenue ?? "0.00"}
               </div>
 
               {growthPercentage !== null && (
