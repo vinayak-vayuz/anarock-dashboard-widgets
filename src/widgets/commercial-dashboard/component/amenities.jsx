@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../components/Card";
 import { FaSwimmingPool, FaCaretUp, FaCaretDown } from "react-icons/fa";
-
+import { formatAmount } from "../../utils/index";
 function Amenities({ data }) {
   const amenitySummary = data?.amenitySummary || {};
   const chartData = Array.isArray(data?.chartData) ? data.chartData : [];
@@ -30,9 +30,9 @@ function Amenities({ data }) {
       ? item?.paid_bookings || item?.total_bookings || 0
       : item?.unpaid_bookings || item?.total_bookings || 0;
 
-    const revenue = item?.isPaid
-      ? `₹${item?.paid_revenue || "0.00"}`
-      : "";
+   const revenue = item?.isPaid
+  ? `₹ ${formatAmount(item?.paid_revenue || "0.00")}`
+  : "";
 
     const percentage =
       totalForProgress > 0
@@ -63,6 +63,8 @@ function Amenities({ data }) {
   const isGrowthPositive =
     growthPercentage !== null ? growthPercentage >= 0 : true;
 
+
+
   return (
     <Card
       className="h-[324px]"
@@ -88,7 +90,7 @@ function Amenities({ data }) {
               </div>
 
               <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
-                ₹{amenitySummary?.todayPaidRevenue ?? "0.00"}
+                ₹ {formatAmount(amenitySummary?.todayPaidRevenue ?? "0.00")}
               </div>
 
               {growthPercentage !== null && (

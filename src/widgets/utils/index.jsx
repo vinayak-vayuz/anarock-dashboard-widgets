@@ -118,3 +118,38 @@ export function updateSession(key, value) {
     window.dispatchEvent(new StorageEvent("dashboard-update", { key }));
   }
 }
+
+export function formatAmount(value) {
+  if (value === null || value === undefined) return "0";
+
+  let num = Number(value);
+
+  if (isNaN(num)) return "0";
+
+  const isNegative = num < 0;
+  num = Math.abs(num);
+
+  if (num < 1000) return (isNegative ? "-" : "") + String(num);
+
+  if (num < 100000) {
+    const formatted = (num / 1000).toFixed(num >= 10000 ? 0 : 1);
+    return (isNegative ? "-" : "") + removeZero(formatted) + "K";
+  }
+
+  if (num < 10000000) {
+    const formatted = (num / 100000).toFixed(num >= 1000000 ? 0 : 1);
+    return (isNegative ? "-" : "") + removeZero(formatted) + "L";
+  }
+
+  const formatted = (num / 10000000).toFixed(num >= 100000000 ? 0 : 1);
+  return (isNegative ? "-" : "") + removeZero(formatted) + "Cr";
+}
+
+function removeZero(str) {
+  if (str.indexOf(".") === -1) return str;
+
+  while (str[str.length - 1] === "0") str = str.slice(0, -1);
+  if (str[str.length - 1] === ".") str = str.slice(0, -1);
+
+  return str;
+}

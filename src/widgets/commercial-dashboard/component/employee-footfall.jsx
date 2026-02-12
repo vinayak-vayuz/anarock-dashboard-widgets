@@ -77,7 +77,7 @@ const EmployeeFootfall = () => {
   return (
     <Card
       className="w-full h-[238px]"
-        title="Employee Footfall"
+        title="Employee Footfall (Static Data)"
             period="Today"
             icon={<WorkOutlineIcon className="!text-[24px] text-[#8B5CF6]" />}
     >

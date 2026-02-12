@@ -174,7 +174,7 @@ const popup = {
                   },
                 ]}
               >
-                <div className="text-gray-400 cursor-pointer ml-1 leading-[32px]">
+                <div className="text-[#64748B] cursor-pointer text-[20px] leading-[32px]">
                   /{popup?.walkins?.total_visited_today ?? 0}
                 </div>
               </HoverDetailCard>
@@ -208,7 +208,7 @@ const popup = {
                   },
                 ]}
               >
-                <div className="text-gray-400 cursor-pointer ml-1 leading-[32px]">
+                <div className="text-[#64748B] cursor-pointer text-[20px] leading-[32px]">
                   /{popup?.preApproved?.total_expected_today ?? 0}
                 </div>
               </HoverDetailCard>
