@@ -2,24 +2,38 @@ import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/Card";
 import { LuReceiptText } from "react-icons/lu";
-
 const CustomTooltip = ({ active, payload }) => {
-    if (!active || !payload || !payload.length) return null;
+  if (!active || !payload || !payload.length) return null;
 
-    return (
+  const item = payload[0];
+  const dotColor = item.payload.color;
+
+  return (
+    <div
+      style={{
+        backgroundColor: "#000000",
+        color: "#ffffff",
+        padding: "8px 10px",
+        borderRadius: "8px",
+        fontSize: "12px",
+      }}
+    >
+      <div className="flex items-center gap-2 font-medium">
         <div
-            style={{
-                backgroundColor: "#000000",
-                color: "#ffffff",
-                padding: "8px 10px",
-                borderRadius: "8px",
-                fontSize: "12px",
-            }}
-        >
-            <div className="font-medium">{payload[0].name}</div>
-            <div>{payload[0].value}</div>
-        </div>
-    );
+          style={{
+            width: "8px",
+            height: "8px",
+            borderRadius: "50%",
+            backgroundColor: dotColor,
+          }}
+        />
+
+        <div>{item.name}</div>
+
+        <div className="ml-2">{item.value}</div>
+      </div>
+    </div>
+  );
 };
 
 
@@ -53,8 +67,8 @@ const chartData = [
         <Card
             className="h-[267px]"
              title="Ticket Status"
-                        period="Today"
-                        icon={<LuReceiptText className="!text-[24px] text-[#EF4444]" />}
+            period="Today"
+            icon={<LuReceiptText className="!text-[24px] text-[#EF4444]" />}
         >
             <div className="flex h-full items-center gap-4">
 

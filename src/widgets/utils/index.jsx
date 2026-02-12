@@ -13,24 +13,44 @@ const Dot = ({ color }) => (
   />
 );
 
-export const CustomTooltip = ({ active, payload }) => {
+export const CustomTooltip = ({ active, payload, coordinate }) => {
   if (!active || !payload || !payload.length) return null;
 
+  const tooltipHeight = 60; 
+  const chartHeight = 235; 
+
+  let y = coordinate?.y || 0;
+
+  if (y + tooltipHeight / 2 > chartHeight) {
+    y = chartHeight - tooltipHeight / 2 - 8;
+  }
+
+  if (y - tooltipHeight / 2 < 0) {
+    y = tooltipHeight / 2 + 8;
+  }
+
   return (
-    <div className="bg-[#121212] text-white !text-[12px] p-3 rounded-lg shadow-lg">
-      {payload.map((item, i) => {
-        return (
-          <div
-            key={i}
-            className="capitalize flex gap-[4px] items-center leading-relaxed"
-          >
-            {item.color && <Dot color={item.color} />}
-            {item.payload.color && <Dot color={item.payload.color} />}
-            <div className="min-w-[84px] text-[#D1D3D4]">{item.name}</div>
-            <div className="font-semibold">{item.value}</div>
-          </div>
-        );
-      })}
+    <div
+      className="relative bg-[#121212] text-white text-[12px] px-4 py-2 rounded-lg shadow-lg"
+      style={{
+        transform: `translateY(${y}px) translateY(-50%)`,
+      }}
+    >
+      <div
+        className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-0 h-0
+        border-t-[6px] border-t-transparent
+        border-b-[6px] border-b-transparent
+        border-r-[6px] border-r-[#121212]"
+      />
+
+      {payload.map((item, i) => (
+        <div key={i} className="flex items-center gap-2 capitalize">
+          {item.payload.color && <Dot color={item.payload.color} />
+          }
+          <span className="text-[#D1D3D4] min-w-[70px]">{item?.payload?.name}</span>
+          <span className="font-semibold">{item.value}</span>
+        </div>
+      ))}
     </div>
   );
 };

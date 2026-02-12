@@ -25,14 +25,14 @@ function Engagement({ isStatic, data, communities }) {
   const engagementBars = [
     {
       name: "Notice",
-      value: Number(data?.total_notices || 0),
+      value: Number(dummyEngagementData?.total_notices || 0),
       color: COLORS[0],
     },
-    { name: "Post", value: Number(data?.total_topics || 0), color: COLORS[1] },
-    { name: "Poll", value: Number(data?.total_polls || 0), color: COLORS[2] },
+    { name: "Post", value: Number(dummyEngagementData?.total_topics || 0), color: COLORS[1] },
+    { name: "Poll", value: Number(dummyEngagementData?.total_polls || 0), color: COLORS[2] },
     {
       name: "Survey",
-      value: Number(data?.total_surveys || 0),
+      value: Number(dummyEngagementData?.total_surveys || 0),
       color: COLORS[3],
     },
   ];
@@ -93,11 +93,13 @@ function Engagement({ isStatic, data, communities }) {
               }}
             />
 
-            <RTooltip
-              content={<CustomTooltip />}
-              cursor={{ fill: "transparent" }}
-            />
+         <RTooltip
+  content={<CustomTooltip />}
+  cursor={{ fill: "transparent" }}
+  wrapperStyle={{ outline: "none" }}
+  position={{ x: 160, y: 0 }} 
 
+/>
             <Bar dataKey="value" barSize={40} isAnimationActive={false}>
               {engagementBars.map((entry, i) => (
                 <Cell key={entry.name} fill={COLORS[i]} />
