@@ -50859,7 +50859,7 @@ function due({ data: e }) {
           strokeWidth: "2",
           strokeLinecap: "round",
           strokeLinejoin: "round",
-          className: "w-6 h-6 text-[#884EA7]",
+          style: { color: "#884EA7" },
           children: [
             /* @__PURE__ */ b.jsx("path", { d: "M19 5a2 2 0 0 0-2 2v11" }),
             /* @__PURE__ */ b.jsx("path", { d: "M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" }),
