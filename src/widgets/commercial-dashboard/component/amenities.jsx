@@ -70,16 +70,17 @@ function Amenities({ data }) {
       className="h-[324px]"
       title="Amenities"
       period="Today"
-     icon={
+icon={
   <svg
     xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
+    stroke="#884EA7"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-     style={{ color: "#884EA7"}}
   >
     <path d="M19 5a2 2 0 0 0-2 2v11" />
     <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
@@ -88,8 +89,7 @@ function Amenities({ data }) {
     <path d="M9 5a2 2 0 0 0-2 2v11" />
   </svg>
 }
-
-     >
+>
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div>
