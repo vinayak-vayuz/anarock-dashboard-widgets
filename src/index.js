@@ -52,3 +52,26 @@ export { default as TicketEscalation } from "./widgets/commercial-dashboard/comp
 export { default as TicketStatus } from "./widgets/commercial-dashboard/component/ticket-status";
 export { default as VisitorUpdates } from "./widgets/commercial-dashboard/component/visitor-updates";
 
+export { default as CommercialAccessOverview } from "./widgets/commercial-smart-access/component/AccessOverview";
+export { default as CardAccess } from "./widgets/commercial-smart-access/component/CardAccess";
+export { default as MobileAccess } from "./widgets/commercial-smart-access/component/CardAccess";
+export { default as AccessPointsUsage } from "./widgets/commercial-smart-access/component/AccessPointsUsage";
+
+export { default as Tickets } from "./widgets/community/component/UnitStatusPie";
+export { default as TicketsperCategory } from "./widgets/commercial-helpdesk/component/TicketsPerCategory";
+export { default as MetricCard } from "./widgets/commercial-helpdesk/component/Resolution";
+
+export { default as WeeklyVisitorPattern } from "./widgets/commercial-visitors/components/WeeklyVisitorPattern";
+export { default as OrganisationWiseVisitors } from "./widgets/commercial-visitors/components/OrganisationWiseVisitors";
+
+export { default as AmenitiesStatsCard } from "./widgets/commercial-amenities/components/Stats";
+export { default as Bookings } from "./widgets/commercial-amenities/components/BookingsChart";
+export { default as BookingTrendChart} from "./widgets/commercial-amenities/components/BookingTrendChart";
+export { default as AmenityWiseRevenue } from "./widgets/commercial-amenities/components/AmenityWiseRevenue";
+
+export { default as AssetsByType } from "./widgets/commercial-asset-management/components/AssetsByType";
+export { default as MaintenanceStatus } from "./widgets/commercial-asset-management/components/MaintenanceStatus";
+
+export { default as CommercialGuardPatrols } from "./widgets/commercial-guard-petrol/components/PatrolStatus";
+export { default as CommercialIncidentReports } from "./widgets/commercial-guard-petrol/components/IncidentReports";
+
