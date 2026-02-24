@@ -1,6 +1,14 @@
 import * as Widgets from "../index";
 import CommercialDashboard from "../widgets/commercial-dashboard";
-
+import CommercialSmartAccess from "../widgets/commercial-smart-access";
+import CommercialHelpdesk from "../widgets/commercial-helpdesk";
+import CommercialVisitors from "../widgets/commercial-visitors";
+import CommercialAmenities from "../widgets/commercial-amenities";
+import CommercialGuardPetrol from "../widgets/commercial-guard-petrol";
+import CommercialEngagement from "../widgets/commercial-engagement";
+import CommercialFoodAndOrder from "../widgets/commercial-food-and-order";
+import CommercialAssetManagement from "../widgets/commercial-asset-management";
+import { LuBuilding } from "react-icons/lu"
 export default function App() {
   return (
     <div className="p-4">
@@ -24,7 +32,25 @@ export default function App() {
           description="Units, residents, and occupancy details"
         />
         <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Widgets.UnitStatus isStatic={true} />
+          <Widgets.UnitStatus isStatic={true} 
+            title="Unit Status"
+            icon={<LuBuilding className="h-6 w-6 text-green-400" />}
+            
+            firstLabel="Sold"
+            firstValue={847}
+            firstColor="#12B981"
+          
+            secondLabel="Unsold"
+            secondValue={73}
+            secondColor="#EF4444"
+          
+            growthPercentage="+12.4%"
+            growthColor="#1FA05B"
+            growthText="Compared to last month"
+          
+            totalLabel="Total Units"
+
+          />
           <Widgets.OccupancyOverview isStatic={true} />
           <Widgets.ResidentOverview isStatic={true} />
         </div>
@@ -164,6 +190,14 @@ export default function App() {
           <Widgets.EventsUtilisation isStatic={true} />
         </div>
           <CommercialDashboard/>
+          <CommercialSmartAccess/>
+          <CommercialHelpdesk/>
+          <CommercialVisitors/>
+          <CommercialAmenities/>
+          <CommercialAssetManagement/>
+           <CommercialGuardPetrol/>
+          <CommercialEngagement/>
+          {/* <CommercialFoodAndOrder/> */}
       </div>
     </div>
   );

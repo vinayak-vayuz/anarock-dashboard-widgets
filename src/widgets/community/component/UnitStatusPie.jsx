@@ -2,7 +2,6 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Card from "../../components/Card";
-import { LuBuilding } from "react-icons/lu";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -36,15 +35,34 @@ const centerTextPlugin = {
   },
 };
 
-const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
-  const totalUnits = sold + unsold;
+const Tickets = ({
+  title = "Tickets",
+  icon,
+
+  firstLabel = "First",
+  firstValue = 0,
+  firstColor = "#12B981",
+
+  secondLabel = "Second",
+  secondValue = 0,
+  secondColor = "#AB0000",
+
+  growthPercentage = "+0%",
+  growthColor = "#1FA05B",
+  growthText = "Compared to last month",
+
+  totalLabel = "Total",
+  centerTopColor = "#0F172A",
+  centerBottomColor = "#64748B",
+}) => {
+  const total = firstValue + secondValue;
 
   const data = {
-    labels: ["Sold", "Unsold"],
+    labels: [firstLabel, secondLabel],
     datasets: [
       {
-        data: [sold, unsold],
-        backgroundColor: ["#12B981", "#EF4444"],
+        data: [firstValue, secondValue],
+        backgroundColor: [firstColor, secondColor],
         borderWidth: 2,
         hoverOffset: 4,
       },
@@ -58,47 +76,52 @@ const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
     plugins: {
       legend: { display: false },
       tooltip: {
-        callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed}` },
+        callbacks: {
+          label: (ctx) => `${ctx.label}: ${ctx.parsed}`,
+        },
         displayColors: false,
       },
       centerText: {
-        top: `${totalUnits}`,
-        bottom: "Total Units",
+        top: `${total}`,
+        bottom: totalLabel,
         topSize: 20,
         bottomSize: 10,
+        topColor: centerTopColor,
+        bottomColor: centerBottomColor,
       },
     },
   };
 
+  const items = [
+    { label: firstLabel, value: firstValue, color: firstColor },
+    { label: secondLabel, value: secondValue, color: secondColor },
+  ];
+
   return (
-    <Card
-      title="Unit Status"
-      period="This Month"
-      icon={<LuBuilding className="h-6 w-6 text-green-600" />}
-      className="h-[238px]"
-    >
+    <Card title={title} icon={icon} className="h-[238px]">
       <div className="grid grid-cols-12 gap-[16px] items-center">
         <div className="col-span-5 space-y-3">
-          <div>
-            <div className="!text-[12px] lending-[16px] text-[#64748B]">
-              Sold
+          {items.map((item, index) => (
+            <div key={index}>
+              <div className="text-[12px] text-[#64748B]">
+                {item.label}
+              </div>
+              <div
+                className="text-[28px] leading-[32px]"
+                style={{ color: item.color }}
+              >
+                {item.value}
+              </div>
             </div>
-            <div className="text-[28px] leading-[32px] text-[#1FA05B]">
-              {sold}
-            </div>
-          </div>
-          <div>
-            <div className="!text-[12px] lending-[16px] text-[#64748B]">
-              Unsold
-            </div>
-            <div className="text-[28px] leading-[32px] text-[#EF4444]">
-              {unsold}
-            </div>
-          </div>
-          <div className="text-[10px] text-[#1FA05B] flex gap-[8px] items-center ">
-            {growthPct}{" "}
+          ))}
+
+          <div
+            className="text-[10px] flex gap-[8px] items-center"
+            style={{ color: growthColor }}
+          >
+            {growthPercentage}
             <div className="text-[#64748B] text-[10px]">
-              Compared to last month
+              {growthText}
             </div>
           </div>
         </div>
@@ -117,4 +140,4 @@ const UnitStatusPie = ({ sold = 847, unsold = 73, growthPct = "+9.1%" }) => {
   );
 };
 
-export default UnitStatusPie;
+export default Tickets;
