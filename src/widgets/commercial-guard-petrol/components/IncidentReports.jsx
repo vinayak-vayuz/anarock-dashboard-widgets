@@ -37,7 +37,7 @@ function IncidentReports() {
         </div>
 
         <div className="mt-4 ">
-          <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]">
+          <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md">
             <div className="flex items-center gap-[8px]">
              
               <div className="text-gray-700 font-medium">INC 001</div>
@@ -47,7 +47,7 @@ function IncidentReports() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]">
+          <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md">
             <div className="flex items-center gap-[8px]">
              
               <div className="text-gray-700 font-medium">INC 002</div>
@@ -57,7 +57,7 @@ function IncidentReports() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]">
+          <div className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md">
             <div className="flex items-center gap-[8px]">
              
               <div className="text-gray-700 font-medium">INC 003</div>

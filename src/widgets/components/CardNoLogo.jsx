@@ -18,7 +18,7 @@ const Card = ({
 
   return (
     <div
-      className={`relative bg-white border border-[#EBEBEB] rounded-[12px] p-[24px] shadow-[0_0_12px_0_#EAF2FF] ${className}`}
+      className={`relative bg-white rounded-[12px] p-[24px] shadow-[0_0_12px_0_#EAF2FF] ${className}`}
     >
       <div className="flex items-center justify-between">
         
@@ -47,7 +47,7 @@ const Card = ({
         )}
 
         {isDateSelector && (
-          <div className="flex items-center gap-3 px-4 py-2 rounded-lg border border-[#EBEBEB] bg-white text-sm text-[#64748B]">
+          <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-white text-sm text-[#64748B]">
             <Calendar size={16} className="text-[#64748B]" />
             <ChevronLeft size={16} className="cursor-pointer" />
             <span className="text-[12px] leading-[16px] text-[#64748B]">

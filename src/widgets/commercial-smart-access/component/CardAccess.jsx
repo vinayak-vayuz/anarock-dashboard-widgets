@@ -13,7 +13,7 @@ function AccessStatsCard({
 
   return (
     <Card className={height} title={title} titleWeight="semi-bold">
-      <div className="border border-[#E2E8F0] rounded-xl overflow-hidden mt-[16px]">
+      <div className="rounded-xl overflow-hidden mt-[16px]">
         <div className="grid grid-cols-2 bg-[#F8FAFC] py-[8px] px-[12px] text-[12px] leading-[16px] font-medium text-[#64748B]">
           <div>Point</div>
           <div className="text-right">Access</div>

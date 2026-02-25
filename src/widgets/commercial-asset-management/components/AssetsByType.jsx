@@ -56,7 +56,7 @@ const AssetsByType = () => {
 
         {/* Table */}
         <div className="flex-1 max-w-[280px]">
-          <div className="border border-[#EBEBEB] rounded-[12px] overflow-hidden bg-white">
+          <div className=" rounded-[12px] overflow-hidden bg-white">
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#F8FAFC]">
               <div className="text-[12px] font-medium text-[#64748B]">
