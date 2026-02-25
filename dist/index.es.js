@@ -52852,7 +52852,7 @@ const ei = ({
   return /* @__PURE__ */ v.jsxs(
     "div",
     {
-      className: `relative bg-white border border-[#EBEBEB] rounded-[12px] p-[24px] shadow-[0_0_12px_0_#EAF2FF] ${a}`,
+      className: `relative bg-white rounded-[12px] p-[24px] shadow-[0_0_12px_0_#EAF2FF] ${a}`,
       children: [
         /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between", children: [
           /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2", children: [
@@ -52870,7 +52870,7 @@ const ei = ({
             )
           ] }),
           n && !r && /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: n }),
-          r && /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-3 px-4 py-2 rounded-lg border border-[#EBEBEB] bg-white text-sm text-[#64748B]", children: [
+          r && /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-3 px-4 py-2 rounded-lg bg-white text-sm text-[#64748B]", children: [
             /* @__PURE__ */ v.jsx(ode, { size: 16, className: "text-[#64748B]" }),
             /* @__PURE__ */ v.jsx(sde, { size: 16, className: "cursor-pointer" }),
             /* @__PURE__ */ v.jsx("span", { className: "text-[12px] leading-[16px] text-[#64748B]", children: n }),
@@ -52983,7 +52983,7 @@ function Mfe({
   height: n = "h-[362px]"
 }) {
   const r = (i) => i == null ? "0" : Number(i).toLocaleString();
-  return /* @__PURE__ */ v.jsx(ei, { className: n, title: e, titleWeight: "semi-bold", children: /* @__PURE__ */ v.jsxs("div", { className: "border border-[#E2E8F0] rounded-xl overflow-hidden mt-[16px]", children: [
+  return /* @__PURE__ */ v.jsx(ei, { className: n, title: e, titleWeight: "semi-bold", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-xl overflow-hidden mt-[16px]", children: [
     /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 bg-[#F8FAFC] py-[8px] px-[12px] text-[12px] leading-[16px] font-medium text-[#64748B]", children: [
       /* @__PURE__ */ v.jsx("div", { children: "Point" }),
       /* @__PURE__ */ v.jsx("div", { className: "text-right", children: "Access" })
@@ -53140,7 +53140,7 @@ function Rfe({
   percentageText: o
 }) {
   const s = i?.trim().startsWith("-") ? "#DC2626" : "#16A34A";
-  return /* @__PURE__ */ v.jsxs("div", { className: "relative bg-white border border-[#EBEBEB] rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] p-[16px]", children: [
+  return /* @__PURE__ */ v.jsxs("div", { className: "relative bg-white rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] p-[16px]", children: [
     /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2", children: [
       e && /* @__PURE__ */ v.jsx(
         "div",
@@ -53511,7 +53511,7 @@ function Wfe() {
             }
           )
         ] }) }) }),
-        /* @__PURE__ */ v.jsx("div", { className: "col-span-7", children: /* @__PURE__ */ v.jsxs("div", { className: "border border-[#EBEBEB] rounded-[12px] overflow-hidden", children: [
+        /* @__PURE__ */ v.jsx("div", { className: "col-span-7", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden", children: [
           /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 px-[12px] py-[8px] bg-[#EBEBEB] text-[12px] leading-[16px] font-semibold text-[#64748B]", children: [
             /* @__PURE__ */ v.jsx("div", { children: "Amenity" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-right", children: "Revenue" })
@@ -53582,7 +53582,7 @@ const zfe = () => {
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#94A3B8] mt-1", children: "Total Assets" })
       ] })
     ] }),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 max-w-[280px]", children: /* @__PURE__ */ v.jsxs("div", { className: "border border-[#EBEBEB] rounded-[12px] overflow-hidden bg-white", children: [
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 max-w-[280px]", children: /* @__PURE__ */ v.jsxs("div", { className: " rounded-[12px] overflow-hidden bg-white", children: [
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between px-4 py-3 bg-[#F8FAFC]", children: [
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] font-medium text-[#64748B]", children: "Asset" }),
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] font-medium text-[#64748B]", children: "Count" })
@@ -53798,15 +53798,15 @@ function Yfe() {
           ] })
         ] }),
         /* @__PURE__ */ v.jsxs("div", { className: "mt-4 ", children: [
-          /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]", children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md", children: [
             /* @__PURE__ */ v.jsx("div", { className: "flex items-center gap-[8px]", children: /* @__PURE__ */ v.jsx("div", { className: "text-gray-700 font-medium", children: "INC 001" }) }),
             /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] font-semibold flex items-center gap-[4px] text-[#AB0000]", children: /* @__PURE__ */ v.jsx("div", { children: "4 - Danger" }) })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]", children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md", children: [
             /* @__PURE__ */ v.jsx("div", { className: "flex items-center gap-[8px]", children: /* @__PURE__ */ v.jsx("div", { className: "text-gray-700 font-medium", children: "INC 002" }) }),
             /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] font-semibold flex items-center gap-[4px] text-[#E7A015] ", children: /* @__PURE__ */ v.jsx("div", { children: "3 - High" }) })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md border border-[#FAFBFD]", children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md", children: [
             /* @__PURE__ */ v.jsx("div", { className: "flex items-center gap-[8px]", children: /* @__PURE__ */ v.jsx("div", { className: "text-gray-700 font-medium", children: "INC 003" }) }),
             /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] font-semibold flex items-center gap-[4px] text-[#1FA05B] ", children: /* @__PURE__ */ v.jsx("div", { children: "1 - Low" }) })
           ] })
