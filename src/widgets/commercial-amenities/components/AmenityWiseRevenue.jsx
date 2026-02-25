@@ -8,17 +8,32 @@ import {
   Tooltip,
 } from "recharts";
 
-const data = [
-  { name: "Table Tennis", value: 24 },
-  { name: "Games Room", value: 14 },
-  { name: "Badminton", value: 10 },
-  { name: "GYM", value: 4 },
-  { name: "Snooker", value: 1 },
+const dummyData = [
+  { facility_name: "Table Tennis", paid_revenue: "24000.00" },
+  { facility_name: "Games Room", paid_revenue: "14000.00" },
+  { facility_name: "Badminton", paid_revenue: "10000.00" },
+  { facility_name: "GYM", paid_revenue: "4000.00" },
 ];
 
 const COLORS = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
 
-function AmenityWiseRevenue() {
+function AmenityWiseRevenue({ data }) {
+
+  const rawData =
+    data && Array.isArray(data) && data.length > 0
+      ? data
+      : dummyData;
+
+  const chartData = rawData
+    .map((item) => ({
+      name: item.facility_name,
+      value: Number(item.paid_revenue) || 0,
+    }))
+    .filter((item) => item.value > 0);
+
+  const formatCurrency = (value) =>
+    `₹ ${value.toLocaleString("en-IN")}`;
+
   return (
     <Card
       title="Amenity Wise Revenue"
@@ -31,17 +46,16 @@ function AmenityWiseRevenue() {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={chartData}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"
                 cy="50%"
                 outerRadius={95}
-                innerRadius={0}
                 stroke="#fff"
                 strokeWidth={1}
               >
-                {data.map((entry, index) => (
+                {chartData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
@@ -49,14 +63,15 @@ function AmenityWiseRevenue() {
                 ))}
               </Pie>
 
-              <Tooltip
-                formatter={(value) => [`₹ ${value}L`, "Revenue"]}
-                contentStyle={{
-                  borderRadius: "10px",
-                  border: "1px solid #EBEBEB",
-                  fontSize: "12px",
-                }}
-              />
+             <Tooltip
+  formatter={(value) => formatCurrency(value)}
+  labelFormatter={(label) => `Amenity: ${label}`}
+  contentStyle={{
+    borderRadius: "10px",
+    border: "1px solid #EBEBEB",
+    fontSize: "12px",
+  }}
+/>
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -69,7 +84,7 @@ function AmenityWiseRevenue() {
             </div>
 
             <div className="divide-y divide-[#F1F5F9]">
-              {data.map((item, index) => (
+              {chartData.map((item, index) => (
                 <div
                   key={item.name}
                   className="grid grid-cols-2 px-4 py-4 text-[14px] text-[#121212]"
@@ -86,8 +101,8 @@ function AmenityWiseRevenue() {
                     </span>
                   </div>
 
-                  <div className="text-right  text-[12px] leading-[16px] text-[#64748B]">
-                    ₹ {item.value}L
+                  <div className="text-right text-[12px] leading-[16px] text-[#64748B]">
+                    {formatCurrency(item.value)}
                   </div>
                 </div>
               ))}
