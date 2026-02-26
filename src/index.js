@@ -74,4 +74,5 @@ export { default as MaintenanceStatus } from "./widgets/commercial-asset-managem
 
 export { default as CommercialGuardPatrols } from "./widgets/commercial-guard-petrol/components/PatrolStatus";
 export { default as CommercialIncidentReports } from "./widgets/commercial-guard-petrol/components/IncidentReports";
+export { default as CommercialReportTable } from "./widgets/commercial-table/index";
 

@@ -8,6 +8,7 @@ import CommercialGuardPetrol from "../widgets/commercial-guard-petrol";
 import CommercialEngagement from "../widgets/commercial-engagement";
 import CommercialFoodAndOrder from "../widgets/commercial-food-and-order";
 import CommercialAssetManagement from "../widgets/commercial-asset-management";
+import CommercialTable from "../widgets/commercial-table";
 import { LuBuilding } from "react-icons/lu"
 export default function App() {
   return (
@@ -198,6 +199,7 @@ export default function App() {
            <CommercialGuardPetrol/>
           <CommercialEngagement/>
           {/* <CommercialFoodAndOrder/> */}
+           <CommercialTable/>
       </div>
     </div>
   );
