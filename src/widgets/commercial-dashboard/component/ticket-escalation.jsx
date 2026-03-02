@@ -17,24 +17,24 @@ function TicketEscalation({ data = [] }) {
   const staticData = [
     {
       level: "L1",
-      open_count: 55,
-      in_progress_count: 22,
+      open: 55,
+      in_progress: 22,
       on_hold: 15,
-      closed_count: 6,
+      closed: 6,
     },
     {
       level: "L2",
-      open_count: 45,
-      in_progress_count: 25,
+      open: 45,
+      in_progress: 25,
       on_hold: 18,
-      closed_count: 5,
+      closed: 5,
     },
     {
       level: "L3",
-      open_count: 58,
-      in_progress_count: 23,
+      open: 58,
+      in_progress: 23,
       on_hold: 14,
-      closed_count: 6,
+      closed: 6,
     },
   ];
 
@@ -50,10 +50,10 @@ function TicketEscalation({ data = [] }) {
   for (let i = 0; i < finalData.length; i++) {
     labels.push(finalData[i].level);
 
-    openData.push(Number(finalData[i].open_count));
-    inProgressData.push(Number(finalData[i].in_progress_count));
+    openData.push(Number(finalData[i].open));
+    inProgressData.push(Number(finalData[i].in_progress));
     onHoldData.push(Number(finalData[i].on_hold));
-    closedData.push(Number(finalData[i].closed_count));
+    closedData.push(Number(finalData[i].closed));
     cancelledData.push(Number(finalData[i].cancelled));
   }
 

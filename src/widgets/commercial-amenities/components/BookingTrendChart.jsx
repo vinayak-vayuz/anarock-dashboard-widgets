@@ -12,11 +12,11 @@ import {
 
 /* ✅ Dummy fallback data */
 const dummyData = [
-  { organisation_name: "Google", total_revenue: 1 },
-  { organisation_name: "Uber", total_revenue: 2 },
-  { organisation_name: "ANAROCK", total_revenue: 4 },
-  { organisation_name: "Flipkart", total_revenue: 2 },
-  { organisation_name: "HP", total_revenue: 1 },
+  { building_name: "Google", no_of_booking: 1 },
+  { building_name: "Uber", no_of_booking: 2 },
+  { building_name: "ANAROCK", no_of_booking: 4 },
+  { building_name: "Flipkart", no_of_booking: 2 },
+  { building_name: "HP", no_of_booking: 1 },
 ];
 
 function BookingTrendChart({ data }) {
@@ -26,7 +26,7 @@ function BookingTrendChart({ data }) {
       : dummyData;
 
   const maxValue = Math.max(
-    ...chartData.map((item) => item.total_revenue || 0),
+    ...chartData.map((item) => item.no_of_booking || 0),
     0
   );
 
@@ -49,7 +49,7 @@ function BookingTrendChart({ data }) {
             />
 
             <XAxis
-              dataKey="organisation_name"
+              dataKey="building_name"
               axisLine={false}
               tickLine={false}
               tick={{ fill: "#64748B", fontSize: 12 }}
@@ -61,15 +61,15 @@ function BookingTrendChart({ data }) {
               axisLine={false}
               tickLine={false}
               tick={{ fill: "#64748B", fontSize: 12 }}
-              tickFormatter={(value) => `₹ ${value}k`}
+              tickFormatter={(value) => `₹ ${value}`}
             />
 
-            <Bar dataKey="total_revenue" barSize={54}>
+            <Bar dataKey="no_of_booking" barSize={54}>
               {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={
-                    entry.total_revenue === maxValue
+                    entry.no_of_booking === maxValue
                       ? "#3C81F6"
                       : "#79ABFF"
                   }

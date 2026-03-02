@@ -24,13 +24,22 @@ function AmenityWiseRevenue({ data }) {
       ? data
       : dummyData;
 
-  const chartData = rawData
-    .map((item) => ({
-      name: item.facility_name,
-      value: Number(item.paid_revenue) || 0,
-    }))
-    .filter((item) => item.value > 0);
+const chartData = rawData.map((item) => ({
+  name: item.facility_name,
+  value: Number(item.paid_revenue) || 0,
+}));
 
+// Check if all values are zero
+const allZero = chartData.every((item) => item.value === 0);
+
+// If all are zero, give tiny value to one slice so Pie renders
+const pieData = allZero
+  ? chartData.map((item, index) => ({
+      ...item,
+      value: index === 0 ? 1 : 0, // only first slice gets tiny value
+    }))
+  : chartData;
+  
   const formatCurrency = (value) =>
     `₹ ${value.toLocaleString("en-IN")}`;
 

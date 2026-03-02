@@ -35,7 +35,7 @@ const staticData = {
       total_expected_today: 5,
     },
   },
-  chartData: [
+  chart_data: [
     { hour: "10 AM", walkins: 22, preApproved: 30 },
     { hour: "12 PM", walkins: 15, preApproved: 28 },
     { hour: "2 PM", walkins: 30, preApproved: 38 },
@@ -88,31 +88,45 @@ function VisitorUpdates({ data }) {
   const finalData =
     data && Object.keys(data).length ? data : staticData;
 
-  const summary = finalData?.visitorSummary ?? {};
-const popup = {
-  walkins: {
-    currently_inside: Number(finalData?.walkinsPopupData?.walkinsInside ?? 0),
-    total_visited_today: Number(finalData?.walkinsPopupData?.totalWalkins ?? 0),
-  },
-  preApproved: {
-    completed_visits: Number(finalData?.preApprovedPopupData?.preApprovedCheckIns ?? 0),
-    total_expected_today: Number(finalData?.preApprovedPopupData?.totalPreApprovedCheckIns ?? 0),
-  },
-};
+  const summary = finalData?.visitor_summary
+    ? {
+        totalVisitorsToday:
+          finalData?.visitor_summary?.total_visitors_today ?? 0,
+        peakTime: finalData?.visitor_summary?.peak_time ?? "-",
+      }
+    : finalData?.visitorSummary ?? {};
 
-  const chartData = useMemo(() => {
-    const apiChart = finalData?.chartData ?? [];
-    if (!apiChart.length) return staticData.chartData;
+  const popup = finalData?.walkins_popup_data
+    ? {
+        walkins: {
+          currently_inside: Number(
+            finalData?.walkins_popup_data?.walkins_inside ?? 0
+          ),
+          total_visited_today: Number(
+            finalData?.walkins_popup_data?.total_walkins ?? 0
+          ),
+        },
+        preApproved: {
+          completed_visits: Number(
+            finalData?.pre_approved_popup_data?.pre_approved_check_ins ?? 0
+          ),
+          total_expected_today: Number(
+            finalData?.pre_approved_popup_data?.total_pre_approved_check_ins ?? 0
+          ),
+        },
+      }
+    : finalData?.popupData ?? {};
 
-    const formatted = [];
-    for (let i = 0; i < apiChart.length; i++) {
-      formatted.push({
-        time: apiChart[i]?.hour ?? "-",
-        walkins: apiChart[i]?.walkins ?? 0,
-        approved: apiChart[i]?.preApproved ?? 0,
-      });
-    }
-    return formatted;
+  const chart_data = useMemo(() => {
+    const apiChart = finalData?.chart_data ?? [];
+    if (!apiChart.length) return staticData.chart_data;
+
+    return apiChart.map((item) => ({
+      time: item?.hour ?? "-",
+      walkins: item?.walkins ?? 0,
+      approved:
+        item?.pre_approved ?? item?.preApproved ?? 0,
+    }));
   }, [finalData]);
 
   const currentTime = new Date().toLocaleTimeString("en-IN", {
@@ -124,9 +138,9 @@ const popup = {
   return (
     <Card
       className="h-[377px]"
-     title="Visitor Updates"
-            period={`Today at ${currentTime}`}
-            icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
+      title="Visitor Updates"
+      period={`Today at ${currentTime}`}
+      icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
     >
       <div className="flex flex-col mt-2">
         {/* SUMMARY */}
@@ -170,7 +184,8 @@ const popup = {
                   },
                   {
                     label: "Total Visited Today",
-                    value: popup?.walkins?.total_visited_today ?? 0,
+                    value:
+                      popup?.walkins?.total_visited_today ?? 0,
                   },
                 ]}
               >
@@ -219,7 +234,7 @@ const popup = {
         {/* CHART */}
         <div className="w-full h-[179px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData ?? []}>
+            <LineChart data={chart_data ?? []}>
               <CartesianGrid
                 stroke="#E5E7EB"
                 strokeDasharray="4 4"

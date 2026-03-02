@@ -54,6 +54,7 @@ const Tickets = ({
   totalLabel = "Total",
   centerTopColor = "#0F172A",
   centerBottomColor = "#64748B",
+  widgetType =""
 }) => {
   const total = firstValue + secondValue;
 
@@ -98,7 +99,7 @@ const Tickets = ({
   ];
 
   return (
-    <Card title={title} icon={icon} className="h-[238px]">
+    <Card title={title} icon={icon} className={widgetType === "commercial" ? "h-[362px]" : "h-[238px]"}>
       <div className="grid grid-cols-12 gap-[16px] items-center">
         <div className="col-span-5 space-y-3">
           {items.map((item, index) => (
@@ -126,8 +127,13 @@ const Tickets = ({
           </div>
         </div>
 
-        <div className="col-span-7">
-          <div className="h-[158px] w-[158px] ml-auto mr-2">
+        <div className="col-span-7"><div
+  className={`${
+    widgetType === "commercial"
+      ? "h-[260px] w-[263px]"
+      : "h-[158px] w-[158px]"
+  } ml-auto mr-2`}
+>
             <Doughnut
               data={data}
               options={options}

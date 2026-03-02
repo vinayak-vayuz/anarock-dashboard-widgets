@@ -2,14 +2,37 @@ import React from "react";
 import Card from "../../components/Card";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { formatAmount } from "../../utils/index";
-import { WavesLadder } from 'lucide-react';
+import { WavesLadder } from "lucide-react";
+
 function Amenities({ data }) {
-  const amenitySummary = data?.amenitySummary || {};
-  const chartData = Array.isArray(data?.chartData) ? data.chartData : [];
+
+  const normalizedData = data?.amenity_summary
+    ? {
+        amenitySummary: {
+          totalBookings: data?.amenity_summary?.total_bookings ?? 0,
+          todayPaidRevenue: data?.amenity_summary?.today_paid_revenue ?? "0.00",
+          growthPercentage: data?.amenity_summary?.growth_percentage ?? null,
+          currencyType: data?.amenity_summary?.currency_type ?? "₹",
+        },
+        chartData: Array.isArray(data?.chart_data)
+          ? data.chart_data.map((item) => ({
+              facility_name: item?.facility_name,
+              total_bookings: item?.total_bookings ?? 0,
+              paid_revenue: item?.paid_revenue ?? "0",
+              isPaid: item?.is_paid === true,
+            }))
+          : [],
+      }
+    : data || {};
+
+  const amenitySummary = normalizedData?.amenitySummary || {};
+  const chartData = Array.isArray(normalizedData?.chartData)
+    ? normalizedData.chartData
+    : [];
 
   const normalizedChartData = chartData.map((item) => ({
     ...item,
-    isPaid: item?.isPaid == 1, 
+    isPaid: item?.isPaid === true,
   }));
 
   const allUnpaid =
@@ -19,21 +42,16 @@ function Amenities({ data }) {
   const totalBookings = amenitySummary?.totalBookings || 0;
 
   const totalForProgress = normalizedChartData.reduce((sum, item) => {
-    const bookings = item?.isPaid
-      ? item?.paid_bookings || item?.total_bookings || 0
-      : item?.unpaid_bookings || item?.total_bookings || 0;
-
+    const bookings = item?.total_bookings || 0;
     return sum + bookings;
   }, 0);
 
   const amenitiesList = normalizedChartData.map((item) => {
-    const bookings = item?.isPaid
-      ? item?.paid_bookings || item?.total_bookings || 0
-      : item?.unpaid_bookings || item?.total_bookings || 0;
+    const bookings = item?.total_bookings || 0;
 
-   const revenue = item?.isPaid
-  ? `₹ ${item?.paid_revenue || "0.00"}`
-  : "";
+    const revenue = item?.isPaid
+      ? `${amenitySummary?.currencyType || "₹"} ${item?.paid_revenue || "0.00"}`
+      : "";
 
     const percentage =
       totalForProgress > 0
@@ -50,7 +68,7 @@ function Amenities({ data }) {
     };
   });
 
-  const rawGrowth = amenitySummary?.growth_percentage;
+  const rawGrowth = amenitySummary?.growthPercentage;
   let growthPercentage = null;
 
   if (typeof rawGrowth === "number") {
@@ -64,16 +82,13 @@ function Amenities({ data }) {
   const isGrowthPositive =
     growthPercentage !== null ? growthPercentage >= 0 : true;
 
-
-
   return (
     <Card
       className="h-[324px]"
       title="Amenities"
       period="Today"
-      icon={<WavesLadder className="!text-[24px] text-[#8B5CF6]" />
-}
->
+      icon={<WavesLadder className="!text-[24px] text-[#8B5CF6]" />}
+    >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div>
@@ -92,7 +107,8 @@ function Amenities({ data }) {
               </div>
 
               <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
-                ₹ {amenitySummary?.todayPaidRevenue ?? "0.00"}
+                {amenitySummary?.currencyType || "₹"}{" "}
+                {amenitySummary?.todayPaidRevenue ?? "0.00"}
               </div>
 
               {growthPercentage !== null && (

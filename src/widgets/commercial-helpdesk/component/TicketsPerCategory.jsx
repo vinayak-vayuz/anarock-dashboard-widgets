@@ -11,16 +11,6 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 
-const data = [
-  { name: "Room Maintenance", value: 82 },
-  { name: "Facilities", value: 74 },
-  { name: "House Keeping", value: 52 },
-  { name: "Security", value: 18 },
-  { name: "IT Support", value: 10 },
-];
-
-const maxValue = Math.max(...data.map(item => item.value));
-
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -57,7 +47,19 @@ const CustomYAxisTick = ({ x, y, payload }) => {
   );
 };
 
-function TicketsPerCategory() {
+function TicketsPerCategory({ data = [] }) {
+  const hasData = data && data.length > 0;
+
+  // 🔹 Transform API data
+  const chartData = hasData
+    ? data.map(item => ({
+        name: item.category_name,
+        value: item.total_complaints,
+      }))
+    : [{ name: "No Data Found", value: 0 }];
+
+  const maxValue = Math.max(...chartData.map(item => item.value), 0);
+
   return (
     <Card
       title="Tickets per Category"
@@ -67,15 +69,14 @@ function TicketsPerCategory() {
     >
       <div className="w-full h-[280px] mt-[28px]">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} layout="vertical">
+          <BarChart data={chartData} layout="vertical">
             <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
             <XAxis
               type="number"
-              domain={[0, 100]}
-              ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+              domain={[0, Math.ceil(maxValue * 1.2) || 10]}
               tick={{ fill: "#94A3B8", fontSize: 12 }}
-              axisLine={true}
+              axisLine
               tickLine={false}
             />
 
@@ -84,7 +85,7 @@ function TicketsPerCategory() {
               dataKey="name"
               axisLine={false}
               tickLine={false}
-              width={90}
+              width={120}
               tick={<CustomYAxisTick />}
             />
 
@@ -94,10 +95,14 @@ function TicketsPerCategory() {
             />
 
             <Bar dataKey="value" barSize={36}>
-              {data.map((entry, index) => (
+              {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={entry.value === maxValue ? "#3C81F6" : "#79ABFF"}
+                  fill={
+                    hasData && entry.value === maxValue
+                      ? "#3C81F6"
+                      : "#79ABFF"
+                  }
                 />
               ))}
             </Bar>
