@@ -14,21 +14,39 @@ const DUMMY_DATA = [
 
 const AssetsByType = ({ rows, totalAssets }) => {
 
-  const assets = useMemo(() => {
-    const sourceData =
-      rows && rows.length > 0 ? rows : DUMMY_DATA;
-
-    return sourceData.map((item, index) => ({
+const assets = useMemo(() => {
+  if (!rows) {
+    return DUMMY_DATA.map((item, index) => ({
       name: item.asset_group_name,
       value: item.asset_count || 0,
       color: COLORS[index % COLORS.length],
     }));
-  }, [rows]);
+  }
+
+  if (rows.length === 0) {
+    return [];
+  }
+
+  return rows.map((item, index) => ({
+    name: item.asset_group_name,
+    value: item.asset_count || 0,
+    color: COLORS[index % COLORS.length],
+  }));
+}, [rows]);
 
   const finalTotal =
     totalAssets ??
     assets.reduce((sum, item) => sum + item.value, 0);
 
+    if (rows && rows.length === 0) {
+  return (
+    <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
+      <div className="flex items-center justify-center h-[240px] text-[#94A3B8]">
+        No Data Found
+      </div>
+    </Card>
+  );
+}
   return (
     <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
       <div className="flex items-center justify-between gap-8">
