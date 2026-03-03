@@ -22,11 +22,16 @@ const MaintenanceStatus = ({ data }) => {
     { name: "Others", Cancelled: 18, Closed: 18, Open: 45, OnHold: 9, InProgress: 4 },
   ];
 
-  const chartData =
-    data && Array.isArray(data) && data.length > 0
-      ? data
-      : dummyData;
+const chartData = React.useMemo(() => {
+  // Case 1: data not provided → show dummy
+  if (!data) return dummyData;
 
+  // Case 2: data provided but empty → show empty
+  if (Array.isArray(data) && data.length === 0) return [];
+
+  // Case 3: actual data
+  return data;
+}, [data]);
   const handleLegendClick = (e) => {
     const { dataKey } = e;
     setHiddenBars((prev) => ({
@@ -35,6 +40,15 @@ const MaintenanceStatus = ({ data }) => {
     }));
   };
 
+  if (Array.isArray(data) && data.length === 0) {
+  return (
+    <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
+      <div className="flex items-center justify-center h-[260px] text-[#94A3B8]">
+        No Data Found
+      </div>
+    </Card>
+  );
+}
   return (
     <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
       <div className="w-full h-[260px]">
