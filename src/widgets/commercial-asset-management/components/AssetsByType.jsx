@@ -2,23 +2,37 @@ import React, { useMemo } from "react";
 import Card from "../../components/CardNoLogo";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-const AssetsByType = () => {
-  const assets = useMemo(
-    () => [
-      { name: "Lifts", value: 3, color: "#8CB33E" },
-      { name: "Fire Systems", value: 16, color: "#F59E0B" },
-      { name: "Generators", value: 16, color: "#3B82F6" },
-      { name: "HVAC", value: 24, color: "#06B6D4" },
-      { name: "Others", value: 97, color: "#CFCFCF" },
-    ],
-    [] 
-  );
+const COLORS = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"];
 
-  const totalAssets = assets.reduce((sum, item) => sum + item.value, 0);
+const DUMMY_DATA = [
+  { asset_group_name: "Lifts", asset_count: 3 },
+  { asset_group_name: "Fire Systems", asset_count: 16 },
+  { asset_group_name: "Generators", asset_count: 16 },
+  { asset_group_name: "HVAC", asset_count: 24 },
+  { asset_group_name: "Others", asset_count: 97 },
+];
+
+const AssetsByType = ({ rows, totalAssets }) => {
+
+  const assets = useMemo(() => {
+    const sourceData =
+      rows && rows.length > 0 ? rows : DUMMY_DATA;
+
+    return sourceData.map((item, index) => ({
+      name: item.asset_group_name,
+      value: item.asset_count || 0,
+      color: COLORS[index % COLORS.length],
+    }));
+  }, [rows]);
+
+  const finalTotal =
+    totalAssets ??
+    assets.reduce((sum, item) => sum + item.value, 0);
 
   return (
     <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
       <div className="flex items-center justify-between gap-8">
+
         {/* Chart */}
         <div className="relative w-[240px] h-[240px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -30,9 +44,9 @@ const AssetsByType = () => {
                 cy="50%"
                 innerRadius={60}
                 outerRadius={90}
-                paddingAngle={2} // spacing between segments
-                stroke="#FFFFFF" // border color
-                strokeWidth={2}  // border thickness
+                paddingAngle={2}
+                stroke="#FFFFFF"
+                strokeWidth={2}
                 startAngle={90}
                 endAngle={-270}
               >
@@ -45,10 +59,10 @@ const AssetsByType = () => {
 
           {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="text-[24px] leading-[33px]  text-[#121212]">
-              {totalAssets}
+            <div className="text-[24px] text-[#121212]">
+              {finalTotal}
             </div>
-            <div className="text-[12px] leading-[16px] text-[#94A3B8] mt-1">
+            <div className="text-[12px] text-[#94A3B8] mt-1">
               Total Assets
             </div>
           </div>
@@ -56,7 +70,8 @@ const AssetsByType = () => {
 
         {/* Table */}
         <div className="flex-1 max-w-[280px]">
-          <div className=" rounded-[12px] overflow-hidden bg-white">
+          <div className="rounded-[12px] overflow-hidden bg-white">
+
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#F8FAFC]">
               <div className="text-[12px] font-medium text-[#64748B]">
@@ -78,14 +93,19 @@ const AssetsByType = () => {
                     className="w-[16px] h-[7px]"
                     style={{ backgroundColor: item.color }}
                   />
-                  <div className="text-[13px] text-[#475569]">{item.name}</div>
+                  <div className="text-[13px] text-[#475569]">
+                    {item.name}
+                  </div>
                 </div>
 
-                <div className="text-[13px] text-[#64748B]">{item.value}</div>
+                <div className="text-[13px] text-[#64748B]">
+                  {item.value}
+                </div>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </Card>
   );
