@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 
-/* ✅ Dummy fallback data */
+/* Dummy fallback data */
 const dummyData = [
   { name: "Google", visitors: 1000 },
   { name: "Uber", visitors: 3500 },
@@ -22,20 +22,22 @@ const dummyData = [
 
 const OrganisationWiseVisitorsCard = ({ data }) => {
 
-  /* ✅ detect empty array */
-  const isEmptyArray = Array.isArray(data) && data.length === 0;
+  const isEmptyArray = Array.isArray(data) && data?.length === 0;
 
-  /* ✅ show dummy only when data is null/undefined */
   const chartData =
     data === undefined || data === null
       ? dummyData
-      : data;
+      : Array.isArray(data)
+      ? data
+      : [];
 
   let maxVisitors = 0;
 
-  for (let i = 0; i < chartData.length; i++) {
-    if (chartData[i].visitors > maxVisitors) {
-      maxVisitors = chartData[i].visitors;
+  for (let i = 0; i < (chartData?.length || 0); i++) {
+    const currentVisitors = Number(chartData?.[i]?.visitors) || 0;
+
+    if (currentVisitors > maxVisitors) {
+      maxVisitors = currentVisitors;
     }
   }
 
@@ -48,13 +50,12 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
     >
       <div className="w-full h-[260px] flex items-center justify-center">
 
-        {/* ✅ Show message when API returns [] */}
         {isEmptyArray ? (
           <p className="text-sm text-gray-500">No Data Found</p>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-              data={chartData}
+              data={chartData || []}
               margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
               barCategoryGap={35}
             >
@@ -77,18 +78,18 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={(value) =>
-                  value === 0 ? "0" : `${value / 1000}K`
+                  value === 0 ? "0" : `${(value || 0) / 1000}K`
                 }
               />
 
               <Tooltip cursor={false} />
 
               <Bar dataKey="visitors" maxBarSize={55}>
-                {chartData.map((entry, index) => (
+                {chartData?.map?.((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={
-                      entry.visitors === maxVisitors
+                      (entry?.visitors || 0) === maxVisitors
                         ? "#3B82F6"
                         : "#7FB0FF"
                     }

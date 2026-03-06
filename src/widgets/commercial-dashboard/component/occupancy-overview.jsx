@@ -2,7 +2,10 @@ import React from "react";
 import { GoPeople } from "react-icons/go";
 
 const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
-  const pct = Math.max(0, Math.min(100, (value / (total || 1)) * 100));
+  const safeValue = Number(value) || 0;
+  const safeTotal = Number(total) || 1;
+
+  const pct = Math.max(0, Math.min(100, (safeValue / safeTotal) * 100));
 
   const valueTextColor =
     colorClass === "bg-[#8B5CF6]"
@@ -14,7 +17,7 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
     <div className="flex flex-col items-start">
       <div className="w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden">
         <div
-          className={`h-[11px] rounded-full ${colorClass}`}
+          className={`h-[11px] rounded-full ${colorClass || ""}`}
           style={{
             width:
               colorClass === "bg-[#12B981]"
@@ -25,11 +28,11 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
       </div>
 
       <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>
-        {value}
+        {safeValue ?? 0}
       </div>
 
       <div className="!text-[12px] leading-[16px] text-[#64748B] mt-1">
-        {label}
+        {label ?? ""}
       </div>
     </div>
   );
@@ -42,11 +45,22 @@ const OccupancyOverviewCard = ({
   AdminsCount = 90,
 }) => {
 
-  const totalOccupants = data?.total_occupants ?? occupiedUnits;
-  const employees = data?.total_members ?? EmployeesCount;
-  const admins = data?.total_admins ?? AdminsCount;
+  const totalOccupants =
+    data?.total_occupants !== undefined && data?.total_occupants !== null
+      ? Number(data?.total_occupants) || 0
+      : Number(occupiedUnits) || 0;
 
-  const barTotal = employees + admins;
+  const employees =
+    data?.total_members !== undefined && data?.total_members !== null
+      ? Number(data?.total_members) || 0
+      : Number(EmployeesCount) || 0;
+
+  const admins =
+    data?.total_admins !== undefined && data?.total_admins !== null
+      ? Number(data?.total_admins) || 0
+      : Number(AdminsCount) || 0;
+
+  const barTotal = (employees || 0) + (admins || 0);
 
   return (
     <div>
@@ -69,22 +83,22 @@ const OccupancyOverviewCard = ({
 
             <div className="flex items-center gap-1">
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
-                {totalOccupants}
+                {totalOccupants ?? 0}
               </div>
             </div>
           </div>
 
           <div className="flex items-end gap-1">
             <MiniPill
-              value={employees}
-              total={barTotal}
+              value={employees ?? 0}
+              total={barTotal || 1}
               colorClass="bg-[#8B5CF6]"
               label="Employees"
             />
 
             <MiniPill
-              value={admins}
-              total={barTotal}
+              value={admins ?? 0}
+              total={barTotal || 1}
               colorClass="bg-[#12B981]"
               label="Admins"
             />

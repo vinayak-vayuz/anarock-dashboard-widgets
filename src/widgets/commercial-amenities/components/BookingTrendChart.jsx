@@ -10,7 +10,7 @@ import {
   Cell,
 } from "recharts";
 
-/* ✅ Dummy fallback data */
+/* Dummy fallback data */
 const dummyData = [
   { building_name: "Google", no_of_booking: 1 },
   { building_name: "Uber", no_of_booking: 2 },
@@ -21,19 +21,22 @@ const dummyData = [
 
 function BookingTrendChart({ data }) {
 
-  /* ✅ ADD: detect empty array */
-  const isEmptyArray = Array.isArray(data) && data.length === 0;
+  const isEmptyArray = Array.isArray(data) && data?.length === 0;
 
-  /* ✅ Use dummy data only when API data is null/undefined */
   const chartData =
     data === undefined || data === null
       ? dummyData
-      : data;
+      : Array.isArray(data)
+      ? data
+      : [];
 
-  const maxValue = Math.max(
-    ...chartData.map((item) => item.no_of_booking || 0),
-    0
-  );
+  const maxValue =
+    chartData?.length > 0
+      ? Math.max(
+          ...(chartData?.map?.((item) => item?.no_of_booking || 0) || [0]),
+          0
+        )
+      : 0;
 
   return (
     <Card
@@ -43,13 +46,12 @@ function BookingTrendChart({ data }) {
     >
       <div className="w-full h-[280px] flex items-center justify-center">
 
-        {/* ✅ Show message if API returned [] */}
         {isEmptyArray ? (
           <p className="text-sm text-gray-500">No Data Found</p>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-              data={chartData}
+              data={chartData || []}
               margin={{ top: 0, right: 0, left: -15, bottom: 0 }}
             >
               <CartesianGrid
@@ -67,19 +69,19 @@ function BookingTrendChart({ data }) {
 
               <YAxis
                 allowDecimals={false}
-                domain={[0, Math.ceil(maxValue)]}
+                domain={[0, Math.ceil(maxValue || 0)]}
                 axisLine={false}
                 tickLine={false}
                 tick={{ fill: "#64748B", fontSize: 12 }}
-                tickFormatter={(value) => `₹ ${value}`}
+                tickFormatter={(value) => `₹ ${value ?? 0}`}
               />
 
               <Bar dataKey="no_of_booking" barSize={54}>
-                {chartData.map((entry, index) => (
+                {chartData?.map?.((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={
-                      entry.no_of_booking === maxValue
+                      (entry?.no_of_booking || 0) === maxValue
                         ? "#3C81F6"
                         : "#79ABFF"
                     }

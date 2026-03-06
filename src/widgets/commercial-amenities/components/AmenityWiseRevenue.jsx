@@ -19,31 +19,36 @@ const COLORS = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
 
 function AmenityWiseRevenue({ data }) {
 
-  const isEmptyArray = Array.isArray(data) && data.length === 0;
+  const isEmptyArray = Array?.isArray(data) && data?.length === 0;
 
   const rawData =
     data === undefined || data === null
       ? dummyData
       : data;
 
-  const chartData = rawData.map((item) => ({
-    name: item.facility_name,
-    value: Number(item.paid_revenue) || 0,
-  }));
+  const chartData =
+    Array?.isArray(rawData) && rawData?.length > 0
+      ? rawData?.map((item) => ({
+          name: item?.facility_name || "Unknown",
+          value: Number(item?.paid_revenue) || 0,
+        }))
+      : [];
 
-  // Check if all values are zero
-  const allZero = chartData.every((item) => item.value === 0);
+  const allZero =
+    chartData?.length > 0
+      ? chartData?.every((item) => item?.value === 0)
+      : false;
 
-  // If all are zero, give tiny value to one slice so Pie renders
-  const pieData = allZero
-    ? chartData.map((item, index) => ({
-        ...item,
-        value: index === 0 ? 1 : 0,
-      }))
-    : chartData;
+  const pieData =
+    allZero
+      ? chartData?.map((item, index) => ({
+          ...item,
+          value: index === 0 ? 1 : 0,
+        }))
+      : chartData;
 
   const formatCurrency = (value) =>
-    `₹ ${value.toLocaleString("en-IN")}`;
+    `₹ ${value?.toLocaleString?.("en-IN") || 0}`;
 
   return (
     <Card
@@ -53,7 +58,6 @@ function AmenityWiseRevenue({ data }) {
     >
       <div className="grid grid-cols-12 gap-6 items-center h-full">
 
-        {/* ✅ Show message when API returns [] */}
         {isEmptyArray ? (
           <div className="col-span-12 flex items-center justify-center h-full">
             <p className="text-sm text-gray-500">No Data Found</p>
@@ -64,7 +68,7 @@ function AmenityWiseRevenue({ data }) {
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
-                    data={pieData}
+                    data={pieData || []}
                     dataKey="value"
                     nameKey="name"
                     cx="50%"
@@ -73,17 +77,17 @@ function AmenityWiseRevenue({ data }) {
                     stroke="#fff"
                     strokeWidth={1}
                   >
-                    {pieData.map((entry, index) => (
+                    {pieData?.map?.((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
+                        fill={COLORS?.[index % COLORS?.length]}
                       />
                     ))}
                   </Pie>
 
                   <Tooltip
                     formatter={(value) => formatCurrency(value)}
-                    labelFormatter={(label) => `Amenity: ${label}`}
+                    labelFormatter={(label) => `Amenity: ${label || ""}`}
                     contentStyle={{
                       borderRadius: "10px",
                       border: "1px solid #EBEBEB",
@@ -102,9 +106,9 @@ function AmenityWiseRevenue({ data }) {
                 </div>
 
                 <div className="divide-y divide-[#F1F5F9]">
-                  {chartData.map((item, index) => (
+                  {chartData?.map?.((item, index) => (
                     <div
-                      key={item.name}
+                      key={item?.name || index}
                       className="grid grid-cols-2 px-4 py-4 text-[14px] text-[#121212]"
                     >
                       <div className="flex items-center gap-3">
@@ -112,16 +116,16 @@ function AmenityWiseRevenue({ data }) {
                           className="w-[16px] h-[7px]"
                           style={{
                             backgroundColor:
-                              COLORS[index % COLORS.length],
+                              COLORS?.[index % COLORS?.length],
                           }}
                         />
                         <span className="text-[#64748B] text-[12px] leading-[16px]">
-                          {item.name}
+                          {item?.name || "Unknown"}
                         </span>
                       </div>
 
                       <div className="text-right text-[12px] leading-[16px] text-[#64748B]">
-                        {formatCurrency(item.value)}
+                        {formatCurrency(item?.value || 0)}
                       </div>
                     </div>
                   ))}
