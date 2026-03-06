@@ -50,91 +50,70 @@ const chartData = React.useMemo(() => {
   );
 }
   return (
-    <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
-      <div className="w-full h-[260px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={chartData}
-            barSize={50}
-            margin={{ top: 0, right: 0, left: -30, bottom: 0 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" vertical={false} />
-            <XAxis
-              dataKey="name"
-              tick={{ fill: "#64748B", fontSize: 12 }}
-              axisLine={false}
-              tickLine={false}
-            />
-            <YAxis
-              tick={{ fill: "#64748B", fontSize: 12 }}
-              axisLine={false}
-              tickLine={false}
-            />
+  <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
+  <div className="w-full h-[260px] flex items-center justify-center">
+    {Array.isArray(data) && data.length === 0 ? (
+      <div className="text-[#94A3B8] text-sm">No Data Found</div>
+    ) : (
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={chartData}
+          barSize={50}
+          margin={{ top: 0, right: 0, left: -30, bottom: 0 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
 
-            <Tooltip
-              cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
-              contentStyle={{
-                borderRadius: "10px",
-                border: "1px solid #E2E8F0",
-                fontSize: "12px",
-              }}
-            />
+          <XAxis
+            dataKey="name"
+            tick={{ fill: "#64748B", fontSize: 12 }}
+            axisLine={false}
+            tickLine={false}
+          />
 
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              iconType="square"
-              onClick={handleLegendClick}
-              formatter={(value) => (
-                <span
-                  style={{
-                    color: hiddenBars[value] ? "#CBD5E1" : "#64748B",
-                    cursor: "pointer",
-                    fontSize: "12px",
-                  }}
-                >
-                  {value}
-                </span>
-              )}
-              wrapperStyle={{
-                paddingTop: "18px",
-              }}
-            />
+          <YAxis
+            tick={{ fill: "#64748B", fontSize: 12 }}
+            axisLine={false}
+            tickLine={false}
+          />
 
-            <Bar
-              dataKey="Open"
-              stackId="a"
-              fill="#3B82F6"
-              hide={hiddenBars["Open"]}
-            />
-            <Bar
-              dataKey="Closed"
-              stackId="a"
-              fill="#10B981"
-              hide={hiddenBars["Closed"]}
-            />
-            <Bar
-              dataKey="Cancelled"
-              stackId="a"
-              fill="#B91C1C"
-              hide={hiddenBars["Cancelled"]}
-            />
-            <Bar
-              dataKey="OnHold"
-              stackId="a"
-              fill="#64748B"
-              hide={hiddenBars["OnHold"]}
-            />
-            <Bar
-              dataKey="InProgress"
-              stackId="a"
-              fill="#F59E0B"
-              hide={hiddenBars["InProgress"]}
-            />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-    </Card>
+          <Tooltip
+            cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
+            contentStyle={{
+              borderRadius: "10px",
+              border: "1px solid #E2E8F0",
+              fontSize: "12px",
+            }}
+          />
+
+          <Legend
+            verticalAlign="bottom"
+            align="center"
+            iconType="square"
+            onClick={handleLegendClick}
+            formatter={(value) => (
+              <div
+                style={{
+                  color: hiddenBars[value] ? "#CBD5E1" : "#64748B",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                }}
+              >
+                {value}
+              </div>
+            )}
+            wrapperStyle={{ paddingTop: "18px" }}
+          />
+
+          <Bar dataKey="Open" stackId="a" fill="#3B82F6" hide={hiddenBars["Open"]} />
+          <Bar dataKey="Closed" stackId="a" fill="#10B981" hide={hiddenBars["Closed"]} />
+          <Bar dataKey="Cancelled" stackId="a" fill="#B91C1C" hide={hiddenBars["Cancelled"]} />
+          <Bar dataKey="OnHold" stackId="a" fill="#64748B" hide={hiddenBars["OnHold"]} />
+          <Bar dataKey="InProgress" stackId="a" fill="#F59E0B" hide={hiddenBars["InProgress"]} />
+        </BarChart>
+      </ResponsiveContainer>
+    )}
+  </div>
+</Card>
   );
 };
 
