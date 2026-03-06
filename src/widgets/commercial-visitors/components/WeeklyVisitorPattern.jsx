@@ -23,11 +23,12 @@ const data = [
   { day: "07 Feb", visitors: 800 },
 ];
 
-const WeeklyVisitorCard = () => {
-
+const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
   const [endDate, setEndDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
 
+
+  console.log("WeeklyVisitorCard data:", data);
   const getStartDate = (date) => {
     const d = new Date(date || new Date());
     d?.setDate?.((d?.getDate?.() || 0) - 6);
