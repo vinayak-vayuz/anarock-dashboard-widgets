@@ -67,11 +67,14 @@ function index() {
                         ]}
                     />
                 </div>
-                <BookingsChart/>
+                <BookingsChart data={[]}/>
             </div>
             <div className='grid grid-cols-2 gap-[24px] px-4'>
-            <BookingTrendChart/>
-            <AmenityWiseRevenue/>
+            <BookingTrendChart />
+            <AmenityWiseRevenue data={
+                [
+]
+            }/>
             </div>
             
         </>

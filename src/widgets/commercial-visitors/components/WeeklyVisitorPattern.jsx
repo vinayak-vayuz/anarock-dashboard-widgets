@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     ResponsiveContainer,
     AreaChart,
@@ -9,6 +9,9 @@ import {
     CartesianGrid,
 } from "recharts";
 import Card from "../../components/CardNoLogo";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const data = [
     { day: "01 Feb", visitors: 1250 },
@@ -21,15 +24,67 @@ const data = [
 ];
 
 const WeeklyVisitorCard = () => {
+
+    const [endDate, setEndDate] = useState(new Date());
+    const [showCalendar, setShowCalendar] = useState(false);
+
+    const getStartDate = (date) => {
+        const d = new Date(date);
+        d.setDate(d.getDate() - 6);
+        return d;
+    };
+
+    const startDate = getStartDate(endDate);
+
+    const formatDate = (date) => {
+        return date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+        });
+    };
+
+    const handlePrev = () => {
+        const newDate = new Date(endDate);
+        newDate.setDate(newDate.getDate() - 7);
+        setEndDate(newDate);
+    };
+
+    const handleNext = () => {
+        const newDate = new Date(endDate);
+        newDate.setDate(newDate.getDate() + 7);
+        setEndDate(newDate);
+    };
+
+    const handleCalendarClick = () => {
+        setShowCalendar(!showCalendar);
+    };
+
     return (
         <Card
             title="Weekly Visitor Pattern"
-            period="01 Feb - 07 Feb"
+            period={`${formatDate(startDate)} - ${formatDate(endDate)}`}
             isDateSelector={true}
             titleWeight="semi-bold"
             className="h-[360px]"
             childrenClassName="mt-6"
+            onPrevClick={handlePrev}
+            onNextClick={handleNext}
+            onCalendarClick={handleCalendarClick}
         >
+
+            {showCalendar && (
+                <div className="absolute top-[70px] right-[24px] z-50 bg-white shadow-lg rounded-lg">
+                    <DatePicker
+                        selected={endDate}
+                        onChange={(date) => {
+                            setEndDate(date);
+                            setShowCalendar(false);
+                        }}
+                        inline
+                    />
+                </div>
+            )}
+
             <div className="w-full h-[260px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
@@ -54,6 +109,7 @@ const WeeklyVisitorCard = () => {
                             axisLine={true}
                             tickLine={false}
                         />
+
                         <YAxis
                             width={35}
                             tick={{ fontSize: 12, fill: "#64748B" }}
@@ -81,8 +137,8 @@ const WeeklyVisitorCard = () => {
                         />
                     </AreaChart>
                 </ResponsiveContainer>
-
             </div>
+
         </Card>
     );
 };

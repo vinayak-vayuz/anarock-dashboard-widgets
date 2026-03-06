@@ -31,7 +31,7 @@ function index() {
       </div>
       <div className='grid grid-cols-2 gap-[24px] mt-[24px]'>
         <WeeklyVisitorCard />
-        <OrganisationWiseVisitorsCard />
+        <OrganisationWiseVisitorsCard  />
       </div>
       <div>
 
