@@ -51884,19 +51884,19 @@ function Pfe() {
   return /* @__PURE__ */ g.jsx("div", { className: "px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]", children: e.map((t, n) => /* @__PURE__ */ g.jsx(que, { ...t }, n)) });
 }
 const kk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) => {
-  const i = Math.max(0, Math.min(100, e / (t || 1) * 100)), o = n === "bg-[#8B5CF6]" ? "text-[#8B5CF6]" : n === "bg-[#12B981]" ? "text-[#12B981]" : "text-slate-600";
+  const i = Number(e) || 0, o = Number(t) || 1, a = Math.max(0, Math.min(100, i / o * 100)), s = n === "bg-[#8B5CF6]" ? "text-[#8B5CF6]" : n === "bg-[#12B981]" ? "text-[#12B981]" : "text-slate-600";
   return /* @__PURE__ */ g.jsxs("div", { className: "flex flex-col items-start", children: [
     /* @__PURE__ */ g.jsx("div", { className: "w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden", children: /* @__PURE__ */ g.jsx(
       "div",
       {
-        className: `h-[11px] rounded-full ${n}`,
+        className: `h-[11px] rounded-full ${n || ""}`,
         style: {
-          width: n === "bg-[#12B981]" ? `${i + 45}%` : `${i}%`
+          width: n === "bg-[#12B981]" ? `${a + 45}%` : `${a}%`
         }
       }
     ) }),
-    /* @__PURE__ */ g.jsx("div", { className: `${o} !text-[12px] font-bold mt-1`, children: e }),
-    /* @__PURE__ */ g.jsx("div", { className: "!text-[12px] leading-[16px] text-[#64748B] mt-1", children: r })
+    /* @__PURE__ */ g.jsx("div", { className: `${s} !text-[12px] font-bold mt-1`, children: i ?? 0 }),
+    /* @__PURE__ */ g.jsx("div", { className: "!text-[12px] leading-[16px] text-[#64748B] mt-1", children: r ?? "" })
   ] });
 }, kfe = ({
   data: e,
@@ -51904,7 +51904,7 @@ const kk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
   EmployeesCount: n = 8910,
   AdminsCount: r = 90
 }) => {
-  const i = e?.total_occupants ?? t, o = e?.total_members ?? n, a = e?.total_admins ?? r, s = o + a;
+  const i = e?.total_occupants !== void 0 && e?.total_occupants !== null ? Number(e?.total_occupants) || 0 : Number(t) || 0, o = e?.total_members !== void 0 && e?.total_members !== null ? Number(e?.total_members) || 0 : Number(n) || 0, a = e?.total_admins !== void 0 && e?.total_admins !== null ? Number(e?.total_admins) || 0 : Number(r) || 0, s = (o || 0) + (a || 0);
   return /* @__PURE__ */ g.jsx("div", { children: /* @__PURE__ */ g.jsxs("div", { className: "bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]", children: [
     /* @__PURE__ */ g.jsxs(
       "div",
@@ -51920,14 +51920,14 @@ const kk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
     /* @__PURE__ */ g.jsxs("div", { className: "flex items-start justify-between", children: [
       /* @__PURE__ */ g.jsxs("div", { children: [
         /* @__PURE__ */ g.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B] font-normal", children: "Total Occupants" }),
-        /* @__PURE__ */ g.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ g.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: i }) })
+        /* @__PURE__ */ g.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ g.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: i ?? 0 }) })
       ] }),
       /* @__PURE__ */ g.jsxs("div", { className: "flex items-end gap-1", children: [
         /* @__PURE__ */ g.jsx(
           kk,
           {
-            value: o,
-            total: s,
+            value: o ?? 0,
+            total: s || 1,
             colorClass: "bg-[#8B5CF6]",
             label: "Employees"
           }
@@ -51935,8 +51935,8 @@ const kk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
         /* @__PURE__ */ g.jsx(
           kk,
           {
-            value: a,
-            total: s,
+            value: a ?? 0,
+            total: s || 1,
             colorClass: "bg-[#12B981]",
             label: "Admins"
           }
@@ -53308,10 +53308,12 @@ const $fe = () => /* @__PURE__ */ g.jsx(
   { name: "Flipkart", visitors: 8e3 },
   { name: "HP", visitors: 1650 }
 ], Bfe = ({ data: e }) => {
-  const t = Array.isArray(e) && e.length === 0, n = e ?? xde;
+  const t = Array.isArray(e) && e?.length === 0, n = e == null ? xde : Array.isArray(e) ? e : [];
   let r = 0;
-  for (let i = 0; i < n.length; i++)
-    n[i].visitors > r && (r = n[i].visitors);
+  for (let i = 0; i < (n?.length || 0); i++) {
+    const o = Number(n?.[i]?.visitors) || 0;
+    o > r && (r = o);
+  }
   return /* @__PURE__ */ g.jsx(
     ur,
     {
@@ -53322,7 +53324,7 @@ const $fe = () => /* @__PURE__ */ g.jsx(
       children: /* @__PURE__ */ g.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: t ? /* @__PURE__ */ g.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ g.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ g.jsxs(
         ha,
         {
-          data: n,
+          data: n || [],
           margin: { top: 10, right: 10, left: 0, bottom: 0 },
           barCategoryGap: 35,
           children: [
@@ -53350,14 +53352,14 @@ const $fe = () => /* @__PURE__ */ g.jsx(
                 tick: { fontSize: 12, fill: "#64748B" },
                 axisLine: !1,
                 tickLine: !1,
-                tickFormatter: (i) => i === 0 ? "0" : `${i / 1e3}K`
+                tickFormatter: (i) => i === 0 ? "0" : `${(i || 0) / 1e3}K`
               }
             ),
             /* @__PURE__ */ g.jsx(dn, { cursor: !1 }),
-            /* @__PURE__ */ g.jsx(Bn, { dataKey: "visitors", maxBarSize: 55, children: n.map((i, o) => /* @__PURE__ */ g.jsx(
+            /* @__PURE__ */ g.jsx(Bn, { dataKey: "visitors", maxBarSize: 55, children: n?.map?.((i, o) => /* @__PURE__ */ g.jsx(
               Kt,
               {
-                fill: i.visitors === r ? "#3B82F6" : "#7FB0FF"
+                fill: (i?.visitors || 0) === r ? "#3B82F6" : "#7FB0FF"
               },
               `cell-${o}`
             )) })
@@ -53409,7 +53411,7 @@ const wde = [
   { facility_name: "Gym", total_booking: 12 },
   { facility_name: "Meeting Room A", total_booking: 3 },
   { facility_name: "Conference Hall", total_booking: 8 }
-], _de = ({ x: e, y: t, payload: n }) => /* @__PURE__ */ g.jsx("foreignObject", { x: e - 80, y: t - 18, width: 80, height: 40, children: /* @__PURE__ */ g.jsx(
+], _de = ({ x: e, y: t, payload: n }) => /* @__PURE__ */ g.jsx("foreignObject", { x: (e || 0) - 80, y: (t || 0) - 18, width: 80, height: 40, children: /* @__PURE__ */ g.jsx(
   "div",
   {
     className: "text-[12px] leading-[16px] text-[#121212]",
@@ -53419,14 +53421,14 @@ const wde = [
       wordBreak: "break-word",
       textAlign: "left"
     },
-    children: n.value
+    children: n?.value || ""
   }
 ) });
 function zfe({ data: e }) {
-  const t = Array.isArray(e) && e.length === 0, n = e ?? wde, r = Math.max(
-    ...n.map((i) => i.total_booking || 0),
+  const t = Array?.isArray(e) && e?.length === 0, n = e == null ? wde : Array?.isArray(e) ? e : [], r = n?.length > 0 ? Math.max(
+    ...n?.map?.((i) => i?.total_booking || 0) || [0],
     0
-  );
+  ) : 0;
   return /* @__PURE__ */ g.jsx(
     je,
     {
@@ -53436,7 +53438,7 @@ function zfe({ data: e }) {
       children: /* @__PURE__ */ g.jsx("div", { className: "w-full h-full flex items-center justify-center", children: t ? /* @__PURE__ */ g.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ g.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ g.jsxs(
         ha,
         {
-          data: n,
+          data: n || [],
           layout: "vertical",
           margin: { top: 0, right: 10, left: 10, bottom: 0 },
           children: [
@@ -53445,7 +53447,7 @@ function zfe({ data: e }) {
               {
                 type: "number",
                 allowDecimals: !1,
-                domain: [0, Math.ceil(r)],
+                domain: [0, Math.ceil(r || 0)],
                 tick: { fill: "#64748B", fontSize: 12 },
                 axisLine: !0,
                 tickLine: !1
@@ -53462,10 +53464,10 @@ function zfe({ data: e }) {
                 tick: /* @__PURE__ */ g.jsx(_de, {})
               }
             ),
-            /* @__PURE__ */ g.jsx(Bn, { dataKey: "total_booking", barSize: 40, children: n.map((i, o) => /* @__PURE__ */ g.jsx(
+            /* @__PURE__ */ g.jsx(Bn, { dataKey: "total_booking", barSize: 40, children: n?.map?.((i, o) => /* @__PURE__ */ g.jsx(
               Kt,
               {
-                fill: i.total_booking === r ? "#3C81F6" : "#79ABFF"
+                fill: (i?.total_booking || 0) === r ? "#3C81F6" : "#79ABFF"
               },
               `cell-${o}`
             )) })
@@ -53483,10 +53485,10 @@ const Sde = [
   { building_name: "HP", no_of_booking: 1 }
 ];
 function Vfe({ data: e }) {
-  const t = Array.isArray(e) && e.length === 0, n = e ?? Sde, r = Math.max(
-    ...n.map((i) => i.no_of_booking || 0),
+  const t = Array.isArray(e) && e?.length === 0, n = e == null ? Sde : Array.isArray(e) ? e : [], r = n?.length > 0 ? Math.max(
+    ...n?.map?.((i) => i?.no_of_booking || 0) || [0],
     0
-  );
+  ) : 0;
   return /* @__PURE__ */ g.jsx(
     ur,
     {
@@ -53496,7 +53498,7 @@ function Vfe({ data: e }) {
       children: /* @__PURE__ */ g.jsx("div", { className: "w-full h-[280px] flex items-center justify-center", children: t ? /* @__PURE__ */ g.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ g.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ g.jsxs(
         ha,
         {
-          data: n,
+          data: n || [],
           margin: { top: 0, right: 0, left: -15, bottom: 0 },
           children: [
             /* @__PURE__ */ g.jsx(
@@ -53520,17 +53522,17 @@ function Vfe({ data: e }) {
               cr,
               {
                 allowDecimals: !1,
-                domain: [0, Math.ceil(r)],
+                domain: [0, Math.ceil(r || 0)],
                 axisLine: !1,
                 tickLine: !1,
                 tick: { fill: "#64748B", fontSize: 12 },
-                tickFormatter: (i) => `₹ ${i}`
+                tickFormatter: (i) => `₹ ${i ?? 0}`
               }
             ),
-            /* @__PURE__ */ g.jsx(Bn, { dataKey: "no_of_booking", barSize: 54, children: n.map((i, o) => /* @__PURE__ */ g.jsx(
+            /* @__PURE__ */ g.jsx(Bn, { dataKey: "no_of_booking", barSize: 54, children: n?.map?.((i, o) => /* @__PURE__ */ g.jsx(
               Kt,
               {
-                fill: i.no_of_booking === r ? "#3C81F6" : "#79ABFF"
+                fill: (i?.no_of_booking || 0) === r ? "#3C81F6" : "#79ABFF"
               },
               `cell-${o}`
             )) })
@@ -53547,13 +53549,13 @@ const Ode = [
   { facility_name: "GYM", paid_revenue: "4000.00" }
 ], nf = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
 function Hfe({ data: e }) {
-  const t = Array.isArray(e) && e.length === 0, r = (e ?? Ode).map((s) => ({
-    name: s.facility_name,
-    value: Number(s.paid_revenue) || 0
-  })), o = r.every((s) => s.value === 0) ? r.map((s, l) => ({
+  const t = Array?.isArray(e) && e?.length === 0, n = e ?? Ode, r = Array?.isArray(n) && n?.length > 0 ? n?.map((s) => ({
+    name: s?.facility_name || "Unknown",
+    value: Number(s?.paid_revenue) || 0
+  })) : [], o = (r?.length > 0 ? r?.every((s) => s?.value === 0) : !1) ? r?.map((s, l) => ({
     ...s,
     value: l === 0 ? 1 : 0
-  })) : r, a = (s) => `₹ ${s.toLocaleString("en-IN")}`;
+  })) : r, a = (s) => `₹ ${s?.toLocaleString?.("en-IN") || 0}`;
   return /* @__PURE__ */ g.jsx(
     ur,
     {
@@ -53565,7 +53567,7 @@ function Hfe({ data: e }) {
           /* @__PURE__ */ g.jsx(
             Vi,
             {
-              data: o,
+              data: o || [],
               dataKey: "value",
               nameKey: "name",
               cx: "50%",
@@ -53573,10 +53575,10 @@ function Hfe({ data: e }) {
               outerRadius: 95,
               stroke: "#fff",
               strokeWidth: 1,
-              children: o.map((s, l) => /* @__PURE__ */ g.jsx(
+              children: o?.map?.((s, l) => /* @__PURE__ */ g.jsx(
                 Kt,
                 {
-                  fill: nf[l % nf.length]
+                  fill: nf?.[l % nf?.length]
                 },
                 `cell-${l}`
               ))
@@ -53586,7 +53588,7 @@ function Hfe({ data: e }) {
             dn,
             {
               formatter: (s) => a(s),
-              labelFormatter: (s) => `Amenity: ${s}`,
+              labelFormatter: (s) => `Amenity: ${s || ""}`,
               contentStyle: {
                 borderRadius: "10px",
                 border: "1px solid #EBEBEB",
@@ -53600,7 +53602,7 @@ function Hfe({ data: e }) {
             /* @__PURE__ */ g.jsx("div", { children: "Amenity" }),
             /* @__PURE__ */ g.jsx("div", { className: "text-right", children: "Revenue" })
           ] }),
-          /* @__PURE__ */ g.jsx("div", { className: "divide-y divide-[#F1F5F9]", children: r.map((s, l) => /* @__PURE__ */ g.jsxs(
+          /* @__PURE__ */ g.jsx("div", { className: "divide-y divide-[#F1F5F9]", children: r?.map?.((s, l) => /* @__PURE__ */ g.jsxs(
             "div",
             {
               className: "grid grid-cols-2 px-4 py-4 text-[14px] text-[#121212]",
@@ -53611,16 +53613,16 @@ function Hfe({ data: e }) {
                     {
                       className: "w-[16px] h-[7px]",
                       style: {
-                        backgroundColor: nf[l % nf.length]
+                        backgroundColor: nf?.[l % nf?.length]
                       }
                     }
                   ),
-                  /* @__PURE__ */ g.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: s.name })
+                  /* @__PURE__ */ g.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: s?.name || "Unknown" })
                 ] }),
-                /* @__PURE__ */ g.jsx("div", { className: "text-right text-[12px] leading-[16px] text-[#64748B]", children: a(s.value) })
+                /* @__PURE__ */ g.jsx("div", { className: "text-right text-[12px] leading-[16px] text-[#64748B]", children: a(s?.value || 0) })
               ]
             },
-            s.name
+            s?.name || l
           )) })
         ] }) })
       ] }) })
