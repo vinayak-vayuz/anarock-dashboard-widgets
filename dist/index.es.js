@@ -53224,7 +53224,9 @@ const xde = [
   { day: "05 Feb", visitors: 900 },
   { day: "06 Feb", visitors: 1020 },
   { day: "07 Feb", visitors: 800 }
-], $fe = () => /* @__PURE__ */ v.jsx(
+];
+console.log("checking");
+const $fe = () => /* @__PURE__ */ v.jsx(
   ur,
   {
     title: "Weekly Visitor Pattern",
