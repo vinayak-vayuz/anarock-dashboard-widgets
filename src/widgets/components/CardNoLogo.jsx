@@ -13,6 +13,11 @@ const Card = ({
   iconClassName,
   titleClassName,
   childrenClassName,
+
+  // added handlers
+  onCalendarClick,
+  onPrevClick,
+  onNextClick,
 }) => {
   const fontWeightValue = titleWeight === "semi-bold" ? 600 : 500;
 
@@ -48,12 +53,29 @@ const Card = ({
 
         {isDateSelector && (
           <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-white text-sm text-[#64748B]">
-            <Calendar size={16} className="text-[#64748B]" />
-            <ChevronLeft size={16} className="cursor-pointer" />
+            
+            <Calendar
+              size={16}
+              className="text-[#64748B] cursor-pointer"
+              onClick={onCalendarClick}
+            />
+
+            <ChevronLeft
+              size={16}
+              className="cursor-pointer"
+              onClick={onPrevClick}
+            />
+
             <span className="text-[12px] leading-[16px] text-[#64748B]">
               {period}
             </span>
-            <ChevronRight size={16} className="cursor-pointer" />
+
+            <ChevronRight
+              size={16}
+              className="cursor-pointer"
+              onClick={onNextClick}
+            />
+
           </div>
         )}
       </div>
