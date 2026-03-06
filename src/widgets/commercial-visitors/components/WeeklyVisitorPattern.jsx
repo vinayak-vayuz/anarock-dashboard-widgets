@@ -13,25 +13,13 @@ import Card from "../../components/CardNoLogo";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const data = [
-  { day: "01 Feb", visitors: 1250 },
-  { day: "02 Feb", visitors: 1000 },
-  { day: "03 Feb", visitors: 1250 },
-  { day: "04 Feb", visitors: 1050 },
-  { day: "05 Feb", visitors: 900 },
-  { day: "06 Feb", visitors: 1020 },
-  { day: "07 Feb", visitors: 800 },
-];
-
 const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
   const [endDate, setEndDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
-
-
   console.log("WeeklyVisitorCard data:", data);
   const getStartDate = (date) => {
-    const d = new Date(date || new Date());
-    d?.setDate?.((d?.getDate?.() || 0) - 6);
+    const d = new Date(date);
+    d.setDate(d.getDate() - 6);
     return d;
   };
 
@@ -39,43 +27,54 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
 
   const formatDate = (date) => {
     try {
-      return date?.toLocaleDateString?.("en-GB", {
+      return date.toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
-      }) || "";
+      });
     } catch {
       return "";
     }
   };
 
- const handlePrev = () => {
-  const newDate = new Date(endDate);
-  newDate.setDate(newDate.getDate() - 7);
-  setEndDate(newDate);
-
-  if (onDateChange) {
-    const start = new Date(newDate);
+  const triggerDateChange = (newEndDate) => {
+    const end = new Date(newEndDate);
+    const start = new Date(end);
     start.setDate(start.getDate() - 6);
 
-    onDateChange(start.toISOString(), newDate.toISOString());
-  }
-};
-const handleNext = () => {
-  const newDate = new Date(endDate);
-  newDate.setDate(newDate.getDate() + 7);
-  setEndDate(newDate);
+    if (onDateChange) {
+      onDateChange(start.toISOString(), end.toISOString());
+    }
+  };
 
-  if (onDateChange) {
-    const start = new Date(newDate);
-    start.setDate(start.getDate() - 6);
+  const handlePrev = () => {
+    const newDate = new Date(endDate);
+    newDate.setDate(newDate.getDate() - 7);
 
-    onDateChange(start.toISOString(), newDate.toISOString());
-  }
-};
+    setEndDate(newDate);
+    triggerDateChange(newDate);
+  };
+
+  const handleNext = () => {
+    const newDate = new Date(endDate);
+    newDate.setDate(newDate.getDate() + 7);
+
+    setEndDate(newDate);
+    triggerDateChange(newDate);
+  };
 
   const handleCalendarClick = () => {
     setShowCalendar((prev) => !prev);
   };
+
+  const handleCalendarChange = (date) => {
+    const selectedDate = date || new Date();
+
+    setEndDate(selectedDate);
+    triggerDateChange(selectedDate);
+    setShowCalendar(false);
+  };
+
+  const chartData = Array.isArray(data) ? data : [];
 
   return (
     <Card
@@ -89,27 +88,11 @@ const handleNext = () => {
       onNextClick={handleNext}
       onCalendarClick={handleCalendarClick}
     >
-
       {showCalendar && (
         <div className="absolute top-[70px] right-[24px] z-50 bg-white shadow-lg rounded-lg">
           <DatePicker
-            selected={endDate || new Date()}
-           onChange={(date) => {
-  setEndDate(date);
-
-  if (onDateChange) {
-    const end = date;
-    const start = new Date(date);
-    start.setDate(start.getDate() - 6);
-
-    onDateChange(
-      start.toISOString(),
-      end.toISOString()
-    );
-  }
-
-  setShowCalendar(false);
-}}
+            selected={endDate}
+            onChange={handleCalendarChange}
             inline
           />
         </div>
@@ -118,7 +101,7 @@ const handleNext = () => {
       <div className="w-full h-[260px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
-            data={data || []}
+            data={chartData}
             margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
           >
             <defs>
@@ -140,7 +123,7 @@ const handleNext = () => {
               scale="point"
               padding={{ left: 20, right: 20 }}
               tick={{ fontSize: 12, fill: "#64748B" }}
-              axisLine={true}
+              axisLine
               tickLine={false}
             />
 
@@ -150,7 +133,7 @@ const handleNext = () => {
               axisLine={false}
               tickLine={false}
               domain={[0, 1800]}
-              ticks={[0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800]}
+              ticks={[0,200,400,600,800,1000,1200,1400,1600,1800]}
             />
 
             <Tooltip />
@@ -172,7 +155,6 @@ const handleNext = () => {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-
     </Card>
   );
 };
