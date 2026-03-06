@@ -53698,7 +53698,7 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Ede = [
       [s]: !l[s]
     }));
   };
-  return Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx(ur, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center h-[260px] text-[#94A3B8]", children: "No Data Found" }) }) : /* @__PURE__ */ v.jsx(ur, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+  return Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx(ur, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center h-[260px] text-[#94A3B8]", children: "No Data Found" }) }) : /* @__PURE__ */ v.jsx(ur, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
     ha,
     {
       data: i,
@@ -53742,7 +53742,7 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Ede = [
             iconType: "square",
             onClick: o,
             formatter: (a) => /* @__PURE__ */ v.jsx(
-              "span",
+              "div",
               {
                 style: {
                   color: t[a] ? "#CBD5E1" : "#64748B",
@@ -53752,56 +53752,14 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Ede = [
                 children: a
               }
             ),
-            wrapperStyle: {
-              paddingTop: "18px"
-            }
+            wrapperStyle: { paddingTop: "18px" }
           }
         ),
-        /* @__PURE__ */ v.jsx(
-          Bn,
-          {
-            dataKey: "Open",
-            stackId: "a",
-            fill: "#3B82F6",
-            hide: t.Open
-          }
-        ),
-        /* @__PURE__ */ v.jsx(
-          Bn,
-          {
-            dataKey: "Closed",
-            stackId: "a",
-            fill: "#10B981",
-            hide: t.Closed
-          }
-        ),
-        /* @__PURE__ */ v.jsx(
-          Bn,
-          {
-            dataKey: "Cancelled",
-            stackId: "a",
-            fill: "#B91C1C",
-            hide: t.Cancelled
-          }
-        ),
-        /* @__PURE__ */ v.jsx(
-          Bn,
-          {
-            dataKey: "OnHold",
-            stackId: "a",
-            fill: "#64748B",
-            hide: t.OnHold
-          }
-        ),
-        /* @__PURE__ */ v.jsx(
-          Bn,
-          {
-            dataKey: "InProgress",
-            stackId: "a",
-            fill: "#F59E0B",
-            hide: t.InProgress
-          }
-        )
+        /* @__PURE__ */ v.jsx(Bn, { dataKey: "Open", stackId: "a", fill: "#3B82F6", hide: t.Open }),
+        /* @__PURE__ */ v.jsx(Bn, { dataKey: "Closed", stackId: "a", fill: "#10B981", hide: t.Closed }),
+        /* @__PURE__ */ v.jsx(Bn, { dataKey: "Cancelled", stackId: "a", fill: "#B91C1C", hide: t.Cancelled }),
+        /* @__PURE__ */ v.jsx(Bn, { dataKey: "OnHold", stackId: "a", fill: "#64748B", hide: t.OnHold }),
+        /* @__PURE__ */ v.jsx(Bn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress })
       ]
     }
   ) }) }) });
