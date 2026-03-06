@@ -53273,11 +53273,17 @@ const bde = [
       return "";
     }
   }, s = () => {
-    const u = new Date(e || /* @__PURE__ */ new Date());
-    u?.setDate?.((u?.getDate?.() || 0) - 7), t(u);
+    const u = new Date(e);
+    if (u.setDate(u.getDate() - 7), t(u), onDateChange) {
+      const d = new Date(u);
+      d.setDate(d.getDate() - 6), onDateChange(d.toISOString(), u.toISOString());
+    }
   }, l = () => {
-    const u = new Date(e || /* @__PURE__ */ new Date());
-    u?.setDate?.((u?.getDate?.() || 0) + 7), t(u);
+    const u = new Date(e);
+    if (u.setDate(u.getDate() + 7), t(u), onDateChange) {
+      const d = new Date(u);
+      d.setDate(d.getDate() - 6), onDateChange(d.toISOString(), u.toISOString());
+    }
   }, c = () => {
     r((u) => !u);
   };
@@ -53299,7 +53305,14 @@ const bde = [
           {
             selected: e || /* @__PURE__ */ new Date(),
             onChange: (u) => {
-              t(u || /* @__PURE__ */ new Date()), r(!1);
+              if (t(u), onDateChange) {
+                const d = u, f = new Date(u);
+                f.setDate(f.getDate() - 6), onDateChange(
+                  f.toISOString(),
+                  d.toISOString()
+                );
+              }
+              r(!1);
             },
             inline: !0
           }

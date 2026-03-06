@@ -47,17 +47,30 @@ const WeeklyVisitorCard = () => {
     }
   };
 
-  const handlePrev = () => {
-    const newDate = new Date(endDate || new Date());
-    newDate?.setDate?.((newDate?.getDate?.() || 0) - 7);
-    setEndDate(newDate);
-  };
+ const handlePrev = () => {
+  const newDate = new Date(endDate);
+  newDate.setDate(newDate.getDate() - 7);
+  setEndDate(newDate);
 
-  const handleNext = () => {
-    const newDate = new Date(endDate || new Date());
-    newDate?.setDate?.((newDate?.getDate?.() || 0) + 7);
-    setEndDate(newDate);
-  };
+  if (onDateChange) {
+    const start = new Date(newDate);
+    start.setDate(start.getDate() - 6);
+
+    onDateChange(start.toISOString(), newDate.toISOString());
+  }
+};
+const handleNext = () => {
+  const newDate = new Date(endDate);
+  newDate.setDate(newDate.getDate() + 7);
+  setEndDate(newDate);
+
+  if (onDateChange) {
+    const start = new Date(newDate);
+    start.setDate(start.getDate() - 6);
+
+    onDateChange(start.toISOString(), newDate.toISOString());
+  }
+};
 
   const handleCalendarClick = () => {
     setShowCalendar((prev) => !prev);
@@ -80,10 +93,22 @@ const WeeklyVisitorCard = () => {
         <div className="absolute top-[70px] right-[24px] z-50 bg-white shadow-lg rounded-lg">
           <DatePicker
             selected={endDate || new Date()}
-            onChange={(date) => {
-              setEndDate(date || new Date());
-              setShowCalendar(false);
-            }}
+           onChange={(date) => {
+  setEndDate(date);
+
+  if (onDateChange) {
+    const end = date;
+    const start = new Date(date);
+    start.setDate(start.getDate() - 6);
+
+    onDateChange(
+      start.toISOString(),
+      end.toISOString()
+    );
+  }
+
+  setShowCalendar(false);
+}}
             inline
           />
         </div>
