@@ -20,6 +20,8 @@ const data = [
     { day: "07 Feb", visitors: 800 },
 ];
 
+console.log("checking")
+
 const WeeklyVisitorCard = () => {
     return (
         <Card
