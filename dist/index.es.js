@@ -51890,34 +51890,44 @@ const Ck = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
       "div",
       {
         className: `h-[11px] rounded-full ${n}`,
-        style: { width: n === "bg-[#12B981]" ? `${i + 45}%` : `${i}%` }
+        style: {
+          width: n === "bg-[#12B981]" ? `${i + 45}%` : `${i}%`
+        }
       }
     ) }),
     /* @__PURE__ */ v.jsx("div", { className: `${o} !text-[12px] font-bold mt-1`, children: e }),
     /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#64748B] mt-1", children: r })
   ] });
 }, kfe = ({
-  occupiedUnits: e = 9e3,
-  EmployeesCount: t = 8910,
-  AdminsCount: n = 90
+  data: e,
+  occupiedUnits: t = 9e3,
+  EmployeesCount: n = 8910,
+  AdminsCount: r = 90
 }) => {
-  const r = t + n;
+  const i = e?.total_occupants ?? t, o = e?.total_members ?? n, a = e?.total_admins ?? r, s = o + a;
   return /* @__PURE__ */ v.jsx("div", { children: /* @__PURE__ */ v.jsxs("div", { className: "bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]", children: [
-    /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-[12px] h-[20px]", style: { marginBottom: "24px" }, children: [
-      /* @__PURE__ */ v.jsx(Rb, { className: "!text-[20px] text-[#329DFF]" }),
-      /* @__PURE__ */ v.jsx("div", { className: "font-medium text-[#121212] text-[16px] leading-[20px]", children: "Occupancy Overview (Static Data)" })
-    ] }),
+    /* @__PURE__ */ v.jsxs(
+      "div",
+      {
+        className: "flex items-center gap-[12px] h-[20px]",
+        style: { marginBottom: "24px" },
+        children: [
+          /* @__PURE__ */ v.jsx(Rb, { className: "!text-[20px] text-[#329DFF]" }),
+          /* @__PURE__ */ v.jsx("div", { className: "font-medium text-[#121212] text-[16px] leading-[20px]", children: "Occupancy Overview" })
+        ]
+      }
+    ),
     /* @__PURE__ */ v.jsxs("div", { className: "flex items-start justify-between", children: [
       /* @__PURE__ */ v.jsxs("div", { children: [
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B] font-normal", children: "Total Occupants" }),
-        /* @__PURE__ */ v.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: e }) })
+        /* @__PURE__ */ v.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: i }) })
       ] }),
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-end gap-1", children: [
         /* @__PURE__ */ v.jsx(
           Ck,
           {
-            value: t,
-            total: r,
+            value: o,
+            total: s,
             colorClass: "bg-[#8B5CF6]",
             label: "Employees"
           }
@@ -51925,8 +51935,8 @@ const Ck = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
         /* @__PURE__ */ v.jsx(
           Ck,
           {
-            value: n,
-            total: r,
+            value: a,
+            total: s,
             colorClass: "bg-[#12B981]",
             label: "Admins"
           }

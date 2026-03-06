@@ -15,53 +15,75 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
       <div className="w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden">
         <div
           className={`h-[11px] rounded-full ${colorClass}`}
-          style={{ width:colorClass === "bg-[#12B981]" ? `${pct + 45}%` : `${pct}%`}}
+          style={{
+            width:
+              colorClass === "bg-[#12B981]"
+                ? `${pct + 45}%`
+                : `${pct}%`,
+          }}
         />
       </div>
+
       <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>
         {value}
       </div>
-      <div className="!text-[12px] leading-[16px] text-[#64748B] mt-1">{label}</div>
+
+      <div className="!text-[12px] leading-[16px] text-[#64748B] mt-1">
+        {label}
+      </div>
     </div>
   );
 };
 
 const OccupancyOverviewCard = ({
+  data,
   occupiedUnits = 9000,
   EmployeesCount = 8910,
   AdminsCount = 90,
 }) => {
-  const barTotal = EmployeesCount + AdminsCount;
+
+  const totalOccupants = data?.total_occupants ?? occupiedUnits;
+  const employees = data?.total_members ?? EmployeesCount;
+  const admins = data?.total_admins ?? AdminsCount;
+
+  const barTotal = employees + admins;
 
   return (
     <div>
       <div className="bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]">
-        <div className="flex items-center gap-[12px] h-[20px]" style={{marginBottom :"24px"}}>
+        <div
+          className="flex items-center gap-[12px] h-[20px]"
+          style={{ marginBottom: "24px" }}
+        >
           <GoPeople className="!text-[20px] text-[#329DFF]" />
-          <div className="font-medium text-[#121212] text-[16px] leading-[20px]">Occupancy Overview (Static Data)</div>
+          <div className="font-medium text-[#121212] text-[16px] leading-[20px]">
+            Occupancy Overview
+          </div>
         </div>
 
-      <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between">
           <div>
             <div className="text-[12px] leading-[16px] text-[#64748B] font-normal">
               Total Occupants
             </div>
+
             <div className="flex items-center gap-1">
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
-                {occupiedUnits}
+                {totalOccupants}
               </div>
             </div>
           </div>
 
           <div className="flex items-end gap-1">
             <MiniPill
-              value={EmployeesCount}
+              value={employees}
               total={barTotal}
               colorClass="bg-[#8B5CF6]"
               label="Employees"
             />
+
             <MiniPill
-              value={AdminsCount}
+              value={admins}
               total={barTotal}
               colorClass="bg-[#12B981]"
               label="Admins"
@@ -69,8 +91,6 @@ const OccupancyOverviewCard = ({
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };
