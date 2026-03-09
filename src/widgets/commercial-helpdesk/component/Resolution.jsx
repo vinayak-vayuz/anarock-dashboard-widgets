@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 export default function MetricCard({
   icon: Icon,
@@ -8,8 +9,9 @@ export default function MetricCard({
   percentage,
   percentageText,
 }) {
-  const isNegative = percentage?.trim().startsWith("-");
-  const percentageColor = isNegative ? "#DC2626" : "#16A34A";
+  const numericPercentage = parseFloat(percentage);
+  const isPositive = numericPercentage >= 0; 
+  const percentageColor = isPositive ? "#16A34A" : "#DC2626";
 
   return (
     <div className="relative bg-white rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] p-[16px]">
@@ -41,10 +43,11 @@ export default function MetricCard({
         <div className="mt-[12px] flex items-center gap-2">
           {percentage && (
             <div
-              className="text-[12px] leading-[16px] font-medium"
+              className="flex items-center gap-[4px] text-[12px] leading-[16px] font-medium"
               style={{ color: percentageColor }}
             >
-              {percentage}
+              {isPositive ? <FaCaretUp /> : <FaCaretDown />}
+              {Math.abs(numericPercentage)}%
             </div>
           )}
 
@@ -53,7 +56,6 @@ export default function MetricCard({
               {percentageText}
             </div>
           )}
-
         </div>
       )}
     </div>

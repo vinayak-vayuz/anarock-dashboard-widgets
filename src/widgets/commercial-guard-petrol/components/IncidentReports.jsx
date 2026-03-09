@@ -81,7 +81,7 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
               );
             })
           ) : (
-            <div className="text-center text-gray-400 text-sm py-6">
+            <div className="text-[16px] text-center text-gray-400 text-sm py-6">
               No incidents found
             </div>
           )}

@@ -73,7 +73,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
               );
             })
           ) : (
-            <div className="text-center text-gray-400 text-sm py-6">
+            <div className="text-center text-[16px] text-gray-400 text-sm py-6">
               No staff data
             </div>
           )}

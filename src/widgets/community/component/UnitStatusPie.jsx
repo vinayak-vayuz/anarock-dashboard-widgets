@@ -2,7 +2,7 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Card from "../../components/Card";
-
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const centerTextPlugin = {
@@ -98,6 +98,9 @@ const Tickets = ({
     { label: secondLabel, value: secondValue, color: secondColor },
   ];
 
+  const isPositive = growthPercentage.toString().includes("+");
+const isNegative = growthPercentage.toString().includes("-");
+const dynamicGrowthColor = isPositive ? "#1FA05B" : "#AB0000";
   return (
     <Card title={title} icon={icon} className={widgetType === "commercial" ? "h-[362px]" : "h-[238px]"}>
       <div className="grid grid-cols-12 gap-[16px] items-center">
@@ -117,14 +120,20 @@ const Tickets = ({
           ))}
 
           <div
-            className="text-[10px] flex gap-[8px] items-center"
-            style={{ color: growthColor }}
-          >
-            {growthPercentage}
-            <div className="text-[#64748B] text-[10px]">
-              {growthText}
-            </div>
-          </div>
+  className="text-[10px] flex gap-[4px] items-center"
+  style={{ color: dynamicGrowthColor }}
+>
+  {isPositive && <FaCaretUp />}
+  {isNegative && <FaCaretDown />}
+
+  <div>
+    {growthPercentage.replace("+", "").replace("-", "")}
+  </div>
+
+  <div className="text-[#64748B] text-[10px] ml-[4px]">
+    {growthText}
+  </div>
+</div>
         </div>
 
         <div className="col-span-7"><div
