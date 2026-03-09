@@ -16,7 +16,6 @@ import "react-datepicker/dist/react-datepicker.css";
 const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
   const [endDate, setEndDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
-  console.log("WeeklyVisitorCard data:", data);
   const getStartDate = (date) => {
     const d = new Date(date);
     d.setDate(d.getDate() - 6);
