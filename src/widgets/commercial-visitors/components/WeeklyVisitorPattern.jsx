@@ -125,22 +125,35 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
               tick={{ fontSize: 12, fill: "#64748B" }}
               axisLine
               tickLine={false}
+              tickFormatter={(value) =>
+                new Date(value).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                })
+              }
             />
 
             <YAxis
-              width={35}
-              tick={{ fontSize: 12, fill: "#64748B" }}
-              axisLine={false}
-              tickLine={false}
-              domain={[0, 1800]}
-              ticks={[0,200,400,600,800,1000,1200,1400,1600,1800]}
-            />
+  width={35}
+  tick={{ fontSize: 12, fill: "#64748B" }}
+  axisLine={false}
+  tickLine={false}
+  allowDecimals={false}
+  domain={[0, "dataMax + 2"]}
+/>
 
-            <Tooltip />
+            <Tooltip
+              labelFormatter={(value) =>
+                new Date(value).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                })
+              }
+            />
 
             <Area
               type="monotone"
-              dataKey="visitors"
+              dataKey="no_of_visitors"
               stroke="#6366F1"
               strokeWidth={2}
               fill="url(#colorVisitors)"

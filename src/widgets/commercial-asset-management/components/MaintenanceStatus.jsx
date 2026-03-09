@@ -74,6 +74,7 @@ const chartData = React.useMemo(() => {
             tick={{ fill: "#64748B", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
+            allowDecimals={false}
           />
 
           <Tooltip

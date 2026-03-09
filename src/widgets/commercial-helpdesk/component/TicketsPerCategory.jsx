@@ -78,6 +78,7 @@ function TicketsPerCategory({ data = [] }) {
               tick={{ fill: "#94A3B8", fontSize: 12 }}
               axisLine
               tickLine={false}
+              allowDecimals={false}
             />
 
             <YAxis

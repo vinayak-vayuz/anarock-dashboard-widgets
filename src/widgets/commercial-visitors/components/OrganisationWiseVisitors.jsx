@@ -77,9 +77,8 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
                 tick={{ fontSize: 12, fill: "#64748B" }}
                 axisLine={false}
                 tickLine={false}
-                tickFormatter={(value) =>
-                  value === 0 ? "0" : `${(value || 0) / 1000}K`
-                }
+                allowDecimals={false}
+                
               />
 
               <Tooltip cursor={false} />
