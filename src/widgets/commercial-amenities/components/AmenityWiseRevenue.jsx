@@ -60,7 +60,7 @@ function AmenityWiseRevenue({ data }) {
 
         {isEmptyArray ? (
           <div className="col-span-12 flex items-center justify-center h-full">
-            <p className="text-sm text-gray-500">No Data Found</p>
+            <div className="text-[16px] text-gray-500">No Data Found</div>
           </div>
         ) : (
           <>

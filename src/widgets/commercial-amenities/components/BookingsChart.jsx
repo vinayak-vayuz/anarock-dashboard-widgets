@@ -64,7 +64,7 @@ function BookingsChart({ data }) {
       <div className="w-full h-full flex items-center justify-center">
 
         {isEmptyArray ? (
-          <p className="text-sm text-gray-500">No Data Found</p>
+          <div className="text-[16px] text-gray-500">No Data Found</div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart

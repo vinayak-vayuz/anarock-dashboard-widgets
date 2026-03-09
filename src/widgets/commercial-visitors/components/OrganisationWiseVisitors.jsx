@@ -13,11 +13,11 @@ import Card from "../../components/CardNoLogo";
 
 /* Dummy fallback data */
 const dummyData = [
-  { name: "Google", visitors: 1000 },
-  { name: "Uber", visitors: 3500 },
-  { name: "ANAROCK", visitors: 2000 },
-  { name: "Flipkart", visitors: 8000 },
-  { name: "HP", visitors: 1650 },
+  { building_name: "Google", no_of_visitors: 1000 },
+  { building_name: "Uber", no_of_visitors: 3500 },
+  { building_name: "ANAROCK", no_of_visitors: 2000 },
+  { building_name: "Flipkart", no_of_visitors: 8000 },
+  { building_name: "HP", no_of_visitors: 1650 },
 ];
 
 const OrganisationWiseVisitorsCard = ({ data }) => {
@@ -34,7 +34,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
   let maxVisitors = 0;
 
   for (let i = 0; i < (chartData?.length || 0); i++) {
-    const currentVisitors = Number(chartData?.[i]?.visitors) || 0;
+    const currentVisitors = Number(chartData?.[i]?.no_of_visitors) || 0;
 
     if (currentVisitors > maxVisitors) {
       maxVisitors = currentVisitors;
@@ -51,7 +51,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
       <div className="w-full h-[260px] flex items-center justify-center">
 
         {isEmptyArray ? (
-          <p className="text-sm text-gray-500">No Data Found</p>
+          <div className="text-[16px] text-gray-500">No Data Found</div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
@@ -66,7 +66,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
               />
 
               <XAxis
-                dataKey="name"
+                dataKey="building_name"
                 tick={{ fontSize: 12, fill: "#64748B" }}
                 axisLine={true}
                 tickLine={false}
@@ -83,12 +83,12 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
 
               <Tooltip cursor={false} />
 
-              <Bar dataKey="visitors" maxBarSize={55}>
+              <Bar dataKey="no_of_visitors" maxBarSize={55}>
                 {chartData?.map?.((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={
-                      (entry?.visitors || 0) === maxVisitors
+                      (entry?.no_of_visitors || 0) === maxVisitors
                         ? "#3B82F6"
                         : "#7FB0FF"
                     }
