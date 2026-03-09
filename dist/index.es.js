@@ -53399,16 +53399,16 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
     }
   );
 }, gde = [
-  { name: "Google", visitors: 1e3 },
-  { name: "Uber", visitors: 3500 },
-  { name: "ANAROCK", visitors: 2e3 },
-  { name: "Flipkart", visitors: 8e3 },
-  { name: "HP", visitors: 1650 }
+  { building_name: "Google", no_of_visitors: 1e3 },
+  { building_name: "Uber", no_of_visitors: 3500 },
+  { building_name: "ANAROCK", no_of_visitors: 2e3 },
+  { building_name: "Flipkart", no_of_visitors: 8e3 },
+  { building_name: "HP", no_of_visitors: 1650 }
 ], Ife = ({ data: e }) => {
   const t = Array.isArray(e) && e?.length === 0, n = e == null ? gde : Array.isArray(e) ? e : [];
   let r = 0;
   for (let i = 0; i < (n?.length || 0); i++) {
-    const o = Number(n?.[i]?.visitors) || 0;
+    const o = Number(n?.[i]?.no_of_visitors) || 0;
     o > r && (r = o);
   }
   return /* @__PURE__ */ v.jsx(
@@ -53418,7 +53418,7 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
       titleWeight: "semi-bold",
       className: "h-[360px]",
       childrenClassName: "mt-6",
-      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: t ? /* @__PURE__ */ v.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: t ? /* @__PURE__ */ v.jsx("div", { className: "text-[16px] text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
         ha,
         {
           data: n || [],
@@ -53436,7 +53436,7 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
             /* @__PURE__ */ v.jsx(
               Pr,
               {
-                dataKey: "name",
+                dataKey: "building_name",
                 tick: { fontSize: 12, fill: "#64748B" },
                 axisLine: !0,
                 tickLine: !1
@@ -53453,10 +53453,10 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
               }
             ),
             /* @__PURE__ */ v.jsx(dn, { cursor: !1 }),
-            /* @__PURE__ */ v.jsx(Wn, { dataKey: "visitors", maxBarSize: 55, children: n?.map?.((i, o) => /* @__PURE__ */ v.jsx(
+            /* @__PURE__ */ v.jsx(Wn, { dataKey: "no_of_visitors", maxBarSize: 55, children: n?.map?.((i, o) => /* @__PURE__ */ v.jsx(
               Kt,
               {
-                fill: (i?.visitors || 0) === r ? "#3B82F6" : "#7FB0FF"
+                fill: (i?.no_of_visitors || 0) === r ? "#3B82F6" : "#7FB0FF"
               },
               `cell-${o}`
             )) })
@@ -53532,7 +53532,7 @@ function Ffe({ data: e }) {
       title: "Bookings",
       icon: /* @__PURE__ */ v.jsx(Hue, { size: 18, className: "text-[#DBB467]" }),
       className: "h-[288px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-full flex items-center justify-center", children: t ? /* @__PURE__ */ v.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-full flex items-center justify-center", children: t ? /* @__PURE__ */ v.jsx("div", { className: "text-[16px] text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
         ha,
         {
           data: n || [],
@@ -53592,7 +53592,7 @@ function $fe({ data: e }) {
       title: "Booking Trend by Organisation",
       titleWeight: "semi-bold",
       className: "h-[362px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[280px] flex items-center justify-center", children: t ? /* @__PURE__ */ v.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[280px] flex items-center justify-center", children: t ? /* @__PURE__ */ v.jsx("div", { className: "text-[16px] text-gray-500", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
         ha,
         {
           data: n || [],
@@ -53659,7 +53659,7 @@ function Bfe({ data: e }) {
       title: "Amenity Wise Revenue",
       titleWeight: "semi-bold",
       className: "h-[362px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: t ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-full", children: /* @__PURE__ */ v.jsx("p", { className: "text-sm text-gray-500", children: "No Data Found" }) }) : /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
+      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: t ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-full", children: /* @__PURE__ */ v.jsx("div", { className: "text-[16px] text-gray-500", children: "No Data Found" }) }) : /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
         /* @__PURE__ */ v.jsx("div", { className: "col-span-5 h-[240px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(Mo, { children: [
           /* @__PURE__ */ v.jsx(
             Vi,
