@@ -1,73 +1,85 @@
 import React from "react";
-import Card from "../../components/Card";
-import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
+import Card from "../../components/CardNoLogo";
 
-function StaffAttendance() {
+function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
+
+  const totalStaff = staffPresentAbsent?.[0]?.total_staff ?? 0;
+  const absentStaff = staffPresentAbsent?.[0]?.absent_staff ?? 0;
+  const presentStaff = (totalStaff ?? 0) - (absentStaff ?? 0);
+
   return (
     <Card
       title="Staff Attendance"
-      period={
-        <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
-      }
       className="h-[362px]"
+      titleWeight="semi-bold"
     >
       <div>
-        <div className="flex w-full text-center h-[76px] gap-[16px] mb-2">
-          <div className="flex-1 py-4 bg-green-50 rounded-md">
-            <div className="!text-[24px] leading-[18px] font-medium text-[#1FA05B] pb-[8px]">
-              25
+
+        {/* Top Attendance Summary */}
+        <div className="flex gap-[24px] text-center">
+
+          <div className="flex-1 py-3 bg-[#F7FEFA] rounded h-[76px]">
+            <div className="text-[24px] font-medium text-[#1FA05B]">
+              {presentStaff ?? 0}
             </div>
-            <div className="!text-[12px] leading-[16px] text-[#1FA05B]">
+            <div className="text-[12px] text-[#1FA05B]">
               Present
             </div>
           </div>
-          <div className="flex-1 py-4 bg-red-50 rounded-md">
-            <div className="!text-[24px] leading-[18px] font-medium text-[#AB0000] pb-[8px]">
-              1
+
+          <div className="flex-1 py-3 bg-[#FBF4F4] rounded h-[76px]">
+            <div className="text-[24px] font-medium text-[#AB0000]">
+              {absentStaff ?? 0}
             </div>
-            <div className="!text-[12px] leading-[16px] text-[#AB0000]">
+            <div className="text-[12px] text-[#AB0000]">
               Absent
             </div>
           </div>
+
+          <div className="flex-1 py-3 bg-[#F1F5F9] rounded h-[76px]">
+            <div className="text-[24px] font-medium text-[#334155]">
+              {totalStaff ?? 0}
+            </div>
+            <div className="text-[12px] text-[#334155]">
+              Total
+            </div>
+          </div>
+
         </div>
 
-        <div className="mt-[24px] ">
-          <div className="flex justify-between items-center p-3 bg-[#FAFBFD] rounded-md">
-            <div className=" font-medium !text-[12px] leading-[18px]">
-              Security guards
-            </div>
-            <div className="text-[#64748B] leading[20px] text-[14px]">
-              12/12 Present
-            </div>
-          </div>
+        {/* Staff Role List */}
+        <div className="mt-4 space-y-2 overflow-y-auto max-h-[200px]">
 
-          <div className="flex justify-between items-center p-3 bg-[#FAFBFD] rounded-md">
-            <div className=" font-medium !text-[12px] leading-[18px]">
-              Housekeeping
-            </div>
-            <div className="text-[#64748B] leading[20px] text-[14px]">
-              7/8 Present
-            </div>
-          </div>
+          {staffPresentByRole?.length ? (
+            staffPresentByRole?.map?.((item, index) => {
 
-          <div className="flex justify-between items-center p-3 bg-[#FAFBFD] rounded-md">
-            <div className=" font-medium !text-[12px] leading-[18px]">
-              Maintenance
-            </div>
-            <div className="text-[#64748B] leading[20px] text-[14px]">
-              4/4 Present
-            </div>
-          </div>
+              const total = Number(item?.total_staff ?? 0);
+              const present = Number(item?.present_staff ?? 0);
+              const absent = (total ?? 0) - (present ?? 0);
 
-          <div className="flex justify-between items-center p-3 bg-[#FAFBFD] rounded-md">
-            <div className=" font-medium !text-[12px] leading-[18px]">
-              Gardening
+              return (
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md"
+                >
+                  <div className="text-gray-700 text-sm font-medium">
+                    {item?.staff_role_name ?? "-"}
+                  </div>
+
+                  <div className="text-[12px] text-gray-600">
+                    {(present ?? 0)}/{(total ?? 0)}
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="text-center text-gray-400 text-sm py-6">
+              No staff data
             </div>
-            <div className="text-[#64748B] leading[20px] text-[14px]">
-              2/2 Present
-            </div>
-          </div>
+          )}
+
         </div>
+
       </div>
     </Card>
   );
