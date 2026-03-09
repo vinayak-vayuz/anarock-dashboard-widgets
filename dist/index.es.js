@@ -53197,7 +53197,8 @@ function Nfe({ data: e = [] }) {
             domain: [0, Math.ceil(r * 1.2) || 10],
             tick: { fill: "#94A3B8", fontSize: 12 },
             axisLine: !0,
-            tickLine: !1
+            tickLine: !1,
+            allowDecimals: !1
           }
         ),
         /* @__PURE__ */ v.jsx(
@@ -53347,7 +53348,11 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
                   padding: { left: 20, right: 20 },
                   tick: { fontSize: 12, fill: "#64748B" },
                   axisLine: !0,
-                  tickLine: !1
+                  tickLine: !1,
+                  tickFormatter: (h) => new Date(h).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short"
+                  })
                 }
               ),
               /* @__PURE__ */ v.jsx(
@@ -53357,16 +53362,24 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
                   tick: { fontSize: 12, fill: "#64748B" },
                   axisLine: !1,
                   tickLine: !1,
-                  domain: [0, 1800],
-                  ticks: [0, 200, 400, 600, 800, 1e3, 1200, 1400, 1600, 1800]
+                  allowDecimals: !1,
+                  domain: [0, "dataMax + 2"]
                 }
               ),
-              /* @__PURE__ */ v.jsx(dn, {}),
+              /* @__PURE__ */ v.jsx(
+                dn,
+                {
+                  labelFormatter: (h) => new Date(h).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short"
+                  })
+                }
+              ),
               /* @__PURE__ */ v.jsx(
                 BN,
                 {
                   type: "monotone",
-                  dataKey: "visitors",
+                  dataKey: "no_of_visitors",
                   stroke: "#6366F1",
                   strokeWidth: 2,
                   fill: "url(#colorVisitors)",
@@ -53436,7 +53449,7 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
                 tick: { fontSize: 12, fill: "#64748B" },
                 axisLine: !1,
                 tickLine: !1,
-                tickFormatter: (i) => i === 0 ? "0" : `${(i || 0) / 1e3}K`
+                allowDecimals: !1
               }
             ),
             /* @__PURE__ */ v.jsx(dn, { cursor: !1 }),
@@ -53816,7 +53829,8 @@ const tf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], wde = [
           {
             tick: { fill: "#64748B", fontSize: 12 },
             axisLine: !1,
-            tickLine: !1
+            tickLine: !1,
+            allowDecimals: !1
           }
         ),
         /* @__PURE__ */ v.jsx(
