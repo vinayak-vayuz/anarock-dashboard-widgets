@@ -51432,10 +51432,6 @@ function pfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
           /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#FBF4F4] rounded h-[76px]", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[24px] font-medium text-[#AB0000]", children: r ?? 0 }),
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#AB0000]", children: "Absent" })
-          ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#F1F5F9] rounded h-[76px]", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] font-medium text-[#334155]", children: n ?? 0 }),
-            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#334155]", children: "Total" })
           ] })
         ] }),
         /* @__PURE__ */ v.jsx("div", { className: "mt-4 space-y-2 overflow-y-auto max-h-[200px]", children: t?.length ? t?.map?.((o, a) => {
@@ -51445,8 +51441,8 @@ function pfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
             {
               className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md",
               children: [
-                /* @__PURE__ */ v.jsx("div", { className: "text-gray-700 text-sm font-medium", children: o?.staff_role_name ?? "-" }),
-                /* @__PURE__ */ v.jsxs("div", { className: "text-[12px] text-gray-600", children: [
+                /* @__PURE__ */ v.jsx("div", { className: "text-[#121212] text-[14px] leading-[18px] font-medium", children: o?.staff_role_name ?? "-" }),
+                /* @__PURE__ */ v.jsxs("div", { className: "text-[14px] leading-[20px] text-[#64748B]", children: [
                   l ?? 0,
                   "/",
                   s ?? 0
@@ -52541,10 +52537,10 @@ function kfe({ data: e = [] }) {
       on_hold: 14,
       closed: 6
     }
-  ], n = e.length > 0 ? e : t, r = [], i = [], o = [], a = [], s = [], l = [];
-  for (let d = 0; d < n.length; d++)
-    r.push(n[d].level), i.push(Number(n[d].open)), o.push(Number(n[d].in_progress)), a.push(Number(n[d].on_hold)), s.push(Number(n[d].closed)), l.push(Number(n[d].cancelled));
-  const c = {
+  ], n = e.length > 0 ? e : t, r = [], i = [], o = [], a = [], s = [];
+  for (let u = 0; u < n.length; u++)
+    r.push(n[u].level), i.push(Number(n[u].open)), o.push(Number(n[u].in_progress)), a.push(Number(n[u].on_hold)), s.push(Number(n[u].cancelled));
+  const l = {
     labels: r,
     datasets: [
       {
@@ -52575,17 +52571,8 @@ function kfe({ data: e = [] }) {
         stack: "tickets"
       },
       {
-        label: "Closed",
-        data: s,
-        backgroundColor: "#10B981",
-        borderColor: "#FFFFFF",
-        borderWidth: 2,
-        barThickness: 38,
-        stack: "tickets"
-      },
-      {
         label: "Cancelled",
-        data: l,
+        data: s,
         backgroundColor: "#FB2C36",
         borderColor: "#FFFFFF",
         borderWidth: 2,
@@ -52593,7 +52580,7 @@ function kfe({ data: e = [] }) {
         stack: "tickets"
       }
     ]
-  }, u = {
+  }, c = {
     responsive: !0,
     maintainAspectRatio: !1,
     plugins: {
@@ -52635,7 +52622,7 @@ function kfe({ data: e = [] }) {
           color: "#64748B",
           stepSize: 1,
           precision: 0,
-          callback: (d) => Math.round(d)
+          callback: (u) => Math.round(u)
         }
       }
     }
@@ -52647,7 +52634,7 @@ function kfe({ data: e = [] }) {
       title: "Ticket Escalation Levels",
       period: "Today",
       icon: /* @__PURE__ */ v.jsx(F3, { className: "!text-[24px] text-[#3C81F6]" }),
-      children: /* @__PURE__ */ v.jsx("div", { className: "h-full", children: /* @__PURE__ */ v.jsx(Fl, { data: c, options: u }) })
+      children: /* @__PURE__ */ v.jsx("div", { className: "h-full", children: /* @__PURE__ */ v.jsx(Fl, { data: l, options: c }) })
     }
   );
 }
@@ -53277,9 +53264,7 @@ function jfe({
   ] });
 }
 const Rfe = ({ data: e = [], onDateChange: t }) => {
-  const [n, r] = Fe(/* @__PURE__ */ new Date()), [i, o] = Fe(!1);
-  console.log("WeeklyVisitorCard data:", e);
-  const s = ((h) => {
+  const [n, r] = Fe(/* @__PURE__ */ new Date()), [i, o] = Fe(!1), s = ((h) => {
     const g = new Date(h);
     return g.setDate(g.getDate() - 6), g;
   })(n), l = (h) => {
@@ -53874,7 +53859,8 @@ const nf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], wde = [
                 style: {
                   color: t[a] ? "#CBD5E1" : "#64748B",
                   cursor: "pointer",
-                  fontSize: "12px"
+                  fontSize: "12px",
+                  display: "flex"
                 },
                 children: a
               }
@@ -54032,8 +54018,7 @@ function Yfe({
       c: "34,908",
       d: "₹ 57,21,288",
       e: "₹ 450",
-      f: "43.6%",
-      color: "bg-green-100 text-green-600"
+      f: "43.6%"
     },
     {
       a: "Uber",
@@ -54041,8 +54026,7 @@ function Yfe({
       c: "12,000",
       d: "₹ 12,00,000",
       e: "₹ 500",
-      f: "25%",
-      color: "bg-blue-100 text-blue-600"
+      f: "100%"
     }
   ],
   rowsPerPage: n = 10,
@@ -54070,13 +54054,10 @@ function Yfe({
         style: {
           gridTemplateColumns: `repeat(${l.length}, 1fr)`
         },
-        children: l.map((h, g) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: h.key === "f" ? /* @__PURE__ */ v.jsx(
-          "span",
-          {
-            className: `px-3 py-1 rounded-full text-xs font-semibold ${p.color || ""}`,
-            children: p[h.key] || "-"
-          }
-        ) : p[h.key] || "-" }, g))
+        children: l.map((h, g) => {
+          const b = p[h.key], S = typeof b == "string" && b.includes("%"), w = b === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
+          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: S ? /* @__PURE__ */ v.jsx("span", { className: `px-3 py-1 rounded-full text-xs font-semibold ${w}`, children: b }) : b || "-" }, g);
+        })
       },
       m
     )) : /* @__PURE__ */ v.jsx("div", { className: "p-6 text-center text-gray-500", children: "No Data Available" }),
