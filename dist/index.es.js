@@ -54038,7 +54038,7 @@ function Yfe({
   pageOptions: a = [10, 20, 30, 40, 50]
 }) {
   const s = Array.isArray(t) ? t : [], l = Array.isArray(e) ? e : [], c = n > 0 ? Math.ceil(s.length / n) : 1, u = (i - 1) * n, d = u + n, f = s.slice(u, d);
-  return /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl shadow-md overflow-hidden", children: [
+  return /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
@@ -54047,7 +54047,7 @@ function Yfe({
         children: l.map((p, m) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4", children: p.label }, m))
       }
     ),
-    f.length > 0 ? f.map((p, m) => /* @__PURE__ */ v.jsx(
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: f.length > 0 ? f.map((p, m) => /* @__PURE__ */ v.jsx(
       "div",
       {
         className: "grid text-sm text-gray-700 hover:bg-gray-50 transition",
@@ -54056,14 +54056,20 @@ function Yfe({
         },
         children: l.map((h, g) => {
           const b = p[h.key], S = typeof b == "string" && b.includes("%"), w = b === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
-          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: S ? /* @__PURE__ */ v.jsx("span", { className: `px-3 py-1 rounded-full text-xs font-semibold ${w}`, children: b }) : b || "-" }, g);
+          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: S ? /* @__PURE__ */ v.jsx(
+            "div",
+            {
+              className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${w}`,
+              children: b
+            }
+          ) : /* @__PURE__ */ v.jsx("div", { children: b || "-" }) }, g);
         })
       },
       m
-    )) : /* @__PURE__ */ v.jsx("div", { className: "p-6 text-center text-gray-500", children: "No Data Available" }),
+    )) : /* @__PURE__ */ v.jsx("div", { className: "p-6 text-center text-gray-500", children: "No Data Available" }) }),
     /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white gap-8", children: [
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2 text-gray-600", children: [
-        /* @__PURE__ */ v.jsx("span", { children: "Rows per page:" }),
+        /* @__PURE__ */ v.jsx("div", { children: "Rows per page:" }),
         /* @__PURE__ */ v.jsx(
           "select",
           {
@@ -54075,7 +54081,7 @@ function Yfe({
             children: a.map((p, m) => /* @__PURE__ */ v.jsx("option", { value: p, children: p }, m))
           }
         ),
-        /* @__PURE__ */ v.jsxs("span", { className: "ml-4", children: [
+        /* @__PURE__ */ v.jsxs("div", { className: "ml-4", children: [
           s.length === 0 ? "0–0" : `${u + 1}–${Math.min(
             d,
             s.length
