@@ -9,6 +9,7 @@ import {
   Cell,
 } from "recharts";
 import { MessageSquare } from "lucide-react";
+import EmptyState from "../../utils/EmptyState";
 
 /* Dummy fallback data */
 const dummyData = [
@@ -64,7 +65,10 @@ function BookingsChart({ data }) {
       <div className="w-full h-full flex items-center justify-center">
 
         {isEmptyArray ? (
-          <div className="text-[16px] text-gray-500">No Data Found</div>
+         <EmptyState
+    title="No Booking Found"
+    description="Catch up all the data. Change the date range to see the data."
+  />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import EmptyState from "../../utils/EmptyState";
 
 const MaintenanceStatus = ({ data }) => {
   const [hiddenBars, setHiddenBars] = useState({});
@@ -42,11 +43,13 @@ const chartData = React.useMemo(() => {
 
   if (Array.isArray(data) && data.length === 0) {
   return (
-    <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
-      <div className="flex items-center justify-center h-[260px] text-[#94A3B8]">
-        No Data Found
-      </div>
-    </Card>
+  <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
+
+    <EmptyState
+    title="No Maintenance Assets Status Found"
+    description="Catch up all the data. Change the date range to see the data."
+  />
+</Card>
   );
 }
   return (

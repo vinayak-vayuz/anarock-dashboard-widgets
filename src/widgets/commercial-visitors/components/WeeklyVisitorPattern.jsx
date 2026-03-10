@@ -9,7 +9,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import Card from "../../components/CardNoLogo";
-
+import EmptyState from "../../utils/EmptyState";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -75,6 +75,9 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
 
   const chartData = Array.isArray(data) ? data : [];
 
+  const isEmpty =
+  !chartData.length ||
+  chartData.every((item) => item.no_of_visitors === 0);
   return (
     <Card
       title="Weekly Visitor Pattern"
@@ -97,6 +100,12 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
         </div>
       )}
 
+{isEmpty ? (
+  <EmptyState
+    title="No Visitors Found"
+    description="Catch up all the data. Change the date range to see the data."
+  />
+) : (
       <div className="w-full h-[260px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
@@ -167,6 +176,7 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
           </AreaChart>
         </ResponsiveContainer>
       </div>
+)}
     </Card>
   );
 };

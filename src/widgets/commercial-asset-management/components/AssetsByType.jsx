@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import Card from "../../components/CardNoLogo";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import EmptyState from "../../utils/EmptyState";
 
 const COLORS = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"];
 
@@ -40,11 +41,12 @@ const assets = useMemo(() => {
 
     if (rows && rows.length === 0) {
   return (
-    <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
-      <div className="flex items-center justify-center h-[240px] text-[#94A3B8]">
-        No Data Found
-      </div>
-    </Card>
+      <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
+    <EmptyState
+    title="No Assets Found"
+    description="Catch up all the data. Change the date range to see the data."
+  />
+  </Card>
   );
 }
   return (

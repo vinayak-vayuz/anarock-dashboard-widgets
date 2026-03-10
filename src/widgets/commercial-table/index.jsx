@@ -5,6 +5,7 @@ import {
   ChevronRight,
   ChevronsRight,
 } from "lucide-react";
+import EmptyState from "../utils/EmptyState";
 
 export default function CommercialTable({
   columns = [
@@ -103,9 +104,10 @@ export default function CommercialTable({
             </div>
           ))
         ) : (
-          <div className="p-6 text-center text-gray-500">
-            No Data Available
-          </div>
+          <EmptyState
+    title="No Data Found"
+    description="Catch up all the data. Change the date range to see the data."
+  />
         )}
       </div>
 

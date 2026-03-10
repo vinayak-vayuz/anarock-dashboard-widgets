@@ -7,6 +7,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import EmptyState from "../../utils/EmptyState";
 
 const dummyData = [
   { facility_name: "Table Tennis", paid_revenue: "24000.00" },
@@ -60,7 +61,10 @@ function AmenityWiseRevenue({ data }) {
 
         {isEmptyArray ? (
           <div className="col-span-12 flex items-center justify-center h-full">
-            <div className="text-[16px] text-gray-500">No Data Found</div>
+     <EmptyState
+    title="No Amenity Found"
+    description="Catch up all the data. Change the date range to see the data."
+  />
           </div>
         ) : (
           <>
