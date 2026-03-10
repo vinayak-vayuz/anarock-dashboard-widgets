@@ -13301,7 +13301,7 @@ var Am = "Date input not valid.", tD = (
     }, t;
   })(Zt)
 ), O3 = "input", Tm = "navigate";
-function Ode({ title: e, description: t, onExport: n }) {
+function Ede({ title: e, description: t, onExport: n }) {
   const [r, i] = Fe(!1), [o, a] = Fe(!1), [s, l] = Fe("Last 7 Days"), [c, u] = Fe(null), [d, f] = Fe(null), [p, m] = Fe(!1), [h, g] = Fe(!1), b = De(null), S = De(null), w = [
     "Last 7 Days",
     "Last 30 Days",
@@ -13632,7 +13632,7 @@ const I3 = [
   { name: "Helpdesk", icon: M3 },
   { name: "Engagement", icon: oD }
 ];
-function Ede() {
+function Pde() {
   const [e, t] = Fe("Overview");
   return /* @__PURE__ */ v.jsx("div", { className: "flex gap-[8px] p-3", children: I3.map((n) => {
     const r = n.icon, i = e === n.name;
@@ -24711,7 +24711,7 @@ var wq = {
 }), {
   setChartData: uE,
   setDataStartEndIndexes: _q,
-  setComputedData: kde
+  setComputedData: Cde
 } = GM.actions, Sq = GM.reducer, Oq = ["x", "y"];
 function dE(e, t) {
   var n = Object.keys(e);
@@ -26205,10 +26205,10 @@ var JG = {
     }
   }
 }), {
-  addRadiusAxis: Cde,
-  removeRadiusAxis: Dde,
-  addAngleAxis: Ade,
-  removeAngleAxis: Tde
+  addRadiusAxis: Dde,
+  removeRadiusAxis: Ade,
+  addAngleAxis: Tde,
+  removeAngleAxis: Mde
 } = dN.actions, eX = dN.reducer;
 function LE(e, t) {
   var n = Object.keys(e);
@@ -27192,8 +27192,8 @@ var fQ = {
   removeXAxis: hQ,
   addYAxis: mQ,
   removeYAxis: gQ,
-  addZAxis: Mde,
-  removeZAxis: Nde,
+  addZAxis: Nde,
+  removeZAxis: jde,
   updateYAxisWidth: vQ
 } = gN.actions, yQ = gN.reducer, bQ = W([Jt], (e) => {
   if (e)
@@ -27425,9 +27425,9 @@ var jQ = function(t) {
     }
   }
 }), {
-  addErrorBar: jde,
-  replaceErrorBar: Rde,
-  removeErrorBar: Ide
+  addErrorBar: Rde,
+  replaceErrorBar: Ide,
+  removeErrorBar: Lde
 } = vN.actions, IQ = vN.reducer, LQ = ["children"];
 function FQ(e, t) {
   if (e == null) return {};
@@ -28234,7 +28234,7 @@ var kZ = (e, t, n, r, i, o, a) => {
     }
   }
 }), {
-  setBrushSettings: Lde
+  setBrushSettings: Fde
 } = _N.actions, LZ = _N.reducer;
 function r2(e, t) {
   var n = Object.keys(e);
@@ -28422,10 +28422,10 @@ var HZ = function(t) {
     }
   }
 }), {
-  addDot: Fde,
-  removeDot: $de,
-  addArea: Bde,
-  removeArea: Wde,
+  addDot: $de,
+  removeDot: Bde,
+  addArea: Wde,
+  removeArea: zde,
   addLine: UZ,
   removeLine: KZ
 } = ON.actions, qZ = ON.reducer, EN = /* @__PURE__ */ qr(void 0), GZ = (e) => {
@@ -40440,7 +40440,7 @@ function Rl({
     }
   ) }) });
 }
-function zde({ isStatic: e, data: t }) {
+function Vde({ isStatic: e, data: t }) {
   const n = Number(t?.thisMonthMoveIns ?? t?.lastMonthMoveIns ?? 0), r = Number(
     t?.thisMonthMoveOuts ?? t?.lastMonthMoveOuts ?? 0
   ), i = Number(
@@ -40505,7 +40505,7 @@ function zde({ isStatic: e, data: t }) {
     }
   );
 }
-function Vde({ isStatic: e, data: t, communities: n }) {
+function Hde({ isStatic: e, data: t, communities: n }) {
   const r = ["#8B5CF6", "#22C55E", "#3B82F6", "#F59E0B"], i = [
     {
       name: "Notice",
@@ -40596,7 +40596,7 @@ function Vde({ isStatic: e, data: t, communities: n }) {
     }
   );
 }
-function Hde({ isStatic: e, data: t }) {
+function Yde({ isStatic: e, data: t }) {
   const n = Number(t?.totalBookings || 0), r = Number(t?.averageUtilizationPercentage || 0), i = jn(() => {
     if (!t?.graph) return [];
     const { labels: s = [], bookings: l = [], utilization: c = [] } = t.graph;
@@ -40718,7 +40718,7 @@ function Hde({ isStatic: e, data: t }) {
     }
   );
 }
-function Yde({ data: e }) {
+function Ude({ data: e }) {
   const t = e?.incomeSummary || {}, n = e?.expenditureSummary || {}, r = ["AED", "USD", "EUR"], i = ["Rs", "INR", "₹"];
   function o(s) {
     if (s == null || isNaN(s)) return "0";
@@ -41873,7 +41873,7 @@ function Zoe({ type: e, data: t, children: n }) {
     }
   );
 }
-function Ude({ isStatic: e, data: t }) {
+function Kde({ isStatic: e, data: t }) {
   const n = t?.summary?.activeWalkins || {}, r = t?.summary?.preApprovedCheckins || {}, i = t?.summary?.staffAttendance || {}, o = jn(
     () => Qoe(t?.chart || []),
     [t]
@@ -42010,7 +42010,7 @@ function Ude({ isStatic: e, data: t }) {
     }
   );
 }
-function Kde({ isStatic: e, data: t }) {
+function qde({ isStatic: e, data: t }) {
   const n = ["#1FA05B", "#E7A015", "#FA7E28", "#EF4444", "#CBD5E1"], r = [
     { name: "L1 Level", value: Number(t?.total_L1 || 0), color: n[0] },
     { name: "L2 Level", value: Number(t?.total_L2 || 0), color: n[1] },
@@ -49631,7 +49631,7 @@ function Jd(e, t, n) {
   const c = a - o;
   return c ? s + (l - s) * (t - o) / c : s;
 }
-class Xde extends bk {
+class Qde extends bk {
   static id = "timeseries";
   static defaults = bk.defaults;
   constructor(t) {
@@ -49786,7 +49786,7 @@ const xue = {
     } = n || {};
     r.save(), r.textAlign = "center", r.textBaseline = "middle", r.fillStyle = d, r.font = `600 ${c}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(s, o, a - 5), r.fillStyle = f, r.font = `500 ${u}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(l, o, a + 12), r.restore();
   }
-}, Qde = ({
+}, Zde = ({
   title: e = "Tickets",
   icon: t,
   firstLabel: n = "First",
@@ -49906,7 +49906,7 @@ const xue = {
       ]
     }
   )
-] }), Zde = ({
+] }), Jde = ({
   totalUnits: e = 847,
   occupiedUnits: t = 756,
   ownerCount: n = 700,
@@ -49991,7 +49991,7 @@ const wue = {
     } = n || {};
     r.save(), r.textAlign = "center", r.textBaseline = "middle", r.fillStyle = d, r.font = `600 ${c}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(s, o, a - 5), r.fillStyle = f, r.font = `500 ${u}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(l, o, a + 12), r.restore();
   }
-}, Jde = ({
+}, efe = ({
   ownerCount: e = 1e3,
   tenantCount: t = 200,
   nonResidingOwners: n = 26,
@@ -50060,7 +50060,7 @@ const wue = {
   );
 };
 Un.register(jo, Ro, Ll, ei, ci);
-const efe = ({
+const tfe = ({
   blocks: e = [
     { name: "Block A", owner: 110, rented: 24, vacant: 8 },
     { name: "Block B", owner: 95, rented: 18, vacant: 6 },
@@ -50172,7 +50172,7 @@ const _ue = (e) => {
     Nov: "November",
     Dec: "December"
   }[t] || t} 20${n}`;
-}, tfe = ({
+}, nfe = ({
   labels: e = ["Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25"],
   moveIn: t = [24, 27, 20, 26, 23],
   moveOut: n = [12, 17, 8, 5, 16]
@@ -50374,7 +50374,7 @@ function Sk({
     }
   );
 }
-function nfe() {
+function rfe() {
   return /* @__PURE__ */ v.jsxs(
     Ke,
     {
@@ -50415,7 +50415,7 @@ function nfe() {
   );
 }
 Un.register(jo, Ro, Ll, ei, ci);
-const rfe = () => {
+const ife = () => {
   const e = [
     "Maintenance",
     "Security",
@@ -50492,7 +50492,7 @@ const rfe = () => {
       children: /* @__PURE__ */ v.jsx(Fl, { data: r, options: i })
     }
   );
-}, ife = () => {
+}, ofe = () => {
   const e = [
     { title: "Primary Account", amount: 285e4, subtitle: "Savings" },
     { title: "Emergency Fund", amount: 12e5, subtitle: "Fixed deposit" },
@@ -50528,7 +50528,7 @@ const rfe = () => {
   );
 };
 Un.register(jo, Ro, Ll, ei, ci);
-const ofe = () => {
+const afe = () => {
   const e = ["Current Month", "1-3 Months", "3-6 Months", "6+ Months"], t = [13e3, 9400, 8800, 7200], n = [18, 12, 18, 6], r = {
     labels: e,
     datasets: [
@@ -50601,7 +50601,7 @@ const ofe = () => {
   );
 };
 Un.register(v1, ei, ci);
-const afe = () => {
+const sfe = () => {
   const e = [
     "Maintenance",
     "Utilities",
@@ -50696,7 +50696,7 @@ const afe = () => {
   { name: "Pool Maintenance", value: 7e5, color: "#8B5CF6" },
   { name: "Administration", value: 52e4, color: "#10B981" }
 ];
-function sfe() {
+function lfe() {
   const e = dc.reduce((t, n) => t + n.value, 0);
   return /* @__PURE__ */ v.jsx(
     Ke,
@@ -50758,7 +50758,7 @@ function sfe() {
   );
 }
 Un.register(jo, Ro, Ll, ei, ci);
-const lfe = () => {
+const cfe = () => {
   const e = [
     "Gym",
     "Parking",
@@ -50857,7 +50857,7 @@ function kue({
     }
   );
 }
-function cfe() {
+function ufe() {
   const e = [
     {
       title: "Total Bookings",
@@ -51182,7 +51182,7 @@ const Yue = [
     }
   );
 };
-function ufe({ data: e = {} }) {
+function dfe({ data: e = {} }) {
   const t = [
     {
       name: "Completed",
@@ -51269,7 +51269,7 @@ Un.register(
   ei,
   ci
 );
-const dfe = () => {
+const ffe = () => {
   const t = {
     labels: ["10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"],
     datasets: [
@@ -51364,7 +51364,7 @@ const dfe = () => {
     }
   );
 };
-function ffe({ incidentReports: e = {}, incidentReportsDetails: t = [] }) {
+function pfe({ incidentReports: e = {}, incidentReportsDetails: t = [] }) {
   const n = Number(e?.open ?? 0), r = Number(e?.in_progress ?? 0), i = Number(e?.closed ?? 0);
   return /* @__PURE__ */ v.jsx(
     yn,
@@ -51415,7 +51415,7 @@ function ffe({ incidentReports: e = {}, incidentReportsDetails: t = [] }) {
     }
   );
 }
-function pfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
+function hfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
   const n = e?.[0]?.total_staff ?? 0, r = e?.[0]?.absent_staff ?? 0, i = (n ?? 0) - (r ?? 0);
   return /* @__PURE__ */ v.jsx(
     yn,
@@ -51490,7 +51490,7 @@ function que({
     }
   );
 }
-function hfe() {
+function mfe() {
   const e = [
     {
       title: "Total Visitors",
@@ -51537,7 +51537,7 @@ const Gue = [
   { title: "Housekeeping", total: 6, pending: 2 },
   { title: "Utilities", total: 10, pending: 4 }
 ], Xue = (e = "") => e.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/<[^>]*>/g, "").trim();
-function mfe({ data: e }) {
+function gfe({ data: e }) {
   const t = Array.isArray(e?.complaints_by_category) && e.complaints_by_category.length > 0 ? e.complaints_by_category.map((n) => ({
     title: Xue(n.category_name) || "—",
     total: n.total || 0,
@@ -51706,7 +51706,7 @@ const Que = (e) => {
       ))
     }
   );
-}, gfe = ({ data: e }) => {
+}, vfe = ({ data: e }) => {
   const t = jn(() => (Array.isArray(e?.complaints_by_level) && e.complaints_by_level.some((l) => Number(l.total) > 0) ? e.complaints_by_level : Zue).map((l) => ({
     level: l.level || "—",
     open_count: Number(l.open_count) || 0,
@@ -51784,7 +51784,7 @@ const Que = (e) => {
   { title: "Housekeeping", total: 9, pending: 3 },
   { title: "Utilities", total: 14, pending: 5 }
 ];
-function vfe({ data: e }) {
+function yfe({ data: e }) {
   const t = Array.isArray(e?.request_box_by_type) && e.request_box_by_type.length > 0 ? e.request_box_by_type.map((n) => ({
     title: n.category_name || "—",
     total: Number(n.total) || 0,
@@ -51900,7 +51900,7 @@ const rde = [
     direction: "good"
   }
 };
-function yfe({ id: e, data: t }) {
+function bfe({ id: e, data: t }) {
   return e && t && !t[e] && t.current !== void 0 ? /* @__PURE__ */ v.jsx(Ek, { id: e, data: t }) : /* @__PURE__ */ v.jsx("div", { className: "px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4", children: rde.map((n) => /* @__PURE__ */ v.jsx(Ek, { id: n }, n)) });
 }
 function Ek({ id: e, data: t }) {
@@ -51962,7 +51962,7 @@ function Pk({ title: e, date: t, rsvp: n, utilisation: r, status: i }) {
     ) })
   ] });
 }
-function bfe() {
+function xfe() {
   return /* @__PURE__ */ v.jsx(
     Ke,
     {
@@ -52001,7 +52001,7 @@ function ef({ label: e, value: t, subLabel: n, bgColor: r, textColor: i }) {
     /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#64748B] mt-2", children: n })
   ] });
 }
-function xfe() {
+function wfe() {
   return /* @__PURE__ */ v.jsx(
     Ke,
     {
@@ -52088,7 +52088,7 @@ function lde({
     }
   );
 }
-function wfe({ data: e }) {
+function _fe({ data: e }) {
   const t = [
     {
       title: e?.title || "Total Bookings",
@@ -52138,7 +52138,7 @@ function ude({
     }
   );
 }
-function _fe() {
+function Sfe() {
   const e = [
     {
       title: "Notice",
@@ -52198,7 +52198,7 @@ const kk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
     /* @__PURE__ */ v.jsx("div", { className: `${s} !text-[12px] font-bold mt-1`, children: i ?? 0 }),
     /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#64748B] mt-1", children: r ?? "" })
   ] });
-}, Sfe = ({
+}, Ofe = ({
   data: e,
   occupiedUnits: t = 9e3,
   EmployeesCount: n = 8910,
@@ -52246,7 +52246,7 @@ const kk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
   ] }) });
 };
 Un.register(jo, Ro, Ll, ei);
-const Ofe = () => {
+const Efe = () => {
   const t = {
     labels: ["HP", "Adobe", "Anarock", "Swiggy", "Infosys", "Zepto"],
     datasets: [
@@ -52328,7 +52328,7 @@ const Ofe = () => {
     }
   );
 };
-function Efe() {
+function Pfe() {
   return /* @__PURE__ */ v.jsx(
     Ke,
     {
@@ -52416,7 +52416,7 @@ function Efe() {
     }
   );
 }
-function Pfe({ data: e }) {
+function kfe({ data: e }) {
   const t = e?.amenity_summary ? {
     amenitySummary: {
       totalBookings: e?.amenity_summary?.total_bookings ?? 0,
@@ -52514,7 +52514,7 @@ function Pfe({ data: e }) {
   );
 }
 Un.register(jo, Ro, Ll, ei, ci);
-function kfe({ data: e = [] }) {
+function Cfe({ data: e = [] }) {
   const t = [
     {
       level: "L1",
@@ -52669,7 +52669,7 @@ const dde = ({ active: e, payload: t }) => {
     }
   );
 };
-function Cfe({ data: e = null }) {
+function Dfe({ data: e = null }) {
   const n = e || {
     open: 12,
     on_hold: 5,
@@ -52811,7 +52811,7 @@ function Dk({ title: e, color: t, rows: n = [], children: r }) {
     }
   );
 }
-function Dfe({ data: e }) {
+function Afe({ data: e }) {
   const t = e && Object.keys(e).length ? e : Ck, n = t?.visitor_summary ? {
     totalVisitorsToday: t?.visitor_summary?.total_visitors_today ?? 0,
     peakTime: t?.visitor_summary?.peak_time ?? "-"
@@ -52997,7 +52997,7 @@ const fde = ({ color: e }) => /* @__PURE__ */ v.jsx(
   },
   r
 )) });
-function Afe({ data: e = null }) {
+function Tfe({ data: e = null }) {
   const n = e || {
     card_entry: 60,
     mobile_entry: 35,
@@ -53067,7 +53067,7 @@ function Afe({ data: e = null }) {
     }
   );
 }
-function Tfe({
+function Mfe({
   title: e = "Access",
   data: t = [],
   height: n = "h-[362px]"
@@ -53098,7 +53098,7 @@ function Tfe({
     ))
   ] }) });
 }
-function Mfe({ data: e = [] }) {
+function Nfe({ data: e = [] }) {
   const t = [
     { name: "Google", value: 82e3 },
     { name: "Uber", value: 67e3 },
@@ -53148,10 +53148,28 @@ function Mfe({ data: e = [] }) {
     }
   ) }) }) });
 }
-const hde = ({ active: e, payload: t }) => e && t && t.length ? /* @__PURE__ */ v.jsx("div", { className: "bg-black text-white px-4 py-2 rounded-lg text-sm shadow-lg", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2", children: [
+function hde({
+  image: e = "https://cdni.iconscout.com/illustration/premium/thumb/businessman-sad-for-no-data-in-folder-illustration-svg-download-png-10155562.png",
+  title: t = "No Data Available",
+  description: n = "Catch up all the data. Change the date range to see the data."
+}) {
+  return /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col items-center justify-center h-full text-center px-4", children: [
+    /* @__PURE__ */ v.jsx(
+      "img",
+      {
+        src: e,
+        alt: "no data",
+        className: "w-32 h-32 mb-4 opacity-80"
+      }
+    ),
+    /* @__PURE__ */ v.jsx("h3", { className: "text-[16px] font-semibold text-gray-900 mb-1", children: t }),
+    /* @__PURE__ */ v.jsx("p", { className: "text-sm text-gray-500 max-w-[260px]", children: n })
+  ] });
+}
+const mde = ({ active: e, payload: t }) => e && t && t.length ? /* @__PURE__ */ v.jsx("div", { className: "bg-black text-white px-4 py-2 rounded-lg text-sm shadow-lg", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2", children: [
   /* @__PURE__ */ v.jsx("div", { children: t[0].payload.name }),
   /* @__PURE__ */ v.jsx("div", { className: "font-semibold", children: t[0].value })
-] }) }) : null, mde = ({ x: e, y: t, payload: n }) => {
+] }) }) : null, gde = ({ x: e, y: t, payload: n }) => {
   const r = n.value.split(" ");
   return /* @__PURE__ */ v.jsx("g", { transform: `translate(${e},${t})`, children: /* @__PURE__ */ v.jsx(
     "text",
@@ -53165,11 +53183,11 @@ const hde = ({ active: e, payload: t }) => e && t && t.length ? /* @__PURE__ */ 
     }
   ) });
 };
-function Nfe({ data: e = [] }) {
-  const t = e && e.length > 0, n = t ? e.map((i) => ({
+function jfe({ data: e = [] }) {
+  const t = e && e.length > 0, n = e.map((i) => ({
     name: i.category_name,
     value: i.total_complaints
-  })) : [{ name: "No Data Found", value: 0 }], r = Math.max(...n.map((i) => i.value), 0);
+  })), r = Math.max(...n.map((i) => i.value), 0);
   return /* @__PURE__ */ v.jsx(
     yn,
     {
@@ -53177,7 +53195,7 @@ function Nfe({ data: e = [] }) {
       className: "h-[362px]",
       titleWeight: "semi-bold",
       childrenClassName: "h-full",
-      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[280px] mt-[28px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(ha, { data: n, layout: "vertical", children: [
+      children: t ? /* @__PURE__ */ v.jsx("div", { className: "w-full h-[280px] mt-[28px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(ha, { data: n, layout: "vertical", children: [
         /* @__PURE__ */ v.jsx(Jr, { strokeDasharray: "3 3", horizontal: !1 }),
         /* @__PURE__ */ v.jsx(
           Pr,
@@ -53198,28 +53216,34 @@ function Nfe({ data: e = [] }) {
             axisLine: !1,
             tickLine: !1,
             width: 120,
-            tick: /* @__PURE__ */ v.jsx(mde, {})
+            tick: /* @__PURE__ */ v.jsx(gde, {})
           }
         ),
         /* @__PURE__ */ v.jsx(
           dn,
           {
-            content: /* @__PURE__ */ v.jsx(hde, {}),
+            content: /* @__PURE__ */ v.jsx(mde, {}),
             cursor: { fill: "transparent" }
           }
         ),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "value", barSize: 36, children: n.map((i, o) => /* @__PURE__ */ v.jsx(
           Kt,
           {
-            fill: t && i.value === r ? "#3C81F6" : "#79ABFF"
+            fill: i.value === r ? "#3C81F6" : "#79ABFF"
           },
           `cell-${o}`
         )) })
-      ] }) }) })
+      ] }) }) }) : /* @__PURE__ */ v.jsx(
+        hde,
+        {
+          title: "No Tickets Found",
+          description: "Catch up all the data. Change the date range to see the data."
+        }
+      )
     }
   );
 }
-function jfe({
+function Rfe({
   icon: e,
   iconColor: t = "#329DFF",
   title: n,
@@ -53263,7 +53287,7 @@ function jfe({
     ] })
   ] });
 }
-const Rfe = ({ data: e = [], onDateChange: t }) => {
+const Ife = ({ data: e = [], onDateChange: t }) => {
   const [n, r] = Fe(/* @__PURE__ */ new Date()), [i, o] = Fe(!1), s = ((h) => {
     const g = new Date(h);
     return g.setDate(g.getDate() - 6), g;
@@ -53389,14 +53413,14 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
       ]
     }
   );
-}, gde = [
+}, vde = [
   { building_name: "Google", no_of_visitors: 1e3 },
   { building_name: "Uber", no_of_visitors: 3500 },
   { building_name: "ANAROCK", no_of_visitors: 2e3 },
   { building_name: "Flipkart", no_of_visitors: 8e3 },
   { building_name: "HP", no_of_visitors: 1650 }
-], Ife = ({ data: e }) => {
-  const t = Array.isArray(e) && e?.length === 0, n = e == null ? gde : Array.isArray(e) ? e : [];
+], Lfe = ({ data: e }) => {
+  const t = Array.isArray(e) && e?.length === 0, n = e == null ? vde : Array.isArray(e) ? e : [];
   let r = 0;
   for (let i = 0; i < (n?.length || 0); i++) {
     const o = Number(n?.[i]?.no_of_visitors) || 0;
@@ -53457,7 +53481,7 @@ const Rfe = ({ data: e = [], onDateChange: t }) => {
     }
   );
 };
-function Lfe({ data: e }) {
+function Ffe({ data: e }) {
   return /* @__PURE__ */ v.jsx("div", { className: "h-full", children: e.map((t, n) => {
     const r = parseFloat(t.delta), i = r >= 0;
     return /* @__PURE__ */ v.jsx(
@@ -53505,12 +53529,12 @@ function Lfe({ data: e }) {
     );
   }) });
 }
-const vde = [
+const yde = [
   { facility_name: "Table Tennis", total_booking: 5 },
   { facility_name: "Gym", total_booking: 12 },
   { facility_name: "Meeting Room A", total_booking: 3 },
   { facility_name: "Conference Hall", total_booking: 8 }
-], yde = ({ x: e, y: t, payload: n }) => /* @__PURE__ */ v.jsx("foreignObject", { x: (e || 0) - 80, y: (t || 0) - 18, width: 80, height: 40, children: /* @__PURE__ */ v.jsx(
+], bde = ({ x: e, y: t, payload: n }) => /* @__PURE__ */ v.jsx("foreignObject", { x: (e || 0) - 80, y: (t || 0) - 18, width: 80, height: 40, children: /* @__PURE__ */ v.jsx(
   "div",
   {
     className: "text-[12px] leading-[16px] text-[#121212]",
@@ -53523,8 +53547,8 @@ const vde = [
     children: n?.value || ""
   }
 ) });
-function Ffe({ data: e }) {
-  const t = Array?.isArray(e) && e?.length === 0, n = e == null ? vde : Array?.isArray(e) ? e : [], r = n?.length > 0 ? Math.max(
+function $fe({ data: e }) {
+  const t = Array?.isArray(e) && e?.length === 0, n = e == null ? yde : Array?.isArray(e) ? e : [], r = n?.length > 0 ? Math.max(
     ...n?.map?.((i) => i?.total_booking || 0) || [0],
     0
   ) : 0;
@@ -53560,7 +53584,7 @@ function Ffe({ data: e }) {
                 axisLine: !1,
                 tickLine: !1,
                 width: 100,
-                tick: /* @__PURE__ */ v.jsx(yde, {})
+                tick: /* @__PURE__ */ v.jsx(bde, {})
               }
             ),
             /* @__PURE__ */ v.jsx(Wn, { dataKey: "total_booking", barSize: 40, children: n?.map?.((i, o) => /* @__PURE__ */ v.jsx(
@@ -53576,15 +53600,15 @@ function Ffe({ data: e }) {
     }
   );
 }
-const bde = [
+const xde = [
   { building_name: "Google", no_of_booking: 1 },
   { building_name: "Uber", no_of_booking: 2 },
   { building_name: "ANAROCK", no_of_booking: 4 },
   { building_name: "Flipkart", no_of_booking: 2 },
   { building_name: "HP", no_of_booking: 1 }
 ];
-function $fe({ data: e }) {
-  const t = Array.isArray(e) && e?.length === 0, n = e == null ? bde : Array.isArray(e) ? e : [], r = n?.length > 0 ? Math.max(
+function Bfe({ data: e }) {
+  const t = Array.isArray(e) && e?.length === 0, n = e == null ? xde : Array.isArray(e) ? e : [], r = n?.length > 0 ? Math.max(
     ...n?.map?.((i) => i?.no_of_booking || 0) || [0],
     0
   ) : 0;
@@ -53641,14 +53665,14 @@ function $fe({ data: e }) {
     }
   );
 }
-const xde = [
+const wde = [
   { facility_name: "Table Tennis", paid_revenue: "24000.00" },
   { facility_name: "Games Room", paid_revenue: "14000.00" },
   { facility_name: "Badminton", paid_revenue: "10000.00" },
   { facility_name: "GYM", paid_revenue: "4000.00" }
 ], tf = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
-function Bfe({ data: e }) {
-  const t = Array?.isArray(e) && e?.length === 0, n = e ?? xde, r = Array?.isArray(n) && n?.length > 0 ? n?.map((s) => ({
+function Wfe({ data: e }) {
+  const t = Array?.isArray(e) && e?.length === 0, n = e ?? wde, r = Array?.isArray(n) && n?.length > 0 ? n?.map((s) => ({
     name: s?.facility_name || "Unknown",
     value: Number(s?.paid_revenue) || 0
   })) : [], o = (r?.length > 0 ? r?.every((s) => s?.value === 0) : !1) ? r?.map((s, l) => ({
@@ -53728,18 +53752,18 @@ function Bfe({ data: e }) {
     }
   );
 }
-const nf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], wde = [
+const nf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], _de = [
   { asset_group_name: "Lifts", asset_count: 3 },
   { asset_group_name: "Fire Systems", asset_count: 16 },
   { asset_group_name: "Generators", asset_count: 16 },
   { asset_group_name: "HVAC", asset_count: 24 },
   { asset_group_name: "Others", asset_count: 97 }
-], Wfe = ({ rows: e, totalAssets: t }) => {
+], zfe = ({ rows: e, totalAssets: t }) => {
   const n = jn(() => e ? e.length === 0 ? [] : e.map((i, o) => ({
     name: i.asset_group_name,
     value: i.asset_count || 0,
     color: nf[o % nf.length]
-  })) : wde.map((i, o) => ({
+  })) : _de.map((i, o) => ({
     name: i.asset_group_name,
     value: i.asset_count || 0,
     color: nf[o % nf.length]
@@ -53795,7 +53819,7 @@ const nf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], wde = [
       ))
     ] }) })
   ] }) });
-}, zfe = ({ data: e }) => {
+}, Vfe = ({ data: e }) => {
   const [t, n] = Fe({}), r = [
     { name: "Lifts", Cancelled: 55, Closed: 45, Open: 50, OnHold: 20, InProgress: 10 },
     { name: "Fire Systems", Cancelled: 15, Closed: 45, Open: 15, OnHold: 8, InProgress: 5 },
@@ -53877,7 +53901,7 @@ const nf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], wde = [
     }
   ) }) }) });
 };
-function Vfe({ data: e }) {
+function Hfe({ data: e }) {
   const t = [
     {
       name: "Completed",
@@ -53951,7 +53975,7 @@ function Vfe({ data: e }) {
     }
   );
 }
-function Hfe({ incidentReports: e, incidentReportsDetails: t }) {
+function Yfe({ incidentReports: e, incidentReportsDetails: t }) {
   const n = Number(e?.open || 0), r = Number(e?.in_progress || 0), i = Number(e?.closed || 0);
   return /* @__PURE__ */ v.jsx(
     yn,
@@ -54002,7 +54026,7 @@ function Hfe({ incidentReports: e, incidentReportsDetails: t }) {
     }
   );
 }
-function Yfe({
+function Ufe({
   columns: e = [
     { key: "a", label: "Organisation" },
     { key: "b", label: "Item" },
@@ -54062,7 +54086,7 @@ function Yfe({
               className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${w}`,
               children: b
             }
-          ) : /* @__PURE__ */ v.jsx("div", { children: b || "-" }) }, g);
+          ) : /* @__PURE__ */ v.jsx("div", { children: b ?? "-" }) }, g);
         })
       },
       m
@@ -54133,65 +54157,65 @@ function Yfe({
   ] });
 }
 export {
-  Mfe as AccessPointsUsage,
-  nfe as Accounting,
-  Pfe as Amenities,
-  Lfe as AmenitiesStatsCard,
-  Bfe as AmenityWiseRevenue,
-  sfe as AssetValueBreakdown,
-  Wfe as AssetsByType,
-  efe as BlockWiseOccupancy,
-  $fe as BookingTrendChart,
-  Ffe as Bookings,
-  rfe as Budgets,
+  Nfe as AccessPointsUsage,
+  rfe as Accounting,
+  kfe as Amenities,
+  Ffe as AmenitiesStatsCard,
+  Wfe as AmenityWiseRevenue,
+  lfe as AssetValueBreakdown,
+  zfe as AssetsByType,
+  tfe as BlockWiseOccupancy,
+  Bfe as BookingTrendChart,
+  $fe as Bookings,
+  ife as Budgets,
   Ke as Card,
-  Tfe as CardAccess,
-  ife as CashBankBalance,
-  Afe as CommercialAccessOverview,
-  Vfe as CommercialGuardPatrols,
-  Hfe as CommercialIncidentReports,
-  Sfe as CommercialOccupancy,
-  Yfe as CommercialReportTable,
-  zde as Community,
-  mfe as Complaints,
-  gfe as ComplaintsByLevel,
-  ofe as DuesAgeing,
-  Ofe as EmployeeFootfall,
-  Vde as Engagement,
-  _fe as EngagementStatsGrid,
-  bfe as EventsUtilisation,
-  afe as ExpenseCategories,
-  Hde as Facilities,
-  Yde as FinanceSummary,
-  Efe as FoodBeverages,
-  hfe as GateAndSecurityStatsGrid,
-  Ude as GateUpdates,
-  ufe as GuardPatrols,
-  Ode as Header,
-  Kde as Helpdesk,
-  yfe as HelpdeskStatsGrid,
-  dfe as HourlyTrafficFlow,
-  ffe as IncidentReports,
+  Mfe as CardAccess,
+  ofe as CashBankBalance,
+  Tfe as CommercialAccessOverview,
+  Hfe as CommercialGuardPatrols,
+  Yfe as CommercialIncidentReports,
+  Ofe as CommercialOccupancy,
+  Ufe as CommercialReportTable,
+  Vde as Community,
+  gfe as Complaints,
+  vfe as ComplaintsByLevel,
+  afe as DuesAgeing,
+  Efe as EmployeeFootfall,
+  Hde as Engagement,
+  Sfe as EngagementStatsGrid,
+  xfe as EventsUtilisation,
+  sfe as ExpenseCategories,
+  Yde as Facilities,
+  Ude as FinanceSummary,
+  Pfe as FoodBeverages,
+  mfe as GateAndSecurityStatsGrid,
+  Kde as GateUpdates,
+  dfe as GuardPatrols,
+  Ede as Header,
+  qde as Helpdesk,
+  bfe as HelpdeskStatsGrid,
+  ffe as HourlyTrafficFlow,
+  pfe as IncidentReports,
   Oue as IncomeExpenditure,
-  Ede as MainHeader,
-  zfe as MaintenanceStatus,
-  jfe as MetricCard,
-  Tfe as MobileAccess,
-  tfe as MoveInOutTrends,
-  xfe as NoticeBoardStatus,
-  Zde as OccupancyOverview,
-  Ife as OrganisationWiseVisitors,
-  vfe as RequestBox,
-  Jde as ResidentOverview,
-  lfe as RevenuebyCategory,
-  wfe as SingleStats,
-  pfe as StaffAttendance,
-  cfe as StatsGrid,
-  kfe as TicketEscalation,
-  Cfe as TicketStatus,
-  Qde as Tickets,
-  Nfe as TicketsperCategory,
-  Qde as UnitStatus,
-  Dfe as VisitorUpdates,
-  Rfe as WeeklyVisitorPattern
+  Pde as MainHeader,
+  Vfe as MaintenanceStatus,
+  Rfe as MetricCard,
+  Mfe as MobileAccess,
+  nfe as MoveInOutTrends,
+  wfe as NoticeBoardStatus,
+  Jde as OccupancyOverview,
+  Lfe as OrganisationWiseVisitors,
+  yfe as RequestBox,
+  efe as ResidentOverview,
+  cfe as RevenuebyCategory,
+  _fe as SingleStats,
+  hfe as StaffAttendance,
+  ufe as StatsGrid,
+  Cfe as TicketEscalation,
+  Dfe as TicketStatus,
+  Zde as Tickets,
+  jfe as TicketsperCategory,
+  Zde as UnitStatus,
+  Afe as VisitorUpdates,
+  Ife as WeeklyVisitorPattern
 };
