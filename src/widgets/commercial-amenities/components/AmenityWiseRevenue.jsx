@@ -60,7 +60,7 @@ function AmenityWiseRevenue({ data }) {
       <div className="grid grid-cols-12 gap-6 items-center h-full">
 
         {isEmptyArray ? (
-          <div className="col-span-12 flex items-center justify-center h-full">
+<div className="col-span-12 flex items-center justify-center h-[240px]">
      <EmptyState
     title="No Amenity Found"
     description="Catch up all the data. Change the date range to see the data."

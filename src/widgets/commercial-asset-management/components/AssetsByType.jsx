@@ -42,10 +42,12 @@ const assets = useMemo(() => {
     if (rows && rows.length === 0) {
   return (
       <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
+          <div className="flex items-center justify-center h-full">
     <EmptyState
     title="No Assets Found"
     description="Catch up all the data. Change the date range to see the data."
   />
+  </div>
   </Card>
   );
 }

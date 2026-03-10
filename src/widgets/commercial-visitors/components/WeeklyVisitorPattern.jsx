@@ -101,10 +101,12 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
       )}
 
 {isEmpty ? (
+   <div className="w-full h-[260px] flex items-center justify-center">
   <EmptyState
     title="No Visitors Found"
     description="Catch up all the data. Change the date range to see the data."
   />
+  </div>
 ) : (
       <div className="w-full h-[260px]">
         <ResponsiveContainer width="100%" height="100%">

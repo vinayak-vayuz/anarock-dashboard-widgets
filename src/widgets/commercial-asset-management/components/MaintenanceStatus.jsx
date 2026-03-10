@@ -44,11 +44,13 @@ const chartData = React.useMemo(() => {
   if (Array.isArray(data) && data.length === 0) {
   return (
   <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
+    <div className="w-full h-[260px] flex items-center justify-center">
 
     <EmptyState
     title="No Maintenance Assets Status Found"
     description="Catch up all the data. Change the date range to see the data."
-  />
+    />
+    </div>
 </Card>
   );
 }

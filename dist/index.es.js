@@ -53336,13 +53336,13 @@ const Ife = ({ data: e = [], onDateChange: t }) => {
             inline: !0
           }
         ) }),
-        h ? /* @__PURE__ */ v.jsx(
+        h ? /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: /* @__PURE__ */ v.jsx(
           Io,
           {
             title: "No Visitors Found",
             description: "Catch up all the data. Change the date range to see the data."
           }
-        ) : /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+        ) }) : /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
           vne,
           {
             data: m,
@@ -53709,7 +53709,7 @@ function Wfe({ data: e }) {
       title: "Amenity Wise Revenue",
       titleWeight: "semi-bold",
       className: "h-[362px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: t ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-full", children: /* @__PURE__ */ v.jsx(
+      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: t ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
         Io,
         {
           title: "No Amenity Found",
@@ -53798,13 +53798,13 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], _de = [
     value: i.asset_count || 0,
     color: rf[o % rf.length]
   })), [e]), r = t ?? n.reduce((i, o) => i + o.value, 0);
-  return e && e.length === 0 ? /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx(
+  return e && e.length === 0 ? /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center h-full", children: /* @__PURE__ */ v.jsx(
     Io,
     {
       title: "No Assets Found",
       description: "Catch up all the data. Change the date range to see the data."
     }
-  ) }) : /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between gap-8", children: [
+  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between gap-8", children: [
     /* @__PURE__ */ v.jsxs("div", { className: "relative w-[240px] h-[240px]", children: [
       /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsx(Mo, { children: /* @__PURE__ */ v.jsx(
         Vi,
@@ -53869,13 +53869,13 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], _de = [
       [s]: !l[s]
     }));
   };
-  return Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx(
+  return Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: /* @__PURE__ */ v.jsx(
     Io,
     {
       title: "No Maintenance Assets Status Found",
       description: "Catch up all the data. Change the date range to see the data."
     }
-  ) }) : /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
     ma,
     {
       data: i,
