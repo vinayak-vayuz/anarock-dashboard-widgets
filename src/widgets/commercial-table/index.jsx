@@ -95,7 +95,7 @@ export default function CommercialTable({
                         {value}
                       </div>
                     ) : (
-                      <div>{value || "-"}</div>
+                      <div>{value !== undefined && value !== null ? value : "-"}</div>
                     )}
                   </div>
                 );

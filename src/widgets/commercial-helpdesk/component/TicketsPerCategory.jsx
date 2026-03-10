@@ -10,6 +10,7 @@ import {
   Cell,
 } from "recharts";
 import Card from "../../components/CardNoLogo";
+import EmptyState from "../../utils/EmptyState";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -50,13 +51,10 @@ const CustomYAxisTick = ({ x, y, payload }) => {
 function TicketsPerCategory({ data = [] }) {
   const hasData = data && data.length > 0;
 
-  // 🔹 Transform API data
-  const chartData = hasData
-    ? data.map(item => ({
-        name: item.category_name,
-        value: item.total_complaints,
-      }))
-    : [{ name: "No Data Found", value: 0 }];
+  const chartData = data.map(item => ({
+    name: item.category_name,
+    value: item.total_complaints,
+  }));
 
   const maxValue = Math.max(...chartData.map(item => item.value), 0);
 
@@ -67,49 +65,61 @@ function TicketsPerCategory({ data = [] }) {
       titleWeight="semi-bold"
       childrenClassName="h-full"
     >
-      <div className="w-full h-[280px] mt-[28px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
-            <XAxis
-              type="number"
-              domain={[0, Math.ceil(maxValue * 1.2) || 10]}
-              tick={{ fill: "#94A3B8", fontSize: 12 }}
-              axisLine
-              tickLine={false}
-              allowDecimals={false}
-            />
+      {!hasData ? (
+        <EmptyState
+          title="No Tickets Found"
+          description="Catch up all the data. Change the date range to see the data."
+        />
+      ) : (
 
-            <YAxis
-              type="category"
-              dataKey="name"
-              axisLine={false}
-              tickLine={false}
-              width={120}
-              tick={<CustomYAxisTick />}
-            />
+        <div className="w-full h-[280px] mt-[28px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} layout="vertical">
 
-            <Tooltip
-              content={<CustomTooltip />}
-              cursor={{ fill: "transparent" }}
-            />
+              <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
-            <Bar dataKey="value" barSize={36}>
-              {chartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={
-                    hasData && entry.value === maxValue
-                      ? "#3C81F6"
-                      : "#79ABFF"
-                  }
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+              <XAxis
+                type="number"
+                domain={[0, Math.ceil(maxValue * 1.2) || 10]}
+                tick={{ fill: "#94A3B8", fontSize: 12 }}
+                axisLine
+                tickLine={false}
+                allowDecimals={false}
+              />
+
+              <YAxis
+                type="category"
+                dataKey="name"
+                axisLine={false}
+                tickLine={false}
+                width={120}
+                tick={<CustomYAxisTick />}
+              />
+
+              <Tooltip
+                content={<CustomTooltip />}
+                cursor={{ fill: "transparent" }}
+              />
+
+              <Bar dataKey="value" barSize={36}>
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={
+                      entry.value === maxValue
+                        ? "#3C81F6"
+                        : "#79ABFF"
+                    }
+                  />
+                ))}
+              </Bar>
+
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+      )}
     </Card>
   );
 }
