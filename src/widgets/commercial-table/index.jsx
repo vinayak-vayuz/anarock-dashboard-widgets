@@ -23,7 +23,7 @@ export default function CommercialTable({
       d: "₹ 57,21,288",
       e: "₹ 450",
       f: "43.6%",
-     },
+    },
     {
       a: "Uber",
       b: "Paneer Combo",
@@ -43,16 +43,14 @@ export default function CommercialTable({
   const safeColumns = Array.isArray(columns) ? columns : [];
 
   const totalPages =
-    rowsPerPage > 0
-      ? Math.ceil(safeData.length / rowsPerPage)
-      : 1;
+    rowsPerPage > 0 ? Math.ceil(safeData.length / rowsPerPage) : 1;
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const currentData = safeData.slice(startIndex, endIndex);
 
   return (
-    <div className="w-full bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col">
 
       {/* Header */}
       <div
@@ -67,49 +65,55 @@ export default function CommercialTable({
       </div>
 
       {/* Rows */}
-      {currentData.length > 0 ? (
-        currentData.map((row, rowIndex) => (
-          <div
-            key={rowIndex}
-            className="grid text-sm text-gray-700 hover:bg-gray-50 transition"
-            style={{
-              gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-            }}
-          >
-            {safeColumns.map((col, colIndex) => {
-  const value = row[col.key];
+      <div className="flex-1 overflow-y-auto">
+        {currentData.length > 0 ? (
+          currentData.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="grid text-sm text-gray-700 hover:bg-gray-50 transition"
+              style={{
+                gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+              }}
+            >
+              {safeColumns.map((col, colIndex) => {
+                const value = row[col.key];
 
-  const isPercent = typeof value === "string" && value.includes("%");
-  const percentClass =
-    value === "100%"
-      ? "bg-green-100 text-green-600"
-      : "bg-red-100 text-red-600";
+                const isPercent =
+                  typeof value === "string" && value.includes("%");
 
-  return (
-    <div key={colIndex} className="px-6 py-4 bg-gray-50">
-      {isPercent ? (
-        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${percentClass}`}>
-          {value}
-        </span>
-      ) : (
-        value || "-"
-      )}
-    </div>
-  );
-})}
+                const percentClass =
+                  value === "100%"
+                    ? "bg-green-100 text-green-600"
+                    : "bg-red-100 text-red-600";
+
+                return (
+                  <div key={colIndex} className="px-6 py-4 bg-gray-50">
+                    {isPercent ? (
+                      <div
+                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${percentClass}`}
+                      >
+                        {value}
+                      </div>
+                    ) : (
+                      <div>{value || "-"}</div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ))
+        ) : (
+          <div className="p-6 text-center text-gray-500">
+            No Data Available
           </div>
-        ))
-      ) : (
-        <div className="p-6 text-center text-gray-500">
-          No Data Available
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Pagination */}
       <div className="flex justify-end items-center px-6 py-4 text-sm bg-white gap-8">
 
         <div className="flex items-center gap-2 text-gray-600">
-          <span>Rows per page:</span>
+          <div>Rows per page:</div>
 
           <select
             value={rowsPerPage}
@@ -126,7 +130,7 @@ export default function CommercialTable({
             ))}
           </select>
 
-          <span className="ml-4">
+          <div className="ml-4">
             {safeData.length === 0
               ? "0–0"
               : `${startIndex + 1}–${Math.min(
@@ -134,7 +138,7 @@ export default function CommercialTable({
                   safeData.length
                 )}`}{" "}
             of {safeData.length}
-          </span>
+          </div>
         </div>
 
         <div className="flex items-center space-x-2 text-gray-600">
