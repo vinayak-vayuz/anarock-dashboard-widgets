@@ -97,6 +97,7 @@ const chartData = React.useMemo(() => {
                   color: hiddenBars[value] ? "#CBD5E1" : "#64748B",
                   cursor: "pointer",
                   fontSize: "12px",
+                  display: "flex",
                 }}
               >
                 {value}

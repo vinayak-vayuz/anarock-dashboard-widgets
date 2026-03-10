@@ -36,15 +36,6 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
             </div>
           </div>
 
-          <div className="flex-1 py-3 bg-[#F1F5F9] rounded h-[76px]">
-            <div className="text-[24px] font-medium text-[#334155]">
-              {totalStaff ?? 0}
-            </div>
-            <div className="text-[12px] text-[#334155]">
-              Total
-            </div>
-          </div>
-
         </div>
 
         {/* Staff Role List */}
@@ -62,11 +53,11 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
                   key={index}
                   className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md"
                 >
-                  <div className="text-gray-700 text-sm font-medium">
+                  <div className="text-[#121212] text-[14px] leading-[18px] font-medium">
                     {item?.staff_role_name ?? "-"}
                   </div>
 
-                  <div className="text-[12px] text-gray-600">
+                  <div className="text-[14px] leading-[20px] text-[#64748B]">
                     {(present ?? 0)}/{(total ?? 0)}
                   </div>
                 </div>

@@ -44,7 +44,6 @@ function TicketEscalation({ data = [] }) {
   const openData = [];
   const inProgressData = [];
   const onHoldData = [];
-  const closedData = [];
   const cancelledData = [];
 
   for (let i = 0; i < finalData.length; i++) {
@@ -53,7 +52,6 @@ function TicketEscalation({ data = [] }) {
     openData.push(Number(finalData[i].open));
     inProgressData.push(Number(finalData[i].in_progress));
     onHoldData.push(Number(finalData[i].on_hold));
-    closedData.push(Number(finalData[i].closed));
     cancelledData.push(Number(finalData[i].cancelled));
   }
 
@@ -82,15 +80,6 @@ function TicketEscalation({ data = [] }) {
     label: "On-Hold",
     data: onHoldData,
     backgroundColor: "#64748B",
-    borderColor: "#FFFFFF",
-    borderWidth: 2,
-    barThickness: 38,
-    stack: "tickets",
-  },
-  {
-    label: "Closed",
-    data: closedData,
-    backgroundColor: "#10B981",
     borderColor: "#FFFFFF",
     borderWidth: 2,
     barThickness: 38,

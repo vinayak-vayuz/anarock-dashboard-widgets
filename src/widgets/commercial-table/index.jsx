@@ -23,16 +23,14 @@ export default function CommercialTable({
       d: "₹ 57,21,288",
       e: "₹ 450",
       f: "43.6%",
-      color: "bg-green-100 text-green-600",
-    },
+     },
     {
       a: "Uber",
       b: "Paneer Combo",
       c: "12,000",
       d: "₹ 12,00,000",
       e: "₹ 500",
-      f: "25%",
-      color: "bg-blue-100 text-blue-600",
+      f: "100%",
     },
   ],
   rowsPerPage = 10,
@@ -78,20 +76,27 @@ export default function CommercialTable({
               gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
             }}
           >
-            {safeColumns.map((col, colIndex) => (
-              <div key={colIndex} className="px-6 py-4 bg-gray-50">
-                {col.key === "f" ? (
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${row.color || ""
-                      }`}
-                  >
-                    {row[col.key] || "-"}
-                  </span>
-                ) : (
-                  row[col.key] || "-"
-                )}
-              </div>
-            ))}
+            {safeColumns.map((col, colIndex) => {
+  const value = row[col.key];
+
+  const isPercent = typeof value === "string" && value.includes("%");
+  const percentClass =
+    value === "100%"
+      ? "bg-green-100 text-green-600"
+      : "bg-red-100 text-red-600";
+
+  return (
+    <div key={colIndex} className="px-6 py-4 bg-gray-50">
+      {isPercent ? (
+        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${percentClass}`}>
+          {value}
+        </span>
+      ) : (
+        value || "-"
+      )}
+    </div>
+  );
+})}
           </div>
         ))
       ) : (
