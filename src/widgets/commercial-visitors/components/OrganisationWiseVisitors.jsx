@@ -87,7 +87,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
 
               <Tooltip cursor={false} />
 
-              <Bar dataKey="no_of_visitors" maxBarSize={55}>
+              <Bar dataKey="no_of_visitors" name="Visitors" maxBarSize={55}>
                 {chartData?.map?.((entry, index) => (
                   <Cell
                     key={`cell-${index}`}

@@ -159,6 +159,7 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
                   month: "short",
                 })
               }
+               formatter={(value) => [value, "Visitors"]}
             />
 
             <Area
