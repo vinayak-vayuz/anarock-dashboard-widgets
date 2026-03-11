@@ -9,8 +9,8 @@ function index() {
         <>
             <CommercialHeader text="Asset Management" Icon={Rows3 } iconColor="#A74E8A" />
             <div className='grid grid-cols-2 mt-4 gap-[24px]'>
-                <AssetsByType rows={[]}/>
-                <MaintenanceStatus data={[]}/>
+                <AssetsByType />
+                <MaintenanceStatus />
             </div>
             </>
   )

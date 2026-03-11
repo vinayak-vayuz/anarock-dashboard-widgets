@@ -91,25 +91,26 @@ const chartData = React.useMemo(() => {
             }}
           />
 
-          <Legend
-            verticalAlign="bottom"
-            align="center"
-            iconType="square"
-            onClick={handleLegendClick}
-            formatter={(value) => (
-              <div
-                style={{
-                  color: hiddenBars[value] ? "#CBD5E1" : "#64748B",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                  display: "flex",
-                }}
-              >
-                {value}
-              </div>
-            )}
-            wrapperStyle={{ paddingTop: "18px" }}
-          />
+       <Legend
+  verticalAlign="bottom"
+  align="center"
+  iconType="square"
+  onClick={handleLegendClick}
+  formatter={(value) => (
+    <div
+      style={{
+        color: hiddenBars[value] ? "#CBD5E1" : "#64748B",
+        cursor: "pointer",
+        fontSize: "12px",
+        display: "inline-flex",
+        alignItems: "center",
+      }}
+    >
+      {value}
+    </div>
+  )}
+  wrapperStyle={{ paddingTop: "18px" }}
+/>
 
           <Bar dataKey="Open" stackId="a" fill="#3B82F6" hide={hiddenBars["Open"]} />
           <Bar dataKey="Closed" stackId="a" fill="#10B981" hide={hiddenBars["Closed"]} />
