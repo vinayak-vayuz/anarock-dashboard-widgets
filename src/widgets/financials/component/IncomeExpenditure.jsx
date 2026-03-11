@@ -22,19 +22,36 @@ const prettyMonth = (shortLabel) => {
   return `${map[mon] || mon} 20${yy}`;
 };
 
-const IncomeExpenditure = ({
-  labels = ["Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25"],
-  moveIn = [24, 27, 20, 26, 23],
-  moveOut = [4, 17, 8,5, 16,4,7],
+const DEFAULT_LABELS = ["Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25"];
+const DEFAULT_INCOME = [24, 27, 20, 26, 23];
+const DEFAULT_EXPENDITURE = [4, 17, 8, 5, 16];
 
-}) => {
-  const data = {
-    
-    labels,
+const IncomeExpenditure = ({ data, labels, moveIn, moveOut }) => {
+  const resolvedLabels =
+    Array.isArray(data?.labels) && data.labels.length > 0
+      ? data.labels
+      : Array.isArray(labels) && labels.length > 0
+      ? labels
+      : DEFAULT_LABELS;
+  const incomeValues =
+    Array.isArray(data?.moveIn) && data.moveIn.length > 0
+      ? data.moveIn
+      : Array.isArray(moveIn) && moveIn.length > 0
+      ? moveIn
+      : DEFAULT_INCOME;
+  const expenditureValues =
+    Array.isArray(data?.moveOut) && data.moveOut.length > 0
+      ? data.moveOut
+      : Array.isArray(moveOut) && moveOut.length > 0
+      ? moveOut
+      : DEFAULT_EXPENDITURE;
+
+  const chartData = {
+    labels: resolvedLabels,
     datasets: [
       {
         label: "Income",
-        data: moveIn,
+        data: incomeValues,
         borderColor: "#10B981",
         backgroundColor: "rgba(16,185,129,0.15)",
         pointBackgroundColor: "#10B981",
@@ -43,7 +60,7 @@ const IncomeExpenditure = ({
       },
       {
         label: "Expenditure",
-        data: moveOut,
+        data: expenditureValues,
         borderColor: "#AB0000",
         backgroundColor: "rgba(124,58,237,0.15)",
         pointBackgroundColor: "#AB0000",
@@ -102,7 +119,7 @@ const IncomeExpenditure = ({
 
   return (
   
-        <Line data={data} options={options}  />
+        <Line data={chartData} options={options}  />
   );
 };
 

@@ -1,5 +1,37 @@
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+
+const DEFAULT_STATUSES = [
+  {
+    label: "Active",
+    value: 138,
+    subLabel: "3 expiring soon",
+    bgColor: "bg-[#F0FFF7]",
+    textColor: "text-[#1FA05B]",
+  },
+  {
+    label: "Scheduled",
+    value: 13,
+    subLabel: "4 this week",
+    bgColor: "bg-[#FFFBF2]",
+    textColor: "text-[#E7A015]",
+  },
+  {
+    label: "Recurring",
+    value: 3,
+    subLabel: "All active",
+    bgColor: "bg-[#EDF6FF]",
+    textColor: "text-[#329DFF]",
+  },
+  {
+    label: "Expired",
+    value: 7,
+    subLabel: "4 recent",
+    bgColor: "bg-[#F6F6F6]",
+    textColor: "text-[#64748B]",
+  },
+];
+
 function StatusCard({ label, value, subLabel, bgColor, textColor }) {
   return (
     <div className={`rounded-lg p-4 ${bgColor} h-[124px]`}>
@@ -16,7 +48,10 @@ function StatusCard({ label, value, subLabel, bgColor, textColor }) {
   );
 }
 
-export default function NoticeBoardStatus() {
+export default function NoticeBoardStatus({ data }) {
+  const statuses =
+    Array.isArray(data) && data.length > 0 ? data : DEFAULT_STATUSES;
+
   return (
     <Card
       title="Notice Board Status"
@@ -26,34 +61,9 @@ export default function NoticeBoardStatus() {
       className="w-full h-[360px]"
     >
       <div className="grid grid-cols-2 gap-[16px]">
-        <StatusCard
-          label="Active"
-          value={138}
-          subLabel="3 expiring soon"
-          bgColor="bg-[#F0FFF7]"
-          textColor="text-[#1FA05B]"
-        />
-        <StatusCard
-          label="Scheduled"
-          value={13}
-          subLabel="4 this week"
-          bgColor="bg-[#FFFBF2]"
-          textColor="text-[#E7A015]"
-        />
-        <StatusCard
-          label="Recurring"
-          value={3}
-          subLabel="All active"
-          bgColor="bg-[#EDF6FF]"
-          textColor="text-[#329DFF]"
-        />
-        <StatusCard
-          label="Expired"
-          value={7}
-          subLabel="4 recent"
-          bgColor="bg-[#F6F6F6]"
-          textColor="text-[#64748B]"
-        />
+        {statuses.map((status, index) => (
+          <StatusCard key={`${status.label}-${index}`} {...status} />
+        ))}
       </div>
     </Card>
   );

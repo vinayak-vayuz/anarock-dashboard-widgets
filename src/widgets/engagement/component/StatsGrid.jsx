@@ -48,8 +48,7 @@ function StatCardGrid({
   );
 }
 
-function StatCard() {
-  const cards = [
+const DEFAULT_CARDS = [
     {
       title: "Notice",
       value: 160,
@@ -90,7 +89,11 @@ function StatCard() {
       iconColor: "text-[#DBB467]",
       iconBg: "bg-yellow-100",
     },
-  ];
+];
+
+function StatCard({ data }) {
+  const cards =
+    Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
 
   return (
     <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">

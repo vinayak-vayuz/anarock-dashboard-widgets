@@ -13,19 +13,32 @@ import Card from "../../components/Card";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const BudgetVsActuals = () => {
-  const labels = [
+const DEFAULT_LABELS = [
     "Maintenance",
     "Security",
     "Utilities",
     "Housekeeping",
     "Administration",
     "Others",
-  ];
-  const budgetValues = [55000, 56000, 64000, 38000, 54000, 65000];
-  const actualValues = [63000, 48000, 51300, 28000, 42000, 35000];
+];
+const DEFAULT_BUDGET_VALUES = [55000, 56000, 64000, 38000, 54000, 65000];
+const DEFAULT_ACTUAL_VALUES = [63000, 48000, 51300, 28000, 42000, 35000];
 
-  const data = {
+const BudgetVsActuals = ({ data = {} }) => {
+  const labels =
+    Array.isArray(data?.labels) && data.labels.length > 0
+      ? data.labels
+      : DEFAULT_LABELS;
+  const budgetValues =
+    Array.isArray(data?.budgetValues) && data.budgetValues.length > 0
+      ? data.budgetValues
+      : DEFAULT_BUDGET_VALUES;
+  const actualValues =
+    Array.isArray(data?.actualValues) && data.actualValues.length > 0
+      ? data.actualValues
+      : DEFAULT_ACTUAL_VALUES;
+
+  const chartData = {
     labels,
     datasets: [
       {
@@ -96,7 +109,7 @@ const BudgetVsActuals = () => {
       }
       titleWeight="semi-bold"
     >
-      <Bar data={data} options={options} />
+      <Bar data={chartData} options={options} />
     </Card>
   );
 };

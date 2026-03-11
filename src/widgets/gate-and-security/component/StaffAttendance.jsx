@@ -1,10 +1,25 @@
 import React from "react";
 import Card from "../../components/CardNoLogo";
 
-function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
+const DUMMY_PRESENT_ABSENT = [{ total_staff: 42, absent_staff: 6 }];
+const DUMMY_BY_ROLE = [
+  { staff_role_name: "Security Guard", total_staff: 18, present_staff: 16 },
+  { staff_role_name: "Supervisor", total_staff: 8, present_staff: 7 },
+  { staff_role_name: "Technician", total_staff: 10, present_staff: 9 },
+];
 
-  const totalStaff = staffPresentAbsent?.[0]?.total_staff ?? 0;
-  const absentStaff = staffPresentAbsent?.[0]?.absent_staff ?? 0;
+function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
+  const resolvedPresentAbsent =
+    Array.isArray(staffPresentAbsent) && staffPresentAbsent.length > 0
+      ? staffPresentAbsent
+      : DUMMY_PRESENT_ABSENT;
+  const resolvedByRole =
+    Array.isArray(staffPresentByRole) && staffPresentByRole.length > 0
+      ? staffPresentByRole
+      : DUMMY_BY_ROLE;
+
+  const totalStaff = resolvedPresentAbsent?.[0]?.total_staff ?? 0;
+  const absentStaff = resolvedPresentAbsent?.[0]?.absent_staff ?? 0;
   const presentStaff = (totalStaff ?? 0) - (absentStaff ?? 0);
 
   return (
@@ -41,8 +56,8 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
         {/* Staff Role List */}
         <div className="mt-4 space-y-2 overflow-y-auto max-h-[200px]">
 
-          {staffPresentByRole?.length ? (
-            staffPresentByRole?.map?.((item, index) => {
+          {resolvedByRole?.length ? (
+            resolvedByRole?.map?.((item, index) => {
 
               const total = Number(item?.total_staff ?? 0);
               const present = Number(item?.present_staff ?? 0);

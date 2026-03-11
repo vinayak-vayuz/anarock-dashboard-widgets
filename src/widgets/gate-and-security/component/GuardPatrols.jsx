@@ -3,32 +3,40 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/CardNoLogo";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
+const DUMMY_DATA = {
+  completed: 18,
+  not_completed: 6,
+  missed: 4,
+};
+
 function GuardPatrols({ data = {} }) {
+  const resolvedData =
+    data && Object.keys(data).length > 0 ? data : DUMMY_DATA;
 
   const chartData = [
     {
       name: "Completed",
-      value: Number(data?.completed ?? 0),
+      value: Number(resolvedData?.completed ?? 0),
       color: "#12B981",
     },
     {
       name: "Delayed",
-      value: Number(data?.not_completed ?? 0),
+      value: Number(resolvedData?.not_completed ?? 0),
       color: "#EF4444",
     },
     {
       name: "Missed",
-      value: Number(data?.missed ?? 0),
+      value: Number(resolvedData?.missed ?? 0),
       color: "#F69E0A",
     },
   ];
 
   const total =
-    Number(data?.completed ?? 0) +
-    Number(data?.not_completed ?? 0) +
-    Number(data?.missed ?? 0);
+    Number(resolvedData?.completed ?? 0) +
+    Number(resolvedData?.not_completed ?? 0) +
+    Number(resolvedData?.missed ?? 0);
 
-  const completed = Number(data?.completed ?? 0);
+  const completed = Number(resolvedData?.completed ?? 0);
 
   return (
     <Card

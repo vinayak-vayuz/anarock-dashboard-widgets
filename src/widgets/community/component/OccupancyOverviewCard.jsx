@@ -43,6 +43,7 @@ const StatTile = ({ title, value, suffix, valueClass = "" }) => (
 );
 
 const OccupancyOverviewCard = ({
+  data,
   totalUnits = 847,
   occupiedUnits = 756,
   ownerCount = 700,
@@ -50,7 +51,16 @@ const OccupancyOverviewCard = ({
   avgResidents = 4.4,
   avgLeaseMonths = 18,
 }) => {
-  const barTotal = ownerCount + tenantCount;
+  const resolvedTotalUnits = Number(data?.totalUnits ?? totalUnits ?? 0);
+  const resolvedOccupiedUnits = Number(
+    data?.occupiedUnits ?? occupiedUnits ?? 0
+  );
+  const resolvedOwnerCount = Number(data?.ownerCount ?? ownerCount ?? 0);
+  const resolvedTenantCount = Number(data?.tenantCount ?? tenantCount ?? 0);
+  const resolvedAvgResidents = data?.avgResidents ?? avgResidents;
+  const resolvedAvgLeaseMonths = data?.avgLeaseMonths ?? avgLeaseMonths;
+
+  const barTotal = resolvedOwnerCount + resolvedTenantCount;
 
   return (
     <div>
@@ -67,23 +77,23 @@ const OccupancyOverviewCard = ({
             </div>
             <div className="flex items-center gap-1">
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
-                {occupiedUnits}
+                {resolvedOccupiedUnits}
               </div>
               <div className="text-[#64748B] text-[20px] leading-[32px]">
-                /{totalUnits}
+                /{resolvedTotalUnits}
               </div>
             </div>
           </div>
 
           <div className="flex items-end">
             <MiniPill
-              value={ownerCount}
+              value={resolvedOwnerCount}
               total={barTotal}
               colorClass="bg-[#8B5CF6]"
               label="Owner"
             />
             <MiniPill
-              value={tenantCount}
+              value={resolvedTenantCount}
               total={barTotal}
               colorClass="bg-[#12B981]"
               label="Tenant"
@@ -95,12 +105,12 @@ const OccupancyOverviewCard = ({
       <div className="mt-2.5 grid grid-cols-2 gap-[12px]">
         <StatTile
           title="Avg Residents Per Unit"
-          value={avgResidents}
+          value={resolvedAvgResidents}
           valueClass="text-[#8B5CF6]"
         />
         <StatTile
           title="Avg Lease Period"
-          value={avgLeaseMonths}
+          value={resolvedAvgLeaseMonths}
           suffix="months"
           valueClass="text-[#E7A015]"
         />

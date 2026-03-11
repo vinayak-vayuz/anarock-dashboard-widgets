@@ -38,32 +38,42 @@ const centerTextPlugin = {
 const Tickets = ({
   title = "Tickets",
   icon,
-
   firstLabel = "First",
   firstValue = 0,
   firstColor = "#12B981",
-
   secondLabel = "Second",
   secondValue = 0,
   secondColor = "#AB0000",
-
   growthPercentage = "+0%",
-  growthColor = "#1FA05B",
   growthText = "Compared to last month",
-
   totalLabel = "Total",
   centerTopColor = "#0F172A",
   centerBottomColor = "#64748B",
-  widgetType =""
+  widgetType = "",
+  data,
 }) => {
-  const total = firstValue + secondValue;
+  const resolvedTitle = data?.title ?? title;
+  const resolvedIcon = data?.icon ?? icon;
+  const resolvedFirstLabel = data?.firstLabel ?? firstLabel;
+  const resolvedFirstValue = Number(data?.firstValue ?? firstValue ?? 0);
+  const resolvedFirstColor = data?.firstColor ?? firstColor;
+  const resolvedSecondLabel = data?.secondLabel ?? secondLabel;
+  const resolvedSecondValue = Number(data?.secondValue ?? secondValue ?? 0);
+  const resolvedSecondColor = data?.secondColor ?? secondColor;
+  const resolvedGrowthPercentage =
+    data?.growthPercentage ?? growthPercentage ?? "+0%";
+  const resolvedGrowthText = data?.growthText ?? growthText;
+  const resolvedTotalLabel = data?.totalLabel ?? totalLabel;
+  const resolvedWidgetType = data?.widgetType ?? widgetType;
 
-  const data = {
-    labels: [firstLabel, secondLabel],
+  const total = resolvedFirstValue + resolvedSecondValue;
+
+  const chartData = {
+    labels: [resolvedFirstLabel, resolvedSecondLabel],
     datasets: [
       {
-        data: [firstValue, secondValue],
-        backgroundColor: [firstColor, secondColor],
+        data: [resolvedFirstValue, resolvedSecondValue],
+        backgroundColor: [resolvedFirstColor, resolvedSecondColor],
         borderWidth: 2,
         hoverOffset: 4,
       },
@@ -84,7 +94,7 @@ const Tickets = ({
       },
       centerText: {
         top: `${total}`,
-        bottom: totalLabel,
+        bottom: resolvedTotalLabel,
         topSize: 20,
         bottomSize: 10,
         topColor: centerTopColor,
@@ -94,15 +104,27 @@ const Tickets = ({
   };
 
   const items = [
-    { label: firstLabel, value: firstValue, color: firstColor },
-    { label: secondLabel, value: secondValue, color: secondColor },
+    {
+      label: resolvedFirstLabel,
+      value: resolvedFirstValue,
+      color: resolvedFirstColor,
+    },
+    {
+      label: resolvedSecondLabel,
+      value: resolvedSecondValue,
+      color: resolvedSecondColor,
+    },
   ];
 
-  const isPositive = growthPercentage.toString().includes("+");
-const isNegative = growthPercentage.toString().includes("-");
-const dynamicGrowthColor = isPositive ? "#1FA05B" : "#AB0000";
+  const isPositive = resolvedGrowthPercentage.toString().includes("+");
+  const isNegative = resolvedGrowthPercentage.toString().includes("-");
+  const dynamicGrowthColor = isPositive ? "#1FA05B" : "#AB0000";
   return (
-    <Card title={title} icon={icon} className={widgetType === "commercial" ? "h-[362px]" : "h-[238px]"}>
+    <Card
+      title={resolvedTitle}
+      icon={resolvedIcon}
+      className={resolvedWidgetType === "commercial" ? "h-[362px]" : "h-[238px]"}
+    >
       <div className="grid grid-cols-12 gap-[16px] items-center">
         <div className="col-span-5 space-y-3">
           {items.map((item, index) => (
@@ -127,24 +149,24 @@ const dynamicGrowthColor = isPositive ? "#1FA05B" : "#AB0000";
   {isNegative && <FaCaretDown />}
 
   <div>
-    {growthPercentage.replace("+", "").replace("-", "")}
+    {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
   </div>
 
   <div className="text-[#64748B] text-[10px] ml-[4px]">
-    {growthText}
+    {resolvedGrowthText}
   </div>
 </div>
         </div>
 
         <div className="col-span-7"><div
   className={`${
-    widgetType === "commercial"
+    resolvedWidgetType === "commercial"
       ? "h-[260px] w-[263px]"
       : "h-[158px] w-[158px]"
   } ml-auto mr-2`}
 >
             <Doughnut
-              data={data}
+              data={chartData}
               options={options}
               plugins={[centerTextPlugin]}
             />

@@ -14,6 +14,7 @@ import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material"
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const BlockWiseOccupancyCard = ({
+  data,
   blocks = [
     { name: "Block A", owner: 110, rented: 24, vacant: 8 },
     { name: "Block B", owner: 95, rented: 18, vacant: 6 },
@@ -21,12 +22,19 @@ const BlockWiseOccupancyCard = ({
     { name: "Block D", owner: 78, rented: 16, vacant: 30 },
   ],
 }) => {
-  const labels = blocks.map((b) => b.name);
-  const owners = blocks.map((b) => b.owner);
-  const rented = blocks.map((b) => b.rented);
-  const vacant = blocks.map((b) => b.vacant);
+  const resolvedBlocks =
+    Array.isArray(data?.blocks) && data.blocks.length > 0
+      ? data.blocks
+      : Array.isArray(data) && data.length > 0
+      ? data
+      : blocks;
 
-  const data = {
+  const labels = resolvedBlocks.map((b) => b.name);
+  const owners = resolvedBlocks.map((b) => Number(b.owner ?? 0));
+  const rented = resolvedBlocks.map((b) => Number(b.rented ?? 0));
+  const vacant = resolvedBlocks.map((b) => Number(b.vacant ?? 0));
+
+  const chartData = {
     labels,
     datasets: [
       {
@@ -105,7 +113,7 @@ const BlockWiseOccupancyCard = ({
       className="w-full h-[360px]"
        titleWeight="semi-bold"
     >
-      <Bar data={data} options={options} />
+      <Bar data={chartData} options={options} />
     </Card>
   );
 };

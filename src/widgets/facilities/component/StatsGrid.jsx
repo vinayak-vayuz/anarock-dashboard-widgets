@@ -44,8 +44,7 @@ function StatCardGrid({
   );
 }
 
-function StatCard() {
-  const cards = [
+const DEFAULT_CARDS = [
     {
       title: "Total Bookings",
       value: 160,
@@ -82,7 +81,11 @@ function StatCard() {
       Icon: LiaMoneyBillSolid,
       iconColor: "text-[#DBB467]",
     },
-  ];
+];
+
+function StatCard({ data }) {
+  const cards =
+    Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
 
   return (
     <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">

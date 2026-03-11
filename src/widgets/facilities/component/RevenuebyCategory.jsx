@@ -13,18 +13,22 @@ import Card from "../../components/Card";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const RevenuebyCategory = () => {
-  const labels = [
-    "Gym",
-    "Parking",
-    "Swimming Pool",
-    "Community Hall",
-    "Tennis Court",
-  ];
-  const values = [13000, 9400, 8800, 7200, 6000];
-  const units = [18, 12, 18, 6];
+const DEFAULT_ITEMS = [
+  { label: "Gym", value: 13000, units: 18 },
+  { label: "Parking", value: 9400, units: 12 },
+  { label: "Swimming Pool", value: 8800, units: 18 },
+  { label: "Community Hall", value: 7200, units: 6 },
+  { label: "Tennis Court", value: 6000, units: 10 },
+];
 
-  const data = {
+const RevenuebyCategory = ({ data }) => {
+  const items =
+    Array.isArray(data) && data.length > 0 ? data : DEFAULT_ITEMS;
+  const labels = items.map((item) => item.label);
+  const values = items.map((item) => Number(item.value ?? 0));
+  const units = items.map((item) => Number(item.units ?? 0));
+
+  const chartData = {
     labels,
     datasets: [
       {
@@ -80,7 +84,7 @@ const RevenuebyCategory = () => {
       }
       titleWeight="semi-bold"
     >
-      <Bar data={data} options={options} />
+      <Bar data={chartData} options={options} />
     </Card>
   );
 };

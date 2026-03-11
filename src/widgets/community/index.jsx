@@ -6,21 +6,22 @@ import MoveInOutTrendsCard from "./component/MoveInOutTrendsCard";
 import BlockWiseOccupancyCard from "./component/BlockWiseOccupancyCard";
 import Header from "../components/Header";
 
-function Community() {
+function Community({ data = {}, onExport }) {
   return (
     <div>
       <Header
         title="Community"
         description="Units, residents, and occupancy details"
+        onExport={onExport}
       />
       <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[16px]">
-        <UnitStatusPie isStatic={true} />
-        <OccupancyOverviewCard isStatic={true} />
-        <ResidentOverviewCard isStatic={true} />
+        <UnitStatusPie data={data?.unitStatus} />
+        <OccupancyOverviewCard data={data?.occupancyOverview} />
+        <ResidentOverviewCard data={data?.residentOverview} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] mt-4 px-5">
-        <BlockWiseOccupancyCard isStatic={true} />
-        <MoveInOutTrendsCard isStatic={true} />
+        <BlockWiseOccupancyCard data={data?.blockWiseOccupancy} />
+        <MoveInOutTrendsCard data={data?.moveInOutTrends} />
       </div>
     </div>
   );

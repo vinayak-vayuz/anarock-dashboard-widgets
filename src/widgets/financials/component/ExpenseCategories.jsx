@@ -6,29 +6,32 @@ import Card from "../../components/Card";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ExpenseCategories = () => {
-  const labels = [
-    "Maintenance",
-    "Utilities",
-    "Security",
-    "Administration",
-    "Others",
-  ];
-  const values = [450000, 320000, 280000, 180000, 120000];
+const DEFAULT_ITEMS = [
+  { label: "Maintenance", value: 450000, color: "#08B6D4" },
+  { label: "Utilities", value: 320000, color: "#8B5CF6" },
+  { label: "Security", value: 280000, color: "#EF4444" },
+  { label: "Administration", value: 180000, color: "#F69E0A" },
+  { label: "Others", value: 120000, color: "#12B981" },
+];
 
-  const data = {
+const ExpenseCategories = ({ data }) => {
+  const items =
+    Array.isArray(data?.items) && data.items.length > 0
+      ? data.items
+      : Array.isArray(data) && data.length > 0
+      ? data
+      : DEFAULT_ITEMS;
+  const labels = items.map((item) => item.label);
+  const values = items.map((item) => Number(item.value ?? 0));
+  const colors = items.map((item) => item.color);
+
+  const chartData = {
     labels,
     datasets: [
       {
         label: "Expenses",
         data: values,
-        backgroundColor: [
-          "#08B6D4",
-          "#8B5CF6",
-          "#EF4444",
-          "#F69E0A",
-          "#12B981",
-        ],
+        backgroundColor: colors,
         borderColor: "#FFFFFF",
         borderWidth: 2,
         cutout: "70%",
@@ -66,7 +69,7 @@ const ExpenseCategories = () => {
       titleWeight="semi-bold"
     >
       <div className="relative h-[259px] flex justify-center items-center">
-        <Doughnut data={data} options={options} />
+        <Doughnut data={chartData} options={options} />
 
         <div className="absolute text-center">
           <div className="!text-[24px] font-medium leading-[28px] text-[#121212]">
@@ -87,7 +90,7 @@ const ExpenseCategories = () => {
             <div className="flex items-center gap-[8px] !text-[12px] leading-[16px] text-[#64748B]">
               <div
                 className="w-[7px] h-[7px] rotate-45"
-                style={{ backgroundColor: data.datasets[0].backgroundColor[i] }}
+                style={{ backgroundColor: chartData.datasets[0].backgroundColor[i] }}
               ></div>
               {label}
             </div>

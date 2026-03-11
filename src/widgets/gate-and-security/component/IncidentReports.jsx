@@ -1,11 +1,31 @@
 import React from "react";
 import Card from "../../components/CardNoLogo";
 
-function IncidentReports({ incidentReports = {}, incidentReportsDetails = [] }) {
+const DUMMY_SUMMARY = {
+  open: 4,
+  in_progress: 7,
+  closed: 12,
+};
 
-  const open = Number(incidentReports?.open ?? 0);
-  const inProgress = Number(incidentReports?.in_progress ?? 0);
-  const closed = Number(incidentReports?.closed ?? 0);
+const DUMMY_DETAILS = [
+  { incident_code: "INC-401", severity_level: "L1", severity: "Danger" },
+  { incident_code: "INC-402", severity_level: "L2", severity: "High" },
+  { incident_code: "INC-403", severity_level: "L3", severity: "Low" },
+];
+
+function IncidentReports({ incidentReports = {}, incidentReportsDetails = [] }) {
+  const resolvedIncidentReports =
+    incidentReports && Object.keys(incidentReports).length > 0
+      ? incidentReports
+      : DUMMY_SUMMARY;
+  const resolvedDetails =
+    Array.isArray(incidentReportsDetails) && incidentReportsDetails.length > 0
+      ? incidentReportsDetails
+      : DUMMY_DETAILS;
+
+  const open = Number(resolvedIncidentReports?.open ?? 0);
+  const inProgress = Number(resolvedIncidentReports?.in_progress ?? 0);
+  const closed = Number(resolvedIncidentReports?.closed ?? 0);
 
   return (
     <Card
@@ -50,8 +70,8 @@ function IncidentReports({ incidentReports = {}, incidentReportsDetails = [] }) 
         {/* Incident List */}
         <div className="mt-4 space-y-2">
 
-          {incidentReportsDetails?.length ? (
-            incidentReportsDetails?.map?.((item, index) => {
+          {resolvedDetails?.length ? (
+            resolvedDetails?.map?.((item, index) => {
 
               const severityColor =
                 item?.severity === "Danger"

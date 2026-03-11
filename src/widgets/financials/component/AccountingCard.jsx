@@ -36,7 +36,27 @@ function StatusCard({
   );
 }
 
-export default function AccountingCard() {
+export default function AccountingCard({ data = {} }) {
+  const incomeCard = data?.incomeCard ?? {
+    label: "Total Income",
+    value: "AED 5.68M",
+    delta: "+4.4%",
+    positive: true,
+    bgColor: "bg-slate-50",
+    deltaLabel: "Compared to last month",
+    textColor: "text-[#1FA05B]",
+  };
+
+  const expenditureCard = data?.expenditureCard ?? {
+    label: "Total Expenditure",
+    value: "AED 1.83M",
+    delta: "-1.1%",
+    positive: false,
+    bgColor: "bg-slate-50",
+    deltaLabel: "Compared to last month",
+    textColor: "text-[#AB0000]",
+  };
+
   return (
     <Card
       title="Accounting"
@@ -47,27 +67,11 @@ export default function AccountingCard() {
       titleWeight="semi-bold"
     >
       <div className="grid grid-cols-2 gap-[16px]">
-        <StatusCard
-          label="Total Income"
-          value="AED 5.68M"
-          delta="+4.4%"
-          positive
-          bgColor="bg-slate-50"
-          deltaLabel="Compared to last month"
-          textColor="text-[#1FA05B]"
-        />
-        <StatusCard
-          label="Total Expenditure"
-          value="AED 1.83M"
-          delta="-1.1%"
-          positive={false}
-          bgColor="bg-slate-50"
-          deltaLabel="Compared to last month"
-          textColor="text-[#AB0000]"
-        />
+        <StatusCard {...incomeCard} />
+        <StatusCard {...expenditureCard} />
       </div>
       <div className="h-[254px] mt-[35.5px]">
-        <IncomeExpenditure />
+        <IncomeExpenditure data={data?.incomeExpenditure} />
       </div>
     </Card>
   );

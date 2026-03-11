@@ -2,12 +2,19 @@ import React from "react";
 import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
-const CashBankBalance = () => {
-  const accounts = [
+const DEFAULT_ACCOUNTS = [
     { title: "Primary Account", amount: 2850000, subtitle: "Savings" },
     { title: "Emergency Fund", amount: 1200000, subtitle: "Fixed deposit" },
     { title: "Maintenance Fund", amount: 680000, subtitle: "Current" },
-  ];
+];
+
+const CashBankBalance = ({ data }) => {
+  const accounts =
+    Array.isArray(data?.accounts) && data.accounts.length > 0
+      ? data.accounts
+      : Array.isArray(data) && data.length > 0
+      ? data
+      : DEFAULT_ACCOUNTS;
 
   const total = accounts.reduce((sum, acc) => sum + acc.amount, 0);
 

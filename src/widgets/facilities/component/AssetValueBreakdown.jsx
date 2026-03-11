@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
-const data = [
+const DEFAULT_DATA = [
   { name: "Gym Equipment", value: 1000000, color: "#08B6D4" },
   { name: "Security", value: 800000, color: "#EF4444" },
   { name: "Others", value: 600000, color: "#F59E0B" },
@@ -11,8 +11,10 @@ const data = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
-function AssetValueBreakdown() {
-  const total = data.reduce((sum, d) => sum + d.value, 0);
+function AssetValueBreakdown({ data }) {
+  const chartItems =
+    Array.isArray(data) && data.length > 0 ? data : DEFAULT_DATA;
+  const total = chartItems.reduce((sum, d) => sum + Number(d.value ?? 0), 0);
 
   return (
     <Card
@@ -28,14 +30,14 @@ function AssetValueBreakdown() {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={chartItems}
                 innerRadius={60}
                 outerRadius={90}
                 paddingAngle={2}
                 dataKey="value"
                 nameKey="name"
               >
-                {data.map((entry, index) => (
+                {chartItems.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
@@ -55,7 +57,7 @@ function AssetValueBreakdown() {
 
         <div className="flex justify-between w-full px-4 sm:px-8 mt-4 text-[14px]">
           <div className="flex flex-col gap-[8px]">
-            {data.slice(0, 3).map((item) => (
+            {chartItems.slice(0, 3).map((item) => (
               <div key={item.name} className="flex items-center gap-[8px]">
                 <div
                   className="inline-block h-[7px] w-[7px] rotate-45"
@@ -69,7 +71,7 @@ function AssetValueBreakdown() {
           </div>
 
           <div className="flex flex-col gap-[8px] items-start">
-            {data.slice(3).map((item) => (
+            {chartItems.slice(3).map((item) => (
               <div key={item.name} className="flex items-center gap-[8px]">
                 <div
                   className="inline-block h-[7px] w-[7px] rotate-45"

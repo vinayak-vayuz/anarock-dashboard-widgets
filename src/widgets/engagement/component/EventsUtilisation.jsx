@@ -1,5 +1,23 @@
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+
+const DEFAULT_EVENTS = [
+  {
+    title: "Holi Celebration",
+    date: "25 Jun 2025",
+    rsvp: "78/100",
+    utilisation: 71,
+    status: "Upcoming",
+  },
+  {
+    title: "Maintenance Meeting",
+    date: "25 Jun 2025",
+    rsvp: "45/60",
+    utilisation: 75,
+    status: "Completed",
+  },
+];
+
 function EventItem({ title, date, rsvp, utilisation, status }) {
   return (
     <div className=" bg-[#F8FAFC] h-[106px] px-3 mt-3">
@@ -41,7 +59,10 @@ function EventItem({ title, date, rsvp, utilisation, status }) {
   );
 }
 
-export default function EventsUtilisation() {
+export default function EventsUtilisation({ data }) {
+  const events =
+    Array.isArray(data) && data.length > 0 ? data : DEFAULT_EVENTS;
+
   return (
     <Card
       title="Events Utilisation"
@@ -51,20 +72,9 @@ export default function EventsUtilisation() {
       className="w-full h-[360px]"
     >
       <div>
-        <EventItem
-          title="Holi Celebration"
-          date="25 Jun 2025"
-          rsvp="78/100"
-          utilisation={71}
-          status="Upcoming"
-        />
-        <EventItem
-          title="Maintenance Meeting"
-          date="25 Jun 2025"
-          rsvp="45/60"
-          utilisation={75}
-          status="Completed"
-        />
+        {events.map((event, index) => (
+          <EventItem key={`${event.title}-${index}`} {...event} />
+        ))}
       </div>
     </Card>
   );

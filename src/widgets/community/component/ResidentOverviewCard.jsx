@@ -37,19 +37,30 @@ const centerTextPlugin = {
 };
 
 const ResidentOverviewCard = ({
+  data,
   ownerCount = 1000,
   tenantCount = 200,
   nonResidingOwners = 26,
   growthPct = "+9.1%",
 }) => {
-  const ownerResiding = Math.max(ownerCount - nonResidingOwners, 0);
-  const totalMembers = ownerCount + tenantCount;
+  const resolvedOwnerCount = Number(data?.ownerCount ?? ownerCount ?? 0);
+  const resolvedTenantCount = Number(data?.tenantCount ?? tenantCount ?? 0);
+  const resolvedNonResidingOwners = Number(
+    data?.nonResidingOwners ?? nonResidingOwners ?? 0
+  );
+  const resolvedGrowthPct = data?.growthPct ?? growthPct;
 
-  const data = {
+  const ownerResiding = Math.max(
+    resolvedOwnerCount - resolvedNonResidingOwners,
+    0
+  );
+  const totalMembers = resolvedOwnerCount + resolvedTenantCount;
+
+  const chartData = {
     labels: ["Owners", "Tenants", "Non-residing Owner"],
     datasets: [
       {
-        data: [ownerResiding, tenantCount, nonResidingOwners],
+        data: [ownerResiding, resolvedTenantCount, resolvedNonResidingOwners],
         backgroundColor: ["#3C81F6", "#08B6D4", "#8B5CF6"],
         borderWidth: 2,
         hoverOffset: 4,
@@ -89,7 +100,7 @@ const ResidentOverviewCard = ({
               Total Owners
             </div>
             <div className="text-[28px] leading-[32px ]  text-[#3C81F6]">
-              {ownerCount}
+              {resolvedOwnerCount}
             </div>
           </div>
           <div>
@@ -97,11 +108,11 @@ const ResidentOverviewCard = ({
               Total Tenants
             </div>
             <div className="text-[28px] leading-[32px ] text-[#08B6D4]">
-              {tenantCount}
+              {resolvedTenantCount}
             </div>
           </div>
           <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center">
-            {growthPct}{" "}
+            {resolvedGrowthPct}{" "}
             <div className="text-[#64748B] ">Compared to last month</div>
           </div>
         </div>
@@ -109,7 +120,7 @@ const ResidentOverviewCard = ({
         <div className="col-span-7">
           <div className="h-[162px] w-[162px] ml-auto mr-2">
             <Doughnut
-              data={data}
+              data={chartData}
               options={options}
               plugins={[centerTextPlugin]}
             />

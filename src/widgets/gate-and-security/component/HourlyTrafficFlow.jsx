@@ -21,15 +21,29 @@ ChartJS.register(
   Legend
 );
 
-const HourlyTrafficFlow = () => {
-  const labels = ["10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"];
+const DEFAULT_LABELS = ["10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"];
+const DEFAULT_SERIES = {
+  guest: [9, 5, 12, 7, 3, 6, 4],
+  cab: [15, 12, 10, 14, 7, 12, 8],
+  delivery: [22, 18, 16, 20, 22, 14, 17],
+  service: [13, 12, 8, 9, 5, 10, 7],
+};
 
-  const data = {
+const HourlyTrafficFlow = ({ data }) => {
+  const labels =
+    Array.isArray(data?.labels) && data.labels.length > 0
+      ? data.labels
+      : DEFAULT_LABELS;
+
+  const chartData = {
     labels,
     datasets: [
       {
         label: "Guest",
-        data: [9, 5, 12, 7, 3, 6, 4],
+        data:
+          Array.isArray(data?.guest) && data.guest.length > 0
+            ? data.guest
+            : DEFAULT_SERIES.guest,
         borderColor: "#EF4444",
         backgroundColor: "rgba(239,68,68,0.15)",
         pointBackgroundColor: "#EF4444",
@@ -38,7 +52,10 @@ const HourlyTrafficFlow = () => {
       },
       {
         label: "Cab",
-        data: [15, 12, 10, 14, 7, 12, 8],
+        data:
+          Array.isArray(data?.cab) && data.cab.length > 0
+            ? data.cab
+            : DEFAULT_SERIES.cab,
         borderColor: "#7C3AED",
         backgroundColor: "rgba(124,58,237,0.15)",
         pointBackgroundColor: "#7C3AED",
@@ -47,7 +64,10 @@ const HourlyTrafficFlow = () => {
       },
       {
         label: "Delivery",
-        data: [22, 18, 16, 20, 22, 14, 17],
+        data:
+          Array.isArray(data?.delivery) && data.delivery.length > 0
+            ? data.delivery
+            : DEFAULT_SERIES.delivery,
         borderColor: "#10B981",
         backgroundColor: "rgba(16,185,129,0.15)",
         pointBackgroundColor: "#10B981",
@@ -56,7 +76,10 @@ const HourlyTrafficFlow = () => {
       },
       {
         label: "Service",
-        data: [13, 12, 8, 9, 5, 10, 7],
+        data:
+          Array.isArray(data?.service) && data.service.length > 0
+            ? data.service
+            : DEFAULT_SERIES.service,
         borderColor: "#F59E0B",
         backgroundColor: "rgba(245,158,11,0.15)",
         pointBackgroundColor: "#F59E0B",
@@ -118,7 +141,7 @@ const HourlyTrafficFlow = () => {
       period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
     >
       {/* <div className="h-[250px] w-full"> */}
-      <Line data={data} options={options} />
+      <Line data={chartData} options={options} />
       {/* </div> */}
     </Card>
   );

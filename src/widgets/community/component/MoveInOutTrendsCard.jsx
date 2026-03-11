@@ -41,16 +41,26 @@ const prettyMonth = (shortLabel) => {
 };
 
 const MoveInOutTrendsCard = ({
+  data,
   labels = ["Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25"],
   moveIn = [24, 27, 20, 26, 23],
   moveOut = [12, 17, 8, 5, 16],
 }) => {
-  const data = {
-    labels,
+  const resolvedLabels =
+    Array.isArray(data?.labels) && data.labels.length > 0 ? data.labels : labels;
+  const resolvedMoveIn =
+    Array.isArray(data?.moveIn) && data.moveIn.length > 0 ? data.moveIn : moveIn;
+  const resolvedMoveOut =
+    Array.isArray(data?.moveOut) && data.moveOut.length > 0
+      ? data.moveOut
+      : moveOut;
+
+  const chartData = {
+    labels: resolvedLabels,
     datasets: [
       {
         label: "Move-in",
-        data: moveIn,
+        data: resolvedMoveIn,
         borderColor: "#12B981",
         backgroundColor: "rgba(16,185,129,0.15)",
         pointBackgroundColor: "#12B981",
@@ -59,7 +69,7 @@ const MoveInOutTrendsCard = ({
       },
       {
         label: "Move-out",
-        data: moveOut,
+        data: resolvedMoveOut,
         borderColor: "#8B5CF6",
         backgroundColor: "rgba(124,58,237,0.15)",
         pointBackgroundColor: "#8B5CF6",
@@ -121,7 +131,7 @@ const MoveInOutTrendsCard = ({
       period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
       titleWeight="semi-bold"
     >
-      <Line data={data} options={options} />
+      <Line data={chartData} options={options} />
     </Card>
   );
 };

@@ -13,12 +13,25 @@ import Card from "../../components/Card";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const DuesAgeing = () => {
-  const labels = ["Current Month", "1-3 Months", "3-6 Months", "6+ Months"];
-  const values = [13000, 9400, 8800, 7200];
-  const units = [18, 12, 18, 6];
+const DEFAULT_ITEMS = [
+  { label: "Current Month", value: 13000, units: 18 },
+  { label: "1-3 Months", value: 9400, units: 12 },
+  { label: "3-6 Months", value: 8800, units: 18 },
+  { label: "6+ Months", value: 7200, units: 6 },
+];
 
-  const data = {
+const DuesAgeing = ({ data }) => {
+  const items =
+    Array.isArray(data?.items) && data.items.length > 0
+      ? data.items
+      : Array.isArray(data) && data.length > 0
+      ? data
+      : DEFAULT_ITEMS;
+  const labels = items.map((item) => item.label);
+  const values = items.map((item) => Number(item.value ?? 0));
+  const units = items.map((item) => Number(item.units ?? 0));
+
+  const chartData = {
     labels,
     datasets: [
       {
@@ -95,7 +108,7 @@ const DuesAgeing = () => {
       </div>
 
       <div className="h-[192px]">
-        <Bar data={data} options={options} />
+        <Bar data={chartData} options={options} />
       </div>
     </Card>
   );
