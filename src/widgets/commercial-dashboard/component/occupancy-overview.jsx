@@ -8,9 +8,9 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
   const pct = Math.max(0, Math.min(100, (safeValue / safeTotal) * 100));
 
   const valueTextColor =
-    colorClass === "bg-[#8B5CF6]"
+    colorClass === "bg-[#3C81F6]"
       ? "text-[#8B5CF6]"
-      : colorClass === "bg-[#12B981]"
+      : colorClass === "bg-[#8B5CF6]"
       ? "text-[#12B981]"
       : "text-slate-600";
   return (
@@ -40,9 +40,9 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
 
 const OccupancyOverviewCard = ({
   data,
-  occupiedUnits = 9000,
+  occupiedUnits = 1,
   EmployeesCount = 8910,
-  AdminsCount = 90,
+  AdminsCount = 910,
 }) => {
 
   const totalOccupants =
@@ -92,15 +92,15 @@ const OccupancyOverviewCard = ({
             <MiniPill
               value={employees ?? 0}
               total={barTotal || 1}
-              colorClass="bg-[#8B5CF6]"
-              label="Employees"
+              colorClass="bg-[#3C81F6]"
+             label={(employees ?? 0) <= 1 ? "Employee" : "Employees"}
             />
 
             <MiniPill
               value={admins ?? 0}
               total={barTotal || 1}
-              colorClass="bg-[#12B981]"
-              label="Admins"
+              colorClass="bg-[#8B5CF6]"
+             label={(admins ?? 0) <= 1 ? "Admin" : "Admins"}
             />
           </div>
         </div>

@@ -6,8 +6,7 @@ import {
   XAxis,
   YAxis,
   ResponsiveContainer,
-  Cell,
-  Tooltip 
+  Tooltip
 } from "recharts";
 import { MessageSquare } from "lucide-react";
 import EmptyState from "../../utils/EmptyState";
@@ -49,14 +48,6 @@ function BookingsChart({ data }) {
       ? data
       : [];
 
-  const maxValue =
-    chartData?.length > 0
-      ? Math.max(
-          ...(chartData?.map?.((item) => item?.total_booking || 0) || [0]),
-          0
-        )
-      : 0;
-
   return (
     <Card
       title="Bookings"
@@ -66,53 +57,48 @@ function BookingsChart({ data }) {
       <div className="w-full h-full flex items-center justify-center">
 
         {isEmptyArray ? (
-         <EmptyState
-    title="No Booking Found"
-    description="Catch up all the data. Change the date range to see the data."
-  />
+          <EmptyState
+            title="No Booking Found"
+            description="Catch up all the data. Change the date range to see the data."
+          />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-  data={chartData || []}
-  layout="vertical"
-  margin={{ top: 0, right: 10, left: 10, bottom: 0 }}
->
-  <XAxis
-    type="number"
-    allowDecimals={false}
-    domain={[0, Math.ceil(maxValue || 0)]}
-    tick={{ fill: "#64748B", fontSize: 12 }}
-    axisLine
-    tickLine={false}
-  />
+              data={chartData || []}
+              layout="vertical"
+              margin={{ top: 0, right: 10, left: 10, bottom: 0 }}
+            >
 
-  <YAxis
-    type="category"
-    dataKey="facility_name"
-    axisLine={false}
-    tickLine={false}
-    width={100}
-    tick={<CustomYAxisTick />}
-  />
+              <XAxis
+                type="number"
+                allowDecimals={false}
+                tick={{ fill: "#64748B", fontSize: 12 }}
+                axisLine
+                tickLine={false}
+              />
 
-  <Tooltip
-    formatter={(value) => [value, "Bookings"]}
-    cursor={{ fill: "rgba(0,0,0,0.05)" }}
-  />
+              <YAxis
+                type="category"
+                dataKey="facility_name"
+                axisLine={false}
+                tickLine={false}
+                width={100}
+                tick={<CustomYAxisTick />}
+              />
 
-  <Bar dataKey="total_booking" barSize={40}>
-    {chartData?.map?.((entry, index) => (
-      <Cell
-        key={`cell-${index}`}
-        fill={
-          (entry?.total_booking || 0) === maxValue
-            ? "#3C81F6"
-            : "#79ABFF"
-        }
-      />
-    ))}
-  </Bar>
-</BarChart>
+              <Tooltip
+                formatter={(value) => [value, "Bookings"]}
+                cursor={{ fill: "rgba(0,0,0,0.05)" }}
+              />
+
+              {/* Fixed bar color */}
+              <Bar
+                dataKey="total_booking"
+                barSize={40}
+                fill="#8B5CF6"
+              />
+
+            </BarChart>
           </ResponsiveContainer>
         )}
 

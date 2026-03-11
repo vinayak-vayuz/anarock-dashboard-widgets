@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
-  Cell,
   Tooltip
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
@@ -32,14 +31,6 @@ function BookingTrendChart({ data }) {
       ? data
       : [];
 
-  const maxValue =
-    chartData?.length > 0
-      ? Math.max(
-          ...(chartData?.map?.((item) => item?.no_of_booking || 0) || [0]),
-          0
-        )
-      : 0;
-
   return (
     <Card
       title="Booking Trend by Organisation"
@@ -50,56 +41,51 @@ function BookingTrendChart({ data }) {
 
         {isEmptyArray ? (
           <EmptyState
-    title="No Booking Found"
-    description="Catch up all the data. Change the date range to see the data."
-  />
+            title="No Booking Found"
+            description="Catch up all the data. Change the date range to see the data."
+          />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
-           <BarChart
-  data={chartData || []}
-  margin={{ top: 0, right: 0, left: -15, bottom: 0 }}
->
-  <CartesianGrid
-    strokeDasharray="3 3"
-    vertical={false}
-    stroke="#E5E7EB"
-  />
+            <BarChart
+              data={chartData || []}
+              margin={{ top: 0, right: 0, left: -15, bottom: 0 }}
+            >
 
-  <XAxis
-    dataKey="building_name"
-    axisLine={false}
-    tickLine={false}
-    tick={{ fill: "#64748B", fontSize: 12 }}
-  />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                vertical={false}
+                stroke="#E5E7EB"
+              />
 
-  <YAxis
-    allowDecimals={false}
-    domain={[0, Math.ceil(maxValue || 0)]}
-    axisLine={false}
-    tickLine={false}
-    tick={{ fill: "#64748B", fontSize: 12 }}
-    tickFormatter={(value) => `${value ?? 0}`}
-  />
+              <XAxis
+                dataKey="building_name"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "#64748B", fontSize: 12 }}
+              />
 
-  <Tooltip
-    formatter={(value) => [value, "Bookings"]}
-    labelFormatter={(label) => `Organisation: ${label}`}
-    cursor={{ fill: "rgba(0,0,0,0.05)" }}
-  />
+              <YAxis
+                allowDecimals={false}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fill: "#64748B", fontSize: 12 }}
+                tickFormatter={(value) => `${value ?? 0}`}
+              />
 
-  <Bar dataKey="no_of_booking" barSize={54}>
-    {chartData?.map?.((entry, index) => (
-      <Cell
-        key={`cell-${index}`}
-        fill={
-          (entry?.no_of_booking || 0) === maxValue
-            ? "#3C81F6"
-            : "#79ABFF"
-        }
-      />
-    ))}
-  </Bar>
-</BarChart>
+              <Tooltip
+                formatter={(value) => [value, "Bookings"]}
+                labelFormatter={(label) => `Organisation: ${label}`}
+                cursor={{ fill: "rgba(0,0,0,0.05)" }}
+              />
+
+              {/* Fixed bar color */}
+              <Bar
+                dataKey="no_of_booking"
+                barSize={54}
+                fill="#12B981"
+              />
+
+            </BarChart>
           </ResponsiveContainer>
         )}
 

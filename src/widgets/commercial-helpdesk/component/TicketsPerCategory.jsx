@@ -51,12 +51,10 @@ const CustomYAxisTick = ({ x, y, payload }) => {
 function TicketsPerCategory({ data = [] }) {
   const hasData = data && data.length > 0;
 
-  const chartData = data.map(item => ({
+  const chartData = data.map((item) => ({
     name: item.category_name,
     value: item.total_complaints,
   }));
-
-  const maxValue = Math.max(...chartData.map(item => item.value), 0);
 
   return (
     <Card
@@ -65,23 +63,19 @@ function TicketsPerCategory({ data = [] }) {
       titleWeight="semi-bold"
       childrenClassName="h-full"
     >
-
       {!hasData ? (
         <EmptyState
           title="No Tickets Found"
           description="Catch up all the data. Change the date range to see the data."
         />
       ) : (
-
         <div className="w-full h-[280px] mt-[28px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} layout="vertical">
-
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
               <XAxis
                 type="number"
-                domain={[0, Math.ceil(maxValue * 1.2) || 10]}
                 tick={{ fill: "#94A3B8", fontSize: 12 }}
                 axisLine
                 tickLine={false}
@@ -102,23 +96,10 @@ function TicketsPerCategory({ data = [] }) {
                 cursor={{ fill: "transparent" }}
               />
 
-              <Bar dataKey="value" barSize={36}>
-                {chartData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={
-                      entry.value === maxValue
-                        ? "#3C81F6"
-                        : "#79ABFF"
-                    }
-                  />
-                ))}
-              </Bar>
-
+              <Bar dataKey="value" barSize={36} fill="#08B6D4" />
             </BarChart>
           </ResponsiveContainer>
         </div>
-
       )}
     </Card>
   );

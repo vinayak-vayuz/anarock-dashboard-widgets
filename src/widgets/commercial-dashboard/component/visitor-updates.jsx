@@ -250,6 +250,7 @@ function VisitorUpdates({ data }) {
                 width={30}
                 axisLine={false}
                 tickLine={false}
+                allowDecimals={false}
                 tick={{ fill: "#64748B", fontSize: 12 }}
               />
               <RTooltip />

@@ -1,98 +1,38 @@
-import React from "react";
-import { GoPeople } from "react-icons/go";
 
-const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
-  const pct = Math.max(0, Math.min(100, (value / (total || 1)) * 100));
+import React, { useState } from "react";
+import OccupancyOverviewCard from "./component/occupancy-overview";
+import EmployeeFootfall from "./component/employee-footfall";
+import VisitorUpdates from "./component/visitor-updates";
+import TicketStatus from "./component/ticket-status";
+import TicketEscalation from "./component/ticket-escalation";
+import Engagement from "../overview/components/Engagement";
+import Amenities from "./component/amenities";
+import FoodBeverages from "./component/food-beverages";
 
-  const valueTextColor =
-    colorClass === "bg-[#8B5CF6]"
-      ? "text-[#8B5CF6]"
-      : colorClass === "bg-[#12B981]"
-      ? "text-[#12B981]"
-      : "text-slate-600";
-  return (
-    <div className="flex flex-col items-start">
-      <div className="w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden">
-        <div
-          className={`h-[11px] rounded-full ${colorClass}`}
-          style={{
-            width:
-              colorClass === "bg-[#12B981]"
-                ? `${pct + 45}%`
-                : `${pct}%`,
-          }}
-        />
-      </div>
 
-      <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>
-        {value}
-      </div>
+function CommercialDashboard() {
 
-      <div className="!text-[12px] leading-[16px] text-[#64748B] mt-1">
-        {label}
-      </div>
-    </div>
-  );
-};
-
-const OccupancyOverviewCard = ({
-  data,
-  occupiedUnits = 9000,
-  EmployeesCount = 8910,
-  AdminsCount = 90,
-}) => {
-
-  const totalOccupants = data?.total_occupants ?? occupiedUnits;
-  const employees = data?.total_members ?? EmployeesCount;
-  const admins = data?.total_admins ?? AdminsCount;
-
-  const barTotal = employees + admins;
 
   return (
-    <div>
-      <div className="bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]">
-        <div
-          className="flex items-center gap-[12px] h-[20px]"
-          style={{ marginBottom: "24px" }}
-        >
-          <GoPeople className="!text-[20px] text-[#329DFF]" />
-          <div className="font-medium text-[#121212] text-[16px] leading-[20px]">
-            Occupancy Overview
-          </div>
-        </div>
-
-        <div className="flex items-start justify-between">
-          <div>
-            <div className="text-[12px] leading-[16px] text-[#64748B] font-normal">
-              Total Occupants
-            </div>
-
-            <div className="flex items-center gap-1">
-              <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
-                {totalOccupants}
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-end gap-1">
-            <MiniPill
-              value={employees}
-              total={barTotal}
-              colorClass="bg-[#8B5CF6]"
-              label="Employees"
-            />
-
-            <MiniPill
-              value={admins}
-              total={barTotal}
-              colorClass="bg-[#12B981]"
-              label="Admins"
-            />
-          </div>
-        </div>
+    <>
+      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-6 mt-6 auto-rows-fr">
+        <OccupancyOverviewCard />
+        <EmployeeFootfall />
       </div>
-    </div>
+      <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 auto-rows-fr">
+        <div className="mt-[-115px]">
+          <VisitorUpdates />
+        </div>
+        <TicketStatus />
+        <TicketEscalation />
+      </div>
+      <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 auto-rows-fr">
+        <Engagement />
+        <Amenities />
+        <FoodBeverages />
+      </div>
+    </>
   );
-};
+}
 
-export default OccupancyOverviewCard;
+export default CommercialDashboard;

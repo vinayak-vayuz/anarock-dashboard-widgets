@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Cell,
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
@@ -22,7 +21,6 @@ const dummyData = [
 ];
 
 const OrganisationWiseVisitorsCard = ({ data }) => {
-
   const isEmptyArray = Array.isArray(data) && data?.length === 0;
 
   const chartData =
@@ -32,16 +30,6 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
       ? data
       : [];
 
-  let maxVisitors = 0;
-
-  for (let i = 0; i < (chartData?.length || 0); i++) {
-    const currentVisitors = Number(chartData?.[i]?.no_of_visitors) || 0;
-
-    if (currentVisitors > maxVisitors) {
-      maxVisitors = currentVisitors;
-    }
-  }
-
   return (
     <Card
       title="Organisation Wise Visitors"
@@ -50,12 +38,11 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
       childrenClassName="mt-6"
     >
       <div className="w-full h-[260px] flex items-center justify-center">
-
         {isEmptyArray ? (
-         <EmptyState
-    title="No Visitors Found"
-    description="Catch up all the data. Change the date range to see the data."
-  />
+          <EmptyState
+            title="No Visitors Found"
+            description="Catch up all the data. Change the date range to see the data."
+          />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
@@ -82,27 +69,20 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
                 axisLine={false}
                 tickLine={false}
                 allowDecimals={false}
-                
               />
 
               <Tooltip cursor={false} />
 
-              <Bar dataKey="no_of_visitors" name="Visitors" maxBarSize={55}>
-                {chartData?.map?.((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={
-                      (entry?.no_of_visitors || 0) === maxVisitors
-                        ? "#3B82F6"
-                        : "#7FB0FF"
-                    }
-                  />
-                ))}
-              </Bar>
+              {/* Fixed bar color */}
+              <Bar
+                dataKey="no_of_visitors"
+                name="Visitors"
+                maxBarSize={55}
+                fill="#3C81F6"
+              />
             </BarChart>
           </ResponsiveContainer>
         )}
-
       </div>
     </Card>
   );

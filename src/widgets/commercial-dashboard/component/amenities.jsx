@@ -12,6 +12,7 @@ function Amenities({ data }) {
           totalBookings: data?.amenity_summary?.total_bookings ?? 0,
           todayPaidRevenue: data?.amenity_summary?.today_paid_revenue ?? "0.00",
           growthPercentage: data?.amenity_summary?.growth_percentage ?? null,
+          bookingGrowth: data?.amenity_summary?.booking_growth ?? null,
           currencyType: data?.amenity_summary?.currency_type ?? "₹",
         },
         chartData: Array.isArray(data?.chart_data)
@@ -40,6 +41,19 @@ function Amenities({ data }) {
     normalizedChartData.every((item) => item?.isPaid === false);
 
   const totalBookings = amenitySummary?.totalBookings || 0;
+
+  const rawBookingGrowth = amenitySummary?.bookingGrowth;
+  let bookingGrowth = 0;
+
+  if (typeof rawBookingGrowth === "number") {
+    bookingGrowth = rawBookingGrowth;
+  } else if (typeof rawBookingGrowth === "string") {
+    const cleaned = rawBookingGrowth.replace("%", "").trim();
+    const parsed = Number(cleaned);
+    bookingGrowth = isNaN(parsed) ? 0 : parsed;
+  }
+
+  /* ----------------------------------------------------------------------- */
 
   const totalForProgress = normalizedChartData.reduce((sum, item) => {
     const bookings = item?.total_bookings || 0;
@@ -97,6 +111,18 @@ function Amenities({ data }) {
             </div>
             <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
               {totalBookings}
+            </div>
+
+            <div
+              className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
+                bookingGrowth >= 0
+                  ? "text-[#1FA05B] bg-green-50"
+                  : "text-red-600 bg-red-50"
+              }`}
+            >
+              {bookingGrowth >= 0 ? <FaCaretUp /> : <FaCaretDown />}
+              {bookingGrowth}%
+              <span>from last month</span>
             </div>
           </div>
 
