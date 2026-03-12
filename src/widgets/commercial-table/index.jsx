@@ -68,7 +68,7 @@ console.log("currentData:", currentData);
         style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
       >
         {safeColumns.map((col, index) => (
-          <div key={index} className="px-6 py-4">
+          <div key={index} className="px-6 py-4 text-[16px] leading-[20px]">
             {col.label}
           </div>
         ))}
@@ -80,7 +80,7 @@ console.log("currentData:", currentData);
           currentData.map((row, rowIndex) => (
             <div
               key={rowIndex}
-              className="grid text-sm text-gray-700 hover:bg-gray-50 transition"
+              className="grid text-[14px] leading-[18px] text-gray-700 hover:bg-gray-50 transition"
               style={{
                 gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
               }}
@@ -100,7 +100,7 @@ console.log("currentData:", currentData);
                   <div key={colIndex} className="px-6 py-4 bg-gray-50">
                     {isPercent ? (
                       <div
-                        className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${percentClass}`}
+                        className={`inline-block px-3 py-1 rounded-full text-[14px]  font-semibold ${percentClass}`}
                       >
                         {value}
                       </div>
