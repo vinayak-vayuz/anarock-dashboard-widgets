@@ -125,7 +125,7 @@ console.log("currentData:", currentData);
       {/* Pagination */}
       <div className="flex justify-end items-center px-6 py-4 text-sm bg-white gap-8">
 
-        <div className="flex items-center gap-2 text-gray-600">
+        <div className="flex items-center gap-2 text-gray-600 text-[14px]">
           <div>Rows per page:</div>
 
           <select
@@ -143,7 +143,7 @@ console.log("currentData:", currentData);
             ))}
           </select>
 
-         <div className="ml-4">
+         <div className="ml-4 text-[14px]">
   {safeData?.length === 0
     ? "0–0"
     : `1–${safeData?.length}`}{" "}
@@ -151,7 +151,7 @@ console.log("currentData:", currentData);
 </div>
         </div>
 
-        <div className="flex items-center space-x-2 text-gray-600">
+        <div className="flex items-center space-x-2 text-gray-600 text-[14px]">
           <button
             onClick={() => setCurrentPage(1)}
             disabled={currentPage === 1}

@@ -39,3 +39,7 @@ li.recharts-legend-item.legend-item-0 {
   border: none !important;
   border-left-width: 0 !important;
 }
+li[class*="item-"] {
+  border: none !important;
+  border-left-width: 0 !important;
+}
