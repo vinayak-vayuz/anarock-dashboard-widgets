@@ -28,11 +28,19 @@ function Engagement({ isStatic, data, communities }) {
       value: Number(data?.total_notices || 0),
       color: COLORS[0],
     },
-    { name: "Post", value: Number(data?.total_topics || 0), color: COLORS[1] },
-    { name: "Poll", value: Number(data?.total_polls || 0), color: COLORS[2] },
+    {
+      name: "Post",
+      value: Number(data?.total_topics || data?.total_forum_topics || 0),
+      color: COLORS[1],
+    },
+    {
+      name: "Poll",
+      value: Number(data?.total_polls || data?.total_poll_detail || 0),
+      color: COLORS[2],
+    },
     {
       name: "Survey",
-      value: Number(data?.total_surveys || 0),
+      value: Number(data?.total_surveys || data?.total_survey_detail || 0),
       color: COLORS[3],
     },
   ];
@@ -45,12 +53,14 @@ function Engagement({ isStatic, data, communities }) {
       icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
       className={`${isStatic && "max-h-[303px]"}  ${isCommercial ? "h-[324px]" : "h-[303px]"} gap-[20px]`}
       actionButtons={
-       !isCommercial && <ActionButtons
-          widgetId={data?.widget_id}
-          options={data?.communities}
-          // onFilterChange={(value, widget) => console.log(value, widget)}
-          // onExport={(widget) => console.log("Export triggered for", widget)}
-        />
+        !isCommercial && (
+          <ActionButtons
+            widgetId={data?.widget_id}
+            options={data?.communities}
+            // onFilterChange={(value, widget) => console.log(value, widget)}
+            // onExport={(widget) => console.log("Export triggered for", widget)}
+          />
+        )
       }
     >
       <div className="w-full h-[235px]">
@@ -93,13 +103,12 @@ function Engagement({ isStatic, data, communities }) {
               }}
             />
 
-         <RTooltip
-  content={<CustomTooltip />}
-  cursor={{ fill: "transparent" }}
-  wrapperStyle={{ outline: "none" }}
-  position={{ x: 160, y: 0 }} 
-
-/>
+            <RTooltip
+              content={<CustomTooltip />}
+              cursor={{ fill: "transparent" }}
+              wrapperStyle={{ outline: "none" }}
+              position={{ x: 160, y: 0 }}
+            />
             <Bar dataKey="value" barSize={40} isAnimationActive={false}>
               {engagementBars.map((entry, i) => (
                 <Cell key={entry.name} fill={COLORS[i]} />

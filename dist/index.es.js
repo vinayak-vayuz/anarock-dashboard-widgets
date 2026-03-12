@@ -40510,11 +40510,19 @@ function vfe({ isStatic: e, data: t, communities: n }) {
       value: Number(t?.total_notices || 0),
       color: r[0]
     },
-    { name: "Post", value: Number(t?.total_topics || 0), color: r[1] },
-    { name: "Poll", value: Number(t?.total_polls || 0), color: r[2] },
+    {
+      name: "Post",
+      value: Number(t?.total_topics || t?.total_forum_topics || 0),
+      color: r[1]
+    },
+    {
+      name: "Poll",
+      value: Number(t?.total_polls || t?.total_poll_detail || 0),
+      color: r[2]
+    },
     {
       name: "Survey",
-      value: Number(t?.total_surveys || 0),
+      value: Number(t?.total_surveys || t?.total_survey_detail || 0),
       color: r[3]
     }
   ], o = t?.widget === "commercial";
