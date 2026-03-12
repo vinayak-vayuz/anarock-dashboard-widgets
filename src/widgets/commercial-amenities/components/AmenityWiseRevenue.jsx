@@ -49,7 +49,7 @@ function AmenityWiseRevenue({ data }) {
       : chartData;
 
   const formatCurrency = (value) =>
-    `₹ ${value?.toLocaleString?.("en-IN") || 0}`;
+    `Rs ${value?.toLocaleString?.("en-IN") || 0}`;
 
   return (
     <Card

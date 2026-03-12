@@ -53752,7 +53752,7 @@ function upe({ data: e }) {
   })) : [], o = (r?.length > 0 ? r?.every((s) => s?.value === 0) : !1) ? r?.map((s, l) => ({
     ...s,
     value: l === 0 ? 1 : 0
-  })) : r, a = (s) => `₹ ${s?.toLocaleString?.("en-IN") || 0}`;
+  })) : r, a = (s) => `Rs ${s?.toLocaleString?.("en-IN") || 0}`;
   return /* @__PURE__ */ v.jsx(
     vn,
     {
