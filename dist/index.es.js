@@ -54156,35 +54156,35 @@ function hpe({
   totalPages: s = 1,
   pageOptions: l = [10, 20, 30, 40, 50]
 }) {
-  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = (i - 1) * n, h = p + n, m = c.slice(p, h);
-  return /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
+  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = c;
+  return console.log("safeData:", c), console.log("currentData:", p), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
         className: "grid bg-slate-600 text-white text-sm font-medium",
         style: { gridTemplateColumns: `repeat(${u.length}, 1fr)` },
-        children: u.map((g, b) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4", children: g.label }, b))
+        children: u.map((h, m) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4", children: h.label }, m))
       }
     ),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: m.length > 0 ? m.map((g, b) => /* @__PURE__ */ v.jsx(
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: p.length > 0 ? p.map((h, m) => /* @__PURE__ */ v.jsx(
       "div",
       {
         className: "grid text-sm text-gray-700 hover:bg-gray-50 transition",
         style: {
           gridTemplateColumns: `repeat(${u.length}, 1fr)`
         },
-        children: u.map((S, w) => {
-          const x = g[S.key], _ = typeof x == "string" && x.includes("%"), E = x === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
-          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: _ ? /* @__PURE__ */ v.jsx(
+        children: u.map((g, b) => {
+          const S = h[g.key], w = typeof S == "string" && S.includes("%"), x = S === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
+          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: w ? /* @__PURE__ */ v.jsx(
             "div",
             {
-              className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${E}`,
-              children: x
+              className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${x}`,
+              children: S
             }
-          ) : /* @__PURE__ */ v.jsx("div", { children: x ?? "-" }) }, w);
+          ) : /* @__PURE__ */ v.jsx("div", { children: S ?? "-" }) }, b);
         })
       },
-      b
+      m
     )) : /* @__PURE__ */ v.jsx(
       Io,
       {
@@ -54199,11 +54199,11 @@ function hpe({
           "select",
           {
             value: n,
-            onChange: (g) => {
-              r(Number(g.target.value)), o(1);
+            onChange: (h) => {
+              r(Number(h.target.value)), o(1);
             },
             className: "border rounded px-2 py-1",
-            children: l.map((g, b) => /* @__PURE__ */ v.jsx("option", { value: g, children: g }, b))
+            children: l.map((h, m) => /* @__PURE__ */ v.jsx("option", { value: h, children: h }, m))
           }
         ),
         /* @__PURE__ */ v.jsxs("div", { className: "ml-4", children: [
@@ -54226,7 +54226,7 @@ function hpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((g) => g - 1),
+            onClick: () => o((h) => h - 1),
             disabled: i === 1,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(QR, { size: 18 })
@@ -54235,7 +54235,7 @@ function hpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((g) => g + 1),
+            onClick: () => o((h) => h + 1),
             disabled: i === f,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(ZR, { size: 18 })

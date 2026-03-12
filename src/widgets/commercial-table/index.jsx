@@ -54,8 +54,11 @@ export default function CommercialTable({
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
 
-  const currentData = safeData.slice(startIndex, endIndex);
+const currentData = safeData;
 
+
+console.log("safeData:", safeData);
+console.log("currentData:", currentData);
   return (
     <div className="w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col">
 
