@@ -54163,13 +54163,13 @@ function mpe({
       {
         className: "grid bg-slate-600 text-white text-sm font-medium",
         style: { gridTemplateColumns: `repeat(${u.length}, 1fr)` },
-        children: u.map((h, m) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4", children: h.label }, m))
+        children: u.map((h, m) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px]", children: h.label }, m))
       }
     ),
     /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: p.length > 0 ? p.map((h, m) => /* @__PURE__ */ v.jsx(
       "div",
       {
-        className: "grid text-sm text-gray-700 hover:bg-gray-50 transition",
+        className: "grid text-[14px] leading-[18px] text-gray-700 hover:bg-gray-50 transition",
         style: {
           gridTemplateColumns: `repeat(${u.length}, 1fr)`
         },
@@ -54178,7 +54178,7 @@ function mpe({
           return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: w ? /* @__PURE__ */ v.jsx(
             "div",
             {
-              className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${x}`,
+              className: `inline-block px-3 py-1 rounded-full text-[14px]  font-semibold ${x}`,
               children: S
             }
           ) : /* @__PURE__ */ v.jsx("div", { children: S ?? "-" }) }, b);
