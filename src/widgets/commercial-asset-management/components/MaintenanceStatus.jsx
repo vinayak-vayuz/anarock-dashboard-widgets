@@ -112,11 +112,11 @@ const chartData = React.useMemo(() => {
   wrapperStyle={{ paddingTop: "18px" }}
 />
 
-          <Bar dataKey="Open" stackId="a" fill="#3B82F6" hide={hiddenBars["Open"]} />
-          <Bar dataKey="Closed" stackId="a" fill="#10B981" hide={hiddenBars["Closed"]} />
-          <Bar dataKey="Cancelled" stackId="a" fill="#B91C1C" hide={hiddenBars["Cancelled"]} />
-          <Bar dataKey="OnHold" stackId="a" fill="#64748B" hide={hiddenBars["OnHold"]} />
-          <Bar dataKey="InProgress" stackId="a" fill="#F59E0B" hide={hiddenBars["InProgress"]} />
+          <Bar dataKey="Open" stackId="a" fill="#3B82F6" hide={hiddenBars["Open"]} name="Open" />
+          <Bar dataKey="Closed" stackId="a" fill="#10B981" hide={hiddenBars["Closed"]} name="Closed" />
+          <Bar dataKey="Cancelled" stackId="a" fill="#B91C1C" hide={hiddenBars["Cancelled"]} name="Cancelled" />
+          <Bar dataKey="OnHold" stackId="a" fill="#64748B" hide={hiddenBars["OnHold"]} name="On-Hold" />
+          <Bar dataKey="InProgress" stackId="a" fill="#F59E0B" hide={hiddenBars["InProgress"]} name="In Progress" />
         </BarChart>
       </ResponsiveContainer>
     )}

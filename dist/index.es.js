@@ -53985,11 +53985,11 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Yde = [
             wrapperStyle: { paddingTop: "18px" }
           }
         ),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "Open", stackId: "a", fill: "#3B82F6", hide: t.Open }),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "Closed", stackId: "a", fill: "#10B981", hide: t.Closed }),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "Cancelled", stackId: "a", fill: "#B91C1C", hide: t.Cancelled }),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "OnHold", stackId: "a", fill: "#64748B", hide: t.OnHold }),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress })
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "Open", stackId: "a", fill: "#3B82F6", hide: t.Open, name: "Open" }),
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "Closed", stackId: "a", fill: "#10B981", hide: t.Closed, name: "Closed" }),
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "Cancelled", stackId: "a", fill: "#B91C1C", hide: t.Cancelled, name: "Cancelled" }),
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "OnHold", stackId: "a", fill: "#64748B", hide: t.OnHold, name: "On-Hold" }),
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress, name: "In Progress" })
       ]
     }
   ) }) }) });
