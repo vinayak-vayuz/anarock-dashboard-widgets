@@ -9,7 +9,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import Card from "../../components/Card";
-import { BriefcaseBusiness } from 'lucide-react';
+import { BriefcaseBusiness } from "lucide-react";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
@@ -55,22 +55,21 @@ const EmployeeFootfall = () => {
         grid: { display: false },
         ticks: { color: "#64748B", font: { size: 12 } },
       },
-     y: {
-  beginAtZero: true,
-  min: 0,
-  max: 2000,
-  ticks: {
-    stepSize: 500,
-    color: "#64748B",
-    callback: (value) => value,
-  },
-  grid: {
-    display: false,  
-    color: "#E5E7EB",
-    borderDash: [4, 4],
-    drawBorder: false,
-  },
-
+      y: {
+        beginAtZero: true,
+        min: 0,
+        max: 2000,
+        ticks: {
+          stepSize: 500,
+          color: "#64748B",
+          callback: (value) => value,
+        },
+        grid: {
+          display: false,
+          color: "#E5E7EB",
+          borderDash: [4, 4],
+          drawBorder: false,
+        },
       },
     },
   };
@@ -78,14 +77,17 @@ const EmployeeFootfall = () => {
   return (
     <Card
       className="w-full h-[238px]"
-        title="Employee Footfall (Static Data)"
-            period="Today"
-      icon={<BriefcaseBusiness  className="!text-[24px] text-[#8B5CF6]" />
-}
-     >
-  <div className="mb-[16px] mt-[8px]">
-        <div className="text-[12px] leading-[16px] text-[#64748B]">Employees Inside</div>
-        <div className="text-[20px] leading-[24px] font-medium text-[#3C81F6]">7,500</div>
+      title="Employee Footfall (Static Data)"
+      period="Today"
+      icon={<BriefcaseBusiness className="!text-[24px] text-[#8B5CF6]" />}
+    >
+      <div className="mb-[16px] mt-[8px] flex flex-col !gap-1">
+        <div className="text-[12px] leading-[16px] text-[#64748B]">
+          Employees Inside
+        </div>
+        <div className="text-[20px] leading-[24px] font-medium text-[#3C81F6]">
+          7,500
+        </div>
       </div>
 
       <div className="h-[110px]">

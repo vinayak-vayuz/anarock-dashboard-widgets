@@ -11,18 +11,15 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
     colorClass === "bg-[#3C81F6]"
       ? "text-[#8B5CF6]"
       : colorClass === "bg-[#8B5CF6]"
-      ? "text-[#12B981]"
-      : "text-slate-600";
+        ? "text-[#12B981]"
+        : "text-slate-600";
   return (
     <div className="flex flex-col items-start">
       <div className="w-2/3 min-w-[80px] h-5 rounded-full overflow-hidden">
         <div
           className={`h-[11px] rounded-full ${colorClass || ""}`}
           style={{
-            width:
-              colorClass === "bg-[#12B981]"
-                ? `${pct + 45}%`
-                : `${pct}%`,
+            width: colorClass === "bg-[#12B981]" ? `${pct + 45}%` : `${pct}%`,
           }}
         />
       </div>
@@ -44,7 +41,6 @@ const OccupancyOverviewCard = ({
   EmployeesCount = 8910,
   AdminsCount = 910,
 }) => {
-
   const totalOccupants =
     data?.total_occupants !== undefined && data?.total_occupants !== null
       ? Number(data?.total_occupants) || 0
@@ -76,15 +72,13 @@ const OccupancyOverviewCard = ({
         </div>
 
         <div className="flex items-start justify-between">
-          <div>
+          <div className="flex flex-col items-center gap-1">
             <div className="text-[12px] leading-[16px] text-[#64748B] font-normal">
               Total Occupants
             </div>
 
-            <div className="flex items-center gap-1">
-              <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
-                {totalOccupants ?? 0}
-              </div>
+            <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
+              {totalOccupants ?? 0}
             </div>
           </div>
 
@@ -93,14 +87,14 @@ const OccupancyOverviewCard = ({
               value={employees ?? 0}
               total={barTotal || 1}
               colorClass="bg-[#3C81F6]"
-             label={(employees ?? 0) <= 1 ? "Employee" : "Employees"}
+              label={(employees ?? 0) <= 1 ? "Employee" : "Employees"}
             />
 
             <MiniPill
               value={admins ?? 0}
               total={barTotal || 1}
               colorClass="bg-[#8B5CF6]"
-             label={(admins ?? 0) <= 1 ? "Admin" : "Admins"}
+              label={(admins ?? 0) <= 1 ? "Admin" : "Admins"}
             />
           </div>
         </div>

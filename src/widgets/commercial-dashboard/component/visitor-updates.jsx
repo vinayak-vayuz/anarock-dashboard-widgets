@@ -145,7 +145,7 @@ function VisitorUpdates({ data }) {
       <div className="flex flex-col mt-2">
         {/* SUMMARY */}
         <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-6">
-          <div>
+          <div className="flex flex-col gap-[8px]!">
             <div className="text-[10px] text-[#64748B]">
               Total Visitors
             </div>
@@ -154,7 +154,7 @@ function VisitorUpdates({ data }) {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col gap-[8px]!">
             <div className="text-[10px] text-[#64748B]">
               Peak Time
             </div>
@@ -163,7 +163,7 @@ function VisitorUpdates({ data }) {
             </div>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-col gap-[8px]!">
             <div className="text-[10px] text-[#64748B]">
               Active Walk-ins
             </div>
@@ -196,7 +196,7 @@ function VisitorUpdates({ data }) {
             </div>
           </div>
 
-          <div className="mt-2">
+          <div className="mt-2 flex flex-col gap-[8px]!">
             <div className="text-[10px] text-[#64748B]">
               Pre-approved Check-ins
             </div>

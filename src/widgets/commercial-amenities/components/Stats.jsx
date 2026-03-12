@@ -21,7 +21,7 @@ function SingleStats({ data }) {
             }
             className="h-[132px]"
           >
-            <div>
+            <div className="flex flex-col gap-[8px]!">
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
                 {card.value}
               </div>
