@@ -72,6 +72,7 @@ Keep react and react-dom as peerDependencies (not bundled).
 Always test in the playground before publishing.
 
 
-to push the code for the npm package use
+#Important To push the code for the npm package use
+
 npm version patch
 git push origin main --tags

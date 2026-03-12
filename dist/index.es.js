@@ -52255,9 +52255,9 @@ const Pk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
       }
     ),
     /* @__PURE__ */ v.jsxs("div", { className: "flex items-start justify-between", children: [
-      /* @__PURE__ */ v.jsxs("div", { children: [
+      /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col items-center gap-1", children: [
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B] font-normal", children: "Total Occupants" }),
-        /* @__PURE__ */ v.jsx("div", { className: "flex items-center gap-1", children: /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: i ?? 0 }) })
+        /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: i ?? 0 })
       ] }),
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-end gap-1", children: [
         /* @__PURE__ */ v.jsx(
@@ -52347,7 +52347,7 @@ const qfe = () => {
       period: "Today",
       icon: /* @__PURE__ */ v.jsx(Hue, { className: "!text-[24px] text-[#8B5CF6]" }),
       children: [
-        /* @__PURE__ */ v.jsxs("div", { className: "mb-[16px] mt-[8px]", children: [
+        /* @__PURE__ */ v.jsxs("div", { className: "mb-[16px] mt-[8px] flex flex-col !gap-1", children: [
           /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Employees Inside" }),
           /* @__PURE__ */ v.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#3C81F6]", children: "7,500" })
         ] }),
@@ -52902,15 +52902,15 @@ function Jfe({ data: e }) {
       icon: /* @__PURE__ */ v.jsx(fh, { className: "!text-[24px] text-[#8B5CF6]" }),
       children: /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col mt-2", children: [
         /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 gap-y-4 gap-x-6 mb-6", children: [
-          /* @__PURE__ */ v.jsxs("div", { children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Total Visitors" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-[20px] font-medium text-[#08B6D4]", children: n?.totalVisitorsToday ?? 0 })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Peak Time" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-[20px] font-medium text-[#8B5CF6]", children: n?.peakTime ?? "-" })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "mt-2", children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "mt-2 flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Active Walk-ins" }),
             /* @__PURE__ */ v.jsxs("div", { className: "flex items-baseline text-xl font-medium leading-[32px]", children: [
               /* @__PURE__ */ v.jsx("div", { className: "text-[28px] text-[#1FA05B] leading-[32px]", children: r?.walkins?.currently_inside ?? 0 }),
@@ -52938,7 +52938,7 @@ function Jfe({ data: e }) {
               )
             ] })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "mt-2", children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "mt-2 flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[10px] text-[#64748B]", children: "Pre-approved Check-ins" }),
             /* @__PURE__ */ v.jsxs("div", { className: "flex items-baseline text-xl font-medium leading-[32px]", children: [
               /* @__PURE__ */ v.jsx("div", { className: "text-[28px] text-[#E7A015] leading-[32px]", children: r?.preApproved?.completed_visits ?? 0 }),
@@ -53550,7 +53550,7 @@ function spe({ data: e }) {
           }
         ),
         className: "h-[132px]",
-        children: /* @__PURE__ */ v.jsxs("div", { children: [
+        children: /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
           /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: t.value }),
           /* @__PURE__ */ v.jsxs(
             "div",
