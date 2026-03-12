@@ -36,13 +36,60 @@ const staticData = {
     },
   },
   chart_data: [
-    { hour: "10 AM", walkins: 22, preApproved: 30 },
-    { hour: "12 PM", walkins: 15, preApproved: 28 },
-    { hour: "2 PM", walkins: 30, preApproved: 38 },
-    { hour: "4 PM", walkins: 45, preApproved: 50 },
-    { hour: "6 PM", walkins: 25, preApproved: 40 },
+    { hour: 10, walkins: 22, preApproved: 30 },
+    { hour: 12, walkins: 15, preApproved: 28 },
+    { hour: 14, walkins: 30, preApproved: 38 },
+    { hour: 16, walkins: 45, preApproved: 50 },
+    { hour: 18, walkins: 25, preApproved: 40 },
   ],
 };
+
+function formatHourToAMPM(hour) {
+  const meridian = hour >= 12 ? "PM" : "AM";
+  let formattedHour = hour % 12;
+  if (formattedHour === 0) formattedHour = 12;
+  return `${formattedHour} ${meridian}`;
+}
+
+function parseHourValue(value) {
+  if (typeof value === "number" && value >= 0 && value <= 23) {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const normalizedValue = value.trim().toUpperCase();
+    const match = normalizedValue.match(/^(\d{1,2})(?::\d{2})?\s*(AM|PM)$/);
+
+    if (match) {
+      let parsedHour = Number(match[1]) % 12;
+      if (match[2] === "PM") parsedHour += 12;
+      return parsedHour;
+    }
+
+    const numericValue = Number(normalizedValue);
+    if (!Number.isNaN(numericValue) && numericValue >= 0 && numericValue <= 23) {
+      return numericValue;
+    }
+  }
+
+  return null;
+}
+
+function generateHourlyChartData(data = []) {
+  return Array.from({ length: 24 }, (_, hour) => {
+    const matchedItem =
+      data.find((item) => parseHourValue(item?.hour) === hour) || {};
+
+    return {
+      hour,
+      time: formatHourToAMPM(hour),
+      walkins: Number(matchedItem?.walkins ?? 0),
+      approved: Number(
+        matchedItem?.pre_approved ?? matchedItem?.preApproved ?? matchedItem?.approved ?? 0
+      ),
+    };
+  });
+}
 
 function HoverDetailCard({ title, color, rows = [], children }) {
   const content = (
@@ -84,6 +131,25 @@ function HoverDetailCard({ title, color, rows = [], children }) {
   );
 }
 
+function HourlyTooltip({ active, payload }) {
+  if (!active || !payload?.length) return null;
+
+  return (
+    <div className="rounded-lg bg-[#121212] px-3 py-2 text-[12px] text-white shadow-lg">
+      {payload.map((item) => (
+        <div key={item.dataKey} className="flex items-center gap-2">
+          <span
+            className="h-2 w-2 rounded-full"
+            style={{ backgroundColor: item.stroke }}
+          />
+          <span className="min-w-[82px] text-[#D1D3D4]">{item.name}</span>
+          <span className="font-semibold">{item.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function VisitorUpdates({ data }) {
   const finalData =
     data && Object.keys(data).length ? data : staticData;
@@ -119,15 +185,22 @@ function VisitorUpdates({ data }) {
 
   const chart_data = useMemo(() => {
     const apiChart = finalData?.chart_data ?? [];
-    if (!apiChart.length) return staticData.chart_data;
-
-    return apiChart.map((item) => ({
-      time: item?.hour ?? "-",
-      walkins: item?.walkins ?? 0,
-      approved:
-        item?.pre_approved ?? item?.preApproved ?? 0,
-    }));
+    return generateHourlyChartData(
+      apiChart.length ? apiChart : staticData.chart_data
+    );
   }, [finalData]);
+
+  const { yAxisTicks, yAxisMax } = useMemo(() => {
+    const maxValue = Math.max(
+      ...chart_data.map((item) => Math.max(item.walkins, item.approved))
+    );
+    const max = maxValue > 0 ? maxValue : 5;
+
+    return {
+      yAxisTicks: [0, Math.ceil(max / 2), max],
+      yAxisMax: max,
+    };
+  }, [chart_data]);
 
   const currentTime = new Date().toLocaleTimeString("en-IN", {
     hour: "2-digit",
@@ -234,7 +307,10 @@ function VisitorUpdates({ data }) {
         {/* CHART */}
         <div className="w-full h-[179px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chart_data ?? []}>
+            <LineChart
+              data={chart_data ?? []}
+              margin={{ top: 5, right: 0, left: -18, bottom: 0 }}
+            >
               <CartesianGrid
                 stroke="#E5E7EB"
                 strokeDasharray="4 4"
@@ -242,24 +318,29 @@ function VisitorUpdates({ data }) {
               />
               <XAxis
                 dataKey="time"
+                tickFormatter={(value, index) => (index % 4 === 0 ? value : "")}
                 axisLine={false}
                 tickLine={false}
-                tick={{ fill: "#121212", fontSize: 12 }}
+                tick={{ fill: "#121212", fontSize: 10, fontWeight: 400 }}
               />
               <YAxis
-                width={30}
+                width={24}
                 axisLine={false}
                 tickLine={false}
                 allowDecimals={false}
-                tick={{ fill: "#64748B", fontSize: 12 }}
+                ticks={yAxisTicks}
+                domain={[0, yAxisMax]}
+                tick={{ fill: "#64748B", fontSize: 10, fontWeight: 400 }}
               />
-              <RTooltip />
+              <RTooltip content={<HourlyTooltip />} />
               <Line
                 type="monotone"
                 dataKey="walkins"
                 stroke="#22C55E"
                 strokeWidth={2}
                 dot={false}
+                name="Walk-ins"
+                isAnimationActive={false}
               />
               <Line
                 type="monotone"
@@ -268,6 +349,8 @@ function VisitorUpdates({ data }) {
                 strokeWidth={2}
                 strokeDasharray="5 5"
                 dot={false}
+                name="Pre-approved"
+                isAnimationActive={false}
               />
             </LineChart>
           </ResponsiveContainer>
