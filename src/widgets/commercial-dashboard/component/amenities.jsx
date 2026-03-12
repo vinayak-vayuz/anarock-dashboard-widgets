@@ -5,7 +5,6 @@ import { formatAmount } from "../../utils/index";
 import { WavesLadder } from "lucide-react";
 
 function Amenities({ data }) {
-
   const normalizedData = data?.amenity_summary
     ? {
         amenitySummary: {
@@ -106,11 +105,13 @@ function Amenities({ data }) {
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div>
-            <div className="text-[12px] leading-[16px] text-[#64748B]">
-              Total Bookings
-            </div>
-            <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
-              {totalBookings}
+            <div className="flex flex-col gap-[4px]!">
+              <div className="text-[12px] leading-[16px] text-[#64748B]">
+                Total Bookings
+              </div>
+              <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
+                {totalBookings}
+              </div>
             </div>
 
             <div
@@ -121,13 +122,12 @@ function Amenities({ data }) {
               }`}
             >
               {bookingGrowth >= 0 ? <FaCaretUp /> : <FaCaretDown />}
-              {bookingGrowth}%
-              <span>from last month</span>
+              {bookingGrowth}%<span>from last month</span>
             </div>
           </div>
 
           {!allUnpaid && (
-            <div>
+            <div className="flex flex-col gap-[4px]!">
               <div className="text-[12px] leading-[16px] text-[#64748B]">
                 Revenue Generated
               </div>
@@ -146,8 +146,7 @@ function Amenities({ data }) {
                   }`}
                 >
                   {isGrowthPositive ? <FaCaretUp /> : <FaCaretDown />}
-                  {growthPercentage}%
-                  <span>from last month</span>
+                  {growthPercentage}%<span>from last month</span>
                 </div>
               )}
             </div>

@@ -22,7 +22,7 @@ function FoodBeverages() {
             <div className="text-[12px] leading-[16px] text-[#64748B]">
               Total Orders
             </div>
-            <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
+            <div className="mt-1 text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
               {totalOrders}
             </div>
           </div>
@@ -32,7 +32,7 @@ function FoodBeverages() {
               Revenue Generated
             </div>
 
-            <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
+            <div className="mt-1 text-[28px] leading-[32px] font-medium text-[#329DFF]">
               ₹ {revenueGenerated}
             </div>
 

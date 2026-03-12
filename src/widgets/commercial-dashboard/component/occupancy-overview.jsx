@@ -72,7 +72,7 @@ const OccupancyOverviewCard = ({
         </div>
 
         <div className="flex items-start justify-between">
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col gap-[4px]">
             <div className="text-[12px] leading-[16px] text-[#64748B] font-normal">
               Total Occupants
             </div>

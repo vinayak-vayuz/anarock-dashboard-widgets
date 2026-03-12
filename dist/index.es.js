@@ -52255,7 +52255,7 @@ const Pk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
       }
     ),
     /* @__PURE__ */ v.jsxs("div", { className: "flex items-start justify-between", children: [
-      /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col items-center gap-1", children: [
+      /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[4px]", children: [
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B] font-normal", children: "Total Occupants" }),
         /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#121212]", children: i ?? 0 })
       ] }),
@@ -52347,7 +52347,7 @@ const qfe = () => {
       period: "Today",
       icon: /* @__PURE__ */ v.jsx(Hue, { className: "!text-[24px] text-[#8B5CF6]" }),
       children: [
-        /* @__PURE__ */ v.jsxs("div", { className: "mb-[16px] mt-[8px] flex flex-col !gap-1", children: [
+        /* @__PURE__ */ v.jsxs("div", { className: "mb-[16px] mt-[8px] flex flex-col gap-[4px]!", children: [
           /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Employees Inside" }),
           /* @__PURE__ */ v.jsx("div", { className: "text-[20px] leading-[24px] font-medium text-[#3C81F6]", children: "7,500" })
         ] }),
@@ -52368,11 +52368,11 @@ function Gfe() {
         /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
           /* @__PURE__ */ v.jsxs("div", { children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Orders" }),
-            /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: 247 })
+            /* @__PURE__ */ v.jsx("div", { className: "mt-1 text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: 247 })
           ] }),
           /* @__PURE__ */ v.jsxs("div", { children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
-            /* @__PURE__ */ v.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
+            /* @__PURE__ */ v.jsxs("div", { className: "mt-1 text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
               "₹ ",
               "82K"
             ] }),
@@ -52502,8 +52502,10 @@ function Xfe({ data: e }) {
       children: /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col h-full", children: [
         /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
           /* @__PURE__ */ v.jsxs("div", { children: [
-            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
-            /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: a }),
+            /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[4px]!", children: [
+              /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
+              /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: a })
+            ] }),
             /* @__PURE__ */ v.jsxs(
               "div",
               {
@@ -52517,7 +52519,7 @@ function Xfe({ data: e }) {
               }
             )
           ] }),
-          !o && /* @__PURE__ */ v.jsxs("div", { children: [
+          !o && /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[4px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
             /* @__PURE__ */ v.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
               n?.currencyType || "₹",
