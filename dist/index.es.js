@@ -54193,7 +54193,7 @@ function mpe({
       }
     ) }),
     /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white gap-8", children: [
-      /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2 text-gray-600", children: [
+      /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2 text-gray-600 text-[14px]", children: [
         /* @__PURE__ */ v.jsx("div", { children: "Rows per page:" }),
         /* @__PURE__ */ v.jsx(
           "select",
@@ -54206,14 +54206,14 @@ function mpe({
             children: l.map((h, m) => /* @__PURE__ */ v.jsx("option", { value: h, children: h }, m))
           }
         ),
-        /* @__PURE__ */ v.jsxs("div", { className: "ml-4", children: [
+        /* @__PURE__ */ v.jsxs("div", { className: "ml-4 text-[14px]", children: [
           c?.length === 0 ? "0–0" : `1–${c?.length}`,
           " ",
           "of ",
           a || c?.length
         ] })
       ] }),
-      /* @__PURE__ */ v.jsxs("div", { className: "flex items-center space-x-2 text-gray-600", children: [
+      /* @__PURE__ */ v.jsxs("div", { className: "flex items-center space-x-2 text-gray-600 text-[14px]", children: [
         /* @__PURE__ */ v.jsx(
           "button",
           {
