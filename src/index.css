@@ -34,3 +34,8 @@ textarea {
   color: #123456 !important;
   padding: 10px;
 }
+
+li.recharts-legend-item.legend-item-0 {
+  border: none !important;
+  border-left-width: 0 !important;
+}

@@ -22,12 +22,12 @@ const EmployeeFootfall = () => {
       {
         data: [2000, 1700, 1500, 1200, 900, 800],
         backgroundColor: [
-          "#329DFF",
-          "#EF4645",
-          "#8A2E64",
-          "#F69E0A",
-          "#A2BB40",
-          "#8B5CF6",
+          "#3C81F6",
+          "#3C81F6",
+          "#3C81F6",
+          "#3C81F6",
+          "#3C81F6",
+          "#3C81F6",
         ],
         barThickness: 34,
         // borderRadius: 6,
@@ -83,14 +83,9 @@ const EmployeeFootfall = () => {
       icon={<BriefcaseBusiness  className="!text-[24px] text-[#8B5CF6]" />
 }
      >
-  <div
-  style={{
-    marginBottom: "16px",
-    marginTop: "8px",
-  }}
->
+  <div className="mb-[16px] mt-[8px]">
         <div className="text-[12px] leading-[16px] text-[#64748B]">Employees Inside</div>
-        <div className="text-[20px] leading-[24px] font-medium text-[#1FA05B]">7,500</div>
+        <div className="text-[20px] leading-[24px] font-medium text-[#3C81F6]">7,500</div>
       </div>
 
       <div className="h-[110px]">

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../components/Card";
-import RestaurantOutlinedIcon from "@mui/icons-material/RestaurantOutlined";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { Utensils } from 'lucide-react';
 
 function FoodBeverages() {
   const totalOrders = 247;
@@ -14,7 +14,7 @@ function FoodBeverages() {
       className="h-[324px]"
        title="Food & Beverages (Static Data)"
            period="Today"
-           icon={<RestaurantOutlinedIcon className="!text-[24px] text-[#FA7E28]" />}
+           icon={<Utensils  className="!text-[24px] text-[#FA7E28]" />}
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">

@@ -12,14 +12,14 @@ function GuardPatrols({ data }) {
       color: "#12B981",
     },
     {
-      name: "Delayed",
+      name: "Not - Completed",
       value: Number(data?.not_completed || 0),
-      color: "#EF4444",
+      color: "#F69E0A",
     },
     {
       name: "Missed",
       value: Number(data?.missed || 0),
-      color: "#F69E0A",
+      color: "#EF4444",
     },
   ];
 
@@ -32,7 +32,7 @@ function GuardPatrols({ data }) {
 
   return (
     <Card
-      title="Guard Patrols"
+      title="Patrol Status"
       className="h-[362px]"
       titleWeight="semi-bold"
     >

@@ -2,7 +2,7 @@ import React from 'react'
 import CommercialHeader from '../components/CommercialHeader'
 import { FileUser } from 'lucide-react';
 import MetricCard from '../commercial-helpdesk/component/Resolution';
-import { GoPeople } from "react-icons/go";
+import { Users } from 'lucide-react';
 import { ArrowRightToLine } from 'lucide-react';
 import WeeklyVisitorCard from './components/WeeklyVisitorPattern';
 import OrganisationWiseVisitorsCard from './components/OrganisationWiseVisitors';
@@ -23,7 +23,7 @@ function index() {
 
       <div className='grid grid-cols-2 gap-[24px] mt-[24px]'>
         <MetricCard
-          icon={GoPeople}
+          icon={Users}
           iconColor="#329DFF"
           title="Visitors Expected"
           value="1,247"
