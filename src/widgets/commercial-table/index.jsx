@@ -38,16 +38,22 @@ export default function CommercialTable({
   setRowsPerPage = () => {},
   currentPage = 1,
   setCurrentPage = () => {},
+  totalRows = 0,
+  totalPages = 1,
   pageOptions = [10, 20, 30, 40, 50],
 }) {
   const safeData = Array.isArray(data) ? data : [];
   const safeColumns = Array.isArray(columns) ? columns : [];
 
-  const totalPages =
+  /* fallback total pages if API does not provide */
+  const calculatedTotalPages =
     rowsPerPage > 0 ? Math.ceil(safeData.length / rowsPerPage) : 1;
+
+  const finalTotalPages = totalPages || calculatedTotalPages;
 
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
+
   const currentData = safeData.slice(startIndex, endIndex);
 
   return (
@@ -96,7 +102,9 @@ export default function CommercialTable({
                         {value}
                       </div>
                     ) : (
-                      <div>{value !== undefined && value !== null ? value : "-"}</div>
+                      <div>
+                        {value !== undefined && value !== null ? value : "-"}
+                      </div>
                     )}
                   </div>
                 );
@@ -105,9 +113,9 @@ export default function CommercialTable({
           ))
         ) : (
           <EmptyState
-    title="No Data Found"
-    description="Catch up all the data. Change the date range to see the data."
-  />
+            title="No Data Found"
+            description="Catch up all the data. Change the date range to see the data."
+          />
         )}
       </div>
 
@@ -132,15 +140,12 @@ export default function CommercialTable({
             ))}
           </select>
 
-          <div className="ml-4">
-            {safeData.length === 0
-              ? "0–0"
-              : `${startIndex + 1}–${Math.min(
-                  endIndex,
-                  safeData.length
-                )}`}{" "}
-            of {safeData.length}
-          </div>
+         <div className="ml-4">
+  {safeData?.length === 0
+    ? "0–0"
+    : `1–${safeData?.length}`}{" "}
+  of {totalRows || safeData?.length}
+</div>
         </div>
 
         <div className="flex items-center space-x-2 text-gray-600">
@@ -162,15 +167,15 @@ export default function CommercialTable({
 
           <button
             onClick={() => setCurrentPage((prev) => prev + 1)}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === finalTotalPages}
             className="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
           >
             <ChevronRight size={18} />
           </button>
 
           <button
-            onClick={() => setCurrentPage(totalPages)}
-            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(finalTotalPages)}
+            disabled={currentPage === finalTotalPages}
             className="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
           >
             <ChevronsRight size={18} />

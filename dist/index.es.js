@@ -54152,37 +54152,39 @@ function hpe({
   currentPage: i = 1,
   setCurrentPage: o = () => {
   },
-  pageOptions: a = [10, 20, 30, 40, 50]
+  totalRows: a = 0,
+  totalPages: s = 1,
+  pageOptions: l = [10, 20, 30, 40, 50]
 }) {
-  const s = Array.isArray(t) ? t : [], l = Array.isArray(e) ? e : [], c = n > 0 ? Math.ceil(s.length / n) : 1, u = (i - 1) * n, d = u + n, f = s.slice(u, d);
+  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = (i - 1) * n, h = p + n, m = c.slice(p, h);
   return /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
         className: "grid bg-slate-600 text-white text-sm font-medium",
-        style: { gridTemplateColumns: `repeat(${l.length}, 1fr)` },
-        children: l.map((p, h) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4", children: p.label }, h))
+        style: { gridTemplateColumns: `repeat(${u.length}, 1fr)` },
+        children: u.map((g, b) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4", children: g.label }, b))
       }
     ),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: f.length > 0 ? f.map((p, h) => /* @__PURE__ */ v.jsx(
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: m.length > 0 ? m.map((g, b) => /* @__PURE__ */ v.jsx(
       "div",
       {
         className: "grid text-sm text-gray-700 hover:bg-gray-50 transition",
         style: {
-          gridTemplateColumns: `repeat(${l.length}, 1fr)`
+          gridTemplateColumns: `repeat(${u.length}, 1fr)`
         },
-        children: l.map((m, g) => {
-          const b = p[m.key], S = typeof b == "string" && b.includes("%"), w = b === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
-          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: S ? /* @__PURE__ */ v.jsx(
+        children: u.map((S, w) => {
+          const x = g[S.key], _ = typeof x == "string" && x.includes("%"), E = x === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
+          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: _ ? /* @__PURE__ */ v.jsx(
             "div",
             {
-              className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${w}`,
-              children: b
+              className: `inline-block px-3 py-1 rounded-full text-xs font-semibold ${E}`,
+              children: x
             }
-          ) : /* @__PURE__ */ v.jsx("div", { children: b ?? "-" }) }, g);
+          ) : /* @__PURE__ */ v.jsx("div", { children: x ?? "-" }) }, w);
         })
       },
-      h
+      b
     )) : /* @__PURE__ */ v.jsx(
       Io,
       {
@@ -54197,21 +54199,18 @@ function hpe({
           "select",
           {
             value: n,
-            onChange: (p) => {
-              r(Number(p.target.value)), o(1);
+            onChange: (g) => {
+              r(Number(g.target.value)), o(1);
             },
             className: "border rounded px-2 py-1",
-            children: a.map((p, h) => /* @__PURE__ */ v.jsx("option", { value: p, children: p }, h))
+            children: l.map((g, b) => /* @__PURE__ */ v.jsx("option", { value: g, children: g }, b))
           }
         ),
         /* @__PURE__ */ v.jsxs("div", { className: "ml-4", children: [
-          s.length === 0 ? "0–0" : `${u + 1}–${Math.min(
-            d,
-            s.length
-          )}`,
+          c?.length === 0 ? "0–0" : `1–${c?.length}`,
           " ",
           "of ",
-          s.length
+          a || c?.length
         ] })
       ] }),
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center space-x-2 text-gray-600", children: [
@@ -54227,7 +54226,7 @@ function hpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((p) => p - 1),
+            onClick: () => o((g) => g - 1),
             disabled: i === 1,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(QR, { size: 18 })
@@ -54236,8 +54235,8 @@ function hpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((p) => p + 1),
-            disabled: i === c,
+            onClick: () => o((g) => g + 1),
+            disabled: i === f,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(ZR, { size: 18 })
           }
@@ -54245,8 +54244,8 @@ function hpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o(c),
-            disabled: i === c,
+            onClick: () => o(f),
+            disabled: i === f,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(Jue, { size: 18 })
           }
