@@ -31,7 +31,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
     >
       <div>
         {/* Top Attendance Summary */}
-        <div className="flex gap-[24px] text-center">
+        <div className="flex gap-[16px] text-center  mt-[24px]">
           <div className="flex-1 py-[12px] bg-[#F7FEFA] rounded h-[76px]">
             <div className="text-[24px] font-medium text-[#1FA05B]">
               {presentStaff ?? 0}
