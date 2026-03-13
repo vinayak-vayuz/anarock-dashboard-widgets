@@ -81,7 +81,7 @@ const EmployeeFootfall = () => {
       period="Today"
       icon={<BriefcaseBusiness className="!text-[24px] text-[#8B5CF6]" />}
     >
-      <div className="mb-[16px] mt-[8px] flex flex-col gap-[4px]!">
+      <div className="mb-[10px] mt-[8px] flex flex-col gap-[4px]!">
         <div className="text-[12px] leading-[16px] text-[#64748B]">
           Employees Inside
         </div>

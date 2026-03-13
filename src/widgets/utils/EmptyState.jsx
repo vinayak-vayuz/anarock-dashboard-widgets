@@ -13,13 +13,13 @@ function EmptyState({
         className="w-32 h-32 mb-4 opacity-80"
       />
 
-      <h3 className="text-[16px] font-semibold text-gray-900 mb-1">
+      <div className="text-[16px] font-semibold text-gray-900 mb-[4px]">
         {title}
-      </h3>
+      </div>
 
-      <p className="text-sm text-gray-500 max-w-[260px]">
+      <div className="text-[12px] text-gray-500 max-w-[260px]">
         {description}
-      </p>
+      </div>
     </div>
   );
 }

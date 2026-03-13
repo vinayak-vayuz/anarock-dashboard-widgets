@@ -76,7 +76,8 @@ function Amenities({ data }) {
       bookings,
       revenue,
       percentage,
-      color: item?.isPaid ? "bg-violet-500" : "bg-slate-400",
+      // color: item?.isPaid ? "bg-violet-500" : "bg-slate-400",
+      color: "bg-[#3C81F6]",
       isPaid: item?.isPaid,
     };
   });
@@ -104,16 +105,13 @@ function Amenities({ data }) {
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
-          <div>
-            <div className="flex flex-col gap-[8px]!">
-              <div className="text-[12px] leading-[16px] text-[#64748B]">
-                Total Bookings
-              </div>
-              <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
-                {totalBookings}
-              </div>
+          <div className="flex flex-col gap-[8px]!">
+            <div className="text-[12px] leading-[16px] text-[#64748B]">
+              Total Bookings
             </div>
-
+            <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
+              {totalBookings}
+            </div>
             <div
               className={`inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
                 bookingGrowth >= 0
