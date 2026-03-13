@@ -128,10 +128,10 @@ const Tickets = ({
       }
     >
       <div className="grid grid-cols-12 gap-[16px] items-center">
-        <div className="col-span-5 space-y-3">
+        <div className="col-span-5 space-y-[16px]">
           {items.map((item, index) => (
             <div key={index}>
-              <div className="text-[12px] text-[#64748B]">{item.label}</div>
+              <div className={`text-[12px] text-[#64748B] ${resolvedWidgetType === "commercial" ? "mb-[8px]" : ""}`}>{item.label}</div>
               <div
                 className="text-[28px] leading-[32px]"
                 style={{ color: item.color }}
@@ -142,7 +142,7 @@ const Tickets = ({
           ))}
 
           <div
-            className="text-[10px] flex gap-[4px] items-center"
+            className={`text-[10px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
             style={{ color: dynamicGrowthColor }}
           >
             {isPositive && <FaCaretUp />}

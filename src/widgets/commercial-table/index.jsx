@@ -72,7 +72,7 @@ console.log("currentData:", currentData);
         style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
       >
         {safeColumns.map((col, index) => (
-          <div key={index} className="px-6 py-4 text-[16px] leading-[20px]">
+          <div key={index} className="px-6 py-4 text-[16px] leading-[20px] whitespace-nowrap text-center">
             {col.label}
           </div>
         ))}
@@ -104,7 +104,7 @@ console.log("currentData:", currentData);
             return (
               <div
                 key={colIndex}
-                className={`px-6 py-4 ${
+                className={`px-6 py-4 flex items-center justify-center ${
                   colIndex === 0 ? "bg-white" : "bg-gray-50"
                 }`}
               >

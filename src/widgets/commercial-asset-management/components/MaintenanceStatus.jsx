@@ -67,7 +67,7 @@ const chartData = React.useMemo(() => {
   data={chartData}
   barSize={54}
   barCategoryGap="40%"
-  margin={{ top: 20, right: 20, left: -20, bottom: 0 }}
+  margin={{ top: 20, right: 20, left: -30, bottom: 20 }}
 >
       <CartesianGrid
   strokeDasharray="3 3"
