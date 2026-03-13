@@ -51,11 +51,15 @@ export default function CommercialTable({
 
   const finalTotalPages = totalPages || calculatedTotalPages;
 
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
+  const currentData = safeData;
 
-const currentData = safeData;
+  const emptyRows =
+    rowsPerPage - currentData.length > 0
+      ? rowsPerPage - currentData.length
+      : 0;
 
+  /* Fix: show EmptyState only if there is truly no data */
+  const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
 console.log("safeData:", safeData);
 console.log("currentData:", currentData);
@@ -64,7 +68,7 @@ console.log("currentData:", currentData);
 
       {/* Header */}
       <div
-        className="grid bg-slate-600 text-white text-sm font-medium"
+        className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium"
         style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
       >
         {safeColumns.map((col, index) => (
@@ -74,57 +78,85 @@ console.log("currentData:", currentData);
         ))}
       </div>
 
-      {/* Rows */}
-      <div className="flex-1 overflow-y-auto">
-        {currentData.length > 0 ? (
-          currentData.map((row, rowIndex) => (
-            <div
-              key={rowIndex}
-              className="grid text-[14px] leading-[18px] text-gray-700 hover:bg-gray-50 transition"
-              style={{
-                gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-              }}
-            >
-              {safeColumns.map((col, colIndex) => {
-                const value = row[col.key];
+   {/* Rows */}
+<div className="flex-1 overflow-y-auto">
+  {!shouldShowEmptyState ? (
+    <>
+      {currentData.map((row, rowIndex) => (
+        <div
+          key={rowIndex}
+          className="grid"
+          style={{
+            gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+          }}
+        >
+          {safeColumns.map((col, colIndex) => {
+            const value = row[col.key];
 
-                const isPercent =
-                  typeof value === "string" && value.includes("%");
+            const isPercent =
+              typeof value === "string" && value.includes("%");
 
-                const percentClass =
-                  value === "100%"
-                    ? "bg-green-100 text-green-600"
-                    : "bg-red-100 text-red-600";
+            const percentClass =
+              value === "100%"
+                ? "bg-[#F0FEF2] text-[#36AB6C]"
+                : "bg-[#FFF0F0] text-[#AB0000]";
 
-                return (
-                  <div key={colIndex} className="px-6 py-4 bg-gray-50">
-                    {isPercent ? (
-                      <div
-                        className={`inline-block px-3 py-1 rounded-full text-[14px]  font-semibold ${percentClass}`}
-                      >
-                        {value}
-                      </div>
-                    ) : (
-                      <div>
-                        {value !== undefined && value !== null ? value : "-"}
-                      </div>
-                    )}
+            return (
+              <div
+                key={colIndex}
+                className={`px-6 py-4 ${
+                  colIndex === 0 ? "bg-white" : "bg-gray-50"
+                }`}
+              >
+                {isPercent ? (
+                  <div
+                    className={`inline-block px-3 py-1 rounded-full text-[14px] font-medium ${percentClass}`}
+                  >
+                    {value}
                   </div>
-                );
-              })}
+                ) : (
+                  <div>
+                    {value !== undefined && value !== null ? value : "-"}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+
+      {/* Empty Rows */}
+      {Array.from({ length: emptyRows }).map((_, rowIndex) => (
+        <div
+          key={`empty-${rowIndex}`}
+          className="grid"
+          style={{
+            gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+          }}
+        >
+          {safeColumns.map((col, colIndex) => (
+            <div
+              key={colIndex}
+              className={`px-6 py-4 ${
+                colIndex === 0 ? "bg-white" : "bg-gray-50"
+              }`}
+            >
+              &nbsp;
             </div>
-          ))
-        ) : (
-          <EmptyState
-            title="No Data Found"
-            description="Catch up all the data. Change the date range to see the data."
-          />
-        )}
-      </div>
+          ))}
+        </div>
+      ))}
+    </>
+  ) : (
+    <EmptyState
+      title="No Data Found"
+      description="Catch up all the data. Change the date range to see the data."
+    />
+  )}
+</div>
 
       {/* Pagination */}
-      <div className="flex justify-end items-center px-6 py-4 text-sm bg-white gap-8">
-
+<div className="flex justify-end items-center px-6 py-4 text-sm bg-white border-t border-[#F0F0F0] gap-8">
         <div className="flex items-center gap-2 text-gray-600 text-[14px]">
           <div>Rows per page:</div>
 

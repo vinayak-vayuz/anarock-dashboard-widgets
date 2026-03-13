@@ -53,10 +53,9 @@ const assets = useMemo(() => {
 }
   return (
     <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
-      <div className="flex items-center justify-between gap-8">
-
+<div className="flex items-center justify-between h-full">
         {/* Chart */}
-        <div className="relative w-[240px] h-[240px]">
+        <div className="relative w-[252px] h-[273px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -81,10 +80,10 @@ const assets = useMemo(() => {
 
           {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="text-[24px] text-[#121212]">
+            <div className="text-[24px]  leading-[33px] font-medium text-[#121212]">
               {finalTotal}
             </div>
-            <div className="text-[12px] text-[#94A3B8] mt-1">
+            <div className="text-[12px] leading-[17px] text-[#64748B] mt-[2px]">
               Total Assets
             </div>
           </div>

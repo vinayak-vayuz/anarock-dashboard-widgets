@@ -6,6 +6,7 @@ const DUMMY_BY_ROLE = [
   { staff_role_name: "Security Guard", total_staff: 18, present_staff: 16 },
   { staff_role_name: "Supervisor", total_staff: 8, present_staff: 7 },
   { staff_role_name: "Technician", total_staff: 10, present_staff: 9 },
+  { staff_role_name: "Technician", total_staff: 10, present_staff: 9 }, 
 ];
 
 function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
@@ -54,7 +55,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
         </div>
 
         {/* Staff Role List */}
-        <div className="mt-4 space-y-2 overflow-y-auto max-h-[200px]">
+        <div className="mt-[24px] space-y-2 overflow-y-auto max-h-[200px]">
 
           {resolvedByRole?.length ? (
             resolvedByRole?.map?.((item, index) => {
@@ -66,7 +67,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
               return (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md"
+                  className="flex items-center justify-between p-3 bg-[#F8FAFC] rounded-md"
                 >
                   <div className="text-[#121212] text-[14px] leading-[18px] font-medium">
                     {item?.staff_role_name ?? "-"}
@@ -79,9 +80,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
               );
             })
           ) : (
-            <div className="text-center text-[16px] text-gray-400 text-sm py-6">
-              No staff data
-            </div>
+           <></>
           )}
 
         </div>

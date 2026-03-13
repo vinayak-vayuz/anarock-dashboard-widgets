@@ -15,36 +15,36 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
     >
       <div>
         {/* Top Status Boxes */}
-        <div className="flex w-full text-center gap-[24px]">
+      <div className="flex w-full text-center gap-[24px]">
 
-          <div className="flex-1 py-3 bg-[#FBF4F4] h-[76px] rounded">
-            <div className="!text-[24px] leading-[28px] font-medium text-[#AB0000]">
-              {open}
-            </div>
-            <div className="!text-[12px] leading-[16px] text-[#AB0000]">
-              Open
-            </div>
-          </div>
+  <div className="flex-1 flex flex-col items-center justify-center bg-[#FBF4F4] h-[76px] rounded">
+    <div className="text-[24px] leading-[28px] font-medium text-[#AB0000]">
+      {open}
+    </div>
+    <div className="text-[12px] leading-[16px] text-[#AB0000]">
+      Open
+    </div>
+  </div>
 
-          <div className="flex-1 py-3 bg-[#FFFBF2] h-[76px] rounded">
-            <div className="!text-[24px] leading-[28px] font-medium text-[#E7A015]">
-              {inProgress}
-            </div>
-            <div className="!text-[12px] leading-[16px] text-[#E7A015]">
-              In-progress
-            </div>
-          </div>
+  <div className="flex-1 flex flex-col items-center justify-center bg-[#FFFBF2] h-[76px] rounded">
+    <div className="text-[24px] leading-[28px] font-medium text-[#F2A815]">
+      {inProgress}
+    </div>
+    <div className="text-[12px] leading-[16px] text-[#F2A815]">
+      In-progress
+    </div>
+  </div>
 
-          <div className="flex-1 py-3 bg-[#F7FEFA] h-[76px] rounded">
-            <div className="!text-[24px] leading-[28px] font-medium text-[#1FA05B]">
-              {closed}
-            </div>
-            <div className="!text-[12px] leading-[16px] text-[#1FA05B]">
-              Closed
-            </div>
-          </div>
+  <div className="flex-1 flex flex-col items-center justify-center bg-[#F7FEFA] h-[76px] rounded">
+    <div className="text-[24px] leading-[28px] font-medium text-[#1FA05B]">
+      {closed}
+    </div>
+    <div className="text-[12px] leading-[16px] text-[#1FA05B]">
+      Closed
+    </div>
+  </div>
 
-        </div>
+</div>
 
         {/* Incident List */}
         <div className="mt-4 space-y-2">
@@ -81,9 +81,7 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
               );
             })
           ) : (
-            <div className="text-[16px] text-center text-gray-400 text-sm py-6">
-              No incidents found
-            </div>
+            <></>
           )}
 
         </div>
