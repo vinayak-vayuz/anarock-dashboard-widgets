@@ -51497,7 +51497,7 @@ function Gfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
     yn,
     {
       title: "Staff Attendance",
-      className: "h-[362px]",
+      className: "h-[362px] overflow-hidden ",
       titleWeight: "semi-bold",
       children: /* @__PURE__ */ v.jsxs("div", { children: [
         /* @__PURE__ */ v.jsxs("div", { className: "flex gap-[16px] text-center  mt-[24px]", children: [
