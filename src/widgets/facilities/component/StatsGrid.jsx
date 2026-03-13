@@ -45,47 +45,50 @@ function StatCardGrid({
 }
 
 const DEFAULT_CARDS = [
-    {
-      title: "Total Bookings",
-      value: 160,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: LuTicketCheck,
-      iconColor: "text-emerald-600",
-    },
-    {
-      title: "Utilisation Rate",
-      value: 73,
-      delta: "+2.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: AiOutlinePercentage,
-      iconColor: "text-[#329DFF]",
-    },
-    {
-      title: "Revenue",
-      value: 3,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: TbTicket,
-      iconColor: "text-[#FA7E28]",
-    },
-    {
-      title: "Pending Dues",
-      value: 5,
-      delta: "-8.0%",
-      deltaLabel: "Compared to last month",
-      positive: false,
-      Icon: LiaMoneyBillSolid,
-      iconColor: "text-[#DBB467]",
-    },
+  {
+    title: "Total Bookings",
+    value: 160,
+    delta: "+11.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: LuTicketCheck,
+    iconColor: "text-emerald-600",
+  },
+  {
+    title: "Utilisation Rate",
+    value: 73,
+    delta: "+2.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: AiOutlinePercentage,
+    iconColor: "text-[#329DFF]",
+  },
+  {
+    title: "Revenue",
+    value: 3,
+    delta: "+11.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: TbTicket,
+    iconColor: "text-[#FA7E28]",
+  },
+  {
+    title: "Pending Dues",
+    value: 5,
+    delta: "-8.0%",
+    deltaLabel: "Compared to last month",
+    positive: false,
+    Icon: LiaMoneyBillSolid,
+    iconColor: "text-[#DBB467]",
+  },
 ];
 
 function StatCard({ data }) {
   const cards =
     Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
+
+  console.log(cards, 'carrrr')
+
 
   return (
     <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
