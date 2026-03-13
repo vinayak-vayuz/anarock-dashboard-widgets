@@ -18,7 +18,7 @@ const dummyData = [
 
 const COLORS = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
 
-function AmenityWiseRevenue({ data }) {
+function AmenityWiseRevenue({ data ,currencyType}) {
 
   const isEmptyArray = Array?.isArray(data) && data?.length === 0;
 
@@ -49,7 +49,7 @@ function AmenityWiseRevenue({ data }) {
       : chartData;
 
   const formatCurrency = (value) =>
-    `Rs ${value?.toLocaleString?.("en-IN") || 0}`;
+    `${currencyType || "Rs"} ${value?.toLocaleString?.("en-IN") || 0}`;
 
   return (
     <Card
