@@ -53822,21 +53822,21 @@ const qde = [
   { facility_name: "Badminton", paid_revenue: "10000.00" },
   { facility_name: "GYM", paid_revenue: "4000.00" }
 ], nf = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
-function hpe({ data: e }) {
-  const t = Array?.isArray(e) && e?.length === 0, n = e ?? qde, r = Array?.isArray(n) && n?.length > 0 ? n?.map((s) => ({
-    name: s?.facility_name || "Unknown",
-    value: Number(s?.paid_revenue) || 0
-  })) : [], o = (r?.length > 0 ? r?.every((s) => s?.value === 0) : !1) ? r?.map((s, l) => ({
-    ...s,
-    value: l === 0 ? 1 : 0
-  })) : r, a = (s) => `Rs ${s?.toLocaleString?.("en-IN") || 0}`;
+function hpe({ data: e, currencyType: t }) {
+  const n = Array?.isArray(e) && e?.length === 0, r = e ?? qde, i = Array?.isArray(r) && r?.length > 0 ? r?.map((l) => ({
+    name: l?.facility_name || "Unknown",
+    value: Number(l?.paid_revenue) || 0
+  })) : [], a = (i?.length > 0 ? i?.every((l) => l?.value === 0) : !1) ? i?.map((l, c) => ({
+    ...l,
+    value: c === 0 ? 1 : 0
+  })) : i, s = (l) => `${t || "Rs"} ${l?.toLocaleString?.("en-IN") || 0}`;
   return /* @__PURE__ */ v.jsx(
     yn,
     {
       title: "Amenity Wise Revenue",
       titleWeight: "semi-bold",
       className: "h-[362px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: t ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
+      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: n ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
         Lo,
         {
           title: "No Amenity Found",
@@ -53847,7 +53847,7 @@ function hpe({ data: e }) {
           /* @__PURE__ */ v.jsx(
             Vi,
             {
-              data: o || [],
+              data: a || [],
               dataKey: "value",
               nameKey: "name",
               cx: "50%",
@@ -53855,20 +53855,20 @@ function hpe({ data: e }) {
               outerRadius: 95,
               stroke: "#fff",
               strokeWidth: 1,
-              children: o?.map?.((s, l) => /* @__PURE__ */ v.jsx(
+              children: a?.map?.((l, c) => /* @__PURE__ */ v.jsx(
                 Rn,
                 {
-                  fill: nf?.[l % nf?.length]
+                  fill: nf?.[c % nf?.length]
                 },
-                `cell-${l}`
+                `cell-${c}`
               ))
             }
           ),
           /* @__PURE__ */ v.jsx(
             qt,
             {
-              formatter: (s) => a(s),
-              labelFormatter: (s) => `Amenity: ${s || ""}`,
+              formatter: (l) => s(l),
+              labelFormatter: (l) => `Amenity: ${l || ""}`,
               contentStyle: {
                 borderRadius: "10px",
                 border: "1px solid #EBEBEB",
@@ -53882,7 +53882,7 @@ function hpe({ data: e }) {
             /* @__PURE__ */ v.jsx("div", { children: "Amenity" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-right", children: "Revenue" })
           ] }),
-          /* @__PURE__ */ v.jsx("div", { className: "divide-y divide-[#F1F5F9]", children: r?.map?.((s, l) => /* @__PURE__ */ v.jsxs(
+          /* @__PURE__ */ v.jsx("div", { className: "divide-y divide-[#F1F5F9]", children: i?.map?.((l, c) => /* @__PURE__ */ v.jsxs(
             "div",
             {
               className: "grid grid-cols-2 px-4 py-4 text-[14px] text-[#121212]",
@@ -53893,16 +53893,16 @@ function hpe({ data: e }) {
                     {
                       className: "w-[16px] h-[7px]",
                       style: {
-                        backgroundColor: nf?.[l % nf?.length]
+                        backgroundColor: nf?.[c % nf?.length]
                       }
                     }
                   ),
-                  /* @__PURE__ */ v.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: s?.name || "Unknown" })
+                  /* @__PURE__ */ v.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: l?.name || "Unknown" })
                 ] }),
-                /* @__PURE__ */ v.jsx("div", { className: "text-right text-[12px] leading-[16px] text-[#64748B]", children: a(s?.value || 0) })
+                /* @__PURE__ */ v.jsx("div", { className: "text-right text-[12px] leading-[16px] text-[#64748B]", children: s(l?.value || 0) })
               ]
             },
-            s?.name || l
+            l?.name || c
           )) })
         ] }) })
       ] }) })
@@ -54257,69 +54257,69 @@ function bpe({
   totalPages: s = 1,
   pageOptions: l = [10, 20, 30, 40, 50]
 }) {
-  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = (i - 1) * n, h = p + n, m = c.slice(p, h), g = n - m.length > 0 ? n - m.length : 0;
-  return console.log("safeData:", c), console.log("currentData:", m), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
+  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = c, h = n - p.length > 0 ? n - p.length : 0, m = a === 0 && c.length === 0;
+  return console.log("safeData:", c), console.log("currentData:", p), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
         className: "grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium",
         style: { gridTemplateColumns: `repeat(${u.length}, 1fr)` },
-        children: u.map((b, S) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px]", children: b.label }, S))
+        children: u.map((g, b) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px]", children: g.label }, b))
       }
     ),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: m.length > 0 ? /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
-      m.map((b, S) => /* @__PURE__ */ v.jsx(
-        "div",
-        {
-          className: "grid",
-          style: {
-            gridTemplateColumns: `repeat(${u.length}, 1fr)`
-          },
-          children: u.map((w, x) => {
-            const _ = b[w.key], E = typeof _ == "string" && _.includes("%"), k = _ === "100%" ? "bg-[#F0FEF2] text-[#36AB6C]" : "bg-[#FFF0F0] text-[#AB0000]";
-            return /* @__PURE__ */ v.jsx(
-              "div",
-              {
-                className: `px-6 py-4 ${x === 0 ? "bg-white" : "bg-gray-50"}`,
-                children: E ? /* @__PURE__ */ v.jsx(
-                  "div",
-                  {
-                    className: `inline-block px-3 py-1 rounded-full text-[14px] font-medium ${k}`,
-                    children: _
-                  }
-                ) : /* @__PURE__ */ v.jsx("div", { children: _ ?? "-" })
-              },
-              x
-            );
-          })
-        },
-        S
-      )),
-      Array.from({ length: g }).map((b, S) => /* @__PURE__ */ v.jsx(
-        "div",
-        {
-          className: "grid",
-          style: {
-            gridTemplateColumns: `repeat(${u.length}, 1fr)`
-          },
-          children: u.map((w, x) => /* @__PURE__ */ v.jsx(
-            "div",
-            {
-              className: `px-6 py-4 ${x === 0 ? "bg-white" : "bg-gray-50"}`,
-              children: " "
-            },
-            x
-          ))
-        },
-        `empty-${S}`
-      ))
-    ] }) : /* @__PURE__ */ v.jsx(
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: m ? /* @__PURE__ */ v.jsx(
       Lo,
       {
         title: "No Data Found",
         description: "Catch up all the data. Change the date range to see the data."
       }
-    ) }),
+    ) : /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
+      p.map((g, b) => /* @__PURE__ */ v.jsx(
+        "div",
+        {
+          className: "grid",
+          style: {
+            gridTemplateColumns: `repeat(${u.length}, 1fr)`
+          },
+          children: u.map((S, w) => {
+            const x = g[S.key], _ = typeof x == "string" && x.includes("%"), E = x === "100%" ? "bg-[#F0FEF2] text-[#36AB6C]" : "bg-[#FFF0F0] text-[#AB0000]";
+            return /* @__PURE__ */ v.jsx(
+              "div",
+              {
+                className: `px-6 py-4 ${w === 0 ? "bg-white" : "bg-gray-50"}`,
+                children: _ ? /* @__PURE__ */ v.jsx(
+                  "div",
+                  {
+                    className: `inline-block px-3 py-1 rounded-full text-[14px] font-medium ${E}`,
+                    children: x
+                  }
+                ) : /* @__PURE__ */ v.jsx("div", { children: x ?? "-" })
+              },
+              w
+            );
+          })
+        },
+        b
+      )),
+      Array.from({ length: h }).map((g, b) => /* @__PURE__ */ v.jsx(
+        "div",
+        {
+          className: "grid",
+          style: {
+            gridTemplateColumns: `repeat(${u.length}, 1fr)`
+          },
+          children: u.map((S, w) => /* @__PURE__ */ v.jsx(
+            "div",
+            {
+              className: `px-6 py-4 ${w === 0 ? "bg-white" : "bg-gray-50"}`,
+              children: " "
+            },
+            w
+          ))
+        },
+        `empty-${b}`
+      ))
+    ] }) }),
     /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white border-t border-[#F0F0F0] gap-8", children: [
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2 text-gray-600 text-[14px]", children: [
         /* @__PURE__ */ v.jsx("div", { children: "Rows per page:" }),
@@ -54327,11 +54327,11 @@ function bpe({
           "select",
           {
             value: n,
-            onChange: (b) => {
-              r(Number(b.target.value)), o(1);
+            onChange: (g) => {
+              r(Number(g.target.value)), o(1);
             },
             className: "border rounded px-2 py-1",
-            children: l.map((b, S) => /* @__PURE__ */ v.jsx("option", { value: b, children: b }, S))
+            children: l.map((g, b) => /* @__PURE__ */ v.jsx("option", { value: g, children: g }, b))
           }
         ),
         /* @__PURE__ */ v.jsxs("div", { className: "ml-4 text-[14px]", children: [
@@ -54354,7 +54354,7 @@ function bpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((b) => b - 1),
+            onClick: () => o((g) => g - 1),
             disabled: i === 1,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(QR, { size: 18 })
@@ -54363,7 +54363,7 @@ function bpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((b) => b + 1),
+            onClick: () => o((g) => g + 1),
             disabled: i === f,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(ZR, { size: 18 })
