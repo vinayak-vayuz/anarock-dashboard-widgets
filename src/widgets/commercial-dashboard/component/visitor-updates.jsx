@@ -100,16 +100,16 @@ function generateHourlyChartData(data = []) {
 
 function HoverDetailCard({ title, color, rows = [], children }) {
   const content = (
-    <div className="bg-white rounded-[12px] min-w-[260px] p-[16px]">
+    <div className="bg-white rounded-[12px] min-w-[260px] p-[16px] border-[0.5px] border-[#EBEBEB] shadow-[0px_0px_12px_0px_#EAF2FF]">
       <div className="flex items-center gap-[8px] font-medium text-[#121212]">
-        <LuDoorOpen className={`text-[20px] ${color}`} />
+        {/* <LuDoorOpen className={`text-[20px] ${color}`} /> */}
         <div>{title ?? ""}</div>
       </div>
 
-      <div className="mt-3 pt-3 border-t border-dashed border-gray-200 space-y-2">
+      <div className="mt-[16px] pt-[16px] border-t border-dashed border-[#EBEBEB] space-y-[16px]">
         {rows?.map(({ label, value, valueColor }) => (
-          <div key={label} className="flex justify-between text-[14px]">
-            <div>{label ?? ""}</div>
+          <div key={label} className="flex justify-between text-[14px] leading-[18px]">
+            <div className="text-[#64748B]">{label ?? ""}</div>
             <div
               className="font-semibold"
               style={{ color: valueColor || "#121212" }}
@@ -222,9 +222,9 @@ function VisitorUpdates({ data }) {
       period={`Today at ${currentTime}`}
       icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
     >
-      <div className="flex flex-col mt-2">
+      <div className="flex flex-col gap-[24px]">
         {/* SUMMARY */}
-        <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-6">
+        <div className="grid grid-cols-2 gap-y-4 gap-x-6">
           <div className="flex flex-col gap-[8px]!">
             <div className="text-[10px] text-[#64748B]">Total Visitors</div>
             <div className="text-[20px] font-medium text-[#08B6D4]">
@@ -303,7 +303,7 @@ function VisitorUpdates({ data }) {
         </div>
 
         {/* CHART */}
-        <div className="w-full h-[179px]">
+        <div className="w-full h-[149px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={chart_data ?? []}

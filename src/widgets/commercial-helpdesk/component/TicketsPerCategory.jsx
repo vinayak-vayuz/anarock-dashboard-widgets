@@ -65,7 +65,11 @@ function TicketsPerCategory({ data = [] }) {
       ) : (
         <div className="w-full h-[280px] mt-[28px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} layout="vertical">
+            <BarChart
+              data={chartData}
+              layout="vertical"
+              margin={{ top: 0, right: 0, left: -10, bottom: -10 }}
+            >
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
               <XAxis

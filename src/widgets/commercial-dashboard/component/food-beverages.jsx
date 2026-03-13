@@ -173,7 +173,7 @@ function FoodBeverages({ data, title, period, icon }) {
       icon={cardIcon}
     >
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-2 gap-[24px] mb-6">
+        <div className="grid grid-cols-2 gap-[24px]">
           <div className="flex flex-col gap-[8px]!">
             <div className="text-[12px] leading-[16px] text-[#64748B]">
               Total Orders
