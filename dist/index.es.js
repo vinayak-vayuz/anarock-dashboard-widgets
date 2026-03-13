@@ -49881,9 +49881,9 @@ const Oue = {
       icon: g,
       className: N === "commercial" ? "h-[362px]" : "h-[238px]",
       children: /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-12 gap-[16px] items-center", children: [
-        /* @__PURE__ */ v.jsxs("div", { className: "col-span-5 space-y-3", children: [
+        /* @__PURE__ */ v.jsxs("div", { className: "col-span-5 space-y-[16px]", children: [
           T.map((V, W) => /* @__PURE__ */ v.jsxs("div", { children: [
-            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#64748B]", children: V.label }),
+            /* @__PURE__ */ v.jsx("div", { className: `text-[12px] text-[#64748B] ${N === "commercial" ? "mb-[8px]" : ""}`, children: V.label }),
             /* @__PURE__ */ v.jsx(
               "div",
               {
@@ -49896,7 +49896,7 @@ const Oue = {
           /* @__PURE__ */ v.jsxs(
             "div",
             {
-              className: "text-[10px] flex gap-[4px] items-center",
+              className: `text-[10px] flex gap-[4px] ${N === "commercial" ? "mt-[20px]" : ""}  items-center`,
               style: { color: F },
               children: [
                 R && /* @__PURE__ */ v.jsx(al, {}),
@@ -51492,6 +51492,7 @@ function qfe({ incidentReports: e = {}, incidentReportsDetails: t = [] }) {
 const mde = [{ total_staff: 42, absent_staff: 6 }], gde = [
   { staff_role_name: "Security Guard", total_staff: 18, present_staff: 16 },
   { staff_role_name: "Supervisor", total_staff: 8, present_staff: 7 },
+  { staff_role_name: "Technician", total_staff: 10, present_staff: 9 },
   { staff_role_name: "Technician", total_staff: 10, present_staff: 9 }
 ];
 function Gfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
@@ -51513,12 +51514,12 @@ function Gfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#AB0000]", children: "Absent" })
           ] })
         ] }),
-        /* @__PURE__ */ v.jsx("div", { className: "mt-4 space-y-2 overflow-y-auto max-h-[200px]", children: r?.length ? r?.map?.((s, l) => {
+        /* @__PURE__ */ v.jsx("div", { className: "mt-[24px] space-y-2 overflow-y-auto max-h-[200px]", children: r?.length ? r?.map?.((s, l) => {
           const c = Number(s?.total_staff ?? 0), u = Number(s?.present_staff ?? 0);
           return /* @__PURE__ */ v.jsxs(
             "div",
             {
-              className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md",
+              className: "flex items-center justify-between p-3 bg-[#F8FAFC] rounded-md",
               children: [
                 /* @__PURE__ */ v.jsx("div", { className: "text-[#121212] text-[14px] leading-[18px] font-medium", children: s?.staff_role_name ?? "-" }),
                 /* @__PURE__ */ v.jsxs("div", { className: "text-[14px] leading-[20px] text-[#64748B]", children: [
@@ -51530,7 +51531,7 @@ function Gfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
             },
             l
           );
-        }) : /* @__PURE__ */ v.jsx("div", { className: "text-center text-[16px] text-gray-400 text-sm py-6", children: "No staff data" }) })
+        }) : /* @__PURE__ */ v.jsx(v.Fragment, {}) })
       ] })
     }
   );
@@ -53559,7 +53560,7 @@ const vpe = ({ data: e = [], onDateChange: t }) => {
           xne,
           {
             data: h,
-            margin: { top: 10, right: 10, left: 0, bottom: 0 },
+            margin: { top: 10, right: -10, left: -10, bottom: 0 },
             children: [
               /* @__PURE__ */ v.jsx("defs", { children: /* @__PURE__ */ v.jsxs("linearGradient", { id: "colorVisitors", x1: "0", y1: "0", x2: "0", y2: "1", children: [
                 /* @__PURE__ */ v.jsx("stop", { offset: "0%", stopColor: "#6366F1", stopOpacity: 0.25 }),
@@ -53915,21 +53916,21 @@ const nfe = [
   { facility_name: "Badminton", paid_revenue: "10000.00" },
   { facility_name: "GYM", paid_revenue: "4000.00" }
 ], rf = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
-function _pe({ data: e }) {
-  const t = Array?.isArray(e) && e?.length === 0, n = e ?? nfe, r = Array?.isArray(n) && n?.length > 0 ? n?.map((s) => ({
-    name: s?.facility_name || "Unknown",
-    value: Number(s?.paid_revenue) || 0
-  })) : [], o = (r?.length > 0 ? r?.every((s) => s?.value === 0) : !1) ? r?.map((s, l) => ({
-    ...s,
-    value: l === 0 ? 1 : 0
-  })) : r, a = (s) => `Rs ${s?.toLocaleString?.("en-IN") || 0}`;
+function _pe({ data: e, currencyType: t }) {
+  const n = Array?.isArray(e) && e?.length === 0, r = e ?? nfe, i = Array?.isArray(r) && r?.length > 0 ? r?.map((l) => ({
+    name: l?.facility_name || "Unknown",
+    value: Number(l?.paid_revenue) || 0
+  })) : [], a = (i?.length > 0 ? i?.every((l) => l?.value === 0) : !1) ? i?.map((l, c) => ({
+    ...l,
+    value: c === 0 ? 1 : 0
+  })) : i, s = (l) => `${t || "Rs"} ${l?.toLocaleString?.("en-IN") || 0}`;
   return /* @__PURE__ */ v.jsx(
     yn,
     {
       title: "Amenity Wise Revenue",
       titleWeight: "semi-bold",
       className: "h-[362px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: t ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
+      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-6 items-center h-full", children: n ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
         Lo,
         {
           title: "No Amenity Found",
@@ -53940,7 +53941,7 @@ function _pe({ data: e }) {
           /* @__PURE__ */ v.jsx(
             Vi,
             {
-              data: o || [],
+              data: a || [],
               dataKey: "value",
               nameKey: "name",
               cx: "50%",
@@ -53948,20 +53949,20 @@ function _pe({ data: e }) {
               outerRadius: 95,
               stroke: "#fff",
               strokeWidth: 1,
-              children: o?.map?.((s, l) => /* @__PURE__ */ v.jsx(
+              children: a?.map?.((l, c) => /* @__PURE__ */ v.jsx(
                 Rn,
                 {
-                  fill: rf?.[l % rf?.length]
+                  fill: rf?.[c % rf?.length]
                 },
-                `cell-${l}`
+                `cell-${c}`
               ))
             }
           ),
           /* @__PURE__ */ v.jsx(
             qt,
             {
-              formatter: (s) => a(s),
-              labelFormatter: (s) => `Amenity: ${s || ""}`,
+              formatter: (l) => s(l),
+              labelFormatter: (l) => `Amenity: ${l || ""}`,
               contentStyle: {
                 borderRadius: "10px",
                 border: "1px solid #EBEBEB",
@@ -53975,7 +53976,7 @@ function _pe({ data: e }) {
             /* @__PURE__ */ v.jsx("div", { children: "Amenity" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-right", children: "Revenue" })
           ] }),
-          /* @__PURE__ */ v.jsx("div", { className: "divide-y divide-[#F1F5F9]", children: r?.map?.((s, l) => /* @__PURE__ */ v.jsxs(
+          /* @__PURE__ */ v.jsx("div", { className: "divide-y divide-[#F1F5F9]", children: i?.map?.((l, c) => /* @__PURE__ */ v.jsxs(
             "div",
             {
               className: "grid grid-cols-2 px-4 py-4 text-[14px] text-[#121212]",
@@ -53986,16 +53987,16 @@ function _pe({ data: e }) {
                     {
                       className: "w-[16px] h-[7px]",
                       style: {
-                        backgroundColor: rf?.[l % rf?.length]
+                        backgroundColor: rf?.[c % rf?.length]
                       }
                     }
                   ),
-                  /* @__PURE__ */ v.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: s?.name || "Unknown" })
+                  /* @__PURE__ */ v.jsx("span", { className: "text-[#64748B] text-[12px] leading-[16px]", children: l?.name || "Unknown" })
                 ] }),
-                /* @__PURE__ */ v.jsx("div", { className: "text-right text-[12px] leading-[16px] text-[#64748B]", children: a(s?.value || 0) })
+                /* @__PURE__ */ v.jsx("div", { className: "text-right text-[12px] leading-[16px] text-[#64748B]", children: s(l?.value || 0) })
               ]
             },
-            s?.name || l
+            l?.name || c
           )) })
         ] }) })
       ] }) })
@@ -54024,8 +54025,8 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], rfe = [
       title: "No Assets Found",
       description: "Catch up all the data. Change the date range to see the data."
     }
-  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between gap-8", children: [
-    /* @__PURE__ */ v.jsxs("div", { className: "relative w-[240px] h-[240px]", children: [
+  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between h-full", children: [
+    /* @__PURE__ */ v.jsxs("div", { className: "relative w-[252px] h-[273px]", children: [
       /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsx(Mo, { children: /* @__PURE__ */ v.jsx(
         Vi,
         {
@@ -54044,8 +54045,8 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], rfe = [
         }
       ) }) }),
       /* @__PURE__ */ v.jsxs("div", { className: "absolute inset-0 flex flex-col items-center justify-center", children: [
-        /* @__PURE__ */ v.jsx("div", { className: "text-[24px] text-[#121212]", children: r }),
-        /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#94A3B8] mt-1", children: "Total Assets" })
+        /* @__PURE__ */ v.jsx("div", { className: "text-[24px]  leading-[33px] font-medium text-[#121212]", children: r }),
+        /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[17px] text-[#64748B] mt-[2px]", children: "Total Assets" })
       ] })
     ] }),
     /* @__PURE__ */ v.jsx("div", { className: "flex-1 max-w-[280px]", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden bg-white", children: [
@@ -54095,14 +54096,22 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], rfe = [
       title: "No Maintenance Assets Status Found",
       description: "Catch up all the data. Change the date range to see the data."
     }
-  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx("div", { className: "relative w-full h-[297px] mt-[20px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
     ga,
     {
       data: i,
-      barSize: 50,
-      margin: { top: 0, right: 0, left: -30, bottom: 0 },
+      barSize: 54,
+      barCategoryGap: "40%",
+      margin: { top: 20, right: 20, left: -30, bottom: 20 },
       children: [
-        /* @__PURE__ */ v.jsx(Jr, { strokeDasharray: "3 3", vertical: !1 }),
+        /* @__PURE__ */ v.jsx(
+          Jr,
+          {
+            strokeDasharray: "3 3",
+            vertical: !1,
+            stroke: "#E2E8F0"
+          }
+        ),
         /* @__PURE__ */ v.jsx(
           Pr,
           {
@@ -54137,32 +54146,48 @@ const of = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], rfe = [
           {
             verticalAlign: "bottom",
             align: "center",
-            iconType: "square",
             onClick: o,
-            formatter: (a) => /* @__PURE__ */ v.jsx(
+            content: ({ payload: a }) => /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center gap-4 pt-4 flex-wrap", children: a.map((s, l) => /* @__PURE__ */ v.jsxs(
               "div",
               {
-                style: {
-                  color: t[a] ? "#CBD5E1" : "#64748B",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                  display: "inline-flex",
-                  alignItems: "center"
-                },
-                children: a
-              }
-            ),
-            wrapperStyle: { paddingTop: "18px" }
+                onClick: () => o({ dataKey: s.dataKey }),
+                className: "flex items-center gap-2 cursor-pointer",
+                children: [
+                  /* @__PURE__ */ v.jsx(
+                    "div",
+                    {
+                      style: {
+                        width: "16px",
+                        height: "8px",
+                        backgroundColor: t[s.dataKey] ? "#CBD5E1" : s.color
+                        // borderRadius: "2px",
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ v.jsx(
+                    "span",
+                    {
+                      style: {
+                        fontSize: "12px",
+                        color: t[s.dataKey] ? "#CBD5E1" : "#64748B"
+                      },
+                      children: s.value
+                    }
+                  )
+                ]
+              },
+              l
+            )) })
           }
         ),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "Open", stackId: "a", fill: "#3B82F6", hide: t.Open }),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "Closed", stackId: "a", fill: "#10B981", hide: t.Closed }),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "Cancelled", stackId: "a", fill: "#B91C1C", hide: t.Cancelled }),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "OnHold", stackId: "a", fill: "#64748B", hide: t.OnHold }),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress })
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress, name: "In Progress" })
       ]
     }
-  ) }) }) });
+  ) }) }) }) });
 };
 function Epe({ data: e }) {
   const t = [
@@ -54248,17 +54273,17 @@ function Ppe({ incidentReports: e, incidentReportsDetails: t }) {
       titleWeight: "semi-bold",
       children: /* @__PURE__ */ v.jsxs("div", { children: [
         /* @__PURE__ */ v.jsxs("div", { className: "flex w-full text-center gap-[24px]", children: [
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#FBF4F4] h-[76px] rounded", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[24px] leading-[28px] font-medium text-[#AB0000]", children: n }),
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#AB0000]", children: "Open" })
+          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center bg-[#FBF4F4] h-[76px] rounded", children: [
+            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] leading-[28px] font-medium text-[#AB0000]", children: n }),
+            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#AB0000]", children: "Open" })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#FFFBF2] h-[76px] rounded", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[24px] leading-[28px] font-medium text-[#E7A015]", children: r }),
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#E7A015]", children: "In-progress" })
+          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center bg-[#FFFBF2] h-[76px] rounded", children: [
+            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] leading-[28px] font-medium text-[#F2A815]", children: r }),
+            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#F2A815]", children: "In-progress" })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#F7FEFA] h-[76px] rounded", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[24px] leading-[28px] font-medium text-[#1FA05B]", children: i }),
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#1FA05B]", children: "Closed" })
+          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center bg-[#F7FEFA] h-[76px] rounded", children: [
+            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] leading-[28px] font-medium text-[#1FA05B]", children: i }),
+            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#1FA05B]", children: "Closed" })
           ] })
         ] }),
         /* @__PURE__ */ v.jsx("div", { className: "mt-4 space-y-2", children: t?.length > 0 ? t.map((o, a) => {
@@ -54284,7 +54309,7 @@ function Ppe({ incidentReports: e, incidentReportsDetails: t }) {
             },
             a
           );
-        }) : /* @__PURE__ */ v.jsx("div", { className: "text-[16px] text-center text-gray-400 text-sm py-6", children: "No incidents found" }) })
+        }) : /* @__PURE__ */ v.jsx(v.Fragment, {}) })
       ] })
     }
   );
@@ -54326,54 +54351,81 @@ function kpe({
   totalPages: s = 1,
   pageOptions: l = [10, 20, 30, 40, 50]
 }) {
-  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = c;
+  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = c, h = n - p.length > 0 ? n - p.length : 0, m = a === 0 && c.length === 0;
   return console.log("safeData:", c), console.log("currentData:", p), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
-        className: "grid bg-slate-600 text-white text-sm font-medium",
+        className: "grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium",
         style: { gridTemplateColumns: `repeat(${u.length}, 1fr)` },
-        children: u.map((h, m) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px]", children: h.label }, m))
+        children: u.map((g, b) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px] whitespace-nowrap text-center", children: g.label }, b))
       }
     ),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: p.length > 0 ? p.map((h, m) => /* @__PURE__ */ v.jsx(
-      "div",
-      {
-        className: "grid text-[14px] leading-[18px] text-gray-700 hover:bg-gray-50 transition",
-        style: {
-          gridTemplateColumns: `repeat(${u.length}, 1fr)`
-        },
-        children: u.map((g, b) => {
-          const S = h[g.key], w = typeof S == "string" && S.includes("%"), x = S === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
-          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: w ? /* @__PURE__ */ v.jsx(
-            "div",
-            {
-              className: `inline-block px-3 py-1 rounded-full text-[14px]  font-semibold ${x}`,
-              children: S
-            }
-          ) : /* @__PURE__ */ v.jsx("div", { children: S ?? "-" }) }, b);
-        })
-      },
-      m
-    )) : /* @__PURE__ */ v.jsx(
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: m ? /* @__PURE__ */ v.jsx(
       Lo,
       {
         title: "No Data Found",
         description: "Catch up all the data. Change the date range to see the data."
       }
-    ) }),
-    /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white gap-8", children: [
+    ) : /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
+      p.map((g, b) => /* @__PURE__ */ v.jsx(
+        "div",
+        {
+          className: "grid",
+          style: {
+            gridTemplateColumns: `repeat(${u.length}, 1fr)`
+          },
+          children: u.map((S, w) => {
+            const x = g[S.key], _ = typeof x == "string" && x.includes("%"), E = x === "100%" ? "bg-[#F0FEF2] text-[#36AB6C]" : "bg-[#FFF0F0] text-[#AB0000]";
+            return /* @__PURE__ */ v.jsx(
+              "div",
+              {
+                className: `px-6 py-4 flex items-center justify-center ${w === 0 ? "bg-white" : "bg-gray-50"}`,
+                children: _ ? /* @__PURE__ */ v.jsx(
+                  "div",
+                  {
+                    className: `inline-block px-3 py-1 rounded-full text-[14px] font-medium ${E}`,
+                    children: x
+                  }
+                ) : /* @__PURE__ */ v.jsx("div", { children: x ?? "-" })
+              },
+              w
+            );
+          })
+        },
+        b
+      )),
+      Array.from({ length: h }).map((g, b) => /* @__PURE__ */ v.jsx(
+        "div",
+        {
+          className: "grid",
+          style: {
+            gridTemplateColumns: `repeat(${u.length}, 1fr)`
+          },
+          children: u.map((S, w) => /* @__PURE__ */ v.jsx(
+            "div",
+            {
+              className: `px-6 py-4 ${w === 0 ? "bg-white" : "bg-gray-50"}`,
+              children: " "
+            },
+            w
+          ))
+        },
+        `empty-${b}`
+      ))
+    ] }) }),
+    /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white border-t border-[#F0F0F0] gap-8", children: [
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2 text-gray-600 text-[14px]", children: [
         /* @__PURE__ */ v.jsx("div", { children: "Rows per page:" }),
         /* @__PURE__ */ v.jsx(
           "select",
           {
             value: n,
-            onChange: (h) => {
-              r(Number(h.target.value)), o(1);
+            onChange: (g) => {
+              r(Number(g.target.value)), o(1);
             },
             className: "border rounded px-2 py-1",
-            children: l.map((h, m) => /* @__PURE__ */ v.jsx("option", { value: h, children: h }, m))
+            children: l.map((g, b) => /* @__PURE__ */ v.jsx("option", { value: g, children: g }, b))
           }
         ),
         /* @__PURE__ */ v.jsxs("div", { className: "ml-4 text-[14px]", children: [
@@ -54396,7 +54448,7 @@ function kpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((h) => h - 1),
+            onClick: () => o((g) => g - 1),
             disabled: i === 1,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(nI, { size: 18 })
@@ -54405,7 +54457,7 @@ function kpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((h) => h + 1),
+            onClick: () => o((g) => g + 1),
             disabled: i === f,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(rI, { size: 18 })

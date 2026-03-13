@@ -71,7 +71,7 @@ export default function CommercialTable({
         {safeColumns.map((col, index) => (
           <div
             key={index}
-            className="px-[24px] py-[16px] text-[16px] leading-[20px]"
+            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-center"
           >
             {col.label}
           </div>
@@ -104,7 +104,7 @@ export default function CommercialTable({
                   return (
                     <div
                       key={colIndex}
-                      className={`px-[24px] py-[16px] ${
+                      className={`px-[24px] py-[16px] flex items-center justify-center ${
                         colIndex === 0 ? "bg-white" : "bg-gray-50"
                       }`}
                     >
