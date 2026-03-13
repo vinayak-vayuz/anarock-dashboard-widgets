@@ -51,11 +51,15 @@ export default function CommercialTable({
 
   const finalTotalPages = totalPages || calculatedTotalPages;
 
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
+  const currentData = safeData;
 
-const currentData = safeData.slice(startIndex, endIndex);
-const emptyRows = rowsPerPage - currentData.length > 0 ? rowsPerPage - currentData.length : 0;
+  const emptyRows =
+    rowsPerPage - currentData.length > 0
+      ? rowsPerPage - currentData.length
+      : 0;
+
+  /* Fix: show EmptyState only if there is truly no data */
+  const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
 console.log("safeData:", safeData);
 console.log("currentData:", currentData);
@@ -74,10 +78,9 @@ console.log("currentData:", currentData);
         ))}
       </div>
 
-      {/* Rows */}
    {/* Rows */}
 <div className="flex-1 overflow-y-auto">
-  {currentData.length > 0 ? (
+  {!shouldShowEmptyState ? (
     <>
       {currentData.map((row, rowIndex) => (
         <div
