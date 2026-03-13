@@ -40540,7 +40540,7 @@ function vfe({ isStatic: e, data: t, communities: n }) {
           options: t?.communities
         }
       ),
-      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[235px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+      children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
         ga,
         {
           data: i,
@@ -51470,6 +51470,7 @@ function Bfe({ incidentReports: e = {}, incidentReportsDetails: t = [] }) {
 const cde = [{ total_staff: 42, absent_staff: 6 }], ude = [
   { staff_role_name: "Security Guard", total_staff: 18, present_staff: 16 },
   { staff_role_name: "Supervisor", total_staff: 8, present_staff: 7 },
+  { staff_role_name: "Technician", total_staff: 10, present_staff: 9 },
   { staff_role_name: "Technician", total_staff: 10, present_staff: 9 }
 ];
 function Wfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
@@ -51491,12 +51492,12 @@ function Wfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#AB0000]", children: "Absent" })
           ] })
         ] }),
-        /* @__PURE__ */ v.jsx("div", { className: "mt-4 space-y-2 overflow-y-auto max-h-[200px]", children: r?.length ? r?.map?.((s, l) => {
+        /* @__PURE__ */ v.jsx("div", { className: "mt-[24px] space-y-2 overflow-y-auto max-h-[200px]", children: r?.length ? r?.map?.((s, l) => {
           const c = Number(s?.total_staff ?? 0), u = Number(s?.present_staff ?? 0);
           return /* @__PURE__ */ v.jsxs(
             "div",
             {
-              className: "flex items-center justify-between p-3 bg-[#FAFBFD] rounded-md",
+              className: "flex items-center justify-between p-3 bg-[#F8FAFC] rounded-md",
               children: [
                 /* @__PURE__ */ v.jsx("div", { className: "text-[#121212] text-[14px] leading-[18px] font-medium", children: s?.staff_role_name ?? "-" }),
                 /* @__PURE__ */ v.jsxs("div", { className: "text-[14px] leading-[20px] text-[#64748B]", children: [
@@ -51508,7 +51509,7 @@ function Wfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
             },
             l
           );
-        }) : /* @__PURE__ */ v.jsx("div", { className: "text-center text-[16px] text-gray-400 text-sm py-6", children: "No staff data" }) })
+        }) : /* @__PURE__ */ v.jsx(v.Fragment, {}) })
       ] })
     }
   );
@@ -52250,7 +52251,7 @@ const Pk = ({ value: e = 0, total: t = 1, colorClass: n = "", label: r = "" }) =
   AdminsCount: r = 910
 }) => {
   const i = e?.total_occupants !== void 0 && e?.total_occupants !== null ? Number(e?.total_occupants) || 0 : Number(t) || 0, o = e?.total_members !== void 0 && e?.total_members !== null ? Number(e?.total_members) || 0 : Number(n) || 0, a = e?.total_admins !== void 0 && e?.total_admins !== null ? Number(e?.total_admins) || 0 : Number(r) || 0, s = (o || 0) + (a || 0);
-  return /* @__PURE__ */ v.jsx("div", { children: /* @__PURE__ */ v.jsxs("div", { className: "bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]", children: [
+  return /* @__PURE__ */ v.jsx("div", { children: /* @__PURE__ */ v.jsxs("div", { className: "bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-[16px] h-[128px]", children: [
     /* @__PURE__ */ v.jsxs(
       "div",
       {
@@ -52374,20 +52375,20 @@ function Jfe() {
       icon: /* @__PURE__ */ v.jsx(nde, { className: "!text-[24px] text-[#FA7E28]" }),
       children: /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col h-full", children: [
         /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
-          /* @__PURE__ */ v.jsxs("div", { children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Orders" }),
-            /* @__PURE__ */ v.jsx("div", { className: "mt-[4px] text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: 247 })
+            /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: 247 })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { children: [
+          /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
-            /* @__PURE__ */ v.jsxs("div", { className: "mt-[4px] text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
+            /* @__PURE__ */ v.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
               "₹ ",
               "82K"
             ] }),
             /* @__PURE__ */ v.jsxs(
               "div",
               {
-                className: "inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full text-[#1FA05B] bg-green-50",
+                className: "inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full text-[#1FA05B] bg-green-50",
                 children: [
                   /* @__PURE__ */ v.jsx(il, {}),
                   8,
@@ -52510,14 +52511,14 @@ function epe({ data: e }) {
       children: /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col h-full", children: [
         /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 gap-6 mb-6", children: [
           /* @__PURE__ */ v.jsxs("div", { children: [
-            /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[4px]!", children: [
+            /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
               /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Total Bookings" }),
               /* @__PURE__ */ v.jsx("div", { className: "text-[28px] leading-[32px] font-medium text-[#8B5CF6]", children: a })
             ] }),
             /* @__PURE__ */ v.jsxs(
               "div",
               {
-                className: `inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${l >= 0 ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
+                className: `inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${l >= 0 ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
                 children: [
                   l >= 0 ? /* @__PURE__ */ v.jsx(il, {}) : /* @__PURE__ */ v.jsx(Uc, {}),
                   l,
@@ -52527,7 +52528,7 @@ function epe({ data: e }) {
               }
             )
           ] }),
-          !o && /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[4px]!", children: [
+          !o && /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col gap-[8px]!", children: [
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#64748B]", children: "Revenue Generated" }),
             /* @__PURE__ */ v.jsxs("div", { className: "text-[28px] leading-[32px] font-medium text-[#329DFF]", children: [
               n?.currencyType || "₹",
@@ -52537,7 +52538,7 @@ function epe({ data: e }) {
             f !== null && /* @__PURE__ */ v.jsxs(
               "div",
               {
-                className: `inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${p ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
+                className: `inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${p ? "text-[#1FA05B] bg-green-50" : "text-red-600 bg-red-50"}`,
                 children: [
                   p ? /* @__PURE__ */ v.jsx(il, {}) : /* @__PURE__ */ v.jsx(Uc, {}),
                   f,
@@ -53930,8 +53931,8 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Gde = [
       title: "No Assets Found",
       description: "Catch up all the data. Change the date range to see the data."
     }
-  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between gap-8", children: [
-    /* @__PURE__ */ v.jsxs("div", { className: "relative w-[240px] h-[240px]", children: [
+  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Assets by Type", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between h-full", children: [
+    /* @__PURE__ */ v.jsxs("div", { className: "relative w-[252px] h-[273px]", children: [
       /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsx(Mo, { children: /* @__PURE__ */ v.jsx(
         Vi,
         {
@@ -53950,8 +53951,8 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Gde = [
         }
       ) }) }),
       /* @__PURE__ */ v.jsxs("div", { className: "absolute inset-0 flex flex-col items-center justify-center", children: [
-        /* @__PURE__ */ v.jsx("div", { className: "text-[24px] text-[#121212]", children: r }),
-        /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#94A3B8] mt-1", children: "Total Assets" })
+        /* @__PURE__ */ v.jsx("div", { className: "text-[24px]  leading-[33px] font-medium text-[#121212]", children: r }),
+        /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[17px] text-[#64748B] mt-[2px]", children: "Total Assets" })
       ] })
     ] }),
     /* @__PURE__ */ v.jsx("div", { className: "flex-1 max-w-[280px]", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden bg-white", children: [
@@ -54001,14 +54002,22 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Gde = [
       title: "No Maintenance Assets Status Found",
       description: "Catch up all the data. Change the date range to see the data."
     }
-  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
+  ) }) }) : /* @__PURE__ */ v.jsx(yn, { title: "Maintenance Status", titleWeight: "semi-bold", className: "h-full", children: /* @__PURE__ */ v.jsx("div", { className: "w-full h-[260px] flex items-center justify-center", children: Array.isArray(e) && e.length === 0 ? /* @__PURE__ */ v.jsx("div", { className: "text-[#94A3B8] text-sm", children: "No Data Found" }) : /* @__PURE__ */ v.jsx("div", { className: "relative w-full h-[297px] mt-[20px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(
     ga,
     {
       data: i,
-      barSize: 50,
-      margin: { top: 0, right: 0, left: -30, bottom: 0 },
+      barSize: 54,
+      barCategoryGap: "40%",
+      margin: { top: 20, right: 20, left: -20, bottom: 0 },
       children: [
-        /* @__PURE__ */ v.jsx(Jr, { strokeDasharray: "3 3", vertical: !1 }),
+        /* @__PURE__ */ v.jsx(
+          Jr,
+          {
+            strokeDasharray: "3 3",
+            vertical: !1,
+            stroke: "#E2E8F0"
+          }
+        ),
         /* @__PURE__ */ v.jsx(
           Pr,
           {
@@ -54043,32 +54052,48 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Gde = [
           {
             verticalAlign: "bottom",
             align: "center",
-            iconType: "square",
             onClick: o,
-            formatter: (a) => /* @__PURE__ */ v.jsx(
+            content: ({ payload: a }) => /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center gap-4 pt-4 flex-wrap", children: a.map((s, l) => /* @__PURE__ */ v.jsxs(
               "div",
               {
-                style: {
-                  color: t[a] ? "#CBD5E1" : "#64748B",
-                  cursor: "pointer",
-                  fontSize: "12px",
-                  display: "inline-flex",
-                  alignItems: "center"
-                },
-                children: a
-              }
-            ),
-            wrapperStyle: { paddingTop: "18px" }
+                onClick: () => o({ dataKey: s.dataKey }),
+                className: "flex items-center gap-2 cursor-pointer",
+                children: [
+                  /* @__PURE__ */ v.jsx(
+                    "div",
+                    {
+                      style: {
+                        width: "16px",
+                        height: "8px",
+                        backgroundColor: t[s.dataKey] ? "#CBD5E1" : s.color
+                        // borderRadius: "2px",
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ v.jsx(
+                    "span",
+                    {
+                      style: {
+                        fontSize: "12px",
+                        color: t[s.dataKey] ? "#CBD5E1" : "#64748B"
+                      },
+                      children: s.value
+                    }
+                  )
+                ]
+              },
+              l
+            )) })
           }
         ),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "Open", stackId: "a", fill: "#3B82F6", hide: t.Open }),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "Closed", stackId: "a", fill: "#10B981", hide: t.Closed }),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "Cancelled", stackId: "a", fill: "#B91C1C", hide: t.Cancelled }),
         /* @__PURE__ */ v.jsx(Wn, { dataKey: "OnHold", stackId: "a", fill: "#64748B", hide: t.OnHold }),
-        /* @__PURE__ */ v.jsx(Wn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress })
+        /* @__PURE__ */ v.jsx(Wn, { dataKey: "InProgress", stackId: "a", fill: "#F59E0B", hide: t.InProgress, name: "In Progress" })
       ]
     }
-  ) }) }) });
+  ) }) }) }) });
 };
 function vpe({ data: e }) {
   const t = [
@@ -54154,17 +54179,17 @@ function ype({ incidentReports: e, incidentReportsDetails: t }) {
       titleWeight: "semi-bold",
       children: /* @__PURE__ */ v.jsxs("div", { children: [
         /* @__PURE__ */ v.jsxs("div", { className: "flex w-full text-center gap-[24px]", children: [
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#FBF4F4] h-[76px] rounded", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[24px] leading-[28px] font-medium text-[#AB0000]", children: n }),
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#AB0000]", children: "Open" })
+          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center bg-[#FBF4F4] h-[76px] rounded", children: [
+            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] leading-[28px] font-medium text-[#AB0000]", children: n }),
+            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#AB0000]", children: "Open" })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#FFFBF2] h-[76px] rounded", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[24px] leading-[28px] font-medium text-[#E7A015]", children: r }),
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#E7A015]", children: "In-progress" })
+          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center bg-[#FFFBF2] h-[76px] rounded", children: [
+            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] leading-[28px] font-medium text-[#F2A815]", children: r }),
+            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#F2A815]", children: "In-progress" })
           ] }),
-          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 py-3 bg-[#F7FEFA] h-[76px] rounded", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[24px] leading-[28px] font-medium text-[#1FA05B]", children: i }),
-            /* @__PURE__ */ v.jsx("div", { className: "!text-[12px] leading-[16px] text-[#1FA05B]", children: "Closed" })
+          /* @__PURE__ */ v.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center bg-[#F7FEFA] h-[76px] rounded", children: [
+            /* @__PURE__ */ v.jsx("div", { className: "text-[24px] leading-[28px] font-medium text-[#1FA05B]", children: i }),
+            /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[16px] text-[#1FA05B]", children: "Closed" })
           ] })
         ] }),
         /* @__PURE__ */ v.jsx("div", { className: "mt-4 space-y-2", children: t?.length > 0 ? t.map((o, a) => {
@@ -54190,7 +54215,7 @@ function ype({ incidentReports: e, incidentReportsDetails: t }) {
             },
             a
           );
-        }) : /* @__PURE__ */ v.jsx("div", { className: "text-[16px] text-center text-gray-400 text-sm py-6", children: "No incidents found" }) })
+        }) : /* @__PURE__ */ v.jsx(v.Fragment, {}) })
       ] })
     }
   );
@@ -54232,54 +54257,81 @@ function bpe({
   totalPages: s = 1,
   pageOptions: l = [10, 20, 30, 40, 50]
 }) {
-  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = c;
-  return console.log("safeData:", c), console.log("currentData:", p), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
+  const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = (i - 1) * n, h = p + n, m = c.slice(p, h), g = n - m.length > 0 ? n - m.length : 0;
+  return console.log("safeData:", c), console.log("currentData:", m), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
-        className: "grid bg-slate-600 text-white text-sm font-medium",
+        className: "grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium",
         style: { gridTemplateColumns: `repeat(${u.length}, 1fr)` },
-        children: u.map((h, m) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px]", children: h.label }, m))
+        children: u.map((b, S) => /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 text-[16px] leading-[20px]", children: b.label }, S))
       }
     ),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: p.length > 0 ? p.map((h, m) => /* @__PURE__ */ v.jsx(
-      "div",
-      {
-        className: "grid text-[14px] leading-[18px] text-gray-700 hover:bg-gray-50 transition",
-        style: {
-          gridTemplateColumns: `repeat(${u.length}, 1fr)`
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 overflow-y-auto", children: m.length > 0 ? /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
+      m.map((b, S) => /* @__PURE__ */ v.jsx(
+        "div",
+        {
+          className: "grid",
+          style: {
+            gridTemplateColumns: `repeat(${u.length}, 1fr)`
+          },
+          children: u.map((w, x) => {
+            const _ = b[w.key], E = typeof _ == "string" && _.includes("%"), k = _ === "100%" ? "bg-[#F0FEF2] text-[#36AB6C]" : "bg-[#FFF0F0] text-[#AB0000]";
+            return /* @__PURE__ */ v.jsx(
+              "div",
+              {
+                className: `px-6 py-4 ${x === 0 ? "bg-white" : "bg-gray-50"}`,
+                children: E ? /* @__PURE__ */ v.jsx(
+                  "div",
+                  {
+                    className: `inline-block px-3 py-1 rounded-full text-[14px] font-medium ${k}`,
+                    children: _
+                  }
+                ) : /* @__PURE__ */ v.jsx("div", { children: _ ?? "-" })
+              },
+              x
+            );
+          })
         },
-        children: u.map((g, b) => {
-          const S = h[g.key], w = typeof S == "string" && S.includes("%"), x = S === "100%" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
-          return /* @__PURE__ */ v.jsx("div", { className: "px-6 py-4 bg-gray-50", children: w ? /* @__PURE__ */ v.jsx(
+        S
+      )),
+      Array.from({ length: g }).map((b, S) => /* @__PURE__ */ v.jsx(
+        "div",
+        {
+          className: "grid",
+          style: {
+            gridTemplateColumns: `repeat(${u.length}, 1fr)`
+          },
+          children: u.map((w, x) => /* @__PURE__ */ v.jsx(
             "div",
             {
-              className: `inline-block px-3 py-1 rounded-full text-[14px]  font-semibold ${x}`,
-              children: S
-            }
-          ) : /* @__PURE__ */ v.jsx("div", { children: S ?? "-" }) }, b);
-        })
-      },
-      m
-    )) : /* @__PURE__ */ v.jsx(
+              className: `px-6 py-4 ${x === 0 ? "bg-white" : "bg-gray-50"}`,
+              children: " "
+            },
+            x
+          ))
+        },
+        `empty-${S}`
+      ))
+    ] }) : /* @__PURE__ */ v.jsx(
       Lo,
       {
         title: "No Data Found",
         description: "Catch up all the data. Change the date range to see the data."
       }
     ) }),
-    /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white gap-8", children: [
+    /* @__PURE__ */ v.jsxs("div", { className: "flex justify-end items-center px-6 py-4 text-sm bg-white border-t border-[#F0F0F0] gap-8", children: [
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center gap-2 text-gray-600 text-[14px]", children: [
         /* @__PURE__ */ v.jsx("div", { children: "Rows per page:" }),
         /* @__PURE__ */ v.jsx(
           "select",
           {
             value: n,
-            onChange: (h) => {
-              r(Number(h.target.value)), o(1);
+            onChange: (b) => {
+              r(Number(b.target.value)), o(1);
             },
             className: "border rounded px-2 py-1",
-            children: l.map((h, m) => /* @__PURE__ */ v.jsx("option", { value: h, children: h }, m))
+            children: l.map((b, S) => /* @__PURE__ */ v.jsx("option", { value: b, children: b }, S))
           }
         ),
         /* @__PURE__ */ v.jsxs("div", { className: "ml-4 text-[14px]", children: [
@@ -54302,7 +54354,7 @@ function bpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((h) => h - 1),
+            onClick: () => o((b) => b - 1),
             disabled: i === 1,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(QR, { size: 18 })
@@ -54311,7 +54363,7 @@ function bpe({
         /* @__PURE__ */ v.jsx(
           "button",
           {
-            onClick: () => o((h) => h + 1),
+            onClick: () => o((b) => b + 1),
             disabled: i === f,
             className: "p-2 rounded hover:bg-gray-100 disabled:opacity-40",
             children: /* @__PURE__ */ v.jsx(ZR, { size: 18 })
