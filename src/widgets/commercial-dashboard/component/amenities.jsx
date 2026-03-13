@@ -105,7 +105,7 @@ function Amenities({ data }) {
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
           <div>
-            <div className="flex flex-col gap-[4px]!">
+            <div className="flex flex-col gap-[8px]!">
               <div className="text-[12px] leading-[16px] text-[#64748B]">
                 Total Bookings
               </div>
@@ -115,7 +115,7 @@ function Amenities({ data }) {
             </div>
 
             <div
-              className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
+              className={`inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
                 bookingGrowth >= 0
                   ? "text-[#1FA05B] bg-green-50"
                   : "text-red-600 bg-red-50"
@@ -127,7 +127,7 @@ function Amenities({ data }) {
           </div>
 
           {!allUnpaid && (
-            <div className="flex flex-col gap-[4px]!">
+            <div className="flex flex-col gap-[8px]!">
               <div className="text-[12px] leading-[16px] text-[#64748B]">
                 Revenue Generated
               </div>
@@ -139,7 +139,7 @@ function Amenities({ data }) {
 
               {growthPercentage !== null && (
                 <div
-                  className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
+                  className={`inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
                     isGrowthPositive
                       ? "text-[#1FA05B] bg-green-50"
                       : "text-red-600 bg-red-50"

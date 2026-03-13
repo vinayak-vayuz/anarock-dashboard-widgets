@@ -18,26 +18,26 @@ function FoodBeverages() {
     >
       <div className="flex flex-col h-full">
         <div className="grid grid-cols-2 gap-6 mb-6">
-          <div>
+          <div className="flex flex-col gap-[8px]!">
             <div className="text-[12px] leading-[16px] text-[#64748B]">
               Total Orders
             </div>
-            <div className="mt-[4px] text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
+            <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
               {totalOrders}
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col gap-[8px]!">
             <div className="text-[12px] leading-[16px] text-[#64748B]">
               Revenue Generated
             </div>
 
-            <div className="mt-[4px] text-[28px] leading-[32px] font-medium text-[#329DFF]">
+            <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
               ₹ {revenueGenerated}
             </div>
 
             <div
-              className={`inline-flex items-center gap-1 mt-2 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
+              className={`inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
                 isGrowthPositive
                   ? "text-[#1FA05B] bg-green-50"
                   : "text-red-600 bg-red-50"
