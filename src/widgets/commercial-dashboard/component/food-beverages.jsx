@@ -173,7 +173,7 @@ function FoodBeverages({ data, title, period, icon }) {
       icon={cardIcon}
     >
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-2 gap-[24px] mb-6">
           <div className="flex flex-col gap-[8px]!">
             <div className="text-[12px] leading-[16px] text-[#64748B]">
               Total Orders
@@ -193,7 +193,7 @@ function FoodBeverages({ data, title, period, icon }) {
             </div>
 
             <div
-              className={`inline-flex items-center gap-1 text-[10px] leading-[14px] px-2 py-1 rounded-full ${
+              className={`w-fit inline-flex items-center gap-[4px] text-[10px] leading-[14px] p-[4px] rounded-[4px] ${
                 isGrowthPositive
                   ? "text-[#1FA05B] bg-green-50"
                   : "text-red-600 bg-red-50"
@@ -208,7 +208,7 @@ function FoodBeverages({ data, title, period, icon }) {
         <div className="mt-[16px]">
           {normalizedData.outlets.map((item, index) => (
             <div key={`${item.name}-${index}`} className="mb-[16px]">
-              <div className="flex justify-between text-sm mb-2">
+              <div className="flex justify-between text-sm mb-[8px]">
                 <div className="text-[#64748B] text-[12px] leading-[16px]">
                   {item.name}
                 </div>

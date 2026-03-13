@@ -12,7 +12,7 @@ function Engagement({ data = {}, onExport }) {
         onExport={onExport}
       />
       <StatCardGrid data={data?.stats} />
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-2 gap-[24px] mt-6">
+      <div className="px-[20px] grid grid-cols-1 lg:grid-cols-2 gap-[24px] mt-6">
         <NoticeBoardStatus data={data?.noticeBoardStatus} />
         <EventsUtilisation data={data?.eventsUtilisation} />
       </div>

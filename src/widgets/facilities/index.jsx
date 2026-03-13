@@ -12,7 +12,7 @@ function Facilities({ data = {}, onExport }) {
       />
       <Stats data={data?.stats} />
 
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,3.5fr)] gap-[24px] mt-6">
+      <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,3.5fr)] gap-[24px] mt-6">
         <AssetValueBreakdown data={data?.assetValueBreakdown} />
         <RevenuebyCategory data={data?.revenueByCategory} />
       </div>

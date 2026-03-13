@@ -10,8 +10,7 @@ const DUMMY_DATA = {
 };
 
 function GuardPatrols({ data = {} }) {
-  const resolvedData =
-    data && Object.keys(data).length > 0 ? data : DUMMY_DATA;
+  const resolvedData = data && Object.keys(data).length > 0 ? data : DUMMY_DATA;
 
   const chartData = [
     {
@@ -39,13 +38,8 @@ function GuardPatrols({ data = {} }) {
   const completed = Number(resolvedData?.completed ?? 0);
 
   return (
-    <Card
-      title="Guard Patrols"
-      className="h-[362px]"
-      titleWeight="semi-bold"
-    >
+    <Card title="Guard Patrols" className="h-[362px]" titleWeight="semi-bold">
       <div className="flex flex-col items-center justify-center">
-
         {/* Chart */}
         <div className="w-[215px] h-[182px] relative">
           <ResponsiveContainer width="100%" height="100%">
@@ -63,18 +57,14 @@ function GuardPatrols({ data = {} }) {
                 ))}
               </Pie>
 
-              <Tooltip
-                formatter={(val) =>
-                  Number(val ?? 0).toLocaleString()
-                }
-              />
+              <Tooltip formatter={(val) => Number(val ?? 0).toLocaleString()} />
             </PieChart>
           </ResponsiveContainer>
 
           {/* Center Text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="font-medium text-[19.35px] leading-[23.65px]">
-              {(completed ?? 0)}/{(total ?? 0)}
+              {completed ?? 0}/{total ?? 0}
             </div>
             <div className="text-[10.75px] leading-[15.05px] text-[#64748B]">
               Completed
@@ -111,12 +101,11 @@ function GuardPatrols({ data = {} }) {
               </div>
             ))
           ) : (
-            <div className="text-center text-gray-400 text-sm py-6">
+            <div className="text-center text-gray-400 text-sm py-[24px]">
               No patrol data
             </div>
           )}
         </div>
-
       </div>
     </Card>
   );

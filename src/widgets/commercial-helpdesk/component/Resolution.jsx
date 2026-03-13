@@ -10,12 +10,12 @@ export default function MetricCard({
   percentageText,
 }) {
   const numericPercentage = parseFloat(percentage);
-  const isPositive = numericPercentage >= 0; 
+  const isPositive = numericPercentage >= 0;
   const percentageColor = isPositive ? "#16A34A" : "#DC2626";
 
   return (
     <div className="relative bg-white rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] p-[16px]">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-[8px]">
         {Icon && (
           <div
             className="h-[20px] w-[20px]"
@@ -40,7 +40,7 @@ export default function MetricCard({
       </div>
 
       {(percentage || percentageText) && (
-        <div className="mt-[12px] flex items-center gap-2">
+        <div className="mt-[12px] flex items-center gap-[8px]">
           {percentage && (
             <div
               className="flex items-center gap-[4px] text-[12px] leading-[16px] font-medium"

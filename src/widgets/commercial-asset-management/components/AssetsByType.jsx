@@ -14,46 +14,44 @@ const DUMMY_DATA = [
 ];
 
 const AssetsByType = ({ rows, totalAssets }) => {
+  const assets = useMemo(() => {
+    if (!rows) {
+      return DUMMY_DATA.map((item, index) => ({
+        name: item.asset_group_name,
+        value: item.asset_count || 0,
+        color: COLORS[index % COLORS.length],
+      }));
+    }
 
-const assets = useMemo(() => {
-  if (!rows) {
-    return DUMMY_DATA.map((item, index) => ({
+    if (rows.length === 0) {
+      return [];
+    }
+
+    return rows.map((item, index) => ({
       name: item.asset_group_name,
       value: item.asset_count || 0,
       color: COLORS[index % COLORS.length],
     }));
-  }
-
-  if (rows.length === 0) {
-    return [];
-  }
-
-  return rows.map((item, index) => ({
-    name: item.asset_group_name,
-    value: item.asset_count || 0,
-    color: COLORS[index % COLORS.length],
-  }));
-}, [rows]);
+  }, [rows]);
 
   const finalTotal =
-    totalAssets ??
-    assets.reduce((sum, item) => sum + item.value, 0);
+    totalAssets ?? assets.reduce((sum, item) => sum + item.value, 0);
 
-    if (rows && rows.length === 0) {
-  return (
+  if (rows && rows.length === 0) {
+    return (
       <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
-          <div className="flex items-center justify-center h-full">
-    <EmptyState
-    title="No Assets Found"
-    description="Catch up all the data. Change the date range to see the data."
-  />
-  </div>
-  </Card>
-  );
-}
+        <div className="flex items-center justify-center h-full">
+          <EmptyState
+            title="No Assets Found"
+            description="Catch up all the data. Change the date range to see the data."
+          />
+        </div>
+      </Card>
+    );
+  }
   return (
     <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
-<div className="flex items-center justify-between h-full">
+      <div className="flex items-center justify-between h-full">
         {/* Chart */}
         <div className="relative w-[252px] h-[273px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -92,9 +90,8 @@ const assets = useMemo(() => {
         {/* Table */}
         <div className="flex-1 max-w-[280px]">
           <div className="rounded-[12px] overflow-hidden bg-white">
-
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 bg-[#F8FAFC]">
+            <div className="flex items-center justify-between px-[16px] py-[12px] bg-[#F8FAFC]">
               <div className="text-[12px] font-medium text-[#64748B]">
                 Asset
               </div>
@@ -107,26 +104,21 @@ const assets = useMemo(() => {
             {assets.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between px-4 py-3 border-t border-[#F1F5F9]"
+                className="flex items-center justify-between px-[16px] py-[12px] border-t border-[#F1F5F9]"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-[8px]">
                   <div
                     className="w-[16px] h-[7px]"
                     style={{ backgroundColor: item.color }}
                   />
-                  <div className="text-[13px] text-[#475569]">
-                    {item.name}
-                  </div>
+                  <div className="text-[13px] text-[#475569]">{item.name}</div>
                 </div>
 
-                <div className="text-[13px] text-[#64748B]">
-                  {item.value}
-                </div>
+                <div className="text-[13px] text-[#64748B]">{item.value}</div>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </Card>
   );

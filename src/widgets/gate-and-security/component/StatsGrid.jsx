@@ -45,50 +45,49 @@ function StatCardGrid({
 }
 
 const DEFAULT_CARDS = [
-    {
-      title: "Total Visitors",
-      value: 160,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: GoPeople,
-      iconColor: "text-[#329DFF]",
-    },
-    {
-      title: "Active Incidents",
-      value: 73,
-      delta: "+2.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: CiWarning,
-      iconColor: "text-[#F69E0A]",
-    },
-    {
-      title: "Missed Patrols",
-      value: 3,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: PiShieldWarningBold,
-      iconColor: "text-[#AB0000]",
-    },
-    {
-      title: "Parking Usage",
-      value: 5,
-      delta: "-8.0%",
-      deltaLabel: "Compared to last month",
-      positive: false,
-      Icon: LuCar,
-      iconColor: "text-[#36AB6C]",
-    },
+  {
+    title: "Total Visitors",
+    value: 160,
+    delta: "+11.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: GoPeople,
+    iconColor: "text-[#329DFF]",
+  },
+  {
+    title: "Active Incidents",
+    value: 73,
+    delta: "+2.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: CiWarning,
+    iconColor: "text-[#F69E0A]",
+  },
+  {
+    title: "Missed Patrols",
+    value: 3,
+    delta: "+11.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: PiShieldWarningBold,
+    iconColor: "text-[#AB0000]",
+  },
+  {
+    title: "Parking Usage",
+    value: 5,
+    delta: "-8.0%",
+    deltaLabel: "Compared to last month",
+    positive: false,
+    Icon: LuCar,
+    iconColor: "text-[#36AB6C]",
+  },
 ];
 
 function StatCard({ data }) {
-  const cards =
-    Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
+  const cards = Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
 
   return (
-    <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
+    <div className="px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
       {cards.map((card, index) => (
         <StatCardGrid key={index} {...card} />
       ))}

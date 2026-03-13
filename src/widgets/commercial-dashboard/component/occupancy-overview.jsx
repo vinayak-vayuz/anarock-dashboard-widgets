@@ -60,7 +60,7 @@ const OccupancyOverviewCard = ({
 
   return (
     <div>
-      <div className="bg-white !border-[0.5px] !border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-[16px] h-[128px]">
+      <div className="bg-white !border-[0.5px] !border-[#EBEBEB] rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] p-[16px] h-[128px]">
         <div
           className="flex items-center gap-[12px] h-[20px]"
           style={{ marginBottom: "24px" }}
@@ -82,7 +82,7 @@ const OccupancyOverviewCard = ({
             </div>
           </div>
 
-          <div className="flex items-end gap-1">
+          <div className="flex items-end gap-[4px]">
             <MiniPill
               value={employees ?? 0}
               total={barTotal || 1}

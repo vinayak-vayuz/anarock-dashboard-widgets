@@ -9,16 +9,16 @@ import CommercialEngagement from "../widgets/commercial-engagement";
 import CommercialFoodAndOrder from "../widgets/commercial-food-and-order";
 import CommercialAssetManagement from "../widgets/commercial-asset-management";
 import CommercialTable from "../widgets/commercial-table";
-import { LuBuilding } from "react-icons/lu"
+import { LuBuilding } from "react-icons/lu";
 export default function App() {
   return (
-    <div className="p-4">
+    <div className="p-[16px]">
       <h1 className="!text-[24px] font-bold mb-4">Playground</h1>
       <div className="h-[66px]">
         <Widgets.MainHeader />
       </div>
 
-      <div className="!columns-1 sm:!columns-2 xl:!columns-3 gap-4">
+      <div className="!columns-1 sm:!columns-2 xl:!columns-3 gap-[16px]">
         <Widgets.FinanceSummary isStatic={true} />
         <Widgets.GateUpdates isStatic={true} />
         <Widgets.Facilities isStatic={true} />
@@ -32,30 +32,26 @@ export default function App() {
           title="Community"
           description="Units, residents, and occupancy details"
         />
-        <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Widgets.UnitStatus isStatic={true} 
+        <div className="px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[16px]">
+          <Widgets.UnitStatus
+            isStatic={true}
             title="Unit Status"
             icon={<LuBuilding className="h-6 w-6 text-green-400" />}
-            
             firstLabel="Sold"
             firstValue={847}
             firstColor="#12B981"
-          
             secondLabel="Unsold"
             secondValue={73}
             secondColor="#EF4444"
-          
             growthPercentage="+12.4%"
             growthColor="#1FA05B"
             growthText="Compared to last month"
-          
             totalLabel="Total Units"
-
           />
           <Widgets.OccupancyOverview isStatic={true} />
           <Widgets.ResidentOverview isStatic={true} />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 px-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] mt-4 px-[20px]">
           <Widgets.BlockWiseOccupancy isStatic={true} />
           <Widgets.MoveInOutTrends isStatic={true} />
         </div>
@@ -66,16 +62,16 @@ export default function App() {
           title="Financials"
           description="Units, residents, and occupancy details"
         />
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] gap-[24px] mt-6">
           <Widgets.Accounting />
           <Widgets.ExpenseCategories />
         </div>
 
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-[24px] mt-6">
           <Widgets.CashBankBalance />
           <Widgets.DuesAgeing />
         </div>
-        <div className="px-5 mt-6">
+        <div className="px-[20px] mt-6">
           <Widgets.Budgets />
         </div>
       </div>
@@ -87,7 +83,7 @@ export default function App() {
         />
         <Widgets.StatsGrid isStatic={true} />
 
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,3.5fr)] gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,3.5fr)] gap-[24px] mt-6">
           <Widgets.AssetValueBreakdown isStatic={true} />
           <Widgets.RevenuebyCategory isStatic={true} />
         </div>
@@ -100,11 +96,11 @@ export default function App() {
         />
         <Widgets.StatsGrid />
 
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,3.5fr)] gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,3.5fr)] gap-[24px] mt-6">
           <Widgets.GuardPatrols />
           <Widgets.HourlyTrafficFlow />
         </div>
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-2 gap-[24px] mt-6">
           <Widgets.IncidentReports />
           <Widgets.StaffAttendance />
         </div>
@@ -173,7 +169,7 @@ export default function App() {
         {/*<Widgets.HelpdeskStatsGrid/>*/}
         {/*<Widgets.HelpdeskStatsGrid/>*/}
         {/*<Widgets.HelpdeskStatsGrid/>*/}
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-3 gap-[24px] mt-6">
           <Widgets.ComplaintsByLevel />
           <Widgets.RequestBox />
           <Widgets.Complaints />
@@ -186,20 +182,20 @@ export default function App() {
           description="Insights on community activity"
         />
         <Widgets.StatsGrid isStatic={true} />
-        <div className="px-5 grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+        <div className="px-[20px] grid grid-cols-1 lg:grid-cols-2 gap-[24px] mt-6">
           <Widgets.NoticeBoardStatus isStatic={true} />
           <Widgets.EventsUtilisation isStatic={true} />
         </div>
-          <CommercialDashboard/>
-          <CommercialSmartAccess/>
-          <CommercialHelpdesk/>
-          <CommercialVisitors/>
-          <CommercialAmenities/>
-          <CommercialAssetManagement/>
-           <CommercialGuardPetrol/>
-          <CommercialEngagement/>
-          {/* <CommercialFoodAndOrder/> */}
-           <CommercialTable/>
+        <CommercialDashboard />
+        <CommercialSmartAccess />
+        <CommercialHelpdesk />
+        <CommercialVisitors />
+        <CommercialAmenities />
+        <CommercialAssetManagement />
+        <CommercialGuardPetrol />
+        <CommercialEngagement />
+        {/* <CommercialFoodAndOrder/> */}
+        <CommercialTable />
       </div>
     </div>
   );

@@ -124,7 +124,7 @@ function StatCard({ id, data }) {
    * 🟡 No API data → render ALL 4 dummy cards
    */
   return (
-    <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[16px]">
       {STAT_IDS.map((statId) => (
         <SingleStatCard key={statId} id={statId} />
       ))}
@@ -203,7 +203,9 @@ function SingleStatCard({ id, data }) {
       </div>*/}
         <div className="flex items-center gap-[8px] text-[12px] leading-[16px]">
           <Chip value={delta} />
-          <div className="text-[#64748B] text-[12px] leading-[16px]">{deltaLabel}</div>
+          <div className="text-[#64748B] text-[12px] leading-[16px]">
+            {deltaLabel}
+          </div>
         </div>
       </Card>
     </div>

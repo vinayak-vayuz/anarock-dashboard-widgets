@@ -26,8 +26,7 @@ const Card = ({
       className={`relative bg-white rounded-[12px] p-[24px] shadow-[0_0_12px_0_#EAF2FF] ${className}`}
     >
       <div className="flex items-center justify-between">
-        
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-[8px]">
           {icon && <div className={iconClassName}>{icon}</div>}
 
           <div
@@ -36,9 +35,7 @@ const Card = ({
               color: titleColor || "#121212",
             }}
             className={
-              titleClassName
-                ? titleClassName
-                : "text-[20px] leading-[24px]"
+              titleClassName ? titleClassName : "text-[20px] leading-[24px]"
             }
           >
             {title}
@@ -52,8 +49,7 @@ const Card = ({
         )}
 
         {isDateSelector && (
-          <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-white text-sm text-[#64748B]">
-            
+          <div className="flex items-center gap-[12px] px-[16px] py-[8px] rounded-[8px] bg-white text-sm text-[#64748B]">
             <Calendar
               size={16}
               className="text-[#64748B] cursor-pointer"
@@ -75,7 +71,6 @@ const Card = ({
               className="cursor-pointer"
               onClick={onNextClick}
             />
-
           </div>
         )}
       </div>

@@ -15,8 +15,8 @@ import EmptyState from "../../utils/EmptyState";
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-black text-white px-4 py-2 rounded-lg text-sm shadow-lg">
-        <div className="flex items-center gap-2">
+      <div className="bg-black text-white px-[16px] py-[8px] rounded-[8px] text-sm shadow-lg">
+        <div className="flex items-center gap-[8px]">
           <div>{payload[0].payload.name}</div>
           <div className="font-semibold">{payload[0].value}</div>
         </div>
@@ -31,13 +31,7 @@ const CustomYAxisTick = ({ x, y, payload }) => {
 
   return (
     <g transform={`translate(${x},${y})`}>
-      <text
-        x={-85}
-        y={0}
-        textAnchor="start"
-        fill="#121212"
-        fontSize={14}
-      >
+      <text x={-85} y={0} textAnchor="start" fill="#121212" fontSize={14}>
         {words.map((word, index) => (
           <tspan key={index} x={-85} dy={index === 0 ? 0 : 16}>
             {word}

@@ -128,7 +128,7 @@ export function HoverDetailCard({ type, data, children }) {
       title={titleMap[type]}
       period="Today"
       icon={<LuWaves className={`${colorMap[type]} !text-[24px]`} />}
-      className="!gap-0 min-w-[353px] bg-white shadow-xl rounded-lg border border-gray-200"
+      className="!gap-0 min-w-[353px] bg-white shadow-xl rounded-[8px] border border-gray-200"
     >
       <div className="flex flex-col gap-[8px] mt-[12px] pt-[12px] border-t border-dashed border-[#EBEBEB]">
         {cardMap[type].map(([label, value]) => (
@@ -167,12 +167,12 @@ function GateUpdates({ isStatic, data }) {
 
   const chartData = useMemo(
     () => generateHourlyChartData(data?.chart || []),
-    [data]
+    [data],
   );
 
   const { yAxisTicks, yAxisMax } = useMemo(() => {
     const maxValue = Math.max(
-      ...chartData.flatMap((d) => [d.walkins, d.checkins, d.staffAttendance])
+      ...chartData.flatMap((d) => [d.walkins, d.checkins, d.staffAttendance]),
     );
     const max = maxValue > 0 ? maxValue : 5;
     return {
@@ -230,17 +230,17 @@ function GateUpdates({ isStatic, data }) {
                   style={{ color: item.color }}
                 >
                   {item.key === "activeWalkins"
-                    ? item.data?.visitor_in ?? 0
+                    ? (item.data?.visitor_in ?? 0)
                     : item.key === "preApprovedCheckins"
-                    ? item.data?.currently_inside ?? 0
-                    : item.data?.total_in_now ?? 0}
+                      ? (item.data?.currently_inside ?? 0)
+                      : (item.data?.total_in_now ?? 0)}
                   <div className="text-[20px] text-[#64748B] ml-1">
                     /
                     {item.key === "activeWalkins"
-                      ? item.data?.total_pass ?? 0
+                      ? (item.data?.total_pass ?? 0)
                       : item.key === "preApprovedCheckins"
-                      ? item.data?.total_expected_pass ?? 0
-                      : item.data?.total_staff ?? 0}
+                        ? (item.data?.total_expected_pass ?? 0)
+                        : (item.data?.total_staff ?? 0)}
                   </div>
                 </div>
               </div>

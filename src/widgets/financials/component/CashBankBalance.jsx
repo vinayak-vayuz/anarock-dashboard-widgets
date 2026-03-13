@@ -3,9 +3,9 @@ import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
 const DEFAULT_ACCOUNTS = [
-    { title: "Primary Account", amount: 2850000, subtitle: "Savings" },
-    { title: "Emergency Fund", amount: 1200000, subtitle: "Fixed deposit" },
-    { title: "Maintenance Fund", amount: 680000, subtitle: "Current" },
+  { title: "Primary Account", amount: 2850000, subtitle: "Savings" },
+  { title: "Emergency Fund", amount: 1200000, subtitle: "Fixed deposit" },
+  { title: "Maintenance Fund", amount: 680000, subtitle: "Current" },
 ];
 
 const CashBankBalance = ({ data }) => {
@@ -13,8 +13,8 @@ const CashBankBalance = ({ data }) => {
     Array.isArray(data?.accounts) && data.accounts.length > 0
       ? data.accounts
       : Array.isArray(data) && data.length > 0
-      ? data
-      : DEFAULT_ACCOUNTS;
+        ? data
+        : DEFAULT_ACCOUNTS;
 
   const total = accounts.reduce((sum, acc) => sum + acc.amount, 0);
 
@@ -36,7 +36,7 @@ const CashBankBalance = ({ data }) => {
         {accounts.map((item, idx) => (
           <div
             key={idx}
-            className="flex items-center justify-between bg-[#F9FAFB] rounded-lg p-3"
+            className="flex items-center justify-between bg-[#F9FAFB] rounded-[8px] p-[12px]"
           >
             <div className="flex flex-col">
               <div className="text-[14px] font-medium text-[#121212]">
@@ -56,7 +56,7 @@ const CashBankBalance = ({ data }) => {
         ))}
       </div>
 
-      <div className="flex items-center justify-between border-t border-[#EBEBEB] h-[68px] px-3">
+      <div className="flex items-center justify-between border-t border-[#EBEBEB] h-[68px] px-[12px]">
         <div className="text-[14px] font-medium text-[#121212]">Total</div>
         <div className="text-[16px] text-[#1FA05B] font-bold">
           {formatCurrency(total)}

@@ -1,12 +1,6 @@
 import React from "react";
 import Card from "../../components/CardNoLogo";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 
 const dummyData = [
@@ -18,14 +12,10 @@ const dummyData = [
 
 const COLORS = ["#3C81F6", "#60A5FA", "#95BFFA", "#BEDAFE", "#DAE6FC"];
 
-function AmenityWiseRevenue({ data ,currencyType}) {
-
+function AmenityWiseRevenue({ data, currencyType }) {
   const isEmptyArray = Array?.isArray(data) && data?.length === 0;
 
-  const rawData =
-    data === undefined || data === null
-      ? dummyData
-      : data;
+  const rawData = data === undefined || data === null ? dummyData : data;
 
   const chartData =
     Array?.isArray(rawData) && rawData?.length > 0
@@ -40,13 +30,12 @@ function AmenityWiseRevenue({ data ,currencyType}) {
       ? chartData?.every((item) => item?.value === 0)
       : false;
 
-  const pieData =
-    allZero
-      ? chartData?.map((item, index) => ({
-          ...item,
-          value: index === 0 ? 1 : 0,
-        }))
-      : chartData;
+  const pieData = allZero
+    ? chartData?.map((item, index) => ({
+        ...item,
+        value: index === 0 ? 1 : 0,
+      }))
+    : chartData;
 
   const formatCurrency = (value) =>
     `${currencyType || "Rs"} ${value?.toLocaleString?.("en-IN") || 0}`;
@@ -57,14 +46,13 @@ function AmenityWiseRevenue({ data ,currencyType}) {
       titleWeight="semi-bold"
       className="h-[362px]"
     >
-      <div className="grid grid-cols-12 gap-6 items-center h-full">
-
+      <div className="grid grid-cols-12 gap-[24px] items-center h-full">
         {isEmptyArray ? (
-<div className="col-span-12 flex items-center justify-center h-[240px]">
-     <EmptyState
-    title="No Amenity Found"
-    description="Catch up all the data. Change the date range to see the data."
-  />
+          <div className="col-span-12 flex items-center justify-center h-[240px]">
+            <EmptyState
+              title="No Amenity Found"
+              description="Catch up all the data. Change the date range to see the data."
+            />
           </div>
         ) : (
           <>
@@ -113,14 +101,13 @@ function AmenityWiseRevenue({ data ,currencyType}) {
                   {chartData?.map?.((item, index) => (
                     <div
                       key={item?.name || index}
-                      className="grid grid-cols-2 px-4 py-4 text-[14px] text-[#121212]"
+                      className="grid grid-cols-2 px-[16px] py-[16px] text-[14px] text-[#121212]"
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-[12px]">
                         <span
                           className="w-[16px] h-[7px]"
                           style={{
-                            backgroundColor:
-                              COLORS?.[index % COLORS?.length],
+                            backgroundColor: COLORS?.[index % COLORS?.length],
                           }}
                         />
                         <span className="text-[#64748B] text-[12px] leading-[16px]">
@@ -138,7 +125,6 @@ function AmenityWiseRevenue({ data ,currencyType}) {
             </div>
           </>
         )}
-
       </div>
     </Card>
   );

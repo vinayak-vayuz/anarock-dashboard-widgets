@@ -25,8 +25,8 @@ const DuesAgeing = ({ data }) => {
     Array.isArray(data?.items) && data.items.length > 0
       ? data.items
       : Array.isArray(data) && data.length > 0
-      ? data
-      : DEFAULT_ITEMS;
+        ? data
+        : DEFAULT_ITEMS;
   const labels = items.map((item) => item.label);
   const values = items.map((item) => Number(item.value ?? 0));
   const units = items.map((item) => Number(item.units ?? 0));
@@ -89,7 +89,7 @@ const DuesAgeing = ({ data }) => {
     >
       <div className="grid grid-cols-4 md:grid-cols-4 gap-[12px] h-[48px]">
         {labels.map((label, i) => (
-          <div key={label} className="p-2 rounded-lg bg-slate-50">
+          <div key={label} className="p-[8px] rounded-[8px] bg-slate-50">
             <div className="flex justify-between items-start">
               <div className="font-medium leading-[16px] !text-[12px] rounded">
                 {label}
