@@ -26,7 +26,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
   return (
     <Card
       title="Staff Attendance"
-      className="h-[362px]"
+      className="h-[362px] overflow-hidden "
       titleWeight="semi-bold"
     >
       <div>
