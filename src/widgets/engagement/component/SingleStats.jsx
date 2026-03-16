@@ -49,13 +49,13 @@ function SingleStats({ data }) {
   const cards = [
     {
       title: data?.title || "Total Bookings",
-      value: 145,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: RiBillLine,
-      iconColor: "text-emerald-600",
-      iconBg: "bg-emerald-50",
+      value: data?.value ?? 0,
+      delta: data?.delta ?? "0%",
+      deltaLabel: data?.deltaLabel || "Compared to last month",
+      positive: data?.positive ?? false,
+      Icon: data?.Icon || RiBillLine,
+      iconColor: data?.iconColor || "text-emerald-600",
+      iconBg: data?.iconBg || "bg-emerald-50",
     },
   ];
 
