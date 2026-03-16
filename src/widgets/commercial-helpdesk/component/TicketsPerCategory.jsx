@@ -43,7 +43,7 @@ function TicketsPerCategory({ data = [] }) {
       title="Tickets per Category"
       className="h-[362px]"
       titleWeight="semi-bold"
-      childrenClassName="h-full mt-[24px]"
+      childrenClassName="h-full mt-[24px]!"
     >
       {!hasData ? (
         <EmptyState
@@ -51,7 +51,7 @@ function TicketsPerCategory({ data = [] }) {
           description="Catch up all the data. Change the date range to see the data."
         />
       ) : (
-        <div className="w-full h-[252px]">
+        <div className="w-full h-[262px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData}
