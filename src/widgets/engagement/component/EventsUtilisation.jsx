@@ -60,8 +60,8 @@ function EventItem({ title, date, rsvp, utilisation, status }) {
 }
 
 export default function EventsUtilisation({ data }) {
-  const events = Array.isArray(data) && data.length > 0 ? data : DEFAULT_EVENTS;
-
+  const events = Array.isArray(data) ? data : DEFAULT_EVENTS;
+  
   return (
     <Card
       title="Events Utilisation"

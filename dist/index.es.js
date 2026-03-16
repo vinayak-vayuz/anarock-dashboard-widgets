@@ -52056,7 +52056,7 @@ function jde({ title: e, date: t, rsvp: n, utilisation: r, status: i }) {
   ] });
 }
 function epe({ data: e }) {
-  const t = Array.isArray(e) && e.length > 0 ? e : Nde;
+  const t = Array.isArray(e) ? e : Nde;
   return /* @__PURE__ */ v.jsx(
     Ke,
     {
