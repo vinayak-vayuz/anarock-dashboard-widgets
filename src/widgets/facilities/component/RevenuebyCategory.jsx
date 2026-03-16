@@ -28,6 +28,9 @@ const RevenuebyCategory = ({ data }) => {
   const values = items.map((item) => Number(item.value ?? 0));
   const units = items.map((item) => Number(item.units ?? 0));
 
+  console.log(data, items, 'daaattttaa');
+
+
   const chartData = {
     labels,
     datasets: [
