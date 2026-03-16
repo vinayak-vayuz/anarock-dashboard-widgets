@@ -55,9 +55,9 @@ export default function NoticeBoardStatus({ data }) {
   return (
     <Card
       title="Notice Board Status"
-      period={
-        <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
-      }
+      // period={
+      //   <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
+      // }
       className="w-full h-[360px]"
     >
       <div className="grid grid-cols-2 gap-[16px]">

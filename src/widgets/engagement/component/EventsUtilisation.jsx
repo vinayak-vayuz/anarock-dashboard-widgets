@@ -65,9 +65,9 @@ export default function EventsUtilisation({ data }) {
   return (
     <Card
       title="Events Utilisation"
-      period={
-        <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
-      }
+      // period={
+      //   <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
+      // }
       className="w-full h-[360px] overflow-auto"
     >
       <div>
