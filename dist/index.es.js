@@ -50816,7 +50816,9 @@ const $ue = [
   { label: "Community Hall", value: 7200, units: 6 },
   { label: "Tennis Court", value: 6e3, units: 10 }
 ], Vfe = ({ data: e }) => {
-  const t = Array.isArray(e) && e.length > 0 ? e : $ue, n = t.map((s) => s.label), r = t.map((s) => Number(s.value ?? 0)), i = t.map((s) => Number(s.units ?? 0)), o = {
+  const t = Array.isArray(e) && e.length > 0 ? e : $ue, n = t.map((s) => s.label), r = t.map((s) => Number(s.value ?? 0)), i = t.map((s) => Number(s.units ?? 0));
+  console.log(e, t, "daaattttaa");
+  const o = {
     labels: n,
     datasets: [
       {

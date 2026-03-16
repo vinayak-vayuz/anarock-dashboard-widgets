@@ -41,6 +41,9 @@ function index() {
             growthColor="#1FA05B"
             growthText="Compared to last month"
             totalLabel="Total"
+            centerTopSize={34}
+            centerBottomSize={14}
+            showBottomGlow
           />
 
           <MetricCard

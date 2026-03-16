@@ -7,11 +7,10 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Cell,
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
-import {CustomTooltip}  from "../../utils";
+import { CustomTooltip } from "../../utils";
 
 const CustomYAxisTick = ({ x, y, payload }) => {
   const words = payload.value.split(" ");
@@ -35,6 +34,8 @@ function TicketsPerCategory({ data = [] }) {
   const chartData = data.map((item) => ({
     name: item.category_name,
     value: item.total_complaints,
+    color: "#08B6D4",
+
   }));
 
   return (
@@ -42,7 +43,7 @@ function TicketsPerCategory({ data = [] }) {
       title="Tickets per Category"
       className="h-[362px]"
       titleWeight="semi-bold"
-      childrenClassName="h-full"
+      childrenClassName="h-full mt-[24px]"
     >
       {!hasData ? (
         <EmptyState
@@ -50,20 +51,25 @@ function TicketsPerCategory({ data = [] }) {
           description="Catch up all the data. Change the date range to see the data."
         />
       ) : (
-        <div className="w-full h-[280px] mt-[28px]">
+        <div className="w-full h-[252px] pl-[8px] pr-[8px] pb-[10px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData}
               layout="vertical"
-              margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+              margin={{ top: 0, right: 8, left: -8, bottom: 12 }}
             >
-              <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                horizontal={false}
+                stroke="#E5E7EB"
+              />
 
               <XAxis
                 type="number"
                 tick={{ fill: "#94A3B8", fontSize: 12 }}
                 axisLine
                 tickLine={false}
+                tickMargin={10}
                 allowDecimals={false}
               />
 
@@ -72,7 +78,7 @@ function TicketsPerCategory({ data = [] }) {
                 dataKey="name"
                 axisLine={false}
                 tickLine={false}
-                width={120}
+                width={132}
                 tick={<CustomYAxisTick />}
               />
 
@@ -80,7 +86,7 @@ function TicketsPerCategory({ data = [] }) {
                 content={<CustomTooltip />}
                 cursor={{ fill: "transparent" }}
                 position={{ x: 300, y: 0 }}
-/>
+              />
 
               <Bar dataKey="value" barSize={36} fill="#08B6D4" />
             </BarChart>
