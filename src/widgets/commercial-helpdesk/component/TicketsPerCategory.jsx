@@ -34,6 +34,8 @@ function TicketsPerCategory({ data = [] }) {
   const chartData = data.map((item) => ({
     name: item.category_name,
     value: item.total_complaints,
+    color: "#08B6D4",
+
   }));
 
   return (

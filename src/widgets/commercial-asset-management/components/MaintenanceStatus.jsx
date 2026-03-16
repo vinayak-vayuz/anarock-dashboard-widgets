@@ -11,7 +11,7 @@ import {
   Legend,
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
-
+import { CommercialCustomTooltip } from "../../utils";
 const MaintenanceStatus = ({ data }) => {
   const [hiddenBars, setHiddenBars] = useState({});
 
@@ -126,19 +126,56 @@ const MaintenanceStatus = ({ data }) => {
                   allowDecimals={false}
                 />
 
-               <Tooltip
-  cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
-  contentStyle={{
-    backgroundColor: "#000",
-    borderRadius: "10px",
-    border: "none",
-    fontSize: "12px",
-    color: "#fff"
-  }}
-  labelStyle={{ color: "#fff" }}
-  itemStyle={{ color: "#fff" }}
-/>
+                <Tooltip
+                  cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
+                  content={({ active, payload, label }) => {
+                    if (!active || !payload || !payload.length) return null;
 
+                    return (
+                      <div
+                        style={{
+                          backgroundColor: "#000",
+                          borderRadius: "10px",
+                          padding: "10px 14px",
+                          fontSize: "12px",
+                          color: "#fff"
+                        }}
+                      >
+                        <div style={{ marginBottom: "6px", fontWeight: 600 }}>
+                          {label}
+                        </div>
+
+                        {payload.map((item, index) => {
+                          const color = item.color || item.fill || "#fff";
+
+                          return (
+                            <div
+                              key={index}
+                              style={{ display: "flex", alignItems: "center", gap: "6px" }}
+                            >
+                              {/* Color Dot */}
+                              <span
+                                style={{
+                                  width: "8px",
+                                  height: "8px",
+                                  borderRadius: "50%",
+                                  backgroundColor: color,
+                                  display: "inline-block"
+                                }}
+                              />
+
+                              <span style={{ color: "#D1D3D4" }}>{item.name}</span>
+
+                              <span style={{ color: "#fff", fontWeight: 600 }}>
+                                {item.value}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  }}
+                />
                 <Legend
                   verticalAlign="bottom"
                   align="center"

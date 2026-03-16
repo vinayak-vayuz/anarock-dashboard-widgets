@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../../components/CardNoLogo";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import EmptyState from "../../utils/EmptyState";
+import { CommercialCustomTooltip } from "../../utils";
 
 const dummyData = [
   { facility_name: "Table Tennis", paid_revenue: "24000.00" },
@@ -20,9 +21,9 @@ function AmenityWiseRevenue({ data, currencyType }) {
   const chartData =
     Array?.isArray(rawData) && rawData?.length > 0
       ? rawData?.map((item) => ({
-          name: item?.facility_name || "Unknown",
-          value: Number(item?.paid_revenue) || 0,
-        }))
+        name: item?.facility_name || "Unknown",
+        value: Number(item?.paid_revenue) || 0,
+      }))
       : [];
 
   const allZero =
@@ -32,9 +33,9 @@ function AmenityWiseRevenue({ data, currencyType }) {
 
   const pieData = allZero
     ? chartData?.map((item, index) => ({
-        ...item,
-        value: index === 0 ? 1 : 0,
-      }))
+      ...item,
+      value: index === 0 ? 1 : 0,
+    }))
     : chartData;
 
   const formatCurrency = (value) =>
@@ -78,18 +79,14 @@ function AmenityWiseRevenue({ data, currencyType }) {
                   </Pie>
 
                   <Tooltip
-  formatter={(value) => formatCurrency(value)}
-  labelFormatter={(label) => `Amenity: ${label || ""}`}
-  contentStyle={{
-    backgroundColor: "#111827",
-    border: "none",
-    borderRadius: "8px",
-    padding: "8px 12px",
-    fontSize: "12px",
-  }}
-  labelStyle={{ color: "#fff" }}
-  itemStyle={{ color: "#fff" }}
-/>
+                    cursor={false}
+                    content={(props) => (
+                      <CommercialCustomTooltip
+                        {...props}
+                        formatter={(value) => formatCurrency(value)}
+                      />
+                    )}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>

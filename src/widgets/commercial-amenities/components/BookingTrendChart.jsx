@@ -10,7 +10,7 @@ import {
   Tooltip
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
-
+import { CommercialCustomTooltip } from "../../utils";
 /* Dummy fallback data */
 const dummyData = [
   { building_name: "Google", no_of_booking: 1 },
@@ -28,8 +28,8 @@ function BookingTrendChart({ data }) {
     data === undefined || data === null
       ? dummyData
       : Array.isArray(data)
-      ? data
-      : [];
+        ? data
+        : [];
 
   return (
     <Card
@@ -73,17 +73,9 @@ function BookingTrendChart({ data }) {
               />
 
               <Tooltip
-  formatter={(value) => [value, "Bookings"]}
-  labelFormatter={(label) => `Organisation: ${label}`}
-  cursor={{ fill: "rgba(0,0,0,0.05)" }}
-  contentStyle={{
-    backgroundColor: "#000",
-    border: "none",
-    borderRadius: "6px"
-  }}
-  labelStyle={{ color: "#fff" }}
-  itemStyle={{ color: "#fff" }}
-/>
+                cursor={false}
+                content={<CommercialCustomTooltip />}
+              />
 
               {/* Fixed bar color */}
               <Bar

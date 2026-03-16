@@ -60,7 +60,7 @@ function EventItem({ title, date, rsvp, utilisation, status }) {
 }
 
 export default function EventsUtilisation({ data }) {
-  const events = Array.isArray(data) && data.length > 0 ? data : DEFAULT_EVENTS;
+  const events = Array.isArray(data) ? data : DEFAULT_EVENTS;
 
   return (
     <Card
@@ -68,7 +68,7 @@ export default function EventsUtilisation({ data }) {
       period={
         <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       }
-      className="w-full h-[360px]"
+      className="w-full h-[360px] overflow-auto"
     >
       <div>
         {events.map((event, index) => (
