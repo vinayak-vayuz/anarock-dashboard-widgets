@@ -52062,7 +52062,7 @@ function epe({ data: e }) {
     {
       title: "Events Utilisation",
       period: /* @__PURE__ */ v.jsx(Xr, { className: "h-5 w-5 text-[#884EA7] cursor-pointer" }),
-      className: "w-full h-[360px]",
+      className: "w-full h-[360px] overflow-auto",
       children: /* @__PURE__ */ v.jsx("div", { children: t.map((n, r) => /* @__PURE__ */ v.jsx(jde, { ...n }, `${n.title}-${r}`)) })
     }
   );
