@@ -76,3 +76,7 @@ Always test in the playground before publishing.
 
 npm version patch
 git push origin main --tags
+
+<!-- Direct command for build -->
+
+git add . && git commit -m "changes in widgets" && git push && npm version patch && git push origin main --tags

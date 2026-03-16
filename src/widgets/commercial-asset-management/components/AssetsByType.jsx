@@ -104,7 +104,7 @@ const AssetsByType = ({ rows, totalAssets }) => {
             {assets.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between px-[16px] py-[12px] border-t border-[#F1F5F9]"
+                className="max-h-[205px] overflow-y-auto hide-scrollbar flex items-center justify-between px-[16px] py-[12px] border-t border-[#F1F5F9]"
               >
                 <div className="flex items-center gap-[8px]">
                   <div

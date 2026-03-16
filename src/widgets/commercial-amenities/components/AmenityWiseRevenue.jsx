@@ -57,7 +57,7 @@ function AmenityWiseRevenue({ data, currencyType }) {
           </div>
         ) : (
           <>
-            <div className="col-span-5 h-[240px] max-w-[240px]">
+            <div className="col-span-6 h-[240px] w-full max-w-[240px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -91,14 +91,14 @@ function AmenityWiseRevenue({ data, currencyType }) {
               </ResponsiveContainer>
             </div>
 
-            <div className="col-span-7">
+            <div className="col-span-6">
               <div className="rounded-[12px] !overflow-hidden border border-[#E2E8F0] !border-r-1 border-r-[#E2E8F0]! !pr-0 !mr-0">
                 <div className="grid grid-cols-2 px-[12px] py-[8px] bg-[#EBEBEB] text-[12px] leading-[16px] font-semibold text-[#64748B]">
                   <div>Amenity</div>
                   <div className="text-right">Revenue</div>
                 </div>
 
-                <div className="divide-y divide-[#F1F5F9]">
+                <div className="divide-y divide-[#F1F5F9] max-h-[238px] overflow-y-auto hide-scrollbar">
                   {chartData?.map?.((item, index) => (
                     <div
                       key={item?.name || index}
