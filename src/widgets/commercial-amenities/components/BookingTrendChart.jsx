@@ -73,10 +73,17 @@ function BookingTrendChart({ data }) {
               />
 
               <Tooltip
-                formatter={(value) => [value, "Bookings"]}
-                labelFormatter={(label) => `Organisation: ${label}`}
-                cursor={{ fill: "rgba(0,0,0,0.05)" }}
-              />
+  formatter={(value) => [value, "Bookings"]}
+  labelFormatter={(label) => `Organisation: ${label}`}
+  cursor={{ fill: "rgba(0,0,0,0.05)" }}
+  contentStyle={{
+    backgroundColor: "#000",
+    border: "none",
+    borderRadius: "6px"
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
 
               {/* Fixed bar color */}
               <Bar

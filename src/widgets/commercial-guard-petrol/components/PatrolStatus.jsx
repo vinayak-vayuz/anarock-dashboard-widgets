@@ -39,7 +39,7 @@ function GuardPatrols({ data }) {
       <div className="flex flex-col items-center justify-center">
         
         {/* Chart */}
-        <div className="w-[215px] h-[182px] relative mt-[16px]">
+        <div className="w-[215px] h-[182px] relative">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

@@ -156,16 +156,23 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
                 domain={[0, "dataMax + 2"]}
               />
 
-              <Tooltip
-                labelFormatter={(value) =>
-                  new Date(value).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                  })
-                }
-                formatter={(value) => [value, "Visitors"]}
-              />
-
+          <Tooltip
+  labelFormatter={(value) =>
+    new Date(value).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+    })
+  }
+  formatter={(value) => [value, "Visitors"]}
+  contentStyle={{
+    backgroundColor: "#000",
+    border: "none",
+    borderRadius: "6px",
+    color: "#fff",
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
               <Area
                 type="monotone"
                 dataKey="no_of_visitors"

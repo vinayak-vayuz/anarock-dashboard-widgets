@@ -56,7 +56,7 @@ function AmenityWiseRevenue({ data, currencyType }) {
           </div>
         ) : (
           <>
-            <div className="col-span-5 h-[240px]">
+            <div className="col-span-5 h-[240px] max-w-[240px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -78,14 +78,18 @@ function AmenityWiseRevenue({ data, currencyType }) {
                   </Pie>
 
                   <Tooltip
-                    formatter={(value) => formatCurrency(value)}
-                    labelFormatter={(label) => `Amenity: ${label || ""}`}
-                    contentStyle={{
-                      borderRadius: "10px",
-                      border: "1px solid #EBEBEB",
-                      fontSize: "12px",
-                    }}
-                  />
+  formatter={(value) => formatCurrency(value)}
+  labelFormatter={(label) => `Amenity: ${label || ""}`}
+  contentStyle={{
+    backgroundColor: "#111827",
+    border: "none",
+    borderRadius: "8px",
+    padding: "8px 12px",
+    fontSize: "12px",
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
                 </PieChart>
               </ResponsiveContainer>
             </div>
