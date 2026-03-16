@@ -1,5 +1,6 @@
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+import EmptyState from "../../utils/EmptyState";
 
 const DEFAULT_EVENTS = [
   {
@@ -71,11 +72,13 @@ export default function EventsUtilisation({ data }) {
       className="w-full h-[360px] overflow-auto"
     >
       <div>
-        {events?.length > 0
-          ? events.map((event, index) => (
-              <EventItem key={`${event.title}-${index}`} {...event} />
-            ))
-          : "No Data"}
+        {events?.length > 0 ? (
+          events.map((event, index) => (
+            <EventItem key={`${event.title}-${index}`} {...event} />
+          ))
+        ) : (
+          <EmptyState />
+        )}
       </div>
     </Card>
   );
