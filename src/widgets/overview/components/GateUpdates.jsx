@@ -10,7 +10,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-import Tippy from "@tippyjs/react";
+import Tippy from "@tippyjs/react/headless";
 import { ActionButtons } from "../../components/ActionButtons";
 
 const dummyGateUpdate = {
@@ -146,14 +146,17 @@ export function HoverDetailCard({ type, data, children }) {
 
   return (
     <Tippy
-      content={content}
       placement="bottom-start"
       interactive={true}
       delay={[100, 0]}
       offset={[0, 8]}
       appendTo={document.body}
-      theme="light-border"
       maxWidth="none"
+      render={(attrs) => (
+        <div tabIndex="-1" {...attrs}>
+          {content}
+        </div>
+      )}
     >
       {children}
     </Tippy>

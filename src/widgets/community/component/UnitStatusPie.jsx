@@ -7,26 +7,45 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const bottomGlowPlugin = {
   id: "bottomGlow",
-  beforeDatasetsDraw(chart, args, pluginOptions) {
+  afterDatasetsDraw(chart, args, pluginOptions) {
     if (!pluginOptions?.enabled) return;
 
     const meta = chart.getDatasetMeta(0);
     if (!meta?.data?.[0]) return;
 
     const { ctx } = chart;
-    const { x, y, outerRadius } = meta.data[0];
-    const glowY = y + outerRadius * 0.78;
-    const glowRadius = outerRadius * 0.95;
-    const gradient = ctx.createRadialGradient(x, glowY, 0, x, glowY, glowRadius);
+    const { x, y, innerRadius } = meta.data[0];
+    const clippedRadius = Math.max(innerRadius - 2, 0);
+    const glowCenterY = y + clippedRadius * 0.9;
+    const gradient = ctx.createRadialGradient(
+      x,
+      glowCenterY,
+      0,
+      x,
+      glowCenterY,
+      clippedRadius * 1.08,
+    );
 
-    gradient.addColorStop(0, pluginOptions.color ?? "rgba(186, 230, 253, 0.75)");
-    gradient.addColorStop(0.55, "rgba(186, 230, 253, 0.32)");
+    gradient.addColorStop(0, pluginOptions.color ?? "rgba(186, 230, 253, 0.72)");
+    gradient.addColorStop(0.3, "rgba(186, 230, 253, 0.4)");
+    gradient.addColorStop(0.58, "rgba(186, 230, 253, 0.16)");
     gradient.addColorStop(1, "rgba(186, 230, 253, 0)");
 
     ctx.save();
+    ctx.beginPath();
+    ctx.arc(x, y, clippedRadius, 0, Math.PI * 2);
+    ctx.clip();
     ctx.fillStyle = gradient;
     ctx.beginPath();
-    ctx.ellipse(x, glowY, outerRadius * 0.95, outerRadius * 0.42, 0, 0, Math.PI * 2);
+    ctx.ellipse(
+      x,
+      glowCenterY,
+      clippedRadius * 1.08,
+      clippedRadius * 0.52,
+      0,
+      0,
+      Math.PI * 2,
+    );
     ctx.fill();
     ctx.restore();
   },

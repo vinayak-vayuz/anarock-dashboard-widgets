@@ -8,9 +8,7 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/themes/light-border.css";
+import Tippy from "@tippyjs/react/headless";
 
 import Card from "../../components/Card";
 import { LuDoorOpen } from "react-icons/lu";
@@ -124,13 +122,17 @@ function HoverDetailCard({ title, color, rows = [], children }) {
 
   return (
     <Tippy
-      content={content}
       placement="right-start"
       interactive
       delay={[100, 0]}
       offset={[6, 0]}
       appendTo={() => document.body}
       maxWidth="none"
+      render={(attrs) => (
+        <div tabIndex="-1" {...attrs}>
+          {content}
+        </div>
+      )}
     >
       {children}
     </Tippy>
