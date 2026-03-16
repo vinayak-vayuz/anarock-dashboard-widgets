@@ -49,54 +49,53 @@ function StatCardGrid({
 }
 
 const DEFAULT_CARDS = [
-    {
-      title: "Notice",
-      value: 160,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: RiBillLine,
-      iconColor: "text-emerald-600",
-      iconBg: "bg-emerald-50",
-    },
-    {
-      title: "Post",
-      value: 83,
-      delta: "+2.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: LuImagePlus,
-      iconColor: "text-[#329DFF]",
-      iconBg: "bg-emerald-50",
-    },
-    {
-      title: "Poll",
-      value: 3,
-      delta: "+11.0%",
-      deltaLabel: "Compared to last month",
-      positive: true,
-      Icon: CiBoxList,
-      iconColor: "text-[#FA7E28]",
-      iconBg: "bg-orange-100",
-    },
-    {
-      title: "Poll",
-      value: 5,
-      delta: "-8.0%",
-      deltaLabel: "Compared to last month",
-      positive: false,
-      Icon: HiOutlineClipboardList,
-      iconColor: "text-[#DBB467]",
-      iconBg: "bg-yellow-100",
-    },
+  {
+    title: "Notice",
+    value: 160,
+    delta: "+11.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: RiBillLine,
+    iconColor: "text-emerald-600",
+    iconBg: "bg-emerald-50",
+  },
+  {
+    title: "Post",
+    value: 83,
+    delta: "+2.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: LuImagePlus,
+    iconColor: "text-[#329DFF]",
+    iconBg: "bg-emerald-50",
+  },
+  {
+    title: "Poll",
+    value: 3,
+    delta: "+11.0%",
+    deltaLabel: "Compared to last month",
+    positive: true,
+    Icon: CiBoxList,
+    iconColor: "text-[#FA7E28]",
+    iconBg: "bg-orange-100",
+  },
+  {
+    title: "Poll",
+    value: 5,
+    delta: "-8.0%",
+    deltaLabel: "Compared to last month",
+    positive: false,
+    Icon: HiOutlineClipboardList,
+    iconColor: "text-[#DBB467]",
+    iconBg: "bg-yellow-100",
+  },
 ];
 
 function StatCard({ data }) {
-  const cards =
-    Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
+  const cards = Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
 
   return (
-    <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
+    <div className="px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
       {cards.map((card, index) => (
         <StatCardGrid key={index} {...card} />
       ))}

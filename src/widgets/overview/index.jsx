@@ -8,7 +8,7 @@ import Helpdesk from "./components/Helpdesk";
 
 function Dashboard() {
   return (
-    <div className="p-6">
+    <div className="p-[24px]">
       <div className="!columns-1 sm:!columns-2 xl:!columns-3 gap-[16px]">
         <FinanceSummary isStatic={true} />
         <GateUpdates isStatic={true} />

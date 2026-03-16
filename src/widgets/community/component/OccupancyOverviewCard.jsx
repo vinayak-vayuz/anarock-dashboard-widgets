@@ -8,8 +8,8 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
     colorClass === "bg-[#8B5CF6]"
       ? "text-[#8B5CF6]"
       : colorClass === "bg-[#12B981]"
-      ? "text-[#12B981]"
-      : "text-slate-600";
+        ? "text-[#12B981]"
+        : "text-slate-600";
   return (
     <div className="flex flex-col items-start">
       <div className="w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden">
@@ -27,8 +27,8 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
 };
 
 const StatTile = ({ title, value, suffix, valueClass = "" }) => (
-  <div className="bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] h-[98px] p-4 flex flex-col justify-center">
-    <div className="!text-[12px] leading-[16px] text-[#121212] mb-1">
+  <div className="bg-white border border-[#EBEBEB] rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] h-[98px] p-[16px] flex flex-col justify-center">
+    <div className="!text-[12px] leading-[16px] text-[#121212] mb-[4px]">
       {title}
     </div>
     <div
@@ -53,7 +53,7 @@ const OccupancyOverviewCard = ({
 }) => {
   const resolvedTotalUnits = Number(data?.totalUnits ?? totalUnits ?? 0);
   const resolvedOccupiedUnits = Number(
-    data?.occupiedUnits ?? occupiedUnits ?? 0
+    data?.occupiedUnits ?? occupiedUnits ?? 0,
   );
   const resolvedOwnerCount = Number(data?.ownerCount ?? ownerCount ?? 0);
   const resolvedTenantCount = Number(data?.tenantCount ?? tenantCount ?? 0);
@@ -64,7 +64,7 @@ const OccupancyOverviewCard = ({
 
   return (
     <div>
-      <div className="bg-white border border-[#EBEBEB] rounded-xl shadow-[0_0_12px_0_#EAF2FF] p-4 h-[128px]">
+      <div className="bg-white border border-[#EBEBEB] rounded-[12px] shadow-[0_0_12px_0_#EAF2FF] p-[16px] h-[128px]">
         <div className="flex items-center gap-[12px] mb-4">
           <GoPeople className="h-6 w-6 text-[#329DFF]" />
           <div className="font-medium text-[#121212]">Occupancy Overview</div>
@@ -75,7 +75,7 @@ const OccupancyOverviewCard = ({
             <div className="text-xs leading-[16px] text-[#64748B]">
               Occupied Units
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-[4px]">
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
                 {resolvedOccupiedUnits}
               </div>

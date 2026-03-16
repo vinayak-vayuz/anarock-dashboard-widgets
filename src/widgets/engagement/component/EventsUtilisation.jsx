@@ -20,18 +20,18 @@ const DEFAULT_EVENTS = [
 
 function EventItem({ title, date, rsvp, utilisation, status }) {
   return (
-    <div className=" bg-[#F8FAFC] h-[106px] px-3 mt-3">
+    <div className=" bg-[#F8FAFC] h-[106px] px-[12px] mt-3">
       <div className="flex items-center justify-between">
         <div className="text-[16px] leading-[20px] font-semibold text-[#121212]">
           {title}
         </div>
         <div
-          className={`!text-[12px] font-medium leading-[16px] px-2 py-1  ${
+          className={`!text-[12px] font-medium leading-[16px] px-[8px] py-[4px]  ${
             status === "Completed"
               ? "text-[#36AB6C] bg-[#E6F7EE]"
               : status === "Upcoming"
-              ? "text-[#329DFF] bg-[#E6F2FF]"
-              : "text-slate-500 bg-slate-100"
+                ? "text-[#329DFF] bg-[#E6F2FF]"
+                : "text-slate-500 bg-slate-100"
           }`}
         >
           {status}
@@ -60,8 +60,7 @@ function EventItem({ title, date, rsvp, utilisation, status }) {
 }
 
 export default function EventsUtilisation({ data }) {
-  const events =
-    Array.isArray(data) && data.length > 0 ? data : DEFAULT_EVENTS;
+  const events = Array.isArray(data) && data.length > 0 ? data : DEFAULT_EVENTS;
 
   return (
     <Card

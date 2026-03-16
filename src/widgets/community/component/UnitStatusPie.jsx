@@ -123,15 +123,15 @@ const Tickets = ({
     <Card
       title={resolvedTitle}
       icon={resolvedIcon}
-      className={resolvedWidgetType === "commercial" ? "h-[362px]" : "h-[238px]"}
+      className={
+        resolvedWidgetType === "commercial" ? "h-[362px]" : "h-[238px]"
+      }
     >
       <div className="grid grid-cols-12 gap-[16px] items-center">
-        <div className="col-span-5 space-y-3">
+        <div className="col-span-5 space-y-[16px]">
           {items.map((item, index) => (
             <div key={index}>
-              <div className="text-[12px] text-[#64748B]">
-                {item.label}
-              </div>
+              <div className={`text-[12px] text-[#64748B] ${resolvedWidgetType === "commercial" ? "mb-[8px]" : ""}`}>{item.label}</div>
               <div
                 className="text-[28px] leading-[32px]"
                 style={{ color: item.color }}
@@ -142,29 +142,30 @@ const Tickets = ({
           ))}
 
           <div
-  className="text-[10px] flex gap-[4px] items-center"
-  style={{ color: dynamicGrowthColor }}
->
-  {isPositive && <FaCaretUp />}
-  {isNegative && <FaCaretDown />}
+            className={`text-[10px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
+            style={{ color: dynamicGrowthColor }}
+          >
+            {isPositive && <FaCaretUp />}
+            {isNegative && <FaCaretDown />}
 
-  <div>
-    {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
-  </div>
+            <div>
+              {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
+            </div>
 
-  <div className="text-[#64748B] text-[10px] ml-[4px]">
-    {resolvedGrowthText}
-  </div>
-</div>
+            <div className="text-[#64748B] text-[10px] ml-[4px]">
+              {resolvedGrowthText}
+            </div>
+          </div>
         </div>
 
-        <div className="col-span-7"><div
-  className={`${
-    resolvedWidgetType === "commercial"
-      ? "h-[260px] w-[263px]"
-      : "h-[158px] w-[158px]"
-  } ml-auto mr-2`}
->
+        <div className="col-span-7">
+          <div
+            className={`${
+              resolvedWidgetType === "commercial"
+                ? "h-[260px] w-[263px]"
+                : "h-[158px] w-[158px]"
+            } ml-auto mr-2`}
+          >
             <Doughnut
               data={chartData}
               options={options}

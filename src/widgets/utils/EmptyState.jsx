@@ -6,20 +6,16 @@ function EmptyState({
   description = "Catch up all the data. Change the date range to see the data.",
 }) {
   return (
-    <div className="flex flex-col items-center justify-center h-full text-center px-4">
-      <img
-        src={image}
-        alt="no data"
-        className="w-32 h-32 mb-4 opacity-80"
-      />
+    <div className="flex flex-col items-center justify-center h-full text-center px-[16px]">
+      <img src={image} alt="no data" className="w-32 h-32 mb-4 opacity-80" />
 
-      <h3 className="text-[16px] font-semibold text-gray-900 mb-1">
+      <div className="text-[16px] font-semibold text-gray-900 mb-[4px]">
         {title}
-      </h3>
+      </div>
 
-      <p className="text-sm text-gray-500 max-w-[260px]">
+      <div className="text-[12px] text-gray-500 max-w-[260px]">
         {description}
-      </p>
+      </div>
     </div>
   );
 }

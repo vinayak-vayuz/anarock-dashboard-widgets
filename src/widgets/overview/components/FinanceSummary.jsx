@@ -51,7 +51,6 @@ function FinanceSummary({ data }) {
     }
   }
 
-
   return (
     <Card
       title="Income"
@@ -69,7 +68,7 @@ function FinanceSummary({ data }) {
     >
       <div>
         {/* Header */}
-        <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mb-2">
+        <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mb-[8px]">
           <div>Opening</div>
           <div>Income</div>
           <div>Collection</div>
@@ -77,7 +76,7 @@ function FinanceSummary({ data }) {
         </div>
 
         {/* Income Data */}
-        <div className="grid grid-cols-4 !text-[12px] font-medium text-[#121212] mb-2">
+        <div className="grid grid-cols-4 !text-[12px] font-medium text-[#121212] mb-[8px]">
           <div>
             {withCurrency(income.opening_balance, income?.currency_type)}
           </div>
@@ -103,7 +102,7 @@ function FinanceSummary({ data }) {
           </div> */}
         </div>
 
-        <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mt-4 mb-2">
+        <div className="grid grid-cols-4 !text-[12px] text-[#64748B] mt-4 mb-[8px]">
           <div>Opening</div>
           <div>Expenditure</div>
           <div>Payment</div>
@@ -115,7 +114,7 @@ function FinanceSummary({ data }) {
           <div>
             {withCurrency(
               expenditure.opening_balance,
-              expenditure?.currency_type
+              expenditure?.currency_type,
             )}
           </div>
           <div>

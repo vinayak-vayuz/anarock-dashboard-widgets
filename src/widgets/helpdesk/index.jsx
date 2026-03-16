@@ -66,9 +66,9 @@ function Financials() {
     <div>
       <Header title="Helpdesk" description="Helpdesk request overview" />
       <StatCardGrid />
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-[24px] mt-6">
+      <div className="px-[20px] grid grid-cols-1 lg:grid-cols-3 gap-[24px] mt-6">
         <ComplaintsbyLevel data={complaints} />
-        <RequestBox data={requestsBoxData}/>
+        <RequestBox data={requestsBoxData} />
         <Complaints data={requests} />
       </div>
     </div>

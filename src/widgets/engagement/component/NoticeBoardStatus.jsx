@@ -34,7 +34,7 @@ const DEFAULT_STATUSES = [
 
 function StatusCard({ label, value, subLabel, bgColor, textColor }) {
   return (
-    <div className={`rounded-lg p-4 ${bgColor} h-[124px]`}>
+    <div className={`rounded-[8px] p-[16px] ${bgColor} h-[124px]`}>
       <div className={`text-[16px] font-medium ${textColor} leading-[20px]`}>
         {label}
       </div>

@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import AccessOverview from "./component/AccessOverview";
 import CardAccess from "./component/CardAccess";
 import AccessPointsUsage from "./component/AccessPointsUsage";
-import { ScanQrCode } from 'lucide-react';
+import { ScanQrCode } from "lucide-react";
 import CommercialHeader from "../components/CommercialHeader";
 
-
-
 function CommercialSmartAccess() {
-
   const cardAccessData = [
     { label: "Total Cards", value: 208, color: "#329DFF" },
     { label: "Card Entries", value: 630786, color: "#36AB6C" },
@@ -23,16 +20,15 @@ function CommercialSmartAccess() {
     { label: "Mobile Exits", value: 330274, color: "#AB0000" },
   ];
 
-
   return (
     <>
-    <CommercialHeader text="Smart Access" Icon={ScanQrCode} />
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 auto-rows-fr">
+      <CommercialHeader text="Smart Access" Icon={ScanQrCode} />
+      <div className="px-[20px] grid grid-cols-1 lg:grid-cols-3 gap-[24px] mt-6 auto-rows-fr">
         <AccessOverview />
         <CardAccess title="Card Access" data={cardAccessData} />
         <CardAccess title="Mobile Access" data={mobileAccessData} />
       </div>
-      <div className="mt-7 px-5">
+      <div className="mt-7 px-[20px]">
         <AccessPointsUsage />
       </div>
     </>

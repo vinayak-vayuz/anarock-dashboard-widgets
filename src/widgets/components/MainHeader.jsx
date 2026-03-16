@@ -21,7 +21,7 @@ function MainHeader() {
   const [activeTab, setActiveTab] = useState("Overview");
 
   return (
-    <div className="flex gap-[8px] p-3">
+    <div className="flex gap-[8px] p-[12px]">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.name;
@@ -30,7 +30,7 @@ function MainHeader() {
           <button
             key={tab.name}
             onClick={() => setActiveTab(tab.name)}
-            className={`flex items-center gap-[8px] rounded px-4 py-3 text-[14px] leading-[16px] font-medium transition 
+            className={`flex items-center gap-[8px] rounded px-[16px] py-[12px] text-[14px] leading-[16px] font-medium transition 
               ${
                 isActive
                   ? "bg-[#FBF5FF] text-[#884EA7]"

@@ -51,110 +51,113 @@ export default function CommercialTable({
 
   const finalTotalPages = totalPages || calculatedTotalPages;
 
-  const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
+  const currentData = safeData;
 
-const currentData = safeData.slice(startIndex, endIndex);
-const emptyRows = rowsPerPage - currentData.length > 0 ? rowsPerPage - currentData.length : 0;
+  const emptyRows =
+    rowsPerPage - currentData.length > 0 ? rowsPerPage - currentData.length : 0;
 
-console.log("safeData:", safeData);
-console.log("currentData:", currentData);
+  /* Fix: show EmptyState only if there is truly no data */
+  const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
+
+  console.log("safeData:", safeData);
+  console.log("currentData:", currentData);
   return (
-    <div className="w-full bg-white rounded-xl h-[390px] shadow-md overflow-hidden flex flex-col">
-
+    <div className="w-full bg-white rounded-[12px] h-[390px] shadow-md overflow-hidden flex flex-col">
       {/* Header */}
       <div
         className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium"
         style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
       >
         {safeColumns.map((col, index) => (
-          <div key={index} className="px-6 py-4 text-[16px] leading-[20px]">
+          <div
+            key={index}
+            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-center"
+          >
             {col.label}
           </div>
         ))}
       </div>
 
       {/* Rows */}
-   {/* Rows */}
-<div className="flex-1 overflow-y-auto">
-  {currentData.length > 0 ? (
-    <>
-      {currentData.map((row, rowIndex) => (
-        <div
-          key={rowIndex}
-          className="grid"
-          style={{
-            gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-          }}
-        >
-          {safeColumns.map((col, colIndex) => {
-            const value = row[col.key];
-
-            const isPercent =
-              typeof value === "string" && value.includes("%");
-
-            const percentClass =
-              value === "100%"
-                ? "bg-[#F0FEF2] text-[#36AB6C]"
-                : "bg-[#FFF0F0] text-[#AB0000]";
-
-            return (
+      <div className="flex-1 overflow-y-auto">
+        {!shouldShowEmptyState ? (
+          <>
+            {currentData.map((row, rowIndex) => (
               <div
-                key={colIndex}
-                className={`px-6 py-4 ${
-                  colIndex === 0 ? "bg-white" : "bg-gray-50"
-                }`}
+                key={rowIndex}
+                className="grid"
+                style={{
+                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+                }}
               >
-                {isPercent ? (
-                  <div
-                    className={`inline-block px-3 py-1 rounded-full text-[14px] font-medium ${percentClass}`}
-                  >
-                    {value}
-                  </div>
-                ) : (
-                  <div>
-                    {value !== undefined && value !== null ? value : "-"}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      ))}
+                {safeColumns.map((col, colIndex) => {
+                  const value = row[col.key];
 
-      {/* Empty Rows */}
-      {Array.from({ length: emptyRows }).map((_, rowIndex) => (
-        <div
-          key={`empty-${rowIndex}`}
-          className="grid"
-          style={{
-            gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-          }}
-        >
-          {safeColumns.map((col, colIndex) => (
-            <div
-              key={colIndex}
-              className={`px-6 py-4 ${
-                colIndex === 0 ? "bg-white" : "bg-gray-50"
-              }`}
-            >
-              &nbsp;
-            </div>
-          ))}
-        </div>
-      ))}
-    </>
-  ) : (
-    <EmptyState
-      title="No Data Found"
-      description="Catch up all the data. Change the date range to see the data."
-    />
-  )}
-</div>
+                  const isPercent =
+                    typeof value === "string" && value.includes("%");
+
+                  const percentClass =
+                    value === "100%"
+                      ? "bg-[#F0FEF2] text-[#36AB6C]"
+                      : "bg-[#FFF0F0] text-[#AB0000]";
+
+                  return (
+                    <div
+                      key={colIndex}
+                      className={`px-[24px] py-[16px] flex items-center justify-center ${
+                        colIndex === 0 ? "bg-white" : "bg-gray-50"
+                      }`}
+                    >
+                      {isPercent ? (
+                        <div
+                          className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
+                        >
+                          {value}
+                        </div>
+                      ) : (
+                        <div>
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+
+            {/* Empty Rows */}
+            {Array.from({ length: emptyRows }).map((_, rowIndex) => (
+              <div
+                key={`empty-${rowIndex}`}
+                className="grid"
+                style={{
+                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+                }}
+              >
+                {safeColumns.map((col, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`px-[24px] py-[16px] ${
+                      colIndex === 0 ? "bg-white" : "bg-gray-50"
+                    }`}
+                  >
+                    &nbsp;
+                  </div>
+                ))}
+              </div>
+            ))}
+          </>
+        ) : (
+          <EmptyState
+            title="No Data Found"
+            description="Catch up all the data. Change the date range to see the data."
+          />
+        )}
+      </div>
 
       {/* Pagination */}
-<div className="flex justify-end items-center px-6 py-4 text-sm bg-white border-t border-[#F0F0F0] gap-8">
-        <div className="flex items-center gap-2 text-gray-600 text-[14px]">
+      <div className="flex justify-end items-center px-[24px] py-[16px] text-sm bg-white border-t border-[#F0F0F0] gap-[32px]">
+        <div className="flex items-center gap-[8px] text-gray-600 text-[14px]">
           <div>Rows per page:</div>
 
           <select
@@ -163,7 +166,7 @@ console.log("currentData:", currentData);
               setRowsPerPage(Number(e.target.value));
               setCurrentPage(1);
             }}
-            className="border rounded px-2 py-1"
+            className="border rounded px-[8px] py-[4px]"
           >
             {pageOptions.map((option, index) => (
               <option key={index} value={option}>
@@ -172,19 +175,17 @@ console.log("currentData:", currentData);
             ))}
           </select>
 
-         <div className="ml-4 text-[14px]">
-  {safeData?.length === 0
-    ? "0–0"
-    : `1–${safeData?.length}`}{" "}
-  of {totalRows || safeData?.length}
-</div>
+          <div className="ml-4 text-[14px]">
+            {safeData?.length === 0 ? "0–0" : `1–${safeData?.length}`} of{" "}
+            {totalRows || safeData?.length}
+          </div>
         </div>
 
         <div className="flex items-center space-x-2 text-gray-600 text-[14px]">
           <button
             onClick={() => setCurrentPage(1)}
             disabled={currentPage === 1}
-            className="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
           >
             <ChevronsLeft size={18} />
           </button>
@@ -192,7 +193,7 @@ console.log("currentData:", currentData);
           <button
             onClick={() => setCurrentPage((prev) => prev - 1)}
             disabled={currentPage === 1}
-            className="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
           >
             <ChevronLeft size={18} />
           </button>
@@ -200,7 +201,7 @@ console.log("currentData:", currentData);
           <button
             onClick={() => setCurrentPage((prev) => prev + 1)}
             disabled={currentPage === finalTotalPages}
-            className="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
           >
             <ChevronRight size={18} />
           </button>
@@ -208,12 +209,11 @@ console.log("currentData:", currentData);
           <button
             onClick={() => setCurrentPage(finalTotalPages)}
             disabled={currentPage === finalTotalPages}
-            className="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
           >
             <ChevronsRight size={18} />
           </button>
         </div>
-
       </div>
     </div>
   );

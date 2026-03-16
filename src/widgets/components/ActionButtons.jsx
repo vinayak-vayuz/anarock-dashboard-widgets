@@ -51,7 +51,7 @@ export function ActionButtons({
   const [search, setSearch] = useState("");
 
   const filteredOptions = options.filter((item) =>
-    item.community_name.toLowerCase().includes(search.toLowerCase())
+    item.community_name.toLowerCase().includes(search.toLowerCase()),
   );
 
   const handleChange = (event) => {
@@ -106,7 +106,7 @@ export function ActionButtons({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-[8px]">
       {/*<Tooltip slotProps={{ tooltip: { sx: { fontSize: "12px" } } }}>
         <FormControl size="small">
           <CustomSelect
@@ -180,7 +180,7 @@ export function ActionButtons({
       <Tooltip title="Export CSV for this widget">
         <button
           onClick={handleExport}
-          className="px-3 py-2 bg-[#FBF5FF] rounded cursor-pointer"
+          className="px-[12px] py-[8px] bg-[#FBF5FF] rounded cursor-pointer"
         >
           <CiExport className="stroke-[#884EA7] stroke-[1.4]" />
         </button>

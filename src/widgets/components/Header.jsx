@@ -178,18 +178,18 @@ function Header({ title, description, onExport }) {
 
   /* ---------------- JSX ---------------- */
   return (
-    <div className="flex items-center justify-between px-6 my-6">
+    <div className="flex items-center justify-between px-[24px] my-6">
       <div>
         <div className="text-[24px] font-semibold text-[#121212]">{title}</div>
         <div className="text-gray-500 text-sm">{description}</div>
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex gap-[12px]">
         {/* Date Picker */}
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen((v) => !v)}
-            className="flex items-center gap-2 bg-gray-50 px-4 py-2.5 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+            className="flex items-center gap-[8px] bg-gray-50 px-[16px] py-[8px].5 rounded-[8px] border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
           >
             <CalendarTodayOutlined fontSize="small" className="text-gray-600" />
             {getDisplayText()}
@@ -197,14 +197,14 @@ function Header({ title, description, onExport }) {
           </button>
 
           {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+            <div className="absolute right-0 mt-2 bg-white rounded-[8px] shadow-xl border border-gray-200 z-50">
               {!showCustomCalendar ? (
-                <div className="min-w-[200px] py-1">
+                <div className="min-w-[200px] py-[4px]">
                   {dateRangeOptions.map((opt) => (
                     <button
                       key={opt}
                       onClick={() => handleOptionSelect(opt)}
-                      className={`w-full text-left px-4 py-2.5 text-sm hover:bg-purple-50 transition-colors ${
+                      className={`w-full text-left px-[16px] py-[8px].5 text-sm hover:bg-purple-50 transition-colors ${
                         selectedRange === opt
                           ? "bg-purple-50 text-purple-600 font-medium"
                           : "text-gray-700"
@@ -215,7 +215,7 @@ function Header({ title, description, onExport }) {
                   ))}
                 </div>
               ) : (
-                <div className="p-4 w-[360px]">
+                <div className="p-[16px] w-[360px]">
                   <DatePicker
                     inline
                     selectsRange
@@ -231,17 +231,17 @@ function Header({ title, description, onExport }) {
                     yearDropdownItemNumber={40}
                   />
 
-                  <div className="flex justify-between mt-4 gap-2">
+                  <div className="flex justify-between mt-4 gap-[8px]">
                     <button
                       onClick={() => setShowCustomCalendar(false)}
-                      className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                      className="px-[16px] py-[8px] border border-gray-300 rounded-[8px] text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={handleApply}
                       disabled={!customStartDate || !customEndDate}
-                      className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                      className="px-[16px] py-[8px] bg-purple-600 text-white rounded-[8px] text-sm font-medium hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
                     >
                       Apply
                     </button>
@@ -257,19 +257,19 @@ function Header({ title, description, onExport }) {
           <button
             disabled={isExporting}
             onClick={() => setIsExportDropdownOpen((v) => !v)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-purple-600 text-white font-medium text-sm hover:bg-purple-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="flex items-center gap-[8px] px-[16px] py-[8px].5 rounded-[8px] bg-purple-600 text-white font-medium text-sm hover:bg-purple-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {isExporting ? "Exporting..." : "Export Report"}
             <FileDownloadOutlined fontSize="small" />
           </button>
 
           {isExportDropdownOpen && (
-            <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[180px]">
+            <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-[8px] shadow-lg z-50 min-w-[180px]">
               {exportOptions.map((o) => (
                 <button
                   key={o.value}
                   onClick={() => handleExportClick(o.value)}
-                  className="block px-4 py-2.5 text-sm hover:bg-purple-50 w-full text-left text-gray-700 transition-colors first:rounded-t-lg last:rounded-b-lg"
+                  className="block px-[16px] py-[8px].5 text-sm hover:bg-purple-50 w-full text-left text-gray-700 transition-colors first:rounded-t-lg last:rounded-b-lg"
                 >
                   {o.label}
                 </button>

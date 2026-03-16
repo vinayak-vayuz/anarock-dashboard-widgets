@@ -7,7 +7,7 @@ export const Chip = ({ value }) => {
   const isPositive = showValue >= 0;
   return (
     <div
-      className={`w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${
+      className={`w-fit p-[4px] rounded text-[10px] leading-[14px] font-medium flex items-center gap-[4px] ${
         isPositive
           ? "bg-[#F7FEFA] text-[#1FA05B]"
           : "bg-[#FFF2F2] text-[#AB0000]"

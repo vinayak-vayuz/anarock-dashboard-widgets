@@ -14,7 +14,7 @@ function StatusCard({
 }) {
   return (
     <div
-      className={`rounded-lg p-4 ${bgColor} border border-[#EBEBEB] h-[126px]`}
+      className={`rounded-[8px] p-[16px] ${bgColor} border border-[#EBEBEB] h-[126px]`}
     >
       <div className={`text-[16px] leading-[20px] ${textColor}`}>{label}</div>
       <div className="mt-[16px] leading-[28px]  !text-[24px] font-medium text-[#121212]">

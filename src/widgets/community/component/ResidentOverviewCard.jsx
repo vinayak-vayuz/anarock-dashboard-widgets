@@ -46,13 +46,13 @@ const ResidentOverviewCard = ({
   const resolvedOwnerCount = Number(data?.ownerCount ?? ownerCount ?? 0);
   const resolvedTenantCount = Number(data?.tenantCount ?? tenantCount ?? 0);
   const resolvedNonResidingOwners = Number(
-    data?.nonResidingOwners ?? nonResidingOwners ?? 0
+    data?.nonResidingOwners ?? nonResidingOwners ?? 0,
   );
   const resolvedGrowthPct = data?.growthPct ?? growthPct;
 
   const ownerResiding = Math.max(
     resolvedOwnerCount - resolvedNonResidingOwners,
-    0
+    0,
   );
   const totalMembers = resolvedOwnerCount + resolvedTenantCount;
 
@@ -111,7 +111,7 @@ const ResidentOverviewCard = ({
               {resolvedTenantCount}
             </div>
           </div>
-          <div className="text-[10px] text-[#1FA05B] flex gap-2 items-center">
+          <div className="text-[10px] text-[#1FA05B] flex gap-[8px] items-center">
             {resolvedGrowthPct}{" "}
             <div className="text-[#64748B] ">Compared to last month</div>
           </div>

@@ -16,8 +16,8 @@ const Dot = ({ color }) => (
 export const CustomTooltip = ({ active, payload, coordinate }) => {
   if (!active || !payload || !payload.length) return null;
 
-  const tooltipHeight = 60; 
-  const chartHeight = 235; 
+  const tooltipHeight = 60;
+  const chartHeight = 235;
 
   let y = coordinate?.y || 0;
 
@@ -31,7 +31,7 @@ export const CustomTooltip = ({ active, payload, coordinate }) => {
 
   return (
     <div
-      className="relative bg-[#121212] text-white text-[12px] px-4 py-2 rounded-lg shadow-lg"
+      className="relative bg-[#121212] text-white text-[12px] px-[16px] py-[8px] rounded-[8px] shadow-lg"
       style={{
         transform: `translateY(${y}px) translateY(-50%)`,
       }}
@@ -44,10 +44,11 @@ export const CustomTooltip = ({ active, payload, coordinate }) => {
       />
 
       {payload.map((item, i) => (
-        <div key={i} className="flex items-center gap-2 capitalize">
-          {item.payload.color && <Dot color={item.payload.color} />
-          }
-          <span className="text-[#D1D3D4] min-w-[70px]">{item?.payload?.name}</span>
+        <div key={i} className="flex items-center gap-[8px] capitalize">
+          {item.payload.color && <Dot color={item.payload.color} />}
+          <span className="text-[#D1D3D4] min-w-[70px]">
+            {item?.payload?.name}
+          </span>
           <span className="font-semibold">{item.value}</span>
         </div>
       ))}
@@ -57,12 +58,14 @@ export const CustomTooltip = ({ active, payload, coordinate }) => {
 
 export const Chip = ({ value }) => {
   const numericValue =
-    typeof value === "string" ? parseFloat(value.replace("%", "")) : value ?? 0;
+    typeof value === "string"
+      ? parseFloat(value.replace("%", ""))
+      : (value ?? 0);
   const isPositive = numericValue >= 0;
 
   return (
     <div
-      className={`w-fit p-1 rounded text-[10px] leading-[14px] font-medium flex items-center gap-1 ${
+      className={`w-fit p-[4px] rounded text-[10px] leading-[14px] font-medium flex items-center gap-[4px] ${
         isPositive
           ? "bg-[#F7FEFA] text-[#1FA05B]"
           : "bg-[#FFF2F2] text-[#AB0000]"
@@ -108,7 +111,7 @@ export const Card = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-[8px]">
           {actionButtons && actionButtons}
 
           {period && (
@@ -118,7 +121,9 @@ export const Card = ({
           )}
         </div>
       </div>
-      <div className={`flex-1 min-h-0 ${childrenClassName ? childrenClassName : "space-y-[24px]"}`}>
+      <div
+        className={`flex-1 min-h-0 ${childrenClassName ? childrenClassName : "space-y-[24px]"}`}
+      >
         {children}
       </div>
       {footer && (

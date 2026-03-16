@@ -13,16 +13,16 @@ function Financials({ data = {}, onExport }) {
         description="Units, residents, and occupancy details"
         onExport={onExport}
       />
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] gap-[24px] mt-6">
+      <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,4fr)_minmax(0,1fr)] gap-[24px] mt-6">
         <AccountingCard data={data?.accounting} />
         <ExpenseCategories data={data?.expenseCategories} />
       </div>
 
-      <div className="px-5 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-[24px] mt-6">
+      <div className="px-[20px] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,4fr)] gap-[24px] mt-6">
         <CashBankBalance data={data?.cashBankBalance} />
         <DuesAgeing data={data?.duesAgeing} />
       </div>
-      <div className="px-5 mt-6">
+      <div className="px-[20px] mt-6">
         <Budgets data={data?.budgets} />
       </div>
     </div>

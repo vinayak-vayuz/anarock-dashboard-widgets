@@ -13,7 +13,7 @@ function AccessStatsCard({
 
   return (
     <Card className={height} title={title} titleWeight="semi-bold">
-      <div className="rounded-xl overflow-hidden mt-[16px]">
+      <div className="rounded-[12px] overflow-hidden mt-[16px]">
         <div className="grid grid-cols-2 bg-[#F8FAFC] py-[8px] px-[12px] text-[12px] leading-[16px] font-medium text-[#64748B]">
           <div>Point</div>
           <div className="text-right">Access</div>
@@ -30,7 +30,7 @@ function AccessStatsCard({
 
             <div
               className="text-[12px] leading-[16px] text-right font-medium"
-                style={{ color: row.color || "#000" }}
+              style={{ color: row.color || "#000" }}
             >
               {formatNumber(row.value)}
             </div>

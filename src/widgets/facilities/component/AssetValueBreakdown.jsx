@@ -55,7 +55,7 @@ function AssetValueBreakdown({ data }) {
           </div>
         </div>
 
-        <div className="flex justify-between w-full px-4 sm:px-8 mt-4 text-[14px]">
+        <div className="flex justify-between w-full px-[16px] sm:px-[32px] mt-4 text-[14px]">
           <div className="flex flex-col gap-[8px]">
             {chartItems.slice(0, 3).map((item) => (
               <div key={item.name} className="flex items-center gap-[8px]">

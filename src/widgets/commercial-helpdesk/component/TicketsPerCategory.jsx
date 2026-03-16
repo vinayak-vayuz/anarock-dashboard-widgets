@@ -11,33 +11,14 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-black text-white px-4 py-2 rounded-lg text-sm shadow-lg">
-        <div className="flex items-center gap-2">
-          <div>{payload[0].payload.name}</div>
-          <div className="font-semibold">{payload[0].value}</div>
-        </div>
-      </div>
-    );
-  }
-  return null;
-};
+import {CustomTooltip}  from "../../utils";
 
 const CustomYAxisTick = ({ x, y, payload }) => {
   const words = payload.value.split(" ");
 
   return (
     <g transform={`translate(${x},${y})`}>
-      <text
-        x={-85}
-        y={0}
-        textAnchor="start"
-        fill="#121212"
-        fontSize={14}
-      >
+      <text x={-85} y={0} textAnchor="start" fill="#121212" fontSize={14}>
         {words.map((word, index) => (
           <tspan key={index} x={-85} dy={index === 0 ? 0 : 16}>
             {word}
@@ -71,7 +52,11 @@ function TicketsPerCategory({ data = [] }) {
       ) : (
         <div className="w-full h-[280px] mt-[28px]">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} layout="vertical">
+            <BarChart
+              data={chartData}
+              layout="vertical"
+              margin={{ top: 0, right: 0, left: -10, bottom: -10 }}
+            >
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
 
               <XAxis
@@ -94,7 +79,8 @@ function TicketsPerCategory({ data = [] }) {
               <Tooltip
                 content={<CustomTooltip />}
                 cursor={{ fill: "transparent" }}
-              />
+                position={{ x: 300, y: 0 }}
+/>
 
               <Bar dataKey="value" barSize={36} fill="#08B6D4" />
             </BarChart>

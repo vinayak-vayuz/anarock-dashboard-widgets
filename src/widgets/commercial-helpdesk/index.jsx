@@ -1,19 +1,32 @@
-import React from 'react'
-import CommercialHeader from '../components/CommercialHeader'
-import { Headset } from 'lucide-react';
-import Tickets from '../community/component/UnitStatusPie';
+import React from "react";
+import CommercialHeader from "../components/CommercialHeader";
+import { Headset } from "lucide-react";
+import Tickets from "../community/component/UnitStatusPie";
 import { LuReceiptText } from "react-icons/lu";
-import MetricCard from './component/Resolution';
-import { Timer } from 'lucide-react';
-import TicketsPerCategory from './component/TicketsPerCategory';
+import MetricCard from "./component/Resolution";
+import { Timer } from "lucide-react";
+import TicketsPerCategory from "./component/TicketsPerCategory";
 
 function index() {
+  const dummyData = [
+  {
+    category_name: "Plumbing",
+    total_complaints: 12,
+  },
+  {
+    category_name: "Electrical Issues",
+    total_complaints: 8,
+  },
+  {
+    category_name: "Cleaning Services",
+    total_complaints: 15,
+  }
+];
   return (
     <>
       <CommercialHeader text="Helpdesk" Icon={Headset} iconColor="#12B981" />
 
-      <div className="flex gap-6 mt-6 px-4">
-        
+      <div className="flex gap-[24px] mt-6 px-[16px]">
         <div className="w-[380px] space-y-4">
           <Tickets
             title="Tickets"
@@ -39,13 +52,11 @@ function index() {
         </div>
 
         <div className="flex-1">
-          <TicketsPerCategory />
+          <TicketsPerCategory data={dummyData} />
         </div>
-
       </div>
     </>
   );
 }
 
-
-export default index
+export default index;

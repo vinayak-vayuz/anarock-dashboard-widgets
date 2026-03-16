@@ -67,7 +67,11 @@ function parseHourValue(value) {
     }
 
     const numericValue = Number(normalizedValue);
-    if (!Number.isNaN(numericValue) && numericValue >= 0 && numericValue <= 23) {
+    if (
+      !Number.isNaN(numericValue) &&
+      numericValue >= 0 &&
+      numericValue <= 23
+    ) {
       return numericValue;
     }
   }
@@ -85,7 +89,10 @@ function generateHourlyChartData(data = []) {
       time: formatHourToAMPM(hour),
       walkins: Number(matchedItem?.walkins ?? 0),
       approved: Number(
-        matchedItem?.pre_approved ?? matchedItem?.preApproved ?? matchedItem?.approved ?? 0
+        matchedItem?.pre_approved ??
+          matchedItem?.preApproved ??
+          matchedItem?.approved ??
+          0,
       ),
     };
   });
@@ -93,16 +100,16 @@ function generateHourlyChartData(data = []) {
 
 function HoverDetailCard({ title, color, rows = [], children }) {
   const content = (
-    <div className="bg-white rounded-xl min-w-[260px] p-4">
-      <div className="flex items-center gap-2 font-medium text-[#121212]">
-        <LuDoorOpen className={`text-[20px] ${color}`} />
+    <div className="bg-white rounded-[12px] min-w-[260px] p-[16px] border-[0.5px] border-[#EBEBEB] shadow-[0px_0px_12px_0px_#EAF2FF]">
+      <div className="flex items-center gap-[8px] font-medium text-[#121212]">
+        {/* <LuDoorOpen className={`text-[20px] ${color}`} /> */}
         <div>{title ?? ""}</div>
       </div>
 
-      <div className="mt-3 pt-3 border-t border-dashed border-gray-200 space-y-2">
+      <div className="mt-[16px] pt-[16px] border-t border-dashed border-[#EBEBEB] space-y-[16px]">
         {rows?.map(({ label, value, valueColor }) => (
-          <div key={label} className="flex justify-between text-[14px]">
-            <div>{label ?? ""}</div>
+          <div key={label} className="flex justify-between text-[14px] leading-[18px]">
+            <div className="text-[#64748B]">{label ?? ""}</div>
             <div
               className="font-semibold"
               style={{ color: valueColor || "#121212" }}
@@ -135,9 +142,9 @@ function HourlyTooltip({ active, payload }) {
   if (!active || !payload?.length) return null;
 
   return (
-    <div className="rounded-lg bg-[#121212] px-3 py-2 text-[12px] text-white shadow-lg">
+    <div className="rounded-[8px] bg-[#121212] px-[12px] py-[8px] text-[12px] text-white shadow-lg">
       {payload.map((item) => (
-        <div key={item.dataKey} className="flex items-center gap-2">
+        <div key={item.dataKey} className="flex items-center gap-[8px]">
           <span
             className="h-2 w-2 rounded-full"
             style={{ backgroundColor: item.stroke }}
@@ -151,8 +158,7 @@ function HourlyTooltip({ active, payload }) {
 }
 
 function VisitorUpdates({ data }) {
-  const finalData =
-    data && Object.keys(data).length ? data : staticData;
+  const finalData = data && Object.keys(data).length ? data : staticData;
 
   const summary = finalData?.visitor_summary
     ? {
@@ -160,39 +166,40 @@ function VisitorUpdates({ data }) {
           finalData?.visitor_summary?.total_visitors_today ?? 0,
         peakTime: finalData?.visitor_summary?.peak_time ?? "-",
       }
-    : finalData?.visitorSummary ?? {};
+    : (finalData?.visitorSummary ?? {});
 
   const popup = finalData?.walkins_popup_data
     ? {
         walkins: {
           currently_inside: Number(
-            finalData?.walkins_popup_data?.walkins_inside ?? 0
+            finalData?.walkins_popup_data?.walkins_inside ?? 0,
           ),
           total_visited_today: Number(
-            finalData?.walkins_popup_data?.total_walkins ?? 0
+            finalData?.walkins_popup_data?.total_walkins ?? 0,
           ),
         },
         preApproved: {
           completed_visits: Number(
-            finalData?.pre_approved_popup_data?.pre_approved_check_ins ?? 0
+            finalData?.pre_approved_popup_data?.pre_approved_check_ins ?? 0,
           ),
           total_expected_today: Number(
-            finalData?.pre_approved_popup_data?.total_pre_approved_check_ins ?? 0
+            finalData?.pre_approved_popup_data?.total_pre_approved_check_ins ??
+              0,
           ),
         },
       }
-    : finalData?.popupData ?? {};
+    : (finalData?.popupData ?? {});
 
   const chart_data = useMemo(() => {
     const apiChart = finalData?.chart_data ?? [];
     return generateHourlyChartData(
-      apiChart.length ? apiChart : staticData.chart_data
+      apiChart.length ? apiChart : staticData.chart_data,
     );
   }, [finalData]);
 
   const { yAxisTicks, yAxisMax } = useMemo(() => {
     const maxValue = Math.max(
-      ...chart_data.map((item) => Math.max(item.walkins, item.approved))
+      ...chart_data.map((item) => Math.max(item.walkins, item.approved)),
     );
     const max = maxValue > 0 ? maxValue : 5;
 
@@ -215,31 +222,25 @@ function VisitorUpdates({ data }) {
       period={`Today at ${currentTime}`}
       icon={<LuDoorOpen className="!text-[24px] text-[#8B5CF6]" />}
     >
-      <div className="flex flex-col mt-2">
+      <div className="flex flex-col gap-[24px]">
         {/* SUMMARY */}
-        <div className="grid grid-cols-2 gap-y-4 gap-x-6 mb-6">
+        <div className="grid grid-cols-2 gap-y-4 gap-x-6">
           <div className="flex flex-col gap-[8px]!">
-            <div className="text-[10px] text-[#64748B]">
-              Total Visitors
-            </div>
+            <div className="text-[10px] text-[#64748B]">Total Visitors</div>
             <div className="text-[20px] font-medium text-[#08B6D4]">
               {summary?.totalVisitorsToday ?? 0}
             </div>
           </div>
 
           <div className="flex flex-col gap-[8px]!">
-            <div className="text-[10px] text-[#64748B]">
-              Peak Time
-            </div>
+            <div className="text-[10px] text-[#64748B]">Peak Time</div>
             <div className="text-[20px] font-medium text-[#8B5CF6]">
               {summary?.peakTime ?? "-"}
             </div>
           </div>
 
           <div className="mt-2 flex flex-col gap-[8px]!">
-            <div className="text-[10px] text-[#64748B]">
-              Active Walk-ins
-            </div>
+            <div className="text-[10px] text-[#64748B]">Active Walk-ins</div>
 
             <div className="flex items-baseline text-xl font-medium leading-[32px]">
               <div className="text-[28px] text-[#1FA05B] leading-[32px]">
@@ -257,8 +258,7 @@ function VisitorUpdates({ data }) {
                   },
                   {
                     label: "Total Visited Today",
-                    value:
-                      popup?.walkins?.total_visited_today ?? 0,
+                    value: popup?.walkins?.total_visited_today ?? 0,
                   },
                 ]}
               >
@@ -285,14 +285,12 @@ function VisitorUpdates({ data }) {
                 rows={[
                   {
                     label: "Completed Visits",
-                    value:
-                      popup?.preApproved?.completed_visits ?? 0,
+                    value: popup?.preApproved?.completed_visits ?? 0,
                     valueColor: "#E7A015",
                   },
                   {
                     label: "Total Expected Check-ins Today",
-                    value:
-                      popup?.preApproved?.total_expected_today ?? 0,
+                    value: popup?.preApproved?.total_expected_today ?? 0,
                   },
                 ]}
               >
@@ -305,7 +303,7 @@ function VisitorUpdates({ data }) {
         </div>
 
         {/* CHART */}
-        <div className="w-full h-[179px]">
+        <div className="w-full h-[149px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={chart_data ?? []}

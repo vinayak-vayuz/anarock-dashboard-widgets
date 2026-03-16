@@ -10,7 +10,6 @@ const DUMMY_REQUESTS = [
 ];
 
 function RequestBox({ data }) {
-
   const requests =
     Array.isArray(data?.request_box_by_type) &&
     data.request_box_by_type.length > 0
@@ -32,7 +31,7 @@ function RequestBox({ data }) {
         {requests.map((item, idx) => (
           <div
             key={`${item.title}-${idx}`}
-            className="flex items-center justify-between bg-[#F9FAFB] rounded-lg p-3 h-[62px]"
+            className="flex items-center justify-between bg-[#F9FAFB] rounded-[8px] p-[12px] h-[62px]"
           >
             {/* Left */}
             <div className="flex flex-col">
