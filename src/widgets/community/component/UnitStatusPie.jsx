@@ -5,6 +5,33 @@ import Card from "../../components/Card";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const bottomGlowPlugin = {
+  id: "bottomGlow",
+  beforeDatasetsDraw(chart, args, pluginOptions) {
+    if (!pluginOptions?.enabled) return;
+
+    const meta = chart.getDatasetMeta(0);
+    if (!meta?.data?.[0]) return;
+
+    const { ctx } = chart;
+    const { x, y, outerRadius } = meta.data[0];
+    const glowY = y + outerRadius * 0.78;
+    const glowRadius = outerRadius * 0.95;
+    const gradient = ctx.createRadialGradient(x, glowY, 0, x, glowY, glowRadius);
+
+    gradient.addColorStop(0, pluginOptions.color ?? "rgba(186, 230, 253, 0.75)");
+    gradient.addColorStop(0.55, "rgba(186, 230, 253, 0.32)");
+    gradient.addColorStop(1, "rgba(186, 230, 253, 0)");
+
+    ctx.save();
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.ellipse(x, glowY, outerRadius * 0.95, outerRadius * 0.42, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  },
+};
+
 const centerTextPlugin = {
   id: "centerText",
   afterDraw(chart, args, pluginOptions) {
@@ -49,6 +76,10 @@ const Tickets = ({
   totalLabel = "Total",
   centerTopColor = "#0F172A",
   centerBottomColor = "#64748B",
+  centerTopSize,
+  centerBottomSize,
+  showBottomGlow = false,
+  bottomGlowColor = "rgba(186, 230, 253, 0.75)",
   widgetType = "",
   data,
 }) => {
@@ -65,6 +96,11 @@ const Tickets = ({
   const resolvedGrowthText = data?.growthText ?? growthText;
   const resolvedTotalLabel = data?.totalLabel ?? totalLabel;
   const resolvedWidgetType = data?.widgetType ?? widgetType;
+  const resolvedCenterTopSize = data?.centerTopSize ?? centerTopSize ?? 20;
+  const resolvedCenterBottomSize =
+    data?.centerBottomSize ?? centerBottomSize ?? 10;
+  const resolvedShowBottomGlow = data?.showBottomGlow ?? showBottomGlow;
+  const resolvedBottomGlowColor = data?.bottomGlowColor ?? bottomGlowColor;
 
   const total = resolvedFirstValue + resolvedSecondValue;
 
@@ -95,10 +131,14 @@ const Tickets = ({
       centerText: {
         top: `${total}`,
         bottom: resolvedTotalLabel,
-        topSize: 20,
-        bottomSize: 10,
+        topSize: resolvedCenterTopSize,
+        bottomSize: resolvedCenterBottomSize,
         topColor: centerTopColor,
         bottomColor: centerBottomColor,
+      },
+      bottomGlow: {
+        enabled: resolvedShowBottomGlow,
+        color: resolvedBottomGlowColor,
       },
     },
   };
@@ -152,7 +192,7 @@ const Tickets = ({
               {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
             </div>
 
-            <div className="text-[#64748B] text-[10px] ml-[4px]">
+            <div className="text-[#64748B] text-[10px] ml-[4px] whitespace-nowrap">
               {resolvedGrowthText}
             </div>
           </div>
@@ -169,7 +209,7 @@ const Tickets = ({
             <Doughnut
               data={chartData}
               options={options}
-              plugins={[centerTextPlugin]}
+              plugins={[bottomGlowPlugin, centerTextPlugin]}
             />
           </div>
         </div>
