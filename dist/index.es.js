@@ -54058,7 +54058,7 @@ function vpe({ data: e, currencyType: t }) {
             }
           )
         ] }) }) }),
-        /* @__PURE__ */ v.jsx("div", { className: "col-span-7", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden border border-[#E2E8F0]", children: [
+        /* @__PURE__ */ v.jsx("div", { className: "col-span-7", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden ", children: [
           /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 px-[12px] py-[8px] bg-[#EBEBEB] text-[12px] leading-[16px] font-semibold text-[#64748B]", children: [
             /* @__PURE__ */ v.jsx("div", { children: "Amenity" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-right", children: "Revenue" })
@@ -54596,7 +54596,7 @@ function _pe({
             gridTemplateColumns: `repeat(${u.length}, 1fr)`
           },
           children: u.map((_, w) => {
-            const x = g[_.key], S = _.label === "Closed", E = _.label === "Open";
+            const x = g[_.key], S = _.label === "Closed", E = _.label === "Open", k = typeof x == "string" && x.includes("%"), C = x === "100%" ? "bg-[#F0FEF2] text-[#36AB6C]" : "bg-[#FFF0F0] text-[#AB0000]";
             return /* @__PURE__ */ v.jsx(
               "div",
               {
@@ -54614,6 +54614,12 @@ function _pe({
                     className: "text-[14px] font-medium",
                     style: { color: "#AB0000" },
                     children: x ?? "-"
+                  }
+                ) : k ? /* @__PURE__ */ v.jsx(
+                  "div",
+                  {
+                    className: `inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${C}`,
+                    children: x
                   }
                 ) : /* @__PURE__ */ v.jsx("div", { children: x ?? "-" })
               },
