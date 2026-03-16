@@ -86,6 +86,9 @@ const DEFAULT_CARDS = [
 function StatCard({ data }) {
   const cards = Array.isArray(data) && data.length > 0 ? data : DEFAULT_CARDS;
 
+  console.log(cards, 'carrrr')
+
+
   return (
     <div className="px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]">
       {cards.map((card, index) => (

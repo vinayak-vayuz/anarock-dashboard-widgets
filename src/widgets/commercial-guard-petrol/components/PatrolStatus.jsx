@@ -55,7 +55,17 @@ function GuardPatrols({ data }) {
                 ))}
               </Pie>
 
-              <Tooltip formatter={(val) => val.toLocaleString()} />
+<Tooltip
+  formatter={(val) => val.toLocaleString()}
+  contentStyle={{
+    backgroundColor: "#000",
+    border: "none",
+    borderRadius: "8px",
+    color: "#fff"
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
             </PieChart>
           </ResponsiveContainer>
 

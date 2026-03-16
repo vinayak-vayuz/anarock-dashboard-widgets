@@ -37,7 +37,7 @@ function BookingTrendChart({ data }) {
       titleWeight="semi-bold"
       className="h-[362px]"
     >
-      <div className="w-full h-[280px] flex items-center justify-center">
+      <div className="w-full h-[265px] mt-[28px] flex items-center justify-center">
 
         {isEmptyArray ? (
           <EmptyState
@@ -48,7 +48,7 @@ function BookingTrendChart({ data }) {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData || []}
-              margin={{ top: 0, right: 0, left: -15, bottom: 0 }}
+              margin={{ top: 0, right: 0, left: -30, bottom: 0 }}
             >
 
               <CartesianGrid
@@ -73,10 +73,17 @@ function BookingTrendChart({ data }) {
               />
 
               <Tooltip
-                formatter={(value) => [value, "Bookings"]}
-                labelFormatter={(label) => `Organisation: ${label}`}
-                cursor={{ fill: "rgba(0,0,0,0.05)" }}
-              />
+  formatter={(value) => [value, "Bookings"]}
+  labelFormatter={(label) => `Organisation: ${label}`}
+  cursor={{ fill: "rgba(0,0,0,0.05)" }}
+  contentStyle={{
+    backgroundColor: "#000",
+    border: "none",
+    borderRadius: "6px"
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
 
               {/* Fixed bar color */}
               <Bar

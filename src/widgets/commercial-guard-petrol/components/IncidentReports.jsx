@@ -14,7 +14,7 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
     >
       <div>
         {/* Top Status Boxes */}
-        <div className="flex w-full text-center gap-[24px]">
+        <div className="flex w-full text-center gap-[16px] mt-[24px]">
           <div className="flex-1 flex flex-col items-center justify-center bg-[#FBF4F4] h-[76px] rounded">
             <div className="text-[24px] leading-[28px] font-medium text-[#AB0000]">
               {open}

@@ -126,14 +126,18 @@ const MaintenanceStatus = ({ data }) => {
                   allowDecimals={false}
                 />
 
-                <Tooltip
-                  cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
-                  contentStyle={{
-                    borderRadius: "10px",
-                    border: "1px solid #E2E8F0",
-                    fontSize: "12px",
-                  }}
-                />
+               <Tooltip
+  cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
+  contentStyle={{
+    backgroundColor: "#000",
+    borderRadius: "10px",
+    border: "none",
+    fontSize: "12px",
+    color: "#fff"
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
 
                 <Legend
                   verticalAlign="bottom"
