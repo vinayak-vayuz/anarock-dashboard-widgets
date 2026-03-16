@@ -89,7 +89,7 @@ const AssetsByType = ({ rows, totalAssets }) => {
 
         {/* Table */}
         <div className="flex-1 max-w-[280px]">
-          <div className="rounded-[12px] overflow-hidden bg-white  border border-[#E2E8F0]">
+          <div className="rounded-[12px] overflow-hidden bg-white border border-[#E2E8F0] !border-r-1 border-r-[#E2E8F0]! !pr-0 !mr-0">
             {/* Header */}
             <div className="flex items-center justify-between px-[16px] py-[12px] bg-[#F8FAFC]">
               <div className="text-[12px] font-medium text-[#64748B]">
