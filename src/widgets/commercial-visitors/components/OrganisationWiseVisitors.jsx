@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
-import { CustomTooltip } from "../../utils";
+import { CommercialCustomTooltip } from "../../utils";
 /* Dummy fallback data */
 const dummyData = [
   { building_name: "Google", no_of_visitors: 1000 },
@@ -27,8 +27,8 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
     data === undefined || data === null
       ? dummyData
       : Array.isArray(data)
-      ? data
-      : [];
+        ? data
+        : [];
 
   return (
     <Card
@@ -71,17 +71,10 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
                 allowDecimals={false}
               />
 
-           <Tooltip
-  cursor={false}
-  contentStyle={{
-    backgroundColor: "#000",
-    border: "none",
-    borderRadius: "6px",
-    color: "#fff",
-  }}
-  labelStyle={{ color: "#fff" }}
-  itemStyle={{ color: "#fff" }}
-/>
+              <Tooltip
+                cursor={false}
+                content={<CommercialCustomTooltip />}
+              />
 
               {/* Fixed bar color */}
               <Bar

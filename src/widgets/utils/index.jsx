@@ -55,6 +55,57 @@ export const CustomTooltip = ({ active, payload, coordinate }) => {
     </div>
   );
 };
+export const CommercialCustomTooltip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null;
+
+  const item = payload[0];
+
+  const name =
+    label ||
+    item?.name ||
+    item?.payload?.name ||
+    item?.payload?.facility_name ||
+    "";
+
+  const value = item?.value ?? 0;
+
+  const color =
+    item?.color ||           
+    item?.fill ||            
+    item?.payload?.fill ||   
+    "#3B82F6";
+
+  return (
+    <div
+      style={{
+        backgroundColor: "#111",
+        borderRadius: "6px",
+        padding: "6px 14px",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "10px",
+        color: "#fff",
+        fontSize: "13px",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {/* color dot */}
+      <span
+        style={{
+          width: "8px",
+          height: "8px",
+          borderRadius: "50%",
+          backgroundColor: color,
+          display: "inline-block",
+        }}
+      />
+
+      <span style={{ color: "#aaa" }}>{name}</span>
+
+      <span style={{ fontWeight: 700 }}>{value}</span>
+    </div>
+  );
+};
 
 export const Chip = ({ value }) => {
   const numericValue =

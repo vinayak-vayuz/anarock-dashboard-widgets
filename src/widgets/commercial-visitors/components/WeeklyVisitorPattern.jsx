@@ -13,6 +13,7 @@ import EmptyState from "../../utils/EmptyState";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../components/datepicker.css";
+import { CommercialCustomTooltip } from "../../utils";
 
 const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
   const [endDate, setEndDate] = useState(new Date());
@@ -156,22 +157,24 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
                 domain={[0, "dataMax + 2"]}
               />
 
-          <Tooltip
-  labelFormatter={(value) =>
-    new Date(value).toLocaleDateString("en-GB", {
+<Tooltip
+  cursor={false}
+  content={({ active, payload, label }) => {
+    if (!active || !payload?.length) return null;
+
+    const formattedLabel = new Date(label).toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
-    })
-  }
-  formatter={(value) => [value, "Visitors"]}
-  contentStyle={{
-    backgroundColor: "#000",
-    border: "none",
-    borderRadius: "6px",
-    color: "#fff",
+    });
+
+    return (
+      <CommercialCustomTooltip
+        active={active}
+        payload={payload}
+        label={formattedLabel}
+      />
+    );
   }}
-  labelStyle={{ color: "#fff" }}
-  itemStyle={{ color: "#fff" }}
 />
               <Area
                 type="monotone"

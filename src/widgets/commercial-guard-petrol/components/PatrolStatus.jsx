@@ -2,23 +2,23 @@ import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/CardNoLogo";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
-
+import { CommercialCustomTooltip } from "../../utils";
 function GuardPatrols({ data }) {
 
   const chartData = [
     {
       name: "Completed",
-      value: Number(data?.completed || 0),
+      value: Number(data?.completed || 1110),
       color: "#12B981",
     },
     {
       name: "Not - Completed",
-      value: Number(data?.not_completed || 0),
+      value: Number(data?.not_completed || 20),
       color: "#F69E0A",
     },
     {
       name: "Missed",
-      value: Number(data?.missed || 0),
+      value: Number(data?.missed || 30),
       color: "#EF4444",
     },
   ];
@@ -55,17 +55,10 @@ function GuardPatrols({ data }) {
                 ))}
               </Pie>
 
-<Tooltip
-  formatter={(val) => val.toLocaleString()}
-  contentStyle={{
-    backgroundColor: "#000",
-    border: "none",
-    borderRadius: "8px",
-    color: "#fff"
-  }}
-  labelStyle={{ color: "#fff" }}
-  itemStyle={{ color: "#fff" }}
-/>
+              <Tooltip
+                cursor={false}
+                content={<CommercialCustomTooltip />}
+              />
             </PieChart>
           </ResponsiveContainer>
 
@@ -85,11 +78,10 @@ function GuardPatrols({ data }) {
           {chartData.map((item, index) => (
             <div
               key={item.name}
-              className={`flex items-center justify-between py-[10px] ${
-                index !== chartData.length - 1
+              className={`flex items-center justify-between py-[10px] ${index !== chartData.length - 1
                   ? "border-b border-[#F1F5F9]"
                   : ""
-              }`}
+                }`}
             >
               <div className="flex items-center gap-[10px]">
                 <div

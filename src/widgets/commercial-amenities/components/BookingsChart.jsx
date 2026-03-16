@@ -52,6 +52,7 @@ const baseData =
 const chartData = baseData.map((item) => ({
   ...item,
   name: item.facility_name, // required for CustomTooltip
+    color: "#8B5CF6",
 }));
   return (
     <Card
