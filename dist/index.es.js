@@ -51510,7 +51510,7 @@ function qfe({ staffPresentAbsent: e, staffPresentByRole: t }) {
             /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#AB0000]", children: "Absent" })
           ] })
         ] }),
-        /* @__PURE__ */ v.jsx("div", { className: "mt-[24px] space-y-2 overflow-y-auto max-h-[200px]", children: r?.length ? r?.map?.((s, l) => {
+        /* @__PURE__ */ v.jsx("div", { className: "mt-[24px] space-y-2 overflow-y-auto max-h-[200px] hide-scrollbar", children: r?.length ? r?.map?.((s, l) => {
           const c = Number(s?.total_staff ?? 0), u = Number(s?.present_staff ?? 0);
           return /* @__PURE__ */ v.jsxs(
             "div",
@@ -53930,14 +53930,14 @@ function wpe({ data: e, currencyType: t }) {
       title: "Amenity Wise Revenue",
       titleWeight: "semi-bold",
       className: "h-[362px]",
-      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-[24px] items-center h-full", children: n ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
+      children: /* @__PURE__ */ v.jsx("div", { className: "grid grid-cols-12 gap-[24px] items-center h-full  mt-[16px]", children: n ? /* @__PURE__ */ v.jsx("div", { className: "col-span-12 flex items-center justify-center h-[240px]", children: /* @__PURE__ */ v.jsx(
         Lo,
         {
           title: "No Amenity Found",
           description: "Catch up all the data. Change the date range to see the data."
         }
       ) }) : /* @__PURE__ */ v.jsxs(v.Fragment, { children: [
-        /* @__PURE__ */ v.jsx("div", { className: "col-span-5 h-[240px] mt-[16px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(Mo, { children: [
+        /* @__PURE__ */ v.jsx("div", { className: "col-span-5 h-[240px]", children: /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(Mo, { children: [
           /* @__PURE__ */ v.jsx(
             Vi,
             {
@@ -54298,7 +54298,7 @@ function Ope({ data: e }) {
       className: "h-[362px]",
       titleWeight: "semi-bold",
       children: /* @__PURE__ */ v.jsxs("div", { className: "flex flex-col items-center justify-center", children: [
-        /* @__PURE__ */ v.jsxs("div", { className: "w-[215px] h-[182px] relative", children: [
+        /* @__PURE__ */ v.jsxs("div", { className: "w-[215px] h-[182px] relative mt-[16px]", children: [
           /* @__PURE__ */ v.jsx(zt, { width: "100%", height: "100%", children: /* @__PURE__ */ v.jsxs(Mo, { children: [
             /* @__PURE__ */ v.jsx(
               Vi,

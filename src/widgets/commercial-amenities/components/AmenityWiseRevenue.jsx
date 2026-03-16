@@ -46,7 +46,7 @@ function AmenityWiseRevenue({ data, currencyType }) {
       titleWeight="semi-bold"
       className="h-[362px]"
     >
-      <div className="grid grid-cols-12 gap-[24px] items-center h-full">
+      <div className="grid grid-cols-12 gap-[24px] items-center h-full  mt-[16px]">
         {isEmptyArray ? (
           <div className="col-span-12 flex items-center justify-center h-[240px]">
             <EmptyState
@@ -56,7 +56,7 @@ function AmenityWiseRevenue({ data, currencyType }) {
           </div>
         ) : (
           <>
-            <div className="col-span-5 h-[240px] mt-[16px]">
+            <div className="col-span-5 h-[240px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
