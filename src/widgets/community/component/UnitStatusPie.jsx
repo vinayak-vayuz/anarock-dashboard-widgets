@@ -162,7 +162,7 @@ const Tickets = ({
           <div
             className={`${
               resolvedWidgetType === "commercial"
-                ? "h-[260px] w-[263px]"
+                ? "h-[260px] max-w-[263px]"
                 : "h-[158px] w-[158px]"
             } ml-auto mr-2`}
           >

@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { MessageSquare } from "lucide-react";
 import EmptyState from "../../utils/EmptyState";
+import {CustomTooltip}  from "../../utils";
 
 /* Dummy fallback data */
 const dummyData = [
@@ -41,13 +42,17 @@ function BookingsChart({ data }) {
 
   const isEmptyArray = Array?.isArray(data) && data?.length === 0;
 
-  const chartData =
-    data === undefined || data === null
-      ? dummyData
-      : Array?.isArray(data)
-      ? data
-      : [];
+const baseData =
+  data === undefined || data === null
+    ? dummyData
+    : Array?.isArray(data)
+    ? data
+    : [];
 
+const chartData = baseData.map((item) => ({
+  ...item,
+  name: item.facility_name, // required for CustomTooltip
+}));
   return (
     <Card
       title="Bookings"
@@ -66,7 +71,7 @@ function BookingsChart({ data }) {
             <BarChart
               data={chartData || []}
               layout="vertical"
-              margin={{ top: 0, right: 10, left: -20, bottom: -10 }}
+              margin={{ top: 0, right: 10, left: -12, bottom: 0 }}
             >
 
               <XAxis
@@ -86,9 +91,10 @@ function BookingsChart({ data }) {
                 tick={<CustomYAxisTick />}
               />
 
-              <Tooltip
-                formatter={(value) => [value, "Bookings"]}
-                cursor={{ fill: "rgba(0,0,0,0.05)" }}
+                 <Tooltip
+                              content={<CustomTooltip />}
+                              cursor={{ fill: "transparent" }}
+                              position={{ x: 300, y: 0 }}
               />
 
               {/* Fixed bar color */}

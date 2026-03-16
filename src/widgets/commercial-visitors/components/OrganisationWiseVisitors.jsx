@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
-
+import { CustomTooltip } from "../../utils";
 /* Dummy fallback data */
 const dummyData = [
   { building_name: "Google", no_of_visitors: 1000 },
@@ -71,7 +71,17 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
                 allowDecimals={false}
               />
 
-              <Tooltip cursor={false} />
+           <Tooltip
+  cursor={false}
+  contentStyle={{
+    backgroundColor: "#000",
+    border: "none",
+    borderRadius: "6px",
+    color: "#fff",
+  }}
+  labelStyle={{ color: "#fff" }}
+  itemStyle={{ color: "#fff" }}
+/>
 
               {/* Fixed bar color */}
               <Bar
