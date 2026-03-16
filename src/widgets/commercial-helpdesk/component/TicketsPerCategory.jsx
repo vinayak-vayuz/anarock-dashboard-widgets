@@ -51,12 +51,12 @@ function TicketsPerCategory({ data = [] }) {
           description="Catch up all the data. Change the date range to see the data."
         />
       ) : (
-        <div className="w-full h-[252px] pl-[8px] pr-[8px] pb-[10px]">
+        <div className="w-full h-[252px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData}
               layout="vertical"
-              margin={{ top: 0, right: 8, left: -8, bottom: 12 }}
+              margin={{ top: 0, right: 8, left: -20, bottom: -10 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
