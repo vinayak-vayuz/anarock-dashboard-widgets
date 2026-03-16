@@ -51,7 +51,7 @@ const AssetsByType = ({ rows, totalAssets }) => {
   }
   return (
     <Card title="Assets by Type" titleWeight="semi-bold" className="h-full">
-      <div className="flex items-center justify-between h-full">
+      <div className="flex items-center justify-between h-full mt-[16px]">
         {/* Chart */}
         <div className="relative w-[252px] h-[273px]">
           <ResponsiveContainer width="100%" height="100%">

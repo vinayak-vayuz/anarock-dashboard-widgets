@@ -8,6 +8,20 @@ import { Timer } from "lucide-react";
 import TicketsPerCategory from "./component/TicketsPerCategory";
 
 function index() {
+  const dummyData = [
+  {
+    category_name: "Plumbing",
+    total_complaints: 12,
+  },
+  {
+    category_name: "Electrical Issues",
+    total_complaints: 8,
+  },
+  {
+    category_name: "Cleaning Services",
+    total_complaints: 15,
+  }
+];
   return (
     <>
       <CommercialHeader text="Helpdesk" Icon={Headset} iconColor="#12B981" />
@@ -38,7 +52,7 @@ function index() {
         </div>
 
         <div className="flex-1">
-          <TicketsPerCategory />
+          <TicketsPerCategory data={dummyData} />
         </div>
       </div>
     </>

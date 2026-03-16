@@ -33,11 +33,9 @@ function SingleStats({ data }) {
               >
                 {card.delta && (
                   <div
-                    className="flex items-center gap-[4px]"
-                    style={{
-                      color: isPositive ? "#1FA05B" : "#E11D48",
-                      fontWeight: 500,
-                    }}
+                    className={`flex items-center gap-[4px] px-[6px] py-[2px] rounded-[4px] font-medium
+      ${isPositive ? "text-[#1FA05B] bg-[#F7FEFA]" : "text-[#E11D48] bg-[#FBF4F4]"}
+    `}
                   >
                     {isPositive ? <FaCaretUp /> : <FaCaretDown />}
                     {Math.abs(numericDelta)}%

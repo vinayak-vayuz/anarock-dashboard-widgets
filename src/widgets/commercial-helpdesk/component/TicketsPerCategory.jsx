@@ -11,20 +11,7 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-black text-white px-[16px] py-[8px] rounded-[8px] text-sm shadow-lg">
-        <div className="flex items-center gap-[8px]">
-          <div>{payload[0].payload.name}</div>
-          <div className="font-semibold">{payload[0].value}</div>
-        </div>
-      </div>
-    );
-  }
-  return null;
-};
+import {CustomTooltip}  from "../../utils";
 
 const CustomYAxisTick = ({ x, y, payload }) => {
   const words = payload.value.split(" ");
@@ -92,7 +79,8 @@ function TicketsPerCategory({ data = [] }) {
               <Tooltip
                 content={<CustomTooltip />}
                 cursor={{ fill: "transparent" }}
-              />
+                position={{ x: 300, y: 0 }}
+/>
 
               <Bar dataKey="value" barSize={36} fill="#08B6D4" />
             </BarChart>

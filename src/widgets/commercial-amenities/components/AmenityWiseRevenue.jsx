@@ -56,7 +56,7 @@ function AmenityWiseRevenue({ data, currencyType }) {
           </div>
         ) : (
           <>
-            <div className="col-span-5 h-[240px]">
+            <div className="col-span-5 h-[240px] mt-[16px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie

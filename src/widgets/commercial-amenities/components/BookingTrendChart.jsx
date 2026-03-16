@@ -37,7 +37,7 @@ function BookingTrendChart({ data }) {
       titleWeight="semi-bold"
       className="h-[362px]"
     >
-      <div className="w-full h-[280px] flex items-center justify-center">
+      <div className="w-full h-[265px] mt-[28px] flex items-center justify-center">
 
         {isEmptyArray ? (
           <EmptyState
