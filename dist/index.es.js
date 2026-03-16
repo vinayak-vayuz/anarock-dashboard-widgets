@@ -54058,7 +54058,7 @@ function vpe({ data: e, currencyType: t }) {
             }
           )
         ] }) }) }),
-        /* @__PURE__ */ v.jsx("div", { className: "col-span-7", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden", children: [
+        /* @__PURE__ */ v.jsx("div", { className: "col-span-7", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden border border-[#E2E8F0]", children: [
           /* @__PURE__ */ v.jsxs("div", { className: "grid grid-cols-2 px-[12px] py-[8px] bg-[#EBEBEB] text-[12px] leading-[16px] font-semibold text-[#64748B]", children: [
             /* @__PURE__ */ v.jsx("div", { children: "Amenity" }),
             /* @__PURE__ */ v.jsx("div", { className: "text-right", children: "Revenue" })
@@ -54136,7 +54136,7 @@ const rf = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"], Zde = [
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] leading-[17px] text-[#64748B] mt-[2px]", children: "Total Assets" })
       ] })
     ] }),
-    /* @__PURE__ */ v.jsx("div", { className: "flex-1 max-w-[280px]", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden bg-white", children: [
+    /* @__PURE__ */ v.jsx("div", { className: "flex-1 max-w-[280px]", children: /* @__PURE__ */ v.jsxs("div", { className: "rounded-[12px] overflow-hidden bg-white  border border-[#E2E8F0]", children: [
       /* @__PURE__ */ v.jsxs("div", { className: "flex items-center justify-between px-[16px] py-[12px] bg-[#F8FAFC]", children: [
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] font-medium text-[#64748B]", children: "Asset" }),
         /* @__PURE__ */ v.jsx("div", { className: "text-[12px] font-medium text-[#64748B]", children: "Count" })
@@ -54531,8 +54531,8 @@ function _pe({
   columns: e = [
     { key: "a", label: "Organisation" },
     { key: "b", label: "Item" },
-    { key: "c", label: "Orders" },
-    { key: "d", label: "Revenue" },
+    { key: "c", label: "Closed" },
+    { key: "d", label: "Open" },
     { key: "e", label: "AOV" },
     { key: "f", label: "% Revenue" }
   ],
@@ -54565,7 +54565,7 @@ function _pe({
   pageOptions: l = [10, 20, 30, 40, 50]
 }) {
   const c = Array.isArray(t) ? t : [], u = Array.isArray(e) ? e : [], d = n > 0 ? Math.ceil(c.length / n) : 1, f = s || d, p = c, h = n - p.length > 0 ? n - p.length : 0, m = a === 0 && c.length === 0;
-  return console.log("safeData:", c), console.log("currentData:", p), /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-[12px] h-[390px] shadow-md overflow-hidden flex flex-col", children: [
+  return /* @__PURE__ */ v.jsxs("div", { className: "w-full bg-white rounded-[12px] h-[390px] shadow-md overflow-hidden flex flex-col", children: [
     /* @__PURE__ */ v.jsx(
       "div",
       {
@@ -54574,7 +54574,7 @@ function _pe({
         children: u.map((g, b) => /* @__PURE__ */ v.jsx(
           "div",
           {
-            className: "px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-center",
+            className: "px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left",
             children: g.label
           },
           b
@@ -54596,16 +54596,24 @@ function _pe({
             gridTemplateColumns: `repeat(${u.length}, 1fr)`
           },
           children: u.map((_, w) => {
-            const x = g[_.key], S = typeof x == "string" && x.includes("%"), E = x === "100%" ? "bg-[#F0FEF2] text-[#36AB6C]" : "bg-[#FFF0F0] text-[#AB0000]";
+            const x = g[_.key], S = _.label === "Closed", E = _.label === "Open";
             return /* @__PURE__ */ v.jsx(
               "div",
               {
-                className: `px-[24px] py-[16px] flex items-center justify-center ${w === 0 ? "bg-white" : "bg-gray-50"}`,
+                className: `px-[24px] py-[16px] flex items-center justify-start ${w === 0 ? "bg-white" : "bg-gray-50"}`,
                 children: S ? /* @__PURE__ */ v.jsx(
                   "div",
                   {
-                    className: `inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${E}`,
-                    children: x
+                    className: "text-[14px] font-medium",
+                    style: { color: "#36AB6C" },
+                    children: x ?? "-"
+                  }
+                ) : E ? /* @__PURE__ */ v.jsx(
+                  "div",
+                  {
+                    className: "text-[14px] font-medium",
+                    style: { color: "#AB0000" },
+                    children: x ?? "-"
                   }
                 ) : /* @__PURE__ */ v.jsx("div", { children: x ?? "-" })
               },

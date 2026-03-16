@@ -96,7 +96,7 @@ function AmenityWiseRevenue({ data, currencyType }) {
                 <div className="grid grid-cols-2 px-[12px] py-[8px] bg-[#EBEBEB] text-[12px] leading-[16px] font-semibold text-[#64748B]">
                   <div>Amenity</div>
                   <div className="text-right">Revenue</div>
-                </div>
+                </div>git add .
 
                 <div className="divide-y divide-[#F1F5F9]">
                   {chartData?.map?.((item, index) => (
