@@ -71,9 +71,11 @@ export default function EventsUtilisation({ data }) {
       className="w-full h-[360px] overflow-auto"
     >
       <div>
-        {events.map((event, index) => (
-          <EventItem key={`${event.title}-${index}`} {...event} />
-        ))}
+        {events?.length > 0
+          ? events.map((event, index) => (
+              <EventItem key={`${event.title}-${index}`} {...event} />
+            ))
+          : "No Data"}
       </div>
     </Card>
   );
