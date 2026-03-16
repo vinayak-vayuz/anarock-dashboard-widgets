@@ -8,7 +8,7 @@ const DEFAULT_CURRENCY = "\u20B9";
 const DEFAULT_OUTLET_COLORS = ["bg-blue-500", "bg-red-500", "bg-purple-700"];
 
 const defaultData = {
-  title: "Food & Beverages",
+  title: "Food & Beverages (Static Data)",
   period: "Today",
   summary: {
     totalOrders: 247,
