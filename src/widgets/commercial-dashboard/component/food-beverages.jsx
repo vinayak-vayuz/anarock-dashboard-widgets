@@ -207,7 +207,12 @@ function FoodBeverages({ data, title, period, icon }) {
 
         <div className="mt-[16px]">
           {normalizedData.outlets.map((item, index) => (
-            <div key={`${item.name}-${index}`} className="mb-[16px]">
+            <div
+              key={`${item.name}-${index}`}
+              className={
+                index === normalizedData.outlets.length - 1 ? "" : "mb-[16px]"
+              }
+            >
               <div className="flex justify-between text-sm mb-[8px]">
                 <div className="text-[#64748B] text-[12px] leading-[16px]">
                   {item.name}

@@ -47,7 +47,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={chartData || []}
-              margin={{ top: 10, right: 10, left: -10, bottom: -10 }}
+              margin={{ top: 10, right: 10, left: -20, bottom: -20 }}
               barCategoryGap={35}
             >
               <CartesianGrid

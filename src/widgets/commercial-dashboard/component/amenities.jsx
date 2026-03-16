@@ -154,7 +154,12 @@ function Amenities({ data }) {
         <div className="mt-[16px]">
           {amenitiesList.length > 0 ? (
             amenitiesList.map((item, index) => (
-              <div key={index} className="mb-[16px]">
+              <div
+                key={index}
+                className={
+                  index === amenitiesList.length - 1 ? "" : "mb-[16px]"
+                }
+              >
                 <div className="flex justify-between text-sm mb-[8px]">
                   <div className="text-[#64748B] text-[12px] leading-[16px]">
                     {item?.name}
