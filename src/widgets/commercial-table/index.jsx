@@ -89,9 +89,14 @@ export default function CommercialTable({
                 {safeColumns.map((col, colIndex) => {
                   const value = row[col.key];
 
-                  // Check if this column header is "Closed" or "Open"
                   const isClosedCol = col.label === "Closed";
                   const isOpenCol = col.label === "Open";
+                  const isPercent =
+                    typeof value === "string" && value.includes("%");
+                  const percentClass =
+                    value === "100%"
+                      ? "bg-[#F0FEF2] text-[#36AB6C]"
+                      : "bg-[#FFF0F0] text-[#AB0000]";
 
                   return (
                     <div
@@ -100,25 +105,31 @@ export default function CommercialTable({
                         colIndex === 0 ? "bg-white" : "bg-gray-50"
                       }`}
                     >
-                     {isClosedCol ? (
-  <div
-    className="text-[14px] font-medium"
-    style={{ color: "#36AB6C" }}
-  >
-    {value !== undefined && value !== null ? value : "-"}
-  </div>
-) : isOpenCol ? (
-  <div
-    className="text-[14px] font-medium"
-    style={{ color: "#AB0000" }}
-  >
-    {value !== undefined && value !== null ? value : "-"}
-  </div>
-) : (
-  <div>
-    {value !== undefined && value !== null ? value : "-"}
-  </div>
-)}
+                      {isClosedCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#36AB6C" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isOpenCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#AB0000" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isPercent ? (
+                        <div
+                          className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
+                        >
+                          {value}
+                        </div>
+                      ) : (
+                        <div>
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      )}
                     </div>
                   );
                 })}

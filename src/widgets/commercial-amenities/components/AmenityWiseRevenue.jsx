@@ -92,11 +92,11 @@ function AmenityWiseRevenue({ data, currencyType }) {
             </div>
 
             <div className="col-span-7">
-              <div className="rounded-[12px] overflow-hidden border border-[#E2E8F0]">
+              <div className="rounded-[12px] overflow-hidden ">
                 <div className="grid grid-cols-2 px-[12px] py-[8px] bg-[#EBEBEB] text-[12px] leading-[16px] font-semibold text-[#64748B]">
                   <div>Amenity</div>
                   <div className="text-right">Revenue</div>
-                </div>git add .
+                </div>
 
                 <div className="divide-y divide-[#F1F5F9]">
                   {chartData?.map?.((item, index) => (
