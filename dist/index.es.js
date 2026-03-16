@@ -50920,7 +50920,7 @@ const Lue = [
 ];
 function Lfe({ data: e }) {
   const t = Array.isArray(e) && e.length > 0 ? e : Lue;
-  return /* @__PURE__ */ v.jsx("div", { className: "px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]", children: t.map((n, r) => /* @__PURE__ */ v.jsx(Iue, { ...n }, r)) });
+  return console.log(t, "carrrr"), /* @__PURE__ */ v.jsx("div", { className: "px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]", children: t.map((n, r) => /* @__PURE__ */ v.jsx(Iue, { ...n }, r)) });
 }
 /**
  * @license lucide-react v0.564.0 - ISC
