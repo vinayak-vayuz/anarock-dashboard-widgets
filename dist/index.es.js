@@ -50948,7 +50948,7 @@ const Vue = [
 ];
 function Hfe({ data: e }) {
   const t = Array.isArray(e) && e.length > 0 ? e : Vue;
-  return console.log(t, "carrrr"), /* @__PURE__ */ v.jsx("div", { className: "px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]", children: t.map((n, r) => /* @__PURE__ */ v.jsx(zue, { ...n }, r)) });
+  return console.log(e, "carrrr"), /* @__PURE__ */ v.jsx("div", { className: "px-[20px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px]", children: t.map((n, r) => /* @__PURE__ */ v.jsx(zue, { ...n }, r)) });
 }
 /**
  * @license lucide-react v0.564.0 - ISC
@@ -52513,29 +52513,36 @@ function ape({ data: e, title: t, period: n, icon: r }) {
             )
           ] })
         ] }),
-        /* @__PURE__ */ v.jsx("div", { className: "mt-[16px]", children: i.outlets.map((f, p) => /* @__PURE__ */ v.jsxs("div", { className: "mb-[16px]", children: [
-          /* @__PURE__ */ v.jsxs("div", { className: "flex justify-between text-sm mb-[8px]", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: f.name }),
-            /* @__PURE__ */ v.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
-              /* @__PURE__ */ v.jsxs("div", { className: "text-[#64748B] inline-block", children: [
-                f.orders,
-                " orders"
+        /* @__PURE__ */ v.jsx("div", { className: "mt-[16px]", children: i.outlets.map((f, p) => /* @__PURE__ */ v.jsxs(
+          "div",
+          {
+            className: p === i.outlets.length - 1 ? "" : "mb-[16px]",
+            children: [
+              /* @__PURE__ */ v.jsxs("div", { className: "flex justify-between text-sm mb-[8px]", children: [
+                /* @__PURE__ */ v.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: f.name }),
+                /* @__PURE__ */ v.jsxs("div", { className: "font-medium text-[12px] leading-[16px] flex items-center", children: [
+                  /* @__PURE__ */ v.jsxs("div", { className: "text-[#64748B] inline-block", children: [
+                    f.orders,
+                    " orders"
+                  ] }),
+                  /* @__PURE__ */ v.jsxs("div", { className: "mx-2 text-[#121212] inline-block", children: [
+                    i.summary.currencyType,
+                    " ",
+                    Tk(f.revenue)
+                  ] })
+                ] })
               ] }),
-              /* @__PURE__ */ v.jsxs("div", { className: "mx-2 text-[#121212] inline-block", children: [
-                i.summary.currencyType,
-                " ",
-                Tk(f.revenue)
-              ] })
-            ] })
-          ] }),
-          /* @__PURE__ */ v.jsx("div", { className: "h-[11px] bg-gray-100 rounded-full", children: /* @__PURE__ */ v.jsx(
-            "div",
-            {
-              className: `h-[11px] rounded-full ${f.color}`,
-              style: { width: `${f.percentage}%` }
-            }
-          ) })
-        ] }, `${f.name}-${p}`)) })
+              /* @__PURE__ */ v.jsx("div", { className: "h-[11px] bg-gray-100 rounded-full", children: /* @__PURE__ */ v.jsx(
+                "div",
+                {
+                  className: `h-[11px] rounded-full ${f.color}`,
+                  style: { width: `${f.percentage}%` }
+                }
+              ) })
+            ]
+          },
+          `${f.name}-${p}`
+        )) })
       ] })
     }
   );
@@ -52635,26 +52642,33 @@ function spe({ data: e }) {
             )
           ] })
         ] }),
-        /* @__PURE__ */ v.jsx("div", { className: "mt-[16px]", children: u.length > 0 ? u.map((h, m) => /* @__PURE__ */ v.jsxs("div", { className: "mb-[16px]", children: [
-          /* @__PURE__ */ v.jsxs("div", { className: "flex justify-between text-sm mb-[8px]", children: [
-            /* @__PURE__ */ v.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: h?.name }),
-            /* @__PURE__ */ v.jsxs("div", { className: "font-medium text-[12px] leading-[16px]", children: [
-              /* @__PURE__ */ v.jsxs("div", { className: "text-[#64748B] inline", children: [
-                h?.bookings,
-                " ",
-                h?.bookings <= 1 ? "booking" : "bookings"
+        /* @__PURE__ */ v.jsx("div", { className: "mt-[16px]", children: u.length > 0 ? u.map((h, m) => /* @__PURE__ */ v.jsxs(
+          "div",
+          {
+            className: m === u.length - 1 ? "" : "mb-[16px]",
+            children: [
+              /* @__PURE__ */ v.jsxs("div", { className: "flex justify-between text-sm mb-[8px]", children: [
+                /* @__PURE__ */ v.jsx("div", { className: "text-[#64748B] text-[12px] leading-[16px]", children: h?.name }),
+                /* @__PURE__ */ v.jsxs("div", { className: "font-medium text-[12px] leading-[16px]", children: [
+                  /* @__PURE__ */ v.jsxs("div", { className: "text-[#64748B] inline", children: [
+                    h?.bookings,
+                    " ",
+                    h?.bookings <= 1 ? "booking" : "bookings"
+                  ] }),
+                  h?.isPaid && /* @__PURE__ */ v.jsx("div", { className: "mx-2 text-[#121212] inline", children: h?.revenue })
+                ] })
               ] }),
-              h?.isPaid && /* @__PURE__ */ v.jsx("div", { className: "mx-2 text-[#121212] inline", children: h?.revenue })
-            ] })
-          ] }),
-          /* @__PURE__ */ v.jsx("div", { className: "h-[11px] bg-gray-100 rounded-full", children: /* @__PURE__ */ v.jsx(
-            "div",
-            {
-              className: `h-[11px] rounded-full ${h?.color}`,
-              style: { width: `${h?.percentage}%` }
-            }
-          ) })
-        ] }, m)) : /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
+              /* @__PURE__ */ v.jsx("div", { className: "h-[11px] bg-gray-100 rounded-full", children: /* @__PURE__ */ v.jsx(
+                "div",
+                {
+                  className: `h-[11px] rounded-full ${h?.color}`,
+                  style: { width: `${h?.percentage}%` }
+                }
+              ) })
+            ]
+          },
+          m
+        )) : /* @__PURE__ */ v.jsx("div", { className: "flex items-center justify-center h-[120px]", children: /* @__PURE__ */ v.jsx("div", { className: "text-[12px] text-[#94A3B8]", children: "No amenity usage data available" }) }) })
       ] })
     }
   );
@@ -52993,7 +53007,6 @@ function Nk({ title: e, color: t, rows: n = [], children: r }) {
       delay: [100, 0],
       offset: [6, 0],
       appendTo: () => document.body,
-      theme: "light-border",
       maxWidth: "none",
       children: r
     }
@@ -53129,7 +53142,7 @@ function upe({ data: e }) {
           Lx,
           {
             data: i ?? [],
-            margin: { top: 5, right: 0, left: -18, bottom: 0 },
+            margin: { top: 5, right: 0, left: -18, bottom: -10 },
             children: [
               /* @__PURE__ */ v.jsx(
                 Jr,
@@ -53410,7 +53423,7 @@ function hpe({ data: e = [] }) {
         {
           data: n,
           layout: "vertical",
-          margin: { top: 0, right: 0, left: -10, bottom: -10 },
+          margin: { top: 0, right: 0, left: -20, bottom: 0 },
           children: [
             /* @__PURE__ */ v.jsx(Jr, { strokeDasharray: "3 3", horizontal: !1 }),
             /* @__PURE__ */ v.jsx(
@@ -53669,7 +53682,7 @@ const gpe = ({ data: e = [], onDateChange: t }) => {
         ga,
         {
           data: n || [],
-          margin: { top: 10, right: 10, left: -10, bottom: -10 },
+          margin: { top: 10, right: 10, left: -20, bottom: -20 },
           barCategoryGap: 35,
           children: [
             /* @__PURE__ */ v.jsx(
