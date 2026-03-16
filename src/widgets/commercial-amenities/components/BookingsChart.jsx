@@ -66,7 +66,7 @@ function BookingsChart({ data }) {
             <BarChart
               data={chartData || []}
               layout="vertical"
-              margin={{ top: 0, right: 10, left: 10, bottom: 0 }}
+              margin={{ top: 0, right: 10, left: -20, bottom: -10 }}
             >
 
               <XAxis
