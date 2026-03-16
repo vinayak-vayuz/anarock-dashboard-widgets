@@ -54353,7 +54353,20 @@ function Ope({ data: e }) {
                 children: t.map((i, o) => /* @__PURE__ */ v.jsx(Rn, { fill: i.color }, `cell-${o}`))
               }
             ),
-            /* @__PURE__ */ v.jsx(qt, { formatter: (i) => i.toLocaleString() })
+            /* @__PURE__ */ v.jsx(
+              qt,
+              {
+                formatter: (i) => i.toLocaleString(),
+                contentStyle: {
+                  backgroundColor: "#000",
+                  border: "none",
+                  borderRadius: "8px",
+                  color: "#fff"
+                },
+                labelStyle: { color: "#fff" },
+                itemStyle: { color: "#fff" }
+              }
+            )
           ] }) }),
           /* @__PURE__ */ v.jsxs("div", { className: "absolute inset-0 flex flex-col items-center justify-center pointer-events-none", children: [
             /* @__PURE__ */ v.jsxs("div", { className: "font-medium text-[19.35px] leading-[23.65px]", children: [
