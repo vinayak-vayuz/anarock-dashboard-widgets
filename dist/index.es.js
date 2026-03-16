@@ -52437,7 +52437,7 @@ const spe = () => {
     }
   );
 }, Vde = "₹", Tk = ["bg-blue-500", "bg-red-500", "bg-purple-700"], Is = {
-  title: "Food & Beverages",
+  title: "Food & Beverages (Static Data)",
   period: "Today",
   summary: {
     totalOrders: 247,
@@ -53748,7 +53748,7 @@ const ype = ({ data: e = [], onDateChange: t }) => {
         ga,
         {
           data: n || [],
-          margin: { top: 10, right: 10, left: -20, bottom: -20 },
+          margin: { top: 10, right: 10, left: 10, bottom: -10 },
           barCategoryGap: 35,
           children: [
             /* @__PURE__ */ v.jsx(
