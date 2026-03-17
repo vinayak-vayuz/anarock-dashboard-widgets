@@ -52117,7 +52117,7 @@ function Xfe({ data: e }) {
     {
       title: "Events Utilisation",
       className: "w-full h-[360px] overflow-auto",
-      children: /* @__PURE__ */ v.jsx("div", { children: t?.length > 0 ? t.map((n, r) => /* @__PURE__ */ v.jsx(Ade, { ...n }, `${n.title}-${r}`)) : /* @__PURE__ */ v.jsx(Yi, {}) })
+      children: /* @__PURE__ */ v.jsx("div", { className: "m-auto", children: t?.length > 0 ? t.map((n, r) => /* @__PURE__ */ v.jsx(Ade, { ...n }, `${n.title}-${r}`)) : /* @__PURE__ */ v.jsx(Yi, {}) })
     }
   );
 }

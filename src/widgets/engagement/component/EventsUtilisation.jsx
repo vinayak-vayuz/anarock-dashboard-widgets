@@ -71,7 +71,7 @@ export default function EventsUtilisation({ data }) {
       // }
       className="w-full h-[360px] overflow-auto"
     >
-      <div>
+      <div className="m-auto">
         {events?.length > 0 ? (
           events.map((event, index) => (
             <EventItem key={`${event.title}-${index}`} {...event} />
