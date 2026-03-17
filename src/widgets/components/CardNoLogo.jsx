@@ -23,7 +23,7 @@ const Card = ({
 
   return (
     <div
-      className={`relative bg-white rounded-[12px] p-[24px] shadow-[0_0_12px_0_#EAF2FF] ${className}`}
+      className={`relative bg-white p-[24px] !border-[0.5px] !border-[#EBEBEB] !rounded-[12px] !shadow-[0_0_12px_0_#EAF2FF] ${className}`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[8px]">

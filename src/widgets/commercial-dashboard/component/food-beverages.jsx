@@ -14,6 +14,7 @@ const defaultData = {
     totalOrders: 247,
     revenueGenerated: "82K",
     growthPercentage: 8,
+    growthTotalPercentage: 0,
     currencyType: DEFAULT_CURRENCY,
   },
   outlets: [
@@ -78,6 +79,8 @@ function normalizeFoodBeveragesData(data) {
           growthPercentage:
             data?.food_beverage_summary?.growth_percentage ??
             data?.food_beverage_summary?.revenue_growth,
+          growthTotalPercentage:
+            data?.food_beverage_summary?.order_growth, 
           currencyType: data?.food_beverage_summary?.currency_type,
         },
         outlets: data?.chart_data,
@@ -113,6 +116,12 @@ function normalizeFoodBeveragesData(data) {
     summary?.growthPercentage ?? summary?.revenueGrowth,
     defaultData.summary.growthPercentage,
   );
+
+  const growthTotalPercentage = parseGrowthValue(
+    summary?.growthTotalPercentage ?? summary?.orderGrowth,
+    defaultData.summary.growthTotalPercentage,
+  );
+
   const currencyType =
     summary?.currencyType || summary?.currency || DEFAULT_CURRENCY;
 
@@ -140,6 +149,7 @@ function normalizeFoodBeveragesData(data) {
       totalOrders,
       revenueGenerated: totalRevenue,
       growthPercentage,
+      growthTotalPercentage,
       currencyType,
     },
     outlets:
@@ -163,7 +173,12 @@ function FoodBeverages({ data, title, period, icon }) {
     normalizedData.summary.growthPercentage,
     0,
   );
+  const growthTotalPercentage = parseGrowthValue(
+    normalizedData.summary.growthTotalPercentage,
+    0,
+  );
   const isGrowthPositive = growthPercentage >= 0;
+  const isTotalGrowthPositive = growthTotalPercentage >= 0;
 
   return (
     <Card
@@ -180,6 +195,16 @@ function FoodBeverages({ data, title, period, icon }) {
             </div>
             <div className="text-[28px] leading-[32px] font-medium text-[#8B5CF6]">
               {totalOrders}
+            </div>
+            <div
+              className={`w-fit inline-flex items-center gap-[4px] text-[10px] leading-[14px] p-[4px] rounded-[4px] ${
+                isTotalGrowthPositive
+                  ? "text-[#1FA05B] bg-green-50"
+                  : "text-red-600 bg-red-50"
+              }`}
+            >
+              {isTotalGrowthPositive ? <FaCaretUp /> : <FaCaretDown />}
+              {growthTotalPercentage}%<span>from last month</span>
             </div>
           </div>
 
