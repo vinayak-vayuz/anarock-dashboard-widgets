@@ -77,7 +77,9 @@ export default function EventsUtilisation({ data }) {
             <EventItem key={`${event.title}-${index}`} {...event} />
           ))
         ) : (
-          <EmptyState />
+          <div className="h-full flex items-center justify-center">
+            <EmptyState />
+          </div>
         )}
       </div>
     </Card>

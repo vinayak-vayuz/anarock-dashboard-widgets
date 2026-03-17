@@ -49951,7 +49951,7 @@ const bue = {
                 Z && /* @__PURE__ */ v.jsx(as, {}),
                 ee && /* @__PURE__ */ v.jsx(os, {}),
                 /* @__PURE__ */ v.jsx("div", { children: P.replace("+", "").replace("-", "") }),
-                /* @__PURE__ */ v.jsx("div", { className: "text-[#64748B] text-[10px] ml-[4px] whitespace-nowrap", children: M })
+                /* @__PURE__ */ v.jsx("div", { className: "text-[#64748B] text-[12px] leading-[14px] ml-[4px] whitespace-nowrap", children: M })
               ]
             }
           )
@@ -52118,7 +52118,7 @@ function Xfe({ data: e }) {
     {
       title: "Events Utilisation",
       className: "w-full h-[360px] overflow-auto",
-      children: /* @__PURE__ */ v.jsx("div", { className: "m-auto", children: t?.length > 0 ? t.map((n, r) => /* @__PURE__ */ v.jsx(Ade, { ...n }, `${n.title}-${r}`)) : /* @__PURE__ */ v.jsx(Yi, {}) })
+      children: /* @__PURE__ */ v.jsx("div", { className: "m-auto", children: t?.length > 0 ? t.map((n, r) => /* @__PURE__ */ v.jsx(Ade, { ...n }, `${n.title}-${r}`)) : /* @__PURE__ */ v.jsx("div", { className: "h-full flex items-center justify-center", children: /* @__PURE__ */ v.jsx(Yi, {}) }) })
     }
   );
 }
@@ -53488,7 +53488,6 @@ function upe({ data: e = [] }) {
         {
           data: n,
           layout: "vertical",
-          margin: { top: 0, right: 8, left: -20, bottom: -10 },
           children: [
             /* @__PURE__ */ v.jsx(
               Zr,
