@@ -56,7 +56,7 @@ function TicketsPerCategory({ data = [] }) {
             <BarChart
               data={chartData}
               layout="vertical"
-              margin={{ top: 0, right: 8, left: -20, bottom: -10 }}
+              // margin={{ top: 0, right: 8, left: -20, bottom: -10 }}
             >
               <CartesianGrid
                 strokeDasharray="3 3"
