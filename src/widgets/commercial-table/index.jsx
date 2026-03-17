@@ -11,8 +11,8 @@ export default function CommercialTable({
   columns = [
     { key: "a", label: "Organisation" },
     { key: "b", label: "Item" },
-    { key: "c", label: "Orders" },
-    { key: "d", label: "Revenue" },
+    { key: "c", label: "Closed" },
+    { key: "d", label: "Open" },
     { key: "e", label: "AOV" },
     { key: "f", label: "% Revenue" },
   ],
@@ -45,7 +45,6 @@ export default function CommercialTable({
   const safeData = Array.isArray(data) ? data : [];
   const safeColumns = Array.isArray(columns) ? columns : [];
 
-  /* fallback total pages if API does not provide */
   const calculatedTotalPages =
     rowsPerPage > 0 ? Math.ceil(safeData.length / rowsPerPage) : 1;
 
@@ -56,11 +55,8 @@ export default function CommercialTable({
   const emptyRows =
     rowsPerPage - currentData.length > 0 ? rowsPerPage - currentData.length : 0;
 
-  /* Fix: show EmptyState only if there is truly no data */
   const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
-  console.log("safeData:", safeData);
-  console.log("currentData:", currentData);
   return (
     <div className="w-full bg-white rounded-[12px] h-[390px] shadow-md overflow-hidden flex flex-col">
       {/* Header */}
@@ -71,7 +67,7 @@ export default function CommercialTable({
         {safeColumns.map((col, index) => (
           <div
             key={index}
-            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-center"
+            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
           >
             {col.label}
           </div>
@@ -93,9 +89,10 @@ export default function CommercialTable({
                 {safeColumns.map((col, colIndex) => {
                   const value = row[col.key];
 
+                  const isClosedCol = col.label === "Closed";
+                  const isOpenCol = col.label === "Open";
                   const isPercent =
                     typeof value === "string" && value.includes("%");
-
                   const percentClass =
                     value === "100%"
                       ? "bg-[#F0FEF2] text-[#36AB6C]"
@@ -104,11 +101,25 @@ export default function CommercialTable({
                   return (
                     <div
                       key={colIndex}
-                      className={`px-[24px] py-[16px] flex items-center justify-center ${
+                      className={`px-[24px] py-[16px] flex items-center justify-start ${
                         colIndex === 0 ? "bg-white" : "bg-gray-50"
                       }`}
                     >
-                      {isPercent ? (
+                      {isClosedCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#36AB6C" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isOpenCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#AB0000" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isPercent ? (
                         <div
                           className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
                         >

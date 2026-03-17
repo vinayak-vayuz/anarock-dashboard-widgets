@@ -92,7 +92,7 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
       onCalendarClick={handleCalendarClick}
     >
       {showCalendar && (
-        <div className="anarock-datepicker absolute top-[70px] right-[24px] z-50 rounded-[8px] bg-white shadow-lg">
+        <div className="anarock-datepicker absolute top-[70px] right-[24px] z-50">
           <DatePicker
             selected={endDate}
             onChange={handleCalendarChange}

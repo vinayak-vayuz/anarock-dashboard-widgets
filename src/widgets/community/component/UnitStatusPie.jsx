@@ -100,6 +100,7 @@ const Tickets = ({
   showBottomGlow = false,
   bottomGlowColor = "rgba(186, 230, 253, 0.75)",
   widgetType = "",
+  resolvedWidgetType: legacyResolvedWidgetType = "",
   data,
 }) => {
   const resolvedTitle = data?.title ?? title;
@@ -114,10 +115,16 @@ const Tickets = ({
     data?.growthPercentage ?? growthPercentage ?? "+0%";
   const resolvedGrowthText = data?.growthText ?? growthText;
   const resolvedTotalLabel = data?.totalLabel ?? totalLabel;
-  const resolvedWidgetType = data?.widgetType ?? widgetType;
-  const resolvedCenterTopSize = data?.centerTopSize ?? centerTopSize ?? 20;
+  const resolvedWidgetType =
+    data?.widgetType ?? widgetType ?? legacyResolvedWidgetType;
+  const resolvedCenterTopSize =
+    data?.centerTopSize ??
+    centerTopSize ??
+    (resolvedWidgetType === "commercial" ? 34 : 20);
   const resolvedCenterBottomSize =
-    data?.centerBottomSize ?? centerBottomSize ?? 10;
+    data?.centerBottomSize ??
+    centerBottomSize ??
+    (resolvedWidgetType === "commercial" ? 14 : 10);
   const resolvedShowBottomGlow = data?.showBottomGlow ?? showBottomGlow;
   const resolvedBottomGlowColor = data?.bottomGlowColor ?? bottomGlowColor;
 

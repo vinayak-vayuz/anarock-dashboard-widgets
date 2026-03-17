@@ -26,8 +26,8 @@ function index() {
     <>
       <CommercialHeader text="Helpdesk" Icon={Headset} iconColor="#12B981" />
 
-      <div className="flex gap-[24px] mt-6 px-[16px]">
-        <div className="w-[380px] h-full space-y-4">
+      <div className="flex gap-[24px] mt-[24px] px-[16px]">
+        <div className="w-[380px] h-full space-y-[16px]">
           <Tickets
             title="Tickets"
             icon={<LuReceiptText className="h-6 w-6 text-[#EF4444]" />}
@@ -40,7 +40,7 @@ function index() {
             growthPercentage="+9.1%"
             growthColor="#1FA05B"
             growthText="Compared to last month"
-            resolvedWidgetType="commercial"
+            widgetType="commercial"
             totalLabel="Total"
             centerTopSize={34}
             centerBottomSize={14}
