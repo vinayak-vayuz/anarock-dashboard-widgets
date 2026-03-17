@@ -218,7 +218,7 @@ const Tickets = ({
               {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
             </div>
 
-            <div className="text-[#64748B] text-[10px] ml-[4px] whitespace-nowrap">
+            <div className="text-[#64748B] text-[12px] leading-[14px] ml-[4px] whitespace-nowrap">
               {resolvedGrowthText}
             </div>
           </div>
