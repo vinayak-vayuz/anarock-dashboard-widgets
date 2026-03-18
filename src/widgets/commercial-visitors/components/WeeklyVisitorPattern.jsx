@@ -156,10 +156,9 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
                 allowDecimals={false}
                 domain={[0, "dataMax + 2"]}
               />
-
 <Tooltip
   cursor={false}
-  content={({ active, payload, label }) => {
+  content={({ active, payload, label, coordinate }) => {
     if (!active || !payload?.length) return null;
 
     const formattedLabel = new Date(label).toLocaleDateString("en-GB", {
@@ -168,11 +167,20 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
     });
 
     return (
-      <CommercialCustomTooltip
-        active={active}
-        payload={payload}
-        label={formattedLabel}
-      />
+      <div
+        style={{
+          position: "absolute",
+          transform: `translate(${coordinate.x}px, ${coordinate.y - 40}px)`,
+          pointerEvents: "none",
+          zIndex: 99999,
+        }}
+      >
+        <CommercialCustomTooltip
+          active={active}
+          payload={payload}
+          label={formattedLabel}
+        />
+      </div>
     );
   }}
 />
@@ -188,7 +196,29 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
                   strokeWidth: 2,
                   fill: "#fff",
                 }}
-                activeDot={{ r: 6 }}
+                activeDot={(props) => {
+                const { cx, cy, stroke } = props;
+              
+                return (
+                  <g>
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={6}
+                      fill="#fff"
+                      stroke={ "#6466F1"}
+                      strokeWidth={2}
+                    />
+              
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={2.5}
+                      fill={ "#6466F1"}
+                    />
+                  </g>
+                );
+              }}
               />
             </AreaChart>
           </ResponsiveContainer>
