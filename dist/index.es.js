@@ -49945,7 +49945,7 @@ const bue = {
           /* @__PURE__ */ v.jsxs(
             "div",
             {
-              className: `text-[10px] flex gap-[4px] ${j === "commercial" ? "mt-[20px]" : ""}  items-center`,
+              className: `text-[12px] flex gap-[4px] ${j === "commercial" ? "mt-[20px]" : ""}  items-center`,
               style: { color: ie },
               children: [
                 Z && /* @__PURE__ */ v.jsx(as, {}),
@@ -53488,6 +53488,7 @@ function upe({ data: e = [] }) {
         {
           data: n,
           layout: "vertical",
+          margin: { top: 0, right: 8, left: -20, bottom: 0 },
           children: [
             /* @__PURE__ */ v.jsx(
               Zr,
