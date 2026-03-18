@@ -52117,7 +52117,7 @@ function Xfe({ data: e }) {
     Ke,
     {
       title: "Events Utilisation",
-      className: "w-full h-[360px] overflow-hidden",
+      className: "w-full h-[360px] overflow-y-auto  hide-scrollbar",
       children: /* @__PURE__ */ v.jsx("div", { className: "m-auto", children: t?.length > 0 ? t.map((n, r) => /* @__PURE__ */ v.jsx(Ade, { ...n }, `${n.title}-${r}`)) : /* @__PURE__ */ v.jsx("div", { className: "h-full flex items-center justify-center", children: /* @__PURE__ */ v.jsx(Yi, {}) }) })
     }
   );
