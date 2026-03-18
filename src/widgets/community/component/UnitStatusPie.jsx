@@ -73,10 +73,10 @@ const centerTextPlugin = {
     ctx.textBaseline = "middle";
     ctx.fillStyle = topColor;
     ctx.font = `600 ${topSize}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-    ctx.fillText(top, x, y - 5);
+    ctx.fillText(top, x, y - 6);
     ctx.fillStyle = bottomColor;
     ctx.font = `500 ${bottomSize}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-    ctx.fillText(bottom, x, y + 12);
+    ctx.fillText(bottom, x, y + 22);
     ctx.restore();
   },
 };
@@ -208,7 +208,7 @@ const Tickets = ({
           ))}
 
           <div
-            className={`text-[10px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
+            className={`text-[12px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
             style={{ color: dynamicGrowthColor }}
           >
             {isPositive && <FaCaretUp />}
@@ -218,7 +218,7 @@ const Tickets = ({
               {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
             </div>
 
-            <div className="text-[#64748B] text-[10px] ml-[4px] whitespace-nowrap">
+            <div className="text-[#64748B] text-[12px] leading-[14px] ml-[4px] whitespace-nowrap">
               {resolvedGrowthText}
             </div>
           </div>

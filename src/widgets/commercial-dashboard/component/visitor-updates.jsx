@@ -308,7 +308,7 @@ function VisitorUpdates({ data }) {
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={chart_data ?? []}
-              margin={{ top: 5, right: 0, left: -18, bottom: -10 }}
+              margin={{ top: 5, right: 0, left: 0, bottom: -10 }}
             >
               <CartesianGrid
                 stroke="#E5E7EB"
