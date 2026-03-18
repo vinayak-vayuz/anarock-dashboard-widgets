@@ -208,7 +208,7 @@ const Tickets = ({
           ))}
 
           <div
-            className={`text-[10px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
+            className={`text-[12px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
             style={{ color: dynamicGrowthColor }}
           >
             {isPositive && <FaCaretUp />}
