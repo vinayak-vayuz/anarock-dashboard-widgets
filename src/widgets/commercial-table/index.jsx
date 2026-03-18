@@ -4,256 +4,228 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronsRight,
-  ChevronDown,
 } from "lucide-react";
 import EmptyState from "../utils/EmptyState";
 
-const DEFAULT_COLUMNS = [
-  { key: "item", label: "Most Popular Item", align: "left" },
-  { key: "orders", label: "Orders", align: "left" },
-  { key: "revenue", label: "Revenue", align: "left" },
-  { key: "aov", label: "AOV", align: "left" },
-  { key: "revenueShare", label: "% Revenue", align: "center" },
-];
-
-const DEFAULT_DATA = [
-  {
-    item: "Coffee",
-    orders: "34,908",
-    revenue: "₹ 57,21,288",
-    aov: "₹ 450",
-    revenueShare: "43.6%",
-  },
-  {
-    item: "Indian Paneer Combo",
-    orders: "34,908",
-    revenue: "₹57,21,288",
-    aov: "₹ 750",
-    revenueShare: "25%",
-  },
-  {
-    item: "Filter Coffee",
-    orders: "34,908",
-    revenue: "₹3,94,805",
-    aov: "₹ 450",
-    revenueShare: "17.6%",
-  },
-  {
-    item: "Special Thali",
-    orders: "34,908",
-    revenue: "₹3,94,805",
-    aov: "₹ 350",
-    revenueShare: "13.6%",
-  },
-  {
-    item: "Veg Combo",
-    orders: "34,908",
-    revenue: "₹57,21,288",
-    aov: "₹ 450",
-    revenueShare: "0.6%",
-  },
-];
-
-const DEFAULT_SUMMARY_ROW = {
-  item: "-",
-  orders: "1,64,905",
-  revenue: "₹ 1,31,17,029",
-  aov: "₹ 795",
-  revenueShare: "100%",
-};
-
-const PAGE_OPTIONS = [10, 20, 30, 40, 50];
-
-function getCellAlignment(align) {
-  if (align === "center") return "text-center";
-  if (align === "right") return "text-right";
-  return "text-left";
-}
-
-function getPillStyles(value) {
-  const numericValue = Number.parseFloat(String(value).replace("%", ""));
-
-  if (!Number.isFinite(numericValue)) {
-    return "bg-[#EDF4FB] text-[#2F80ED]";
-  }
-
-  if (numericValue >= 20) {
-    return "bg-[#EEF9F1] text-[#36AB6C]";
-  }
-
-  return "bg-[#EDF4FB] text-[#3190FF]";
-}
-
 export default function CommercialTable({
-  columns = DEFAULT_COLUMNS,
-  data = DEFAULT_DATA,
-  summaryRow = DEFAULT_SUMMARY_ROW,
+  columns = [
+    { key: "a", label: "Organisation" },
+    { key: "b", label: "Item" },
+    { key: "c", label: "Closed" },
+    { key: "d", label: "Open" },
+    { key: "e", label: "AOV" },
+    { key: "f", label: "% Revenue" },
+  ],
+  data = [
+    {
+      a: "Google",
+      b: "Coffee",
+      c: "34,908",
+      d: "₹ 57,21,288",
+      e: "₹ 450",
+      f: "43.6%",
+    },
+    {
+      a: "Uber",
+      b: "Paneer Combo",
+      c: "12,000",
+      d: "₹ 12,00,000",
+      e: "₹ 500",
+      f: "100%",
+    },
+  ],
   rowsPerPage = 10,
   setRowsPerPage = () => {},
   currentPage = 1,
   setCurrentPage = () => {},
   totalRows = 0,
   totalPages = 1,
-  pageOptions = PAGE_OPTIONS,
+  pageOptions = [10, 20, 30, 40, 50],
 }) {
-  const safeColumns = Array.isArray(columns) && columns.length
-    ? columns
-    : DEFAULT_COLUMNS;
   const safeData = Array.isArray(data) ? data : [];
-  const resolvedTotalRows = totalRows || safeData.length;
-  const resolvedTotalPages =
-    totalPages || Math.max(1, Math.ceil(resolvedTotalRows / rowsPerPage));
-  const rangeStart = safeData.length ? (currentPage - 1) * rowsPerPage + 1 : 0;
-  const rangeEnd = safeData.length ? rangeStart + safeData.length - 1 : 0;
-  const shouldShowEmptyState = resolvedTotalRows === 0 && safeData.length === 0;
+  const safeColumns = Array.isArray(columns) ? columns : [];
+
+  const calculatedTotalPages =
+    rowsPerPage > 0 ? Math.ceil(safeData.length / rowsPerPage) : 1;
+
+  const finalTotalPages = totalPages || calculatedTotalPages;
+
+  const currentData = safeData;
+
+  const emptyRows =
+    rowsPerPage - currentData.length > 0 ? rowsPerPage - currentData.length : 0;
+
+  const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
   return (
-    <div className="flex h-[640px] w-full flex-col overflow-hidden rounded-[20px] border border-[#E7ECF3] bg-white shadow-[0_10px_30px_rgba(15,23,42,0.06)]">
-      {shouldShowEmptyState ? (
-        <div className="flex flex-1 items-center justify-center">
+    <div className="w-full bg-white rounded-[12px] h-[390px] shadow-md overflow-hidden flex flex-col">
+      {/* Header */}
+      <div
+        className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium"
+        style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
+      >
+        {safeColumns.map((col, index) => (
+          <div
+            key={index}
+            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
+          >
+            {col.label}
+          </div>
+        ))}
+      </div>
+
+      {/* Rows */}
+      <div className="flex-1 overflow-y-auto">
+        {!shouldShowEmptyState ? (
+          <>
+            {currentData.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="grid"
+                style={{
+                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+                }}
+              >
+                {safeColumns.map((col, colIndex) => {
+                  const value = row[col.key];
+
+                  const isClosedCol = col.label === "Closed";
+                  const isOpenCol = col.label === "Open";
+                  const isPercent =
+                    typeof value === "string" && value.includes("%");
+                  const percentClass =
+                    value === "100%"
+                      ? "bg-[#F0FEF2] text-[#36AB6C]"
+                      : "bg-[#FFF0F0] text-[#AB0000]";
+
+                  return (
+                    <div
+                      key={colIndex}
+                      className={`px-[24px] py-[16px] flex items-center justify-start ${
+                        colIndex === 0 ? "bg-white" : "bg-gray-50"
+                      }`}
+                    >
+                      {isClosedCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#36AB6C" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isOpenCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#AB0000" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isPercent ? (
+                        <div
+                          className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
+                        >
+                          {value}
+                        </div>
+                      ) : (
+                        <div>
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+
+            {/* Empty Rows */}
+            {Array.from({ length: emptyRows }).map((_, rowIndex) => (
+              <div
+                key={`empty-${rowIndex}`}
+                className="grid"
+                style={{
+                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
+                }}
+              >
+                {safeColumns.map((col, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`px-[24px] py-[16px] ${
+                      colIndex === 0 ? "bg-white" : "bg-gray-50"
+                    }`}
+                  >
+                    &nbsp;
+                  </div>
+                ))}
+              </div>
+            ))}
+          </>
+        ) : (
           <EmptyState
             title="No Data Found"
             description="Catch up all the data. Change the date range to see the data."
           />
+        )}
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-end items-center px-[24px] py-[16px] text-sm bg-white border-t border-[#F0F0F0] gap-[32px]">
+        <div className="flex items-center gap-[8px] text-gray-600 text-[14px]">
+          <div>Rows per page:</div>
+
+          <select
+            value={rowsPerPage}
+            onChange={(e) => {
+              setRowsPerPage(Number(e.target.value));
+              setCurrentPage(1);
+            }}
+            className="border rounded px-[8px] py-[4px]"
+          >
+            {pageOptions.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+
+          <div className="ml-4 text-[14px]">
+            {safeData?.length === 0 ? "0–0" : `1–${safeData?.length}`} of{" "}
+            {totalRows || safeData?.length}
+          </div>
         </div>
-      ) : (
-        <>
-          <div className="overflow-x-auto">
-            <table className="w-full border-separate border-spacing-0">
-              <thead>
-                <tr className="bg-[#384E63] text-white">
-                  {safeColumns.map((column, index) => (
-                    <th
-                      key={column.key || index}
-                      className={`px-12 py-7 text-[16px] font-medium leading-[24px] ${getCellAlignment(column.align)} ${
-                        index === 0 ? "rounded-tl-[20px]" : ""
-                      } ${
-                        index === safeColumns.length - 1 ? "rounded-tr-[20px]" : ""
-                      }`}
-                    >
-                      {column.label}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
 
-              <tbody>
-                {safeData.map((row, rowIndex) => (
-                  <tr
-                    key={row.id || rowIndex}
-                    className="border-b border-[#F1F4F8] last:border-b-0"
-                  >
-                    {safeColumns.map((column, columnIndex) => {
-                      const value = row?.[column.key];
-                      const isPill = String(column.label).includes("%");
+        <div className="flex items-center space-x-2 text-gray-600 text-[14px]">
+          <button
+            onClick={() => setCurrentPage(1)}
+            disabled={currentPage === 1}
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
+          >
+            <ChevronsLeft size={18} />
+          </button>
 
-                      return (
-                        <td
-                          key={`${rowIndex}-${column.key || columnIndex}`}
-                          className={`px-12 py-7 text-[17px] font-normal leading-[28px] text-[#202938] ${getCellAlignment(column.align)}`}
-                        >
-                          {isPill ? (
-                            <span
-                              className={`inline-flex min-w-[128px] items-center justify-center rounded-full px-6 py-3 text-[17px] font-medium leading-[26px] ${getPillStyles(value)}`}
-                            >
-                              {value ?? "-"}
-                            </span>
-                          ) : (
-                            value ?? "-"
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
+          <button
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+            disabled={currentPage === 1}
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
+          >
+            <ChevronLeft size={18} />
+          </button>
 
-              {summaryRow ? (
-                <tfoot>
-                  <tr className="border-t border-[#E9EEF4] bg-[#F6F9FD]">
-                    {safeColumns.map((column, index) => (
-                      <td
-                        key={`summary-${column.key || index}`}
-                        className={`px-12 py-7 text-[17px] font-semibold leading-[28px] text-[#39526C] ${getCellAlignment(column.align)}`}
-                      >
-                        {summaryRow?.[column.key] ?? "-"}
-                      </td>
-                    ))}
-                  </tr>
-                </tfoot>
-              ) : null}
-            </table>
-          </div>
+          <button
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+            disabled={currentPage === finalTotalPages}
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
+          >
+            <ChevronRight size={18} />
+          </button>
 
-          <div className="mt-auto flex items-center justify-end gap-8 border-t border-[#EDF1F5] px-10 py-6 text-[#4E5662]">
-            <div className="flex items-center gap-3 text-[17px] leading-[24px]">
-              <span>Rows per page:</span>
-
-              <div className="relative">
-                <select
-                  value={rowsPerPage}
-                  onChange={(event) => {
-                    setRowsPerPage(Number(event.target.value));
-                    setCurrentPage(1);
-                  }}
-                  className="appearance-none bg-transparent pr-6 text-[17px] leading-[24px] outline-none"
-                >
-                  {pageOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2" />
-              </div>
-
-              <span>
-                {rangeStart}-{rangeEnd} of {resolvedTotalRows}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-4 text-[#202938]">
-              <button
-                type="button"
-                onClick={() => setCurrentPage(1)}
-                disabled={currentPage === 1}
-                className="rounded-md p-1 disabled:opacity-30"
-              >
-                <ChevronsLeft className="h-7 w-7" strokeWidth={2.2} />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-                disabled={currentPage === 1}
-                className="rounded-md p-1 disabled:opacity-30"
-              >
-                <ChevronLeft className="h-7 w-7" strokeWidth={2.2} />
-              </button>
-
-              <button
-                type="button"
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(resolvedTotalPages, prev + 1))
-                }
-                disabled={currentPage === resolvedTotalPages}
-                className="rounded-md p-1 disabled:opacity-30"
-              >
-                <ChevronRight className="h-7 w-7" strokeWidth={2.2} />
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setCurrentPage(resolvedTotalPages)}
-                disabled={currentPage === resolvedTotalPages}
-                className="rounded-md p-1 disabled:opacity-30"
-              >
-                <ChevronsRight className="h-7 w-7" strokeWidth={2.2} />
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+          <button
+            onClick={() => setCurrentPage(finalTotalPages)}
+            disabled={currentPage === finalTotalPages}
+            className="p-[8px] rounded hover:bg-gray-100 disabled:opacity-40"
+          >
+            <ChevronsRight size={18} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
