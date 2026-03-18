@@ -51480,7 +51480,7 @@ function Vfe({
   incidentReports: e = {},
   incidentReportsDetails: t = []
 }) {
-  const n = e && Object.keys(e).length > 0 ? e : cde, r = Array.isArray(t) && t.length > 0 ? t : ude, i = Number(n?.open ?? 0), o = Number(n?.in_progress ?? 0), a = Number(n?.closed ?? 0);
+  const n = e && Object.keys(e).length > 0 ? e : cde, r = Array.isArray(t) ? t : ude, i = Number(n?.open ?? 0), o = Number(n?.in_progress ?? 0), a = Number(n?.closed ?? 0);
   return /* @__PURE__ */ v.jsx(
     yn,
     {
@@ -52117,7 +52117,7 @@ function Xfe({ data: e }) {
     Ke,
     {
       title: "Events Utilisation",
-      className: "w-full h-[360px] overflow-auto",
+      className: "w-full h-[360px] overflow-hidden",
       children: /* @__PURE__ */ v.jsx("div", { className: "m-auto", children: t?.length > 0 ? t.map((n, r) => /* @__PURE__ */ v.jsx(Ade, { ...n }, `${n.title}-${r}`)) : /* @__PURE__ */ v.jsx("div", { className: "h-full flex items-center justify-center", children: /* @__PURE__ */ v.jsx(Yi, {}) }) })
     }
   );

@@ -21,10 +21,9 @@ function IncidentReports({
     incidentReports && Object.keys(incidentReports).length > 0
       ? incidentReports
       : DUMMY_SUMMARY;
-  const resolvedDetails =
-    Array.isArray(incidentReportsDetails) && incidentReportsDetails.length > 0
-      ? incidentReportsDetails
-      : DUMMY_DETAILS;
+  const resolvedDetails = Array.isArray(incidentReportsDetails)
+    ? incidentReportsDetails
+    : DUMMY_DETAILS;
 
   const open = Number(resolvedIncidentReports?.open ?? 0);
   const inProgress = Number(resolvedIncidentReports?.in_progress ?? 0);

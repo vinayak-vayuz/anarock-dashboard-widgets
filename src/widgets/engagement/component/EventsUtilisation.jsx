@@ -69,7 +69,7 @@ export default function EventsUtilisation({ data }) {
       // period={
       //   <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
       // }
-      className="w-full h-[360px] overflow-auto"
+      className="w-full h-[360px] overflow-hidden"
     >
       <div className="m-auto">
         {events?.length > 0 ? (
