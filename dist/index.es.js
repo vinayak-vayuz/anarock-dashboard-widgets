@@ -49852,7 +49852,7 @@ const bue = {
       topColor: d = "#0F172A",
       bottomColor: f = "#64748B"
     } = n || {};
-    r.save(), r.textAlign = "center", r.textBaseline = "middle", r.fillStyle = d, r.font = `600 ${c}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(s, o, a - 5), r.fillStyle = f, r.font = `500 ${u}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(l, o, a + 12), r.restore();
+    r.save(), r.textAlign = "center", r.textBaseline = "middle", r.fillStyle = d, r.font = `600 ${c}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(s, o, a - 6), r.fillStyle = f, r.font = `500 ${u}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`, r.fillText(l, o, a + 22), r.restore();
   }
 }, Cfe = ({
   title: e = "Tickets",
@@ -53692,18 +53692,29 @@ const fpe = ({ data: e = [], onDateChange: t }) => {
                 qt,
                 {
                   cursor: !1,
-                  content: ({ active: g, payload: b, label: S }) => {
+                  content: ({ active: g, payload: b, label: S, coordinate: w }) => {
                     if (!g || !b?.length) return null;
-                    const w = new Date(S).toLocaleDateString("en-GB", {
+                    const x = new Date(S).toLocaleDateString("en-GB", {
                       day: "2-digit",
                       month: "short"
                     });
                     return /* @__PURE__ */ v.jsx(
-                      Pu,
+                      "div",
                       {
-                        active: g,
-                        payload: b,
-                        label: w
+                        style: {
+                          position: "absolute",
+                          transform: `translate(${w.x}px, ${w.y - 40}px)`,
+                          pointerEvents: "none",
+                          zIndex: 99999
+                        },
+                        children: /* @__PURE__ */ v.jsx(
+                          Pu,
+                          {
+                            active: g,
+                            payload: b,
+                            label: x
+                          }
+                        )
                       }
                     );
                   }
@@ -53723,7 +53734,31 @@ const fpe = ({ data: e = [], onDateChange: t }) => {
                     strokeWidth: 2,
                     fill: "#fff"
                   },
-                  activeDot: { r: 6 }
+                  activeDot: (g) => {
+                    const { cx: b, cy: S, stroke: w } = g;
+                    return /* @__PURE__ */ v.jsxs("g", { children: [
+                      /* @__PURE__ */ v.jsx(
+                        "circle",
+                        {
+                          cx: b,
+                          cy: S,
+                          r: 6,
+                          fill: "#fff",
+                          stroke: "#6466F1",
+                          strokeWidth: 2
+                        }
+                      ),
+                      /* @__PURE__ */ v.jsx(
+                        "circle",
+                        {
+                          cx: b,
+                          cy: S,
+                          r: 2.5,
+                          fill: "#6466F1"
+                        }
+                      )
+                    ] });
+                  }
                 }
               )
             ]
