@@ -73,10 +73,10 @@ const centerTextPlugin = {
     ctx.textBaseline = "middle";
     ctx.fillStyle = topColor;
     ctx.font = `600 ${topSize}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-    ctx.fillText(top, x, y - 5);
+    ctx.fillText(top, x, y - 6);
     ctx.fillStyle = bottomColor;
     ctx.font = `500 ${bottomSize}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-    ctx.fillText(bottom, x, y + 12);
+    ctx.fillText(bottom, x, y + 22);
     ctx.restore();
   },
 };
