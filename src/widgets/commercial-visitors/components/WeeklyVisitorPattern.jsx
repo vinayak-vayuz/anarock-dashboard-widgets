@@ -166,11 +166,19 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
       month: "short",
     });
 
+    // ✅ Check if current point is last
+    const isLastPoint =
+      payload[0]?.payload === chartData[chartData.length - 1];
+
+    const xPosition = isLastPoint
+      ? coordinate.x - 70
+      : coordinate.x;
+
     return (
       <div
         style={{
           position: "absolute",
-          transform: `translate(${coordinate.x}px, ${coordinate.y - 40}px)`,
+          transform: `translate(${xPosition}px, ${coordinate.y - 40}px)`,
           pointerEvents: "none",
           zIndex: 99999,
         }}
