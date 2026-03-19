@@ -69,11 +69,7 @@ export const CommercialCustomTooltip = ({ active, payload, label }) => {
 
   const value = item?.value ?? 0;
 
-  const color =
-    item?.color ||           
-    item?.fill ||            
-    item?.payload?.fill ||   
-    "#3B82F6";
+  const color = item?.color || item?.fill || item?.payload?.fill || "#3B82F6";
 
   return (
     <div
@@ -122,7 +118,8 @@ export const Chip = ({ value }) => {
           : "bg-[#FFF2F2] text-[#AB0000]"
       }`}
     >
-      {isPositive ? <FaCaretUp /> : <FaCaretDown />}
+      {isPositive ? "+" : "-"}
+      {/* {isPositive ? <FaCaretUp /> : <FaCaretDown />} */}
       {Math.abs(numericValue).toFixed(1)}%
     </div>
   );

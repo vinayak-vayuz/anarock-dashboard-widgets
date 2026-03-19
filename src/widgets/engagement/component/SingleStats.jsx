@@ -2,6 +2,7 @@ import React from "react";
 import { RiBillLine } from "react-icons/ri";
 import { DescriptionOutlined as DescriptionOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+import { Chip } from "../../utils";
 
 function StatCardGrid({
   title,
@@ -29,7 +30,7 @@ function StatCardGrid({
         </div>
 
         <div className="flex items-center gap-[8px] pt-[8px] !text-[12px] leading-[16px]">
-          <div
+          {/* <div
             className={`font-medium ${
               positive ? "text-[#1FA05B]" : "text-rose-600"
             } ${
@@ -39,7 +40,8 @@ function StatCardGrid({
             }`}
           >
             {delta}
-          </div>
+          </div> */}
+          <Chip value={delta} />
           <div className="text-[#64748B]">{deltaLabel}</div>
         </div>
       </div>
