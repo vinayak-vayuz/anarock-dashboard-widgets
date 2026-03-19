@@ -76,3 +76,7 @@ export { default as CommercialGuardPatrols } from "./widgets/commercial-guard-pe
 export { default as CommercialIncidentReports } from "./widgets/commercial-guard-petrol/components/IncidentReports";
 export { default as CommercialReportTable } from "./widgets/commercial-table/index";
 
+export { default as EscalationLevel } from "./widgets/commercial-portfolio/component/EscalationLevel";
+export { default as TenantsByVisitors } from "./widgets/commercial-portfolio/component/TenantsByVisitors";
+export { default as BuildingWiseApprovals } from "./widgets/commercial-portfolio/component/BuildingWiseApprovals";
+export { default as PortfolioAssetsByType } from "./widgets/commercial-portfolio/component/AssetsByType";

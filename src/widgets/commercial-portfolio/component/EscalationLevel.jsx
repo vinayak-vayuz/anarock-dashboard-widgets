@@ -12,50 +12,35 @@ import {
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
-const MaintenanceStatus = ({ data }) => {
-  const [hiddenBars, setHiddenBars] = useState({});
+import CustomDropdown from "../../components/CustomDropdown";
 
+const EscalationLevel = ({ data }) => {
+  const [hiddenBars, setHiddenBars] = useState({});
+  const [selectedBuilding, setSelectedBuilding] = useState("Kosmo One");
+
+    const buildingOptions = ["Kosmo One", "Kosmo Two", "Kosmo Three"];
   const dummyData = [
     {
-      name: "Lifts",
+      name: "L1",
       Cancelled: 55,
-      Closed: 45,
       Open: 50,
       OnHold: 20,
       InProgress: 10,
     },
     {
-      name: "Fire Systems",
+      name: "L2",
       Cancelled: 15,
-      Closed: 45,
       Open: 15,
       OnHold: 8,
       InProgress: 5,
     },
     {
-      name: "Generators",
+      name: "L3",
       Cancelled: 12,
-      Closed: 45,
       Open: 75,
       OnHold: 18,
       InProgress: 7,
-    },
-    {
-      name: "HVAC",
-      Cancelled: 45,
-      Closed: 80,
-      Open: 30,
-      OnHold: 22,
-      InProgress: 12,
-    },
-    {
-      name: "Others",
-      Cancelled: 18,
-      Closed: 18,
-      Open: 45,
-      OnHold: 9,
-      InProgress: 4,
-    },
+    }
   ];
 
   const chartData = React.useMemo(() => {
@@ -79,11 +64,11 @@ const MaintenanceStatus = ({ data }) => {
   if (Array.isArray(data) && data.length === 0) {
     return (
       <Card
-        title="Maintenance Status"
+        title="Escalation Level By Building"
         titleWeight="semi-bold"
         className="h-full"
       >
-        <div className="w-full h-[260px] flex items-center justify-center">
+        <div className="w-full h-[362px] flex items-center justify-center">
           <EmptyState
             title="No Maintenance Assets Status Found"
             description="Catch up all the data. Change the date range to see the data."
@@ -93,12 +78,24 @@ const MaintenanceStatus = ({ data }) => {
     );
   }
   return (
-    <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
-      <div className="w-full h-[260px] flex items-center justify-center">
+    <Card
+  title="Escalation Level By Building"
+  titleWeight="semi-bold"
+  className="h-[362px]"
+  childrenClassName="mt-[21px]"
+  rightContent={
+    <CustomDropdown
+      options={buildingOptions}
+      value={selectedBuilding}
+      onChange={(val) => setSelectedBuilding(val)}
+    />
+  }
+>
+      <div className="w-full  flex items-center justify-center">
         {Array.isArray(data) && data.length === 0 ? (
           <div className="text-[#94A3B8] text-sm">No Data Found</div>
         ) : (
-          <div className="relative w-full h-[297px] mt-[20px]">
+          <div className="relative w-full h-[261px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={chartData}
@@ -223,12 +220,6 @@ const MaintenanceStatus = ({ data }) => {
                   hide={hiddenBars["Open"]}
                 />
                 <Bar
-                  dataKey="Closed"
-                  stackId="a"
-                  fill="#10B981"
-                  hide={hiddenBars["Closed"]}
-                />
-                <Bar
                   dataKey="Cancelled"
                   stackId="a"
                   fill="#B91C1C"
@@ -257,4 +248,4 @@ const MaintenanceStatus = ({ data }) => {
   );
 };
 
-export default MaintenanceStatus;
+export default EscalationLevel;

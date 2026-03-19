@@ -10,6 +10,10 @@ import CommercialFoodAndOrder from "../widgets/commercial-food-and-order";
 import CommercialAssetManagement from "../widgets/commercial-asset-management";
 import CommercialTable from "../widgets/commercial-table";
 import { LuBuilding } from "react-icons/lu";
+import EscalationLevel from "../widgets/commercial-portfolio/component/EscalationLevel";
+import TenantsByVisitors from "../widgets/commercial-portfolio/component/TenantsByVisitors";
+import BuildingWiseApprovals from "../widgets/commercial-portfolio/component/BuildingWiseApprovals";
+import AssetsByType from "../widgets/commercial-portfolio/component/AssetsByType";
 export default function App() {
   return (
     <div className="p-[16px]">
@@ -196,6 +200,10 @@ export default function App() {
         <CommercialEngagement />
         {/* <CommercialFoodAndOrder/> */}
         <CommercialTable />
+        <EscalationLevel/>
+        <TenantsByVisitors/>
+        <BuildingWiseApprovals/>
+        <AssetsByType/>
       </div>
     </div>
   );

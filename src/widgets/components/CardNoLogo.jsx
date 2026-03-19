@@ -13,8 +13,8 @@ const Card = ({
   iconClassName,
   titleClassName,
   childrenClassName,
+  rightContent,
 
-  // added handlers
   onCalendarClick,
   onPrevClick,
   onNextClick,
@@ -41,6 +41,12 @@ const Card = ({
             {title}
           </div>
         </div>
+
+        {/* ✅ NEW WRAPPER (nothing removed, only wrapped) */}
+        <div className="flex items-center gap-[12px]">
+
+          {/* ✅ Dropdown or any custom right content */}
+          {rightContent && rightContent}
 
         {period && !isDateSelector && (
           <div className="text-[12px] leading-[16px] text-[#64748B]">
@@ -73,6 +79,7 @@ const Card = ({
             />
           </div>
         )}
+        </div>
       </div>
 
       <div className={`flex-1 min-h-0 mt-4 ${childrenClassName}`}>
