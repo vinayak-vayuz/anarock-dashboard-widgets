@@ -24,11 +24,7 @@ function StatCardGrid({
       //   </div>
       // }
       icon={
-        <div
-          className={`grid place-items-center ${
-            iconUrl ? "" : `h-6 w-6 rounded-md ${iconBg}`
-          }`}
-        >
+        <div className={`grid place-items-center `}>
           {iconUrl ? (
             <img
               src={iconUrl}
@@ -36,7 +32,7 @@ function StatCardGrid({
               className="h-8 w-8 object-contain" // 👈 bigger size
             />
           ) : (
-            <Icon className={`h-4 w-4 ${iconColor}`} />
+            <Icon className={`h-8 w-8 ${iconColor}`} />
           )}
         </div>
       }
