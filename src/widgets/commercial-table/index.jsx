@@ -58,7 +58,7 @@ export default function CommercialTable({
   const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
   return (
-    <div className="w-full bg-white rounded-[12px] h-[390px] shadow-md overflow-hidden flex flex-col">
+    <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF]  overflow-hidden flex flex-col">
       {/* Header */}
       <div
         className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium"

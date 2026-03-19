@@ -50,8 +50,9 @@ function Engagement({ isStatic, data, communities }) {
     <Card
       title="Engagement"
       period="This Month"
-      icon={<LuMessageSquare className="!text-[24px] text-[#DBB467]" />}
-      className={`${isStatic && "max-h-[303px]"}  ${isCommercial ? "h-[324px]" : "h-[303px]"} gap-[20px]`}
+      icon={<LuMessageSquare className="!text-[20px] text-[#DBB467]" />}
+      className={`${isStatic && "max-h-[303px]"}  ${isCommercial ? "h-[324px]" : "h-[303px]"} `}
+      childrenClassName={`${isCommercial ? "mt-[52px]" : "mt-0"}`}
       actionButtons={
         !isCommercial && (
           <ActionButtons
@@ -63,7 +64,7 @@ function Engagement({ isStatic, data, communities }) {
         )
       }
     >
-      <div className="w-full h-[260px]">
+      <div className={`w-full  ${isCommercial ? "h-[220px]" : "h-[260px]"}`}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={engagementBars}

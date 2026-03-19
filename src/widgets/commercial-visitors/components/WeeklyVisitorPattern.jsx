@@ -167,20 +167,20 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
     });
 
     return (
-      // <div
-      //   style={{
-      //     position: "absolute",
-      //     transform: `translate(${coordinate.x}px, ${coordinate.y - 40}px)`,
-      //     pointerEvents: "none",
-      //     zIndex: 99999,
-      //   }}
-      // >
+      <div
+        style={{
+          position: "absolute",
+          transform: `translate(${coordinate.x}px, ${coordinate.y - 40}px)`,
+          pointerEvents: "none",
+          zIndex: 99999,
+        }}
+      >
         <CommercialCustomTooltip
           active={active}
           payload={payload}
           label={formattedLabel}
         />
-      // </div>
+      </div>
     );
   }}
 />
