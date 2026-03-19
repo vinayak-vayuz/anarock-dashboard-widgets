@@ -11,10 +11,14 @@ const DEFAULT_DATA = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
-function AssetValueBreakdown({ data }) {
+function AssetValueBreakdown({ data, currency = "AED" }) {
   const chartItems =
     Array.isArray(data) && data.length > 0 ? data : DEFAULT_DATA;
-  const total = chartItems.reduce((sum, d) => sum + Number(d.value ?? 0), 0);
+
+  const total = chartItems.reduce(
+    (sum, d) => sum + Number(d.value ?? 0),
+    0
+  );
 
   return (
     <Card
@@ -41,13 +45,17 @@ function AssetValueBreakdown({ data }) {
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip formatter={(val) => `AED ${val.toLocaleString()}`} />
+              <Tooltip
+                formatter={(val) =>
+                  `${currency} ${Number(val).toLocaleString()}`
+                }
+              />
             </PieChart>
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="font-medium text-lg leading-[12px] ">
-              AED {(total / 1000000).toFixed(2)}M
+              {currency} {(total / 1000000).toFixed(2)}M
             </div>
             <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
               Total Assets
