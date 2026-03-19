@@ -100,7 +100,7 @@ const HourlyTrafficFlow = ({ data }) => {
           usePointStyle: true,
           boxWidth: 10,
           boxHeight: 10,
-          padding: 20,
+          padding: 32,
         },
       },
       tooltip: {
