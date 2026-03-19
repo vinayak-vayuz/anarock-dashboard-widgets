@@ -108,8 +108,7 @@ const AssetsByType = ({ rows, totalAssets }) => {
 
         {/* Table */}
         <div className="flex-1 max-w-[280px]">
-          <div className="rounded-[12px] overflow-hidden bg-white border border-[#E2E8F0]">
-
+          <div className="rounded-[12px] overflow-hidden bg-white border border-[#E2E8F0] !border-r-1 border-r-[#E2E8F0]! !pr-0 !mr-0">
             {/* Header */}
             <div className="flex items-center justify-between px-[16px] py-[12px] bg-[#F8FAFC]">
               <div className="text-[12px] font-medium text-[#64748B]">
@@ -124,27 +123,21 @@ const AssetsByType = ({ rows, totalAssets }) => {
             {assets.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between px-[16px] py-[12px] border-t border-[#F1F5F9]"
+                className="max-h-[205px] overflow-y-auto hide-scrollbar flex items-center justify-between px-[16px] py-[12px] border-t border-[#F1F5F9]"
               >
                 <div className="flex items-center gap-[8px]">
                   <div
                     className="w-[16px] h-[7px]"
                     style={{ backgroundColor: item.fill }}
                   />
-                  <div className="text-[13px] text-[#475569]">
-                    {item.name}
-                  </div>
+                  <div className="text-[13px] text-[#475569]">{item.name}</div>
                 </div>
 
-                <div className="text-[13px] text-[#64748B]">
-                  {item.value}
-                </div>
+                <div className="text-[13px] text-[#64748B]">{item.value}</div>
               </div>
             ))}
-
           </div>
         </div>
-
       </div>
     </Card>
   );
