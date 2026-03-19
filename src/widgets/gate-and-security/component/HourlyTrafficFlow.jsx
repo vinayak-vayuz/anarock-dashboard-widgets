@@ -104,6 +104,8 @@ const HourlyTrafficFlow = ({ data }) => {
     plugins: {
       legend: {
         position: "bottom",
+        align: "center",
+        fullSize: false,
         labels: {
           usePointStyle: true,
           boxWidth: 10,
