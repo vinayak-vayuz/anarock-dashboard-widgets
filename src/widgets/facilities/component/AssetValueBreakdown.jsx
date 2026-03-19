@@ -22,10 +22,10 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
 
   let formattedTotal = "";
 
-  if (total >= 1_000_000) {
-    formattedTotal = `${(total / 1_000_000).toFixed(2)}M`;
-  } else if (total >= 1_000) {
-    formattedTotal = `${(total / 1_000).toFixed(2)}K`;
+  if (total >= 1000000) {
+    formattedTotal = `${(total / 1000000).toFixed(2)}M`;
+  } else if (total >= 1000) {
+    formattedTotal = `${(total / 1000).toFixed(2)}K`;
   } else {
     formattedTotal = total.toString();
   }
