@@ -33,7 +33,7 @@ function StatCardGrid({
             className={`font-medium ${
               positive ? "text-[#1FA05B]" : "text-rose-600"
             } ${
-              isPositive
+              positive
                 ? "bg-[#F7FEFA] text-[#1FA05B]"
                 : "bg-[#FFF2F2] text-[#AB0000]"
             }`}
