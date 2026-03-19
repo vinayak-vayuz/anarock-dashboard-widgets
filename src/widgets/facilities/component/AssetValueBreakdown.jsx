@@ -20,6 +20,21 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
     0
   );
 
+  let formattedTotal = "";
+
+  if (total >= 1_000_000) {
+    formattedTotal = `${(total / 1_000_000).toFixed(2)}M`;
+  } else if (total >= 1_000) {
+    formattedTotal = `${(total / 1_000).toFixed(2)}K`;
+  } else {
+    formattedTotal = total.toString();
+  }
+
+
+
+
+
+
   return (
     <Card
       title="Asset Value Breakdown"
@@ -55,7 +70,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="font-medium text-lg leading-[12px] ">
-              {currency} {(total / 1000000).toFixed(2)}M
+              {currency} {(formattedTotal / 1000000).toFixed(2)}M
             </div>
             <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
               Total Assets
