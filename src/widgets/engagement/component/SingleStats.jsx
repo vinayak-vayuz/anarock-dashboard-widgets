@@ -30,11 +30,13 @@ function StatCardGrid({
 
         <div className="flex items-center gap-[8px] pt-[8px] !text-[12px] leading-[16px]">
           <div
-            className={
-              positive
-                ? "text-[#1FA05B] font-medium"
-                : "text-rose-600 font-medium"
-            }
+            className={`font-medium ${
+              positive ? "text-[#1FA05B]" : "text-rose-600"
+            } ${
+              isPositive
+                ? "bg-[#F7FEFA] text-[#1FA05B]"
+                : "bg-[#FFF2F2] text-[#AB0000]"
+            }`}
           >
             {delta}
           </div>
