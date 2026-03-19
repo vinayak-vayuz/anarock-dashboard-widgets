@@ -18,10 +18,18 @@ ChartJS.register(
   PointElement,
   LineElement,
   Tooltip,
-  Legend
+  Legend,
 );
 
-const DEFAULT_LABELS = ["10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"];
+const DEFAULT_LABELS = [
+  "10 AM",
+  "12 PM",
+  "2 PM",
+  "4 PM",
+  "6 PM",
+  "8 PM",
+  "10 PM",
+];
 const DEFAULT_SERIES = {
   guest: [9, 5, 12, 7, 3, 6, 4],
   cab: [15, 12, 10, 14, 7, 12, 8],
@@ -100,7 +108,7 @@ const HourlyTrafficFlow = ({ data }) => {
           usePointStyle: true,
           boxWidth: 10,
           boxHeight: 10,
-          padding: 64,
+          padding: 20,
         },
       },
       tooltip: {
