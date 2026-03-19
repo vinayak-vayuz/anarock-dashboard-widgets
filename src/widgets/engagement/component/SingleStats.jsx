@@ -24,24 +24,20 @@ function StatCardGrid({
       //   </div>
       // }
       icon={
-        <div className="flex items-center gap-2">
-          <div
-            className={`flex items-center justify-center ${
-              iconUrl ? "" : "h-6 w-6 rounded-md " + iconBg
-            }`}
-          >
-            {iconUrl ? (
-              <img
-                src={iconUrl}
-                alt="icon"
-                className="h-6 w-6 object-contain" // 👈 reduced size for alignment
-              />
-            ) : (
-              <Icon className={`h-4 w-4 ${iconColor}`} />
-            )}
-          </div>
-
-          <span className="text-base font-medium">Notice</span>
+        <div
+          className={`grid place-items-center ${
+            iconUrl ? "" : `h-6 w-6 rounded-md ${iconBg}`
+          }`}
+        >
+          {iconUrl ? (
+            <img
+              src={iconUrl}
+              alt="icon"
+              className="h-8 w-8 object-contain" // 👈 bigger size
+            />
+          ) : (
+            <Icon className={`h-4 w-4 ${iconColor}`} />
+          )}
         </div>
       }
       className="h-[132px]"
