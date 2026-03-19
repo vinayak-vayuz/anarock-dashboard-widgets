@@ -13,13 +13,23 @@ function StatCardGrid({
   Icon = DescriptionOutlinedIcon,
   iconColor = "text-emerald-600",
   iconBg = "bg-emerald-50",
+  iconUrl,
 }) {
   return (
     <Card
       title={title}
+      // icon={
+      //   <div className={`h-6 w-6 grid place-items-center rounded-md ${iconBg}`}>
+      //     <Icon className={`h-4 w-4 ${iconColor}`} />
+      //   </div>
+      // }
       icon={
         <div className={`h-6 w-6 grid place-items-center rounded-md ${iconBg}`}>
-          <Icon className={`h-4 w-4 ${iconColor}`} />
+          {iconUrl ? (
+            <img src={iconUrl} alt="icon" className="h-4 w-4 object-contain" />
+          ) : (
+            <Icon className={`h-4 w-4 ${iconColor}`} />
+          )}
         </div>
       }
       className="h-[132px]"
