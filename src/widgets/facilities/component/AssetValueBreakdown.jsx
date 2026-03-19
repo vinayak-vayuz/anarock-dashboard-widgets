@@ -70,7 +70,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="font-medium text-lg leading-[12px] ">
-              {currency} {(formattedTotal / 1000000).toFixed(2)}M
+              {currency} {formattedTotal}
             </div>
             <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
               Total Assets
