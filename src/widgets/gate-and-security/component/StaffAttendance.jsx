@@ -48,7 +48,7 @@ function StaffAttendance({ staffPresentAbsent, staffPresentByRole }) {
         </div>
 
         {/* Staff Role List */}
-        <div className="mt-[24px] pb-[8px] space-y-[8px] overflow-y-auto max-h-[200px] hide-scrollbar">
+        <div className="mt-[24px] pb-[16px] space-y-[8px] overflow-y-auto max-h-[200px] hide-scrollbar">
           {resolvedByRole?.length ? (
             resolvedByRole?.map?.((item, index) => {
               const total = Number(item?.total_staff ?? 0);
