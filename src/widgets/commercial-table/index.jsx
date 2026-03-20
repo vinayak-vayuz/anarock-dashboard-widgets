@@ -54,7 +54,10 @@ export default function CommercialTable({
 
   const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
-  const gridTemplate = `repeat(${safeColumns.length}, 1fr)`;
+  const gridTemplate =
+    safeColumns.length > 0
+      ? `minmax(200px, 1fr) repeat(${safeColumns.length - 1}, minmax(0, 1fr))`
+      : "";
 
   return (
     <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF] overflow-hidden flex flex-col">
@@ -69,6 +72,7 @@ export default function CommercialTable({
             <div
               key={index}
               className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
+              style={index === 0 ? { minWidth: "200px" } : undefined}
             >
               {col.label}
             </div>
@@ -100,7 +104,7 @@ export default function CommercialTable({
                     <div
                       key={colIndex}
                       className={`px-[24px] py-[16px] flex items-center justify-start ${
-                        colIndex === 0 ? "bg-white shadow-[0px_-2px_20px_0px_rgba(0,0,0,0.08)]" : "bg-white"
+                        colIndex === 0 ? "bg-white" : "bg-gray-50"
                       } text-[#121212]`}
                     >
                       {isClosedCol ? (
