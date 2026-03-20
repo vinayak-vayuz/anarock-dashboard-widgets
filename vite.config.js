@@ -1,11 +1,12 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 
-// Use NODE_ENV or a custom flag to switch between library build and playground
-const isPlayground = false;
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, __dirname, "");
+  const isPlayground = env.isLocal === "true";
 
-export default defineConfig({
+  return {
   plugins: [react()],
   root: isPlayground ? path.resolve(__dirname, "src/playground") : undefined,
   build: isPlayground
@@ -32,4 +33,5 @@ export default defineConfig({
       "@widgets": path.resolve(__dirname, "src/widgets"), // optional, use in playground
     },
   },
+};
 });

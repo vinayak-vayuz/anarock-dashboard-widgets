@@ -58,106 +58,96 @@ export default function CommercialTable({
   const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
   return (
-    <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF]  overflow-hidden flex flex-col">
-      {/* Header */}
-      <div
-        className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium"
-        style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
-      >
-        {safeColumns.map((col, index) => (
-          <div
-            key={index}
-            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
-          >
-            {col.label}
-          </div>
-        ))}
-      </div>
-
-      {/* Rows */}
+    <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF] overflow-hidden flex flex-col">
+      {/* Table */}
       <div className="flex-1 overflow-y-auto">
         {!shouldShowEmptyState ? (
-          <>
-            {currentData.map((row, rowIndex) => (
-              <div
-                key={rowIndex}
-                className="grid"
-                style={{
-                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-                }}
-              >
-                {safeColumns.map((col, colIndex) => {
-                  const value = row[col.key];
+          <table className="w-full border-collapse table-fixed">
+            {/* Header */}
+            <thead className="sticky top-0 z-10">
+              <tr className="bg-[#354A5E]">
+                {safeColumns.map((col, index) => (
+                  <th
+                    key={index}
+                    className="px-[24px] py-[16px] text-white text-[16px] leading-[20px] font-medium whitespace-nowrap text-left"
+                  >
+                    {col.label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
 
-                  const isClosedCol = col.label === "Closed";
-                  const isOpenCol = col.label === "Open";
-                  const isPercent =
-                    typeof value === "string" && value.includes("%");
-                  const percentClass =
-                    value === "100%"
-                      ? "bg-[#F0FEF2] text-[#36AB6C]"
-                      : "bg-[#FFF0F0] text-[#AB0000]";
+            {/* Body */}
+            <tbody>
+              {currentData.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {safeColumns.map((col, colIndex) => {
+                    const value = row[col.key];
 
-                  return (
-                    <div
+                    const isClosedCol = col.label === "Closed";
+                    const isOpenCol = col.label === "Open";
+                    const isPercent =
+                      typeof value === "string" && value.includes("%");
+                    const percentClass =
+                      value === "100%"
+                        ? "bg-[#F0FEF2] text-[#36AB6C]"
+                        : "bg-[#FFF0F0] text-[#AB0000]";
+
+                    return (
+                      <td
+                        key={colIndex}
+                        className={`px-[24px] py-[16px] ${
+                          colIndex === 0 ? "bg-white" : "bg-gray-50"
+                        }`}
+                      >
+                        {isClosedCol ? (
+                          <div
+                            className="text-[14px] font-medium"
+                            style={{ color: "#36AB6C" }}
+                          >
+                            {value !== undefined && value !== null ? value : "-"}
+                          </div>
+                        ) : isOpenCol ? (
+                          <div
+                            className="text-[14px] font-medium"
+                            style={{ color: "#AB0000" }}
+                          >
+                            {value !== undefined && value !== null ? value : "-"}
+                          </div>
+                        ) : isPercent ? (
+                          <div
+                            className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
+                          >
+                            {value}
+                          </div>
+                        ) : (
+                          <div>
+                            {value !== undefined && value !== null ? value : "-"}
+                          </div>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+
+              {/* Empty Rows */}
+              {Array.from({ length: emptyRows }).map((_, rowIndex) => (
+                <tr key={`empty-${rowIndex}`}>
+                  {safeColumns.map((col, colIndex) => (
+                    <td
                       key={colIndex}
-                      className={`px-[24px] py-[16px] flex items-center justify-start ${
+                      className={`px-[24px] py-[16px] ${
                         colIndex === 0 ? "bg-white" : "bg-gray-50"
                       }`}
                     >
-                      {isClosedCol ? (
-                        <div
-                          className="text-[14px] font-medium"
-                          style={{ color: "#36AB6C" }}
-                        >
-                          {value !== undefined && value !== null ? value : "-"}
-                        </div>
-                      ) : isOpenCol ? (
-                        <div
-                          className="text-[14px] font-medium"
-                          style={{ color: "#AB0000" }}
-                        >
-                          {value !== undefined && value !== null ? value : "-"}
-                        </div>
-                      ) : isPercent ? (
-                        <div
-                          className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
-                        >
-                          {value}
-                        </div>
-                      ) : (
-                        <div>
-                          {value !== undefined && value !== null ? value : "-"}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-
-            {/* Empty Rows */}
-            {Array.from({ length: emptyRows }).map((_, rowIndex) => (
-              <div
-                key={`empty-${rowIndex}`}
-                className="grid"
-                style={{
-                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-                }}
-              >
-                {safeColumns.map((col, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className={`px-[24px] py-[16px] ${
-                      colIndex === 0 ? "bg-white" : "bg-gray-50"
-                    }`}
-                  >
-                    &nbsp;
-                  </div>
-                ))}
-              </div>
-            ))}
-          </>
+                      &nbsp;
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         ) : (
           <EmptyState
             title="No Data Found"
