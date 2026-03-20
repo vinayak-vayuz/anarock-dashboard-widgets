@@ -37,7 +37,84 @@ const DEFAULT_SERIES = {
   service: [13, 12, 8, 9, 5, 10, 7],
 };
 
+const LEGEND_ITEMS = [
+  { key: "Guest", datasetIndex: 0, color: "#EF4444" },
+  { key: "Cab", datasetIndex: 1, color: "#7C3AED" },
+  { key: "Delivery", datasetIndex: 2, color: "#10B981" },
+  { key: "Service", datasetIndex: 3, color: "#F59E0B" },
+];
+const DiamondIcon = ({ color, size = 12 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 12 12"
+    style={{ display: "block", flexShrink: 0 }}
+  >
+    <rect
+      x="1"
+      y="1"
+      width="10"
+      height="10"
+      rx="0"
+      fill={color}
+      transform="rotate(45 6 6)"
+    />
+  </svg>
+);
+
+const CustomLegend = ({ chartRef }) => {
+  const handleClick = (datasetIndex) => {
+    const chart = chartRef.current;
+    if (!chart) return;
+    const meta = chart.getDatasetMeta(datasetIndex);
+    meta.hidden =
+      meta.hidden === null ? !chart.data.datasets[datasetIndex].hidden : null;
+    chart.update();
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "32px", // horizontal gap between legend items
+        marginTop: "12px",
+        flexWrap: "wrap",
+      }}
+    >
+      {LEGEND_ITEMS.map(({ key, datasetIndex, color }) => (
+        <div
+          key={key}
+          onClick={() => handleClick(datasetIndex)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            cursor: "pointer",
+            userSelect: "none",
+          }}
+        >
+          <DiamondIcon color={color} size={12} />
+          <span
+            style={{
+              fontSize: "13px",
+              color: "#64748B",
+              fontWeight: 400,
+              lineHeight: 1,
+            }}
+          >
+            {key}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const HourlyTrafficFlow = ({ data }) => {
+  const chartRef = useRef(null);
   const labels =
     Array.isArray(data?.labels) && data.labels.length > 0
       ? data.labels
@@ -103,16 +180,16 @@ const HourlyTrafficFlow = ({ data }) => {
     interaction: { mode: "index", intersect: false },
     plugins: {
       legend: {
-        position: "bottom",
-        align: "center",
-        fullSize: false,
-        labels: {
-          usePointStyle: true,
-          boxWidth: 10,
-          boxHeight: 10,
-          padding: 20,
-          
-        },
+        display: false,
+        // position: "bottom",
+        // align: "center",
+        // fullSize: false,
+        // labels: {
+        //   usePointStyle: true,
+        //   boxWidth: 10,
+        //   boxHeight: 10,
+        //   padding: 20,
+        // },
       },
       tooltip: {
         backgroundColor: "#0F172A",
@@ -152,7 +229,8 @@ const HourlyTrafficFlow = ({ data }) => {
       // period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
     >
       {/* <div className="h-[250px] w-full"> */}
-      <Line data={chartData} options={options} />
+      <Line ref={chartRef} data={chartData} options={options} />
+      <CustomLegend chartRef={chartRef} />
       {/* </div> */}
     </Card>
   );
