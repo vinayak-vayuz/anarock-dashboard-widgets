@@ -54,99 +54,91 @@ export default function CommercialTable({
 
   const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
-  const gridTemplate =
-    safeColumns.length > 0
-      ? `minmax(200px, 1fr) repeat(${safeColumns.length - 1}, minmax(0, 1fr))`
-      : "";
+  const gridTemplate = `repeat(${safeColumns.length}, 1fr)`;
 
   return (
     <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF] overflow-hidden flex flex-col">
       {/* Table wrapper ensures header and body share the same column layout */}
       <div className="flex flex-col flex-1 overflow-hidden">
-        <div className="flex-1 overflow-x-auto hide-scrollbar">
-          <div className="min-w-max flex flex-col min-h-full">
-            {/* Header */}
+        {/* Header */}
+        <div
+          className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium shrink-0"
+          style={{ gridTemplateColumns: gridTemplate }}
+        >
+          {safeColumns.map((col, index) => (
             <div
-              className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium shrink-0"
-              style={{ gridTemplateColumns: gridTemplate }}
+              key={index}
+              className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
             >
-              {safeColumns.map((col, index) => (
-                <div
-                  key={index}
-                  className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
-                  style={index === 0 ? { minWidth: "200px" } : undefined}
-                >
-                  {col.label}
-                </div>
-              ))}
+              {col.label}
             </div>
+          ))}
+        </div>
 
-            {/* Rows */}
-            <div className="flex-1 overflow-y-auto hide-scrollbar">
-              {!shouldShowEmptyState ? (
-                currentData.map((row, rowIndex) => (
-                  <div
-                    key={rowIndex}
-                    className="grid"
-                    style={{ gridTemplateColumns: gridTemplate }}
-                  >
-                    {safeColumns.map((col, colIndex) => {
-                      const value = row[col.key];
+        {/* Rows */}
+        <div className="flex-1 overflow-y-auto hide-scrollbar">
+          {!shouldShowEmptyState ? (
+            currentData.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className="grid"
+                style={{ gridTemplateColumns: gridTemplate }}
+              >
+                {safeColumns.map((col, colIndex) => {
+                  const value = row[col.key];
 
-                      const isClosedCol = col.label === "Closed";
-                      const isOpenCol = col.label === "Open";
-                      const isPercent =
-                        typeof value === "string" && value.includes("%");
-                      const percentClass =
-                        value === "100%"
-                          ? "bg-[#F0FEF2] text-[#36AB6C]"
-                          : "bg-[#FFF0F0] text-[#AB0000]";
+                  const isClosedCol = col.label === "Closed";
+                  const isOpenCol = col.label === "Open";
+                  const isPercent =
+                    typeof value === "string" && value.includes("%");
+                  const percentClass =
+                    value === "100%"
+                      ? "bg-[#F0FEF2] text-[#36AB6C]"
+                      : "bg-[#FFF0F0] text-[#AB0000]";
 
-                      return (
+                  return (
+                    <div
+                      key={colIndex}
+                      className={`px-[24px] py-[16px] flex items-center justify-start ${
+                        colIndex === 0 ? "bg-white shadow-[0px_-2px_20px_0px_rgba(0,0,0,0.08)]" : "bg-white"
+                      } text-[#121212]`}
+                    >
+                      {isClosedCol ? (
                         <div
-                          key={colIndex}
-                          className={`px-[24px] py-[16px] flex items-center justify-start ${
-                            colIndex === 0 ? "bg-white" : "bg-gray-50"
-                          } text-[#121212]`}
+                          className="text-[14px] font-medium"
+                          style={{ color: "#36AB6C" }}
                         >
-                          {isClosedCol ? (
-                            <div
-                              className="text-[14px] font-medium"
-                              style={{ color: "#36AB6C" }}
-                            >
-                              {value !== undefined && value !== null ? value : "-"}
-                            </div>
-                          ) : isOpenCol ? (
-                            <div
-                              className="text-[14px] font-medium"
-                              style={{ color: "#AB0000" }}
-                            >
-                              {value !== undefined && value !== null ? value : "-"}
-                            </div>
-                          ) : isPercent ? (
-                            <div
-                              className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
-                            >
-                              {value}
-                            </div>
-                          ) : (
-                            <div>
-                              {value !== undefined && value !== null ? value : "-"}
-                            </div>
-                          )}
+                          {value !== undefined && value !== null ? value : "-"}
                         </div>
-                      );
-                    })}
-                  </div>
-                ))
-              ) : (
-                <EmptyState
-                  title="No Data Found"
-                  description="Catch up all the data. Change the date range to see the data."
-                />
-              )}
-            </div>
-          </div>
+                      ) : isOpenCol ? (
+                        <div
+                          className="text-[14px] font-medium"
+                          style={{ color: "#AB0000" }}
+                        >
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      ) : isPercent ? (
+                        <div
+                          className={`inline-block px-[12px] py-[4px] rounded-full text-[14px] font-medium ${percentClass}`}
+                        >
+                          {value}
+                        </div>
+                      ) : (
+                        <div>
+                          {value !== undefined && value !== null ? value : "-"}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))
+          ) : (
+            <EmptyState
+              title="No Data Found"
+              description="Catch up all the data. Change the date range to see the data."
+            />
+          )}
         </div>
       </div>
 
