@@ -100,7 +100,7 @@ export default function CommercialTable({
                     <div
                       key={colIndex}
                       className={`px-[24px] py-[16px] flex items-center justify-start ${
-                        colIndex === 0 ? "bg-white shadow-[0px_-2px_20px_0px_rgba(0,0,0,0.08)]" : "bg-white"
+                        colIndex === 0 ? "bg-white" : "bg-gray-50"
                       } text-[#121212]`}
                     >
                       {isClosedCol ? (
