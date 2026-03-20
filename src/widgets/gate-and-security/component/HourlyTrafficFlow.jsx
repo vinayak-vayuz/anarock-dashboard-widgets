@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import Card from "../../components/Card";
-import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 
 ChartJS.register(
   CategoryScale,
@@ -30,6 +29,7 @@ const DEFAULT_LABELS = [
   "8 PM",
   "10 PM",
 ];
+
 const DEFAULT_SERIES = {
   guest: [9, 5, 12, 7, 3, 6, 4],
   cab: [15, 12, 10, 14, 7, 12, 8],
@@ -43,6 +43,7 @@ const LEGEND_ITEMS = [
   { key: "Delivery", datasetIndex: 2, color: "#10B981" },
   { key: "Service", datasetIndex: 3, color: "#F59E0B" },
 ];
+
 const DiamondIcon = ({ color, size = 12 }) => (
   <svg
     width={size}
@@ -63,13 +64,16 @@ const DiamondIcon = ({ color, size = 12 }) => (
 );
 
 const CustomLegend = ({ chartRef }) => {
+  const [hiddenMap, setHiddenMap] = useState({});
+
   const handleClick = (datasetIndex) => {
     const chart = chartRef.current;
     if (!chart) return;
     const meta = chart.getDatasetMeta(datasetIndex);
-    meta.hidden =
-      meta.hidden === null ? !chart.data.datasets[datasetIndex].hidden : null;
+    const isCurrentlyHidden = !!meta.hidden;
+    meta.hidden = !isCurrentlyHidden;
     chart.update();
+    setHiddenMap((prev) => ({ ...prev, [datasetIndex]: !isCurrentlyHidden }));
   };
 
   return (
@@ -79,42 +83,51 @@ const CustomLegend = ({ chartRef }) => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        gap: "32px", // horizontal gap between legend items
+        gap: "32px",
         marginTop: "12px",
+        paddingBottom: "16px",
         flexWrap: "wrap",
       }}
     >
-      {LEGEND_ITEMS.map(({ key, datasetIndex, color }) => (
-        <div
-          key={key}
-          onClick={() => handleClick(datasetIndex)}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            cursor: "pointer",
-            userSelect: "none",
-          }}
-        >
-          <DiamondIcon color={color} size={12} />
-          <span
+      {LEGEND_ITEMS.map(({ key, datasetIndex, color }) => {
+        const isHidden = !!hiddenMap[datasetIndex];
+        return (
+          <div
+            key={key}
+            onClick={() => handleClick(datasetIndex)}
             style={{
-              fontSize: "13px",
-              color: "#64748B",
-              fontWeight: 400,
-              lineHeight: 1,
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              cursor: "pointer",
+              userSelect: "none",
+              opacity: isHidden ? 0.45 : 1,
+              transition: "opacity 0.2s ease",
             }}
           >
-            {key}
-          </span>
-        </div>
-      ))}
+            <DiamondIcon color={color} size={12} />
+            <span
+              style={{
+                fontSize: "13px",
+                color: "#64748B",
+                fontWeight: 400,
+                lineHeight: 1,
+                textDecoration: isHidden ? "line-through" : "none",
+                transition: "text-decoration 0.15s ease",
+              }}
+            >
+              {key}
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 const HourlyTrafficFlow = ({ data }) => {
   const chartRef = useRef(null);
+
   const labels =
     Array.isArray(data?.labels) && data.labels.length > 0
       ? data.labels
@@ -179,18 +192,7 @@ const HourlyTrafficFlow = ({ data }) => {
     maintainAspectRatio: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
-      legend: {
-        display: false,
-        // position: "bottom",
-        // align: "center",
-        // fullSize: false,
-        // labels: {
-        //   usePointStyle: true,
-        //   boxWidth: 10,
-        //   boxHeight: 10,
-        //   padding: 20,
-        // },
-      },
+      legend: { display: false },
       tooltip: {
         backgroundColor: "#0F172A",
         titleColor: "#FFFFFF",
@@ -223,15 +225,12 @@ const HourlyTrafficFlow = ({ data }) => {
   };
 
   return (
-    <Card
-      title="Hourly Traffic Flow"
-      className="w-full h-[362px]"
-      // period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
-    >
-      {/* <div className="h-[250px] w-full"> */}
-      <Line ref={chartRef} data={chartData} options={options} />
+    <Card title="Hourly Traffic Flow" className="w-full h-[362px]">
+      {/* Chart takes remaining height, leaving space for legend + its bottom padding */}
+      <div style={{ height: "calc(100% - 56px)", width: "100%" }}>
+        <Line ref={chartRef} data={chartData} options={options} />
+      </div>
       <CustomLegend chartRef={chartRef} />
-      {/* </div> */}
     </Card>
   );
 };
