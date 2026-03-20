@@ -76,7 +76,7 @@ export default function CommercialTable({
         </div>
 
         {/* Rows */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto hide-scrollbar">
           {!shouldShowEmptyState ? (
             currentData.map((row, rowIndex) => (
               <div
@@ -100,8 +100,8 @@ export default function CommercialTable({
                     <div
                       key={colIndex}
                       className={`px-[24px] py-[16px] flex items-center justify-start ${
-                        colIndex === 0 ? "bg-white" : "bg-gray-50"
-                      }`}
+                        colIndex === 0 ? "bg-white shadow-[0px_-2px_20px_0px_rgba(0,0,0,0.08)]" : "bg-white"
+                      } text-[#121212]`}
                     >
                       {isClosedCol ? (
                         <div
