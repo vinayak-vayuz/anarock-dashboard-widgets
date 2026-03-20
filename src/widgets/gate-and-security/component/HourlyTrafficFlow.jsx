@@ -83,9 +83,9 @@ const CustomLegend = ({ chartRef }) => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        gap: "32px",
-        marginTop: "12px",
-        paddingBottom: "16px",
+        gap: "76px",
+        marginTop: "10px",
+        paddingBottom: "8px",
         flexWrap: "wrap",
       }}
     >
@@ -227,7 +227,7 @@ const HourlyTrafficFlow = ({ data }) => {
   return (
     <Card title="Hourly Traffic Flow" className="w-full h-[362px]">
       {/* Chart takes remaining height, leaving space for legend + its bottom padding */}
-      <div style={{ height: "calc(100% - 56px)", width: "100%" }}>
+      <div style={{ height: "calc(100% - 44px)", width: "100%" }}>
         <Line ref={chartRef} data={chartData} options={options} />
       </div>
       <CustomLegend chartRef={chartRef} />
