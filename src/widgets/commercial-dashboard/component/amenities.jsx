@@ -125,7 +125,7 @@ function Amenities({ data }) {
           </div>
 
           {!allUnpaid && (
-            <div className="flex flex-col gap-[8px]!">
+            <div className="flex flex-col gap-[8px]! items-end mr-[10px] ">
               <div className="text-[12px] leading-[16px] text-[#64748B]">
                 Revenue Generated
               </div>
