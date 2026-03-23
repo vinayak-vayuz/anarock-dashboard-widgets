@@ -19,9 +19,13 @@ function SingleStats({ data }) {
                 style={{ color: card.iconColor || "#000000" }}
               />
             }
-            className="h-[132px]"
+             className={`${
+    card?.widget === "amenities" ? "h-[139px]" : "h-[132px]"
+  }`}
           >
-            <div className="flex flex-col gap-[8px]!">
+            <div  className={`flex flex-col gap-[8px] ${
+    card?.widget === "amenities" ? "mt-[3.5px]" : "mt-0"
+  }`}>
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
                 {card.value}
               </div>
