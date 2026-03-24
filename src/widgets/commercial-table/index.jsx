@@ -52,39 +52,37 @@ export default function CommercialTable({
 
   const currentData = safeData;
 
-  const emptyRows =
-    rowsPerPage - currentData.length > 0 ? rowsPerPage - currentData.length : 0;
-
   const shouldShowEmptyState = totalRows === 0 && safeData.length === 0;
 
-  return (
-    <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF]  overflow-hidden flex flex-col">
-      {/* Header */}
-      <div
-        className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium"
-        style={{ gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)` }}
-      >
-        {safeColumns.map((col, index) => (
-          <div
-            key={index}
-            className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
-          >
-            {col.label}
-          </div>
-        ))}
-      </div>
+  const gridTemplate = `repeat(${safeColumns.length}, 1fr)`;
 
-      {/* Rows */}
-      <div className="flex-1 overflow-y-auto">
-        {!shouldShowEmptyState ? (
-          <>
-            {currentData.map((row, rowIndex) => (
+  return (
+    <div className="w-full bg-white rounded-[12px] h-[390px] !border-[0.5px] !border-[#EBEBEB] !shadow-[0_0_12px_0_#EAF2FF] overflow-hidden flex flex-col">
+      {/* Table wrapper ensures header and body share the same column layout */}
+      <div className="flex flex-col flex-1 overflow-hidden">
+        {/* Header */}
+        <div
+          className="grid bg-[#354A5E] text-white text-[16px] leading-[20px] font-medium shrink-0"
+          style={{ gridTemplateColumns: gridTemplate }}
+        >
+          {safeColumns.map((col, index) => (
+            <div
+              key={index}
+              className="px-[24px] py-[16px] text-[16px] leading-[20px] whitespace-nowrap text-left"
+            >
+              {col.label}
+            </div>
+          ))}
+        </div>
+
+        {/* Rows */}
+        <div className="flex-1 overflow-y-auto hide-scrollbar">
+          {!shouldShowEmptyState ? (
+            currentData.map((row, rowIndex) => (
               <div
                 key={rowIndex}
                 className="grid"
-                style={{
-                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-                }}
+                style={{ gridTemplateColumns: gridTemplate }}
               >
                 {safeColumns.map((col, colIndex) => {
                   const value = row[col.key];
@@ -103,7 +101,7 @@ export default function CommercialTable({
                       key={colIndex}
                       className={`px-[24px] py-[16px] flex items-center justify-start ${
                         colIndex === 0 ? "bg-white" : "bg-gray-50"
-                      }`}
+                      } text-[#121212]`}
                     >
                       {isClosedCol ? (
                         <div
@@ -134,40 +132,18 @@ export default function CommercialTable({
                   );
                 })}
               </div>
-            ))}
-
-            {/* Empty Rows */}
-            {Array.from({ length: emptyRows }).map((_, rowIndex) => (
-              <div
-                key={`empty-${rowIndex}`}
-                className="grid"
-                style={{
-                  gridTemplateColumns: `repeat(${safeColumns.length}, 1fr)`,
-                }}
-              >
-                {safeColumns.map((col, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className={`px-[24px] py-[16px] ${
-                      colIndex === 0 ? "bg-white" : "bg-gray-50"
-                    }`}
-                  >
-                    &nbsp;
-                  </div>
-                ))}
-              </div>
-            ))}
-          </>
-        ) : (
-          <EmptyState
-            title="No Data Found"
-            description="Catch up all the data. Change the date range to see the data."
-          />
-        )}
+            ))
+          ) : (
+            <EmptyState
+              title="No Data Found"
+              description="Catch up all the data. Change the date range to see the data."
+            />
+          )}
+        </div>
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-end items-center px-[24px] py-[16px] text-sm bg-white border-t border-[#F0F0F0] gap-[32px]">
+      <div className="flex justify-end items-center px-[24px] py-[16px] text-sm bg-white border-t border-[#F0F0F0] gap-[32px] shrink-0">
         <div className="flex items-center gap-[8px] text-gray-600 text-[14px]">
           <div>Rows per page:</div>
 
