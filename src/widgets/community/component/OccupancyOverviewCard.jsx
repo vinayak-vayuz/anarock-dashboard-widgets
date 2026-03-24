@@ -28,7 +28,7 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
 };
 
 const StatTile = ({ title, value, suffix, valueClass = "" }) => (
-  <Card className="bg-white  rounded-[12px]  h-[98px] p-[16px] flex flex-col justify-center">
+  <div className="bg-white  rounded-[12px]  h-[98px] p-[16px] flex flex-col justify-center">
     <div className="!text-[12px] leading-[16px] text-[#121212] mb-[4px]">
       {title}
     </div>
@@ -40,7 +40,7 @@ const StatTile = ({ title, value, suffix, valueClass = "" }) => (
         <div className="text-[28px] leading-[32px] font-medium">{suffix}</div>
       )}
     </div>
-  </Card>
+  </div>
 );
 
 const OccupancyOverviewCard = ({
