@@ -1,4 +1,4 @@
-import { Card } from "@mui/material";
+import Card from "../../components/Card";
 import React from "react";
 import { GoPeople } from "react-icons/go";
 
