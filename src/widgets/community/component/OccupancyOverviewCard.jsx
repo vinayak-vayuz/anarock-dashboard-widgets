@@ -2,9 +2,52 @@ import Card from "../../components/Card";
 import React from "react";
 import { GoPeople } from "react-icons/go";
 
+// const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
+//   const pct = Math.max(0, Math.min(100, (value / (total || 1)) * 100));
+
+//   const valueTextColor =
+//     colorClass === "bg-[#8B5CF6]"
+//       ? "text-[#8B5CF6]"
+//       : colorClass === "bg-[#12B981]"
+//         ? "text-[#12B981]"
+//         : "text-slate-600";
+//   return (
+//     <div className="flex flex-col items-start">
+//       <div className="w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden">
+//         <div
+//           className={`h-3 rounded-full ${colorClass}`}
+//           style={{ width: `${pct}%` }}
+//         />
+//       </div>
+//       <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>
+//         {value}
+//       </div>
+//       <div className="!text-[12px] text-[#64748B] mt-1">{label}</div>
+//     </div>
+//   );
+// };
+
+// const StatTile = ({ title, value, suffix, valueClass = "" }) => (
+//   <div
+//     title={title}
+//     className="bg-white  rounded-[12px]  h-[98px] p-[16px] flex flex-col justify-center"
+//   >
+//     <div className="!text-[12px] leading-[16px] text-[#121212] mb-[4px]">
+//       {title}
+//     </div>
+//     <div
+//       className={`text-[28px] leading-[32px] flex item gap-[4px] font-medium ${valueClass}`}
+//     >
+//       {value}{" "}
+//       {suffix && (
+//         <div className="text-[28px] leading-[32px] font-medium">{suffix}</div>
+//       )}
+//     </div>
+//   </div>
+// );
+
 const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
   const pct = Math.max(0, Math.min(100, (value / (total || 1)) * 100));
-
   const valueTextColor =
     colorClass === "bg-[#8B5CF6]"
       ? "text-[#8B5CF6]"
@@ -12,38 +55,42 @@ const MiniPill = ({ value = 0, total = 1, colorClass = "", label = "" }) => {
         ? "text-[#12B981]"
         : "text-slate-600";
   return (
-    <div className="flex flex-col items-start">
-      <div className="w-2/3 min-w-[80px] h-3 rounded-full overflow-hidden">
+    <div className="flex flex-col items-start w-[80px]">
+      {" "}
+      {/* fixed width instead of w-2/3 */}
+      <div className="w-full h-[6px] rounded-full overflow-hidden bg-gray-100">
+        {" "}
+        {/* w-full, thinner bar h-[6px] */}
         <div
-          className={`h-3 rounded-full ${colorClass}`}
+          className={`h-full rounded-full ${colorClass}`}
           style={{ width: `${pct}%` }}
         />
       </div>
-      <div className={`${valueTextColor} !text-[12px] font-bold mt-1`}>
+      <div className={`${valueTextColor} text-[16px] font-bold mt-1`}>
         {value}
-      </div>
-      <div className="!text-[12px] text-[#64748B] mt-1">{label}</div>
+      </div>{" "}
+      {/* bigger value text */}
+      <div className="text-[12px] text-[#64748B] mt-0.5">{label}</div>
     </div>
   );
 };
 
 const StatTile = ({ title, value, suffix, valueClass = "" }) => (
-  <Card
-    title={title}
-    // className="bg-white  rounded-[12px]  h-[98px] p-[16px] flex flex-col justify-center"
-  >
-    {/* <div className="!text-[12px] leading-[16px] text-[#121212] mb-[4px]">
+  <div className="bg-white rounded-[12px] h-[98px] p-[16px] flex flex-col justify-center">
+    {" "}
+    {/* </Card> → </div> fix */}
+    <div className="text-[12px] leading-[16px] text-[#64748B] mb-[6px]">
       {title}
-    </div> */}
+    </div>{" "}
+    {/* gray label color */}
     <div
-      className={`text-[28px] leading-[32px] flex item gap-[4px] font-medium ${valueClass}`}
+      className={`text-[28px] leading-[32px] flex items-baseline gap-[4px] font-semibold ${valueClass}`}
     >
-      {value}{" "}
-      {suffix && (
-        <div className="text-[28px] leading-[32px] font-medium">{suffix}</div>
-      )}
+      {value}
+      {suffix && <span className="text-[16px] font-medium">{suffix}</span>}{" "}
+      {/* smaller suffix */}
     </div>
-  </Card>
+  </div>
 );
 
 const OccupancyOverviewCard = ({
@@ -70,8 +117,8 @@ const OccupancyOverviewCard = ({
     <div>
       <div className="bg-white rounded-[12px]  p-[16px] h-[128px]">
         <div className="flex items-center gap-[12px] mb-4">
-          <GoPeople className="h-6 w-6 text-[#329DFF]" />
-          <div className="font-medium text-[#121212]">Occupancy Overview</div>
+          <GoPeople className="h-8 w-8 text-[#329DFF]" />
+          <div className="font-semibold text-[#121212]">Occupancy Overview</div>
         </div>
 
         <div className="flex items-center justify-between gap-">
@@ -89,7 +136,7 @@ const OccupancyOverviewCard = ({
             </div>
           </div>
 
-          <div className="flex items-end">
+          <div className="flex items-start gap-[16px]">
             <MiniPill
               value={resolvedOwnerCount}
               total={barTotal}
