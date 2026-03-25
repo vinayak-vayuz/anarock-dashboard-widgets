@@ -2,6 +2,7 @@ import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/CardNoLogo";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
+import { CustomTooltip } from "../../facilities/component/AssetValueBreakdown";
 
 const DUMMY_DATA = {
   completed: 18,
@@ -57,7 +58,7 @@ function GuardPatrols({ data = {} }) {
                 ))}
               </Pie>
 
-              <Tooltip formatter={(val) => Number(val ?? 0).toLocaleString()} />
+              <Tooltip content={<CustomTooltip />} />
             </PieChart>
           </ResponsiveContainer>
 

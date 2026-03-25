@@ -12,7 +12,7 @@ const DEFAULT_DATA = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
-const CustomTooltip = ({ active, payload, currency }) => {
+export const CustomTooltip = ({ active, payload, currency }) => {
   if (!active || !payload || !payload.length) return null;
   const { name, value, payload: p } = payload[0];
 
@@ -53,7 +53,7 @@ const CustomTooltip = ({ active, payload, currency }) => {
           whiteSpace: "nowrap",
         }}
       >
-        {currency} {Number(value).toLocaleString()}
+        {currency && currency} {Number(value).toLocaleString()}
       </span>
     </div>
   );
