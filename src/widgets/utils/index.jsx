@@ -118,8 +118,8 @@ export const Chip = ({ value }) => {
           : "bg-[#FFF2F2] text-[#AB0000]"
       }`}
     >
-      {isPositive ? "+" : "-"}
-      {/* {isPositive ? <FaCaretUp /> : <FaCaretDown />} */}
+      {/* {isPositive ? "+" : "-"} */}
+      {isPositive ? <FaCaretUp /> : <FaCaretDown />}
       {Math.abs(numericValue).toFixed(1)}%
     </div>
   );
