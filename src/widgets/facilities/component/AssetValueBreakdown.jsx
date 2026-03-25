@@ -11,6 +11,53 @@ const DEFAULT_DATA = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
+const CustomTooltip = ({ active, payload }) => {
+  if (!active || !payload || !payload.length) return null;
+  const { name, value, payload: p } = payload[0];
+
+  return (
+    <div
+      style={{
+        background: "#1a1a1a",
+        borderRadius: "999px",
+        padding: "6px 14px 6px 10px",
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        minWidth: "140px",
+        pointerEvents: "none",
+      }}
+    >
+      <span
+        style={{
+          display: "inline-block",
+          width: 9,
+          height: 9,
+          borderRadius: "50%",
+          background: p.color,
+          flexShrink: 0,
+        }}
+      />
+      <span
+        style={{ color: "#fff", fontSize: 13, flex: 1, whiteSpace: "nowrap" }}
+      >
+        {name}
+      </span>
+      <span
+        style={{
+          color: "#fff",
+          fontSize: 13,
+          fontWeight: 600,
+          paddingLeft: 12,
+          whiteSpace: "nowrap",
+        }}
+      >
+        {currency} {Number(value).toLocaleString()}
+      </span>
+    </div>
+  );
+};
+
 function AssetValueBreakdown({ data, currency = "AED" }) {
   const chartItems =
     Array.isArray(data) && data.length > 0 ? data : DEFAULT_DATA;
@@ -52,16 +99,12 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip
-                formatter={(val) =>
-                  `${currency} ${Number(val).toLocaleString()}`
-                }
-              />
+              <Tooltip content={<CustomTooltip />} />
             </PieChart>
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="font-semibold text-2xl leading-[12px] ">
+            <div className="font-semibold text-3xl leading-[12px] ">
               {currency} {formattedTotal}
             </div>
             <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
