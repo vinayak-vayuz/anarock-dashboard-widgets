@@ -65,7 +65,7 @@ const OccupancyOverviewCard = ({
 
   return (
     <div>
-      <div className="bg-white rounded-[12px] shadow-[0_0_12px_0_#EAF2FF]  p-[16px] h-[128px]">
+      <div className="bg-white rounded-[12px] shadow-[0_0_12px_0_#EAF2FF]  p-[16px] mb-4">
         <div className="flex items-center gap-[12px] mb-4">
           <GoPeople className="h-8 w-8 text-[#329DFF]" />
           <div className="font-medium text-[#121212]">Occupancy Overview</div>
@@ -73,7 +73,7 @@ const OccupancyOverviewCard = ({
 
         <div className="flex items-center justify-between gap-">
           <div>
-            <div className="text-xs leading-[16px] text-[#64748B]">
+            <div className="text-sm leading-[16px] text-[#64748B]">
               Occupied Units
             </div>
             <div className="flex items-center gap-[4px]">
