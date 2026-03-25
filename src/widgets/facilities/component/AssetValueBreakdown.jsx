@@ -27,6 +27,8 @@ export const CustomTooltip = ({ active, payload, currency }) => {
         gap: "8px",
         minWidth: "140px",
         pointerEvents: "none",
+        zIndex: 9999, // add this
+        position: "relative",
       }}
     >
       <span
