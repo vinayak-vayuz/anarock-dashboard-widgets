@@ -11,7 +11,7 @@ const DEFAULT_DATA = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload, currency }) => {
   if (!active || !payload || !payload.length) return null;
   const { name, value, payload: p } = payload[0];
 
@@ -99,7 +99,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<CustomTooltip currency={currency} />} />
             </PieChart>
           </ResponsiveContainer>
 
