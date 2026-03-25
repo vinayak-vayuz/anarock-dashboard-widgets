@@ -182,8 +182,8 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                   </span>
                 </div>
               ) : (
-                <div className="flex flex-col gap-[9px]">
-                  <div className="font-semibold text-3xl leading-[12px]">
+                <div>
+                  <div className="font-semibold text-3xl leading-[12px] mb-[9px]">
                     {currency} {formattedTotal}
                   </div>
                   <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
@@ -195,7 +195,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
           </div>
 
           <div className="flex justify-between w-full px-[8px] sm:px-[12px] mt-4 text-[14px]">
-            <div className="flex flex-col  items-center gap-[8px]">
+            <div className="flex flex-col gap-[8px]">
               {chartItems.slice(0, 3).map((item) => (
                 <div key={item.name} className="flex items-center gap-[8px]">
                   <div
