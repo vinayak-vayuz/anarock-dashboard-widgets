@@ -128,7 +128,7 @@ const MoveInOutTrendsCard = ({
     <Card
       title="Move-in/Out Trends"
       className="w-full h-[360px]"
-      period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
+      // period={<OpenInNewOutlinedIcon className="text-[20px] text-[#884EA7]" />}
       titleWeight="semi-bold"
     >
       <Line data={chartData} options={options} />
