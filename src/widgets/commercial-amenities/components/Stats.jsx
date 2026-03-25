@@ -31,7 +31,7 @@ function SingleStats({ data }) {
               </div>
 
               <div
-                className={`flex items-center pt-[8px] text-[12px] leading-[16px] ${
+                className={`flex items-center  text-[12px] leading-[16px] ${
                   card.delta ? "gap-[8px]" : ""
                 }`}
               >
