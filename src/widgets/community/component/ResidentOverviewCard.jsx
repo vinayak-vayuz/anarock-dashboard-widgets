@@ -3,6 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { GoHome } from "react-icons/go";
 import Card from "../../components/Card";
+import { Chip } from "../../utils";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -112,7 +113,7 @@ const ResidentOverviewCard = ({
             </div>
           </div>
           <div className="text-[10px] text-[#1FA05B] flex gap-[8px] items-center">
-            {resolvedGrowthPct}{" "}
+            <Chip value={resolvedGrowthPct} />
             <div className="text-[#64748B] ">Compared to last month</div>
           </div>
         </div>
