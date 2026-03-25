@@ -82,9 +82,9 @@ const RevenuebyCategory = ({ data }) => {
     <Card
       title="Revenue by Category"
       className="w-full h-[362px]"
-      period={
-        <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
-      }
+      // period={
+      //   <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
+      // }
       titleWeight="semi-bold"
     >
       <Bar data={chartData} options={options} />

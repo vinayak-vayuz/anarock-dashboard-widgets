@@ -15,10 +15,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
   const chartItems =
     Array.isArray(data) && data.length > 0 ? data : DEFAULT_DATA;
 
-  const total = chartItems.reduce(
-    (sum, d) => sum + Number(d.value ?? 0),
-    0
-  );
+  const total = chartItems.reduce((sum, d) => sum + Number(d.value ?? 0), 0);
 
   let formattedTotal = "";
 
@@ -30,17 +27,12 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
     formattedTotal = total.toString();
   }
 
-
-
-
-
-
   return (
     <Card
       title="Asset Value Breakdown"
-      period={
-        <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
-      }
+      // period={
+      //   // <OpenInNewOutlinedIcon className="h-5 w-5 text-[#884EA7] cursor-pointer" />
+      // }
       className="h-[362px]"
       titleWeight="semi-bold"
     >
@@ -69,7 +61,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="font-medium text-lg leading-[12px] ">
+            <div className="font-semibold text-2xl leading-[12px] ">
               {currency} {formattedTotal}
             </div>
             <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
