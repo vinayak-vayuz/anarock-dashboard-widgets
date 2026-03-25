@@ -58,7 +58,10 @@ function GuardPatrols({ data = {} }) {
                 ))}
               </Pie>
 
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip
+                content={<CustomTooltip />}
+                wrapperStyle={{ zIndex: 9999 }}
+              />
             </PieChart>
           </ResponsiveContainer>
 
