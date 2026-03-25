@@ -182,14 +182,14 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                   </span>
                 </div>
               ) : (
-                <>
+                <div className="flex flex-col gap-[9px]">
                   <div className="font-semibold text-3xl leading-[12px]">
                     {currency} {formattedTotal}
                   </div>
                   <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
                     Total Assets
                   </div>
-                </>
+                </div>
               )}
             </div>
           </div>
