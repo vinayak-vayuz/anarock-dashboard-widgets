@@ -73,9 +73,7 @@ const OccupancyOverviewCard = ({
 
         <div className="flex items-center justify-between gap-">
           <div>
-            <div className="text-sm leading-[16px] text-[#64748B]">
-              Occupied Units
-            </div>
+            <div className=" leading-[16px] text-[#64748B]">Occupied Units</div>
             <div className="flex items-center gap-[4px]">
               <div className="text-[28px] leading-[32px] font-medium text-[#121212]">
                 {resolvedOccupiedUnits}
