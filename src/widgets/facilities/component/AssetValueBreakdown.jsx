@@ -84,72 +84,74 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
       className="h-[362px]"
       titleWeight="semi-bold"
     >
-      <div className="flex flex-col items-center justify-center">
-        <div className="w-[214px] h-[181px] relative">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={chartItems}
-                innerRadius={60}
-                outerRadius={90}
-                paddingAngle={2}
-                dataKey="value"
-                nameKey="name"
-              >
-                {chartItems.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip content={<CustomTooltip currency={currency} />} />
-            </PieChart>
-          </ResponsiveContainer>
+      {total > 0 ? (
+        <div className="flex flex-col items-center justify-center">
+          <div className="w-[214px] h-[181px] relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartItems}
+                  innerRadius={60}
+                  outerRadius={90}
+                  paddingAngle={2}
+                  dataKey="value"
+                  nameKey="name"
+                >
+                  {chartItems.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip currency={currency} />} />
+              </PieChart>
+            </ResponsiveContainer>
 
-          {total > 0 ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <div className="font-semibold text-3xl leading-[12px] ">
-                {currency} {formattedTotal}
-              </div>
-              <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
-                Total Assets
-              </div>
-            </div>
-          ) : (
-            <div className="h-full flex items-center justify-center">
-              <EmptyState />
-            </div>
-          )}
-        </div>
-
-        <div className="flex justify-between w-full px-[8px] sm:px-[32px] mt-4 text-[14px]">
-          <div className="flex flex-col gap-[8px]">
-            {chartItems.slice(0, 3).map((item) => (
-              <div key={item.name} className="flex items-center gap-[8px]">
-                <div
-                  className="inline-block h-[7px] w-[7px] rotate-45"
-                  style={{ backgroundColor: item.color }}
-                />
-                <div className="text-[#64748B] leading-[16px] !text-[12px]">
-                  {item.name}
+            {
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <div className="font-semibold text-3xl leading-[12px] ">
+                  {currency} {formattedTotal}
+                </div>
+                <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
+                  Total Assets
                 </div>
               </div>
-            ))}
+            }
           </div>
 
-          <div className="flex flex-col gap-[8px] items-start">
-            {chartItems.slice(3).map((item) => (
-              <div key={item.name} className="flex items-center gap-[8px]">
-                <div
-                  className="inline-block h-[7px] w-[7px] rotate-45"
-                  style={{ backgroundColor: item.color }}
-                />
-                <div className="text-[#64748B] leading-[16px] !text-[12px]">
-                  {item.name}
+          <div className="flex justify-between w-full px-[8px] sm:px-[32px] mt-4 text-[14px]">
+            <div className="flex flex-col gap-[8px]">
+              {chartItems.slice(0, 3).map((item) => (
+                <div key={item.name} className="flex items-center gap-[8px]">
+                  <div
+                    className="inline-block h-[7px] w-[7px] rotate-45"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <div className="text-[#64748B] leading-[16px] !text-[12px]">
+                    {item.name}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-[8px] items-start">
+              {chartItems.slice(3).map((item) => (
+                <div key={item.name} className="flex items-center gap-[8px]">
+                  <div
+                    className="inline-block h-[7px] w-[7px] rotate-45"
+                    style={{ backgroundColor: item.color }}
+                  />
+                  <div className="text-[#64748B] leading-[16px] !text-[12px]">
+                    {item.name}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex items-center justify-center">
+          <EmptyState />
+        </div>
+      )}
     </Card>
   );
 }
