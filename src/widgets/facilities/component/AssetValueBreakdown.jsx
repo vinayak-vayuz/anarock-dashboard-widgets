@@ -109,7 +109,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
             </ResponsiveContainer>
 
             {
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div className="absolute inset-0 flex flex-col items-center gap-3 justify-center pointer-events-none">
                 <div className="font-semibold text-3xl leading-[12px] ">
                   {currency} {formattedTotal}
                 </div>
