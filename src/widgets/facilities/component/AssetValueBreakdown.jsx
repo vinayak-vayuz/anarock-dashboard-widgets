@@ -27,8 +27,6 @@ export const CustomTooltip = ({ active, payload, currency }) => {
         gap: "8px",
         minWidth: "140px",
         pointerEvents: "none",
-        zIndex: 9999, // add this
-        position: "relative",
       }}
     >
       <span
@@ -103,7 +101,14 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip content={<CustomTooltip currency={currency} />} />
+                <Tooltip
+                  content={
+                    <CustomTooltip
+                      currency={currency}
+                      wrapperStyle={{ zIndex: 9999 }}
+                    />
+                  }
+                />
               </PieChart>
             </ResponsiveContainer>
 
