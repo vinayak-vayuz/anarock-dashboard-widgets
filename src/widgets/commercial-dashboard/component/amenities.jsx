@@ -137,7 +137,7 @@ function Amenities({ data }) {
 
               {growthPercentage !== null && (
                 <div
-                  className={`w-fit inline-flex items-center gap-[4px] text-[10px] leading-[14px] p-[4px] rounded-[4px] ${
+                  className={`w-fit inline-flex items-center gap-[4px] text-[10px] leading-[14px] p-[4px] rounded-[4px] whitespace-nowrap ${
                     isGrowthPositive
                       ? "text-[#1FA05B] bg-green-50"
                       : "text-red-600 bg-red-50"
