@@ -2,6 +2,7 @@ import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
+import EmptyState from "../../utils/EmptyState";
 
 const DEFAULT_DATA = [
   { name: "Gym Equipment", value: 1000000, color: "#08B6D4" },
@@ -103,7 +104,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
             </PieChart>
           </ResponsiveContainer>
 
-          {formattedTotal == 0 ? (
+          {total > 0 ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
               <div className="font-semibold text-3xl leading-[12px] ">
                 {currency} {formattedTotal}
