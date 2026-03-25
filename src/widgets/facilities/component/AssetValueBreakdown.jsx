@@ -102,12 +102,8 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                   ))}
                 </Pie>
                 <Tooltip
-                  content={
-                    <CustomTooltip
-                      currency={currency}
-                      wrapperStyle={{ zIndex: 9999 }}
-                    />
-                  }
+                  content={<CustomTooltip currency={currency} />}
+                  wrapperStyle={{ zIndex: 9999 }}
                 />
               </PieChart>
             </ResponsiveContainer>
