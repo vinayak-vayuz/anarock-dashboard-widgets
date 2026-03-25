@@ -12,7 +12,7 @@ import {
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
-const MaintenanceStatus = ({ data }) => {
+const MaintenanceStatus = ({ data , title }) => {
   const [hiddenBars, setHiddenBars] = useState({});
 
   const dummyData = [
@@ -79,7 +79,7 @@ const MaintenanceStatus = ({ data }) => {
   if (Array.isArray(data) && data.length === 0) {
     return (
       <Card
-        title="Maintenance Status"
+        title={title || "Maintenance Status"}
         titleWeight="semi-bold"
         className="h-full"
       >
@@ -93,7 +93,7 @@ const MaintenanceStatus = ({ data }) => {
     );
   }
   return (
-    <Card title="Maintenance Status" titleWeight="semi-bold" className="h-full">
+    <Card title={title || "Maintenance Status"}  titleWeight="semi-bold" className="h-full">
       <div className="w-full h-[260px] flex items-center justify-center">
         {Array.isArray(data) && data.length === 0 ? (
           <div className="text-[#94A3B8] text-sm">No Data Found</div>

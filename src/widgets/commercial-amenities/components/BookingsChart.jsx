@@ -38,7 +38,7 @@ const CustomYAxisTick = ({ x, y, payload }) => {
   );
 };
 
-function BookingsChart({ data }) {
+function BookingsChart({ data ,bar}) {
 
   const isEmptyArray = Array?.isArray(data) && data?.length === 0;
 
@@ -102,7 +102,7 @@ const chartData = baseData.map((item) => ({
               <Bar
                 dataKey="total_booking"
                 barSize={40}
-                fill="#8B5CF6"
+                fill={bar || "#8B5CF6"}
               />
 
             </BarChart>

@@ -20,7 +20,7 @@ const dummyData = [
   { building_name: "HP", no_of_visitors: 1650 },
 ];
 
-const OrganisationWiseVisitorsCard = ({ data }) => {
+const OrganisationWiseVisitorsCard = ({ data ,title,bar}) => {
   const isEmptyArray = Array.isArray(data) && data?.length === 0;
 
   const chartData =
@@ -32,7 +32,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
 
   return (
     <Card
-      title="Organisation Wise Visitors"
+      title={title || "Organisation Wise Visitors"}
       titleWeight="semi-bold"
       className="h-[360px]"
       childrenClassName="mt-6"
@@ -40,7 +40,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
       <div className="w-full h-[260px] flex items-center justify-center">
         {isEmptyArray ? (
           <EmptyState
-            title="No Visitors Found"
+            title={title || "Organisation Wise Visitors"}
             description="Catch up all the data. Change the date range to see the data."
           />
         ) : (
@@ -81,7 +81,7 @@ const OrganisationWiseVisitorsCard = ({ data }) => {
                 dataKey="no_of_visitors"
                 name="Visitors"
                 maxBarSize={55}
-                fill="#3C81F6"
+                fill={bar || "#3C81F6"}
               />
             </BarChart>
           </ResponsiveContainer>
