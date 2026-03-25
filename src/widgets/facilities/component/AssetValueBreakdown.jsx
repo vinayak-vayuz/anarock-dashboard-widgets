@@ -12,49 +12,83 @@ const DEFAULT_DATA = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
-export const CustomTooltip = ({ active, payload, currency }) => {
+export const CustomTooltip = ({
+  active,
+  payload,
+  currency,
+  coordinate,
+  viewBox,
+}) => {
   if (!active || !payload || !payload.length) return null;
   const { name, value, payload: p } = payload[0];
 
+  const chartMidX = (viewBox?.width ?? 200) / 2;
+  const isRight = (coordinate?.x ?? 0) > chartMidX;
+
+  const arrowStyle = {
+    position: "absolute",
+    top: "50%",
+    transform: "translateY(-50%)",
+    width: 0,
+    height: 0,
+    borderTop: "6px solid transparent",
+    borderBottom: "6px solid transparent",
+    ...(isRight
+      ? {
+          right: -6,
+          borderLeft: "6px solid #1a1a1a",
+          borderRight: "none",
+        }
+      : {
+          left: -6,
+          borderRight: "6px solid #1a1a1a",
+          borderLeft: "none",
+        }),
+  };
+
   return (
-    <div
-      style={{
-        background: "#1a1a1a",
-        borderRadius: "8px",
-        padding: "6px 14px 6px 10px",
-        display: "flex",
-        alignItems: "center",
-        gap: "8px",
-        minWidth: "140px",
-        pointerEvents: "none",
-      }}
-    >
-      <span
+    <div style={{ position: "relative", display: "inline-flex" }}>
+      <div style={arrowStyle} />
+
+      <div
         style={{
-          display: "inline-block",
-          width: 9,
-          height: 9,
-          borderRadius: "50%",
-          background: p.color,
-          flexShrink: 0,
-        }}
-      />
-      <span
-        style={{ color: "#fff", fontSize: 13, flex: 1, whiteSpace: "nowrap" }}
-      >
-        {name}
-      </span>
-      <span
-        style={{
-          color: "#fff",
-          fontSize: 13,
-          fontWeight: 600,
-          paddingLeft: 12,
-          whiteSpace: "nowrap",
+          background: "#1a1a1a",
+          borderRadius: "8px",
+          padding: "6px 14px 6px 10px",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          minWidth: "140px",
+          pointerEvents: "none",
         }}
       >
-        {currency && currency} {Number(value).toLocaleString()}
-      </span>
+        <span
+          style={{
+            display: "inline-block",
+            width: 9,
+            height: 9,
+            borderRadius: "50%",
+            background: p.color,
+            flexShrink: 0,
+          }}
+        />
+        <span
+          style={{ color: "#fff", fontSize: 13, flex: 1, whiteSpace: "nowrap" }}
+        >
+          {name}
+        </span>
+        <span
+          style={{
+            color: "#fff",
+            fontSize: 13,
+            fontWeight: 600,
+            paddingLeft: 12,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {currency && currency} {Number(value).toLocaleString()}
+        </span>
+      </div>
     </div>
   );
 };
