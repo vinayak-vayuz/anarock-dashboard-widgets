@@ -20,7 +20,7 @@ const CustomTooltip = ({ active, payload, currency }) => {
     <div
       style={{
         background: "#1a1a1a",
-        borderRadius: "500px",
+        borderRadius: "8px",
         padding: "6px 14px 6px 10px",
         display: "flex",
         alignItems: "center",
