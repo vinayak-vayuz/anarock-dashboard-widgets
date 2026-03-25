@@ -104,8 +104,8 @@ function Amenities({ data }) {
       icon={<WavesLadder className="!text-[24px] text-[#8B5CF6]" />}
     >
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-2 gap-[24px]">
-          <div className="flex flex-col gap-[8px]!">
+        <div className="flex gap-[24px]">
+          <div className="w-[65%] flex flex-col gap-[8px]!">
             <div className="text-[12px] leading-[16px] text-[#64748B]">
               Total Bookings
             </div>
@@ -125,12 +125,12 @@ function Amenities({ data }) {
           </div>
 
           {!allUnpaid && (
-            <div className="flex flex-col gap-[8px]! items-end mr-[10px] ">
-              <div className="text-[12px] leading-[16px] text-[#64748B]">
+            <div className="w-[25%] flex flex-col gap-[8px] ">
+              <div className="text-[12px] leading-[16px] text-[#64748B] whitespace-nowrap">
                 Revenue Generated
               </div>
 
-              <div className="text-[28px] leading-[32px] font-medium text-[#329DFF]">
+              <div className="text-[28px] leading-[32px] font-medium text-[#329DFF] whitespace-nowrap">
                 {amenitySummary?.currencyType || "₹"}{" "}
                 {amenitySummary?.todayPaidRevenue ?? "0.00"}
               </div>

@@ -20,7 +20,7 @@ function SingleStats({ data }) {
               />
             }
              className={`${
-    card?.widget === "amenities" ? "h-[139px]" : "h-[132px]"
+    card?.widget === "amenities" ? "h-[139px]" : "h-[124px]"
   }`}
           >
             <div  className={`flex flex-col gap-[8px] ${
