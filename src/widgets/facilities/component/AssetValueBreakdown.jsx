@@ -103,14 +103,20 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
             </PieChart>
           </ResponsiveContainer>
 
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-            <div className="font-semibold text-3xl leading-[12px] ">
-              {currency} {formattedTotal}
+          {formattedTotal == 0 ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div className="font-semibold text-3xl leading-[12px] ">
+                {currency} {formattedTotal}
+              </div>
+              <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
+                Total Assets
+              </div>
             </div>
-            <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
-              Total Assets
+          ) : (
+            <div className="h-full flex items-center justify-center">
+              <EmptyState />
             </div>
-          </div>
+          )}
         </div>
 
         <div className="flex justify-between w-full px-[16px] sm:px-[32px] mt-4 text-[14px]">
