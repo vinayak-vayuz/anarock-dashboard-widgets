@@ -121,7 +121,7 @@ function AccessPointsUsage({ data = [] }) {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                backgroundColor: "#3C81F6",
+                backgroundColor: "#329DFF",
               }}
             />
             <div style={{ color: "#aaa" }}>Entries</div>
@@ -139,7 +139,7 @@ function AccessPointsUsage({ data = [] }) {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                backgroundColor: "#93C5FD",
+                backgroundColor: "#76BDFF",
               }}
             />
             <div style={{ color: "#aaa" }}>Exit</div>
@@ -157,8 +157,8 @@ function AccessPointsUsage({ data = [] }) {
   height={36}
   content={() => {
     const items = [
-      { key: "entries", label: "Entries", color: "#3C81F6" },
-      { key: "exit", label: "Exit", color: "#93C5FD" },
+      { key: "entries", label: "Entries", color: "#329DFF" },
+      { key: "exit", label: "Exit", color: "#76BDFF" },
     ];
 
     return (
@@ -200,14 +200,14 @@ function AccessPointsUsage({ data = [] }) {
            <Bar
   dataKey="entries"
   stackId="a"
-  fill="#3C81F6"
+  fill="#329DFF"
   hide={hiddenKeys.includes("entries")}
 />
             {/* Exit */}
             <Bar
   dataKey="exit"
   stackId="a"
-  fill="#93C5FD"
+  fill="#76BDFF"
   hide={hiddenKeys.includes("exit")}
 />
           </BarChart>
