@@ -12,7 +12,7 @@ function Amenities({ data }) {
           todayPaidRevenue: data?.amenity_summary?.today_paid_revenue ?? "0.00",
           growthPercentage: data?.amenity_summary?.growth_percentage ?? null,
           bookingGrowth: data?.amenity_summary?.booking_growth ?? null,
-          currencyType: data?.amenity_summary?.currency_type ?? "₹",
+          currencyType: data?.amenity_summary?.currency_type ?? "Rs",
         },
         chartData: Array.isArray(data?.chart_data)
           ? data.chart_data.map((item) => ({
@@ -63,7 +63,7 @@ function Amenities({ data }) {
     const bookings = item?.total_bookings || 0;
 
     const revenue = item?.isPaid
-      ? `${amenitySummary?.currencyType || "₹"} ${item?.paid_revenue || "0.00"}`
+      ? `${amenitySummary?.currencyType || "Rs"} ${item?.paid_revenue || "0.00"}`
       : "";
 
     const percentage =
@@ -131,7 +131,7 @@ function Amenities({ data }) {
               </div>
 
               <div className="text-[28px] leading-[32px] font-medium text-[#329DFF] whitespace-nowrap">
-                {amenitySummary?.currencyType || "₹"}{" "}
+                {amenitySummary?.currencyType || "Rs"}{" "}
                 {amenitySummary?.todayPaidRevenue ?? "0.00"}
               </div>
 

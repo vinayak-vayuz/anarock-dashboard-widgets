@@ -4,7 +4,7 @@ import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { Utensils } from "lucide-react";
 import { formatAmount } from "../../utils/index";
 
-const DEFAULT_CURRENCY = "\u20B9";
+const DEFAULT_CURRENCY = "Rs";
 const DEFAULT_OUTLET_COLORS = ["bg-blue-500", "bg-red-500", "bg-purple-700"];
 
 const defaultData = {
