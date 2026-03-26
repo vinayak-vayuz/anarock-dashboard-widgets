@@ -105,9 +105,11 @@ function TicketEscalation({ data = [] }) {
       legend: {
         position: "bottom",
         labels: {
-          usePointStyle: true,
-          pointStyle: "rectRot",
-          padding: 20,
+          usePointStyle: false,
+          pointStyle: "rect",
+          padding: 12,
+          boxWidth: 20,           
+          boxHeight: 8,  
           color: "#64748B",
         },
       },

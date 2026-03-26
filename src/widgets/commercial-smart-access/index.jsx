@@ -19,17 +19,23 @@ function CommercialSmartAccess() {
     { label: "Mobile Entries", value: 969822, color: "#36AB6C" },
     { label: "Mobile Exits", value: 330274, color: "#AB0000" },
   ];
+const dummyAccessData = {
+  total: 79.6,
+  entries: 59350,
+  exit: 40950,
+};
 
   return (
     <>
       <CommercialHeader text="Smart Access" Icon={ScanQrCode} />
       <div className="px-[20px] grid grid-cols-1 lg:grid-cols-3 gap-[24px] mt-6 auto-rows-fr">
-        <AccessOverview />
-        <CardAccess title="Card Access" data={cardAccessData} />
-        <CardAccess title="Mobile Access" data={mobileAccessData} />
+        <AccessOverview  />
+        <AccessPointsUsage
+/>
+        {/* <CardAccess title="Card Access" data={cardAccessData} /> */}
+        {/* <CardAccess title="Mobile Access" data={mobileAccessData} /> */}
       </div>
       <div className="mt-7 px-[20px]">
-        <AccessPointsUsage />
       </div>
     </>
   );
