@@ -134,7 +134,7 @@ const EmployeeFootfall = ({ data: apiData }) => {
         period="Today"
         icon={<BriefcaseBusiness className="!text-[24px] text-[#8B5CF6]" />}
       >
-        <div className="h-full flex items-center justify-center mt-[-20px]">
+        <div className="h-full flex items-center justify-center">
           <EmptyState
             title="No Employee footfall Found"
             description="Catch up all the data. Change the date range to see the data."
