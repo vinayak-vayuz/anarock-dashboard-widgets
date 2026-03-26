@@ -54,7 +54,7 @@ function AccessOverview({ data = null }) {
       <div className="flex flex-col items-center mt-[16px]">
 
         {/* Donut */}
-        <div className="relative w-[200px] h-[200px]">
+        <div className="relative w-[212px] h-[212px]">
 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-[130px] h-[130px] rounded-full shadow-[0px_12px_35px_rgba(0,0,0,0.12)]" />
