@@ -25,9 +25,13 @@ function AccessPointsUsage({ data = [] }) {
   ];
   const [hiddenKeys, setHiddenKeys] = React.useState([]);
 
-  const finalData = data.length ? data : staticData;
+  // ❗ FIX: don't fallback to staticData when empty array is passed
+  const finalData = data && data.length ? data : [];
 
-  // ✅ NEW: check if all values are zero
+  // ✅ NEW: check empty
+  const isEmpty = !data || data.length === 0;
+
+  // ✅ EXISTING: check if all values are zero
   const isAllZero =
     data &&
     data.length > 0 &&
@@ -35,26 +39,28 @@ function AccessPointsUsage({ data = [] }) {
       (item) => Number(item.entries) === 0 && Number(item.exit) === 0
     );
 
+  // ✅ NEW: combined condition
+  const showEmptyState = isEmpty || isAllZero;
   const formatYAxis = (value) => {
     if (value >= 1000) return `${value / 1000}K`;
     return value;
   };
 
   const handleLegendClick = (key) => {
-  setHiddenKeys((prev) => {
-    if (prev.includes(key)) {
-      return prev.filter((item) => item !== key);
-    } else {
-      return [...prev, key];
-    }
-  });
-};
+    setHiddenKeys((prev) => {
+      if (prev.includes(key)) {
+        return prev.filter((item) => item !== key);
+      } else {
+        return [...prev, key];
+      }
+    });
+  };
 
   return (
     <Card title="Access Points Usage" titleWeight="semi-bold" className="h-[362px]">
 
-      {/* ✅ NEW: Empty State Condition */}
-      {isAllZero ? (
+      {/* ✅ UPDATED: Empty State Condition */}
+      {showEmptyState ? (
         <div className="h-[270px] flex items-center justify-center">
           <EmptyState
             title="No access Point Found"
@@ -108,12 +114,10 @@ function AccessPointsUsage({ data = [] }) {
           fontSize: "13px",
         }}
       >
-        {/* Title */}
         <div style={{ fontWeight: 600 }}>
           {props.label}
         </div>
 
-        {/* Entries */}
         {!hiddenKeys.includes("entries") && (
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <div
@@ -131,7 +135,6 @@ function AccessPointsUsage({ data = [] }) {
           </div>
         )}
 
-        {/* Exit */}
         {!hiddenKeys.includes("exit") && (
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <div
@@ -152,64 +155,64 @@ function AccessPointsUsage({ data = [] }) {
     );
   }}
 />
-         <Legend
-  verticalAlign="bottom"
-  height={36}
-  content={() => {
-    const items = [
-      { key: "entries", label: "Entries", color: "#329DFF" },
-      { key: "exit", label: "Exit", color: "#76BDFF" },
-    ];
 
-    return (
-      <div style={{ display: "flex", gap: "20px", justifyContent: "center", marginTop: "20px" }}>
-        {items.map((item, index) => {
-          const isHidden = hiddenKeys.includes(item.key);
+            <Legend
+              verticalAlign="bottom"
+              height={36}
+              content={() => {
+                const items = [
+                  { key: "entries", label: "Entries", color: "#329DFF" },
+                  { key: "exit", label: "Exit", color: "#76BDFF" },
+                ];
 
-          return (
-            <div
-              key={index}
-              onClick={() => handleLegendClick(item.key)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                cursor: "pointer",
-                opacity: isHidden ? 0.4 : 1,
+                return (
+                  <div style={{ display: "flex", gap: "20px", justifyContent: "center", marginTop: "20px" }}>
+                    {items.map((item, index) => {
+                      const isHidden = hiddenKeys.includes(item.key);
+
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => handleLegendClick(item.key)}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "8px",
+                            cursor: "pointer",
+                            opacity: isHidden ? 0.4 : 1,
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "20px",
+                              height: "8px",
+                              backgroundColor: item.color,
+                            }}
+                          />
+                          <div style={{ fontSize: "12px", color: "#64748B" }}>
+                            {item.label}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
               }}
-            >
-              <div
-                style={{
-                  width: "20px",
-                  height: "8px",
-                  backgroundColor: item.color,
-                }}
-              />
-              <div style={{ fontSize: "12px", color: "#64748B" }}>
-                {item.label}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }}
-/>
+            />
 
-            {/* Entries */}
-           <Bar
-  dataKey="entries"
-  stackId="a"
-  fill="#329DFF"
-  hide={hiddenKeys.includes("entries")}
-/>
-            {/* Exit */}
             <Bar
-  dataKey="exit"
-  stackId="a"
-  fill="#76BDFF"
-  hide={hiddenKeys.includes("exit")}
-/>
+              dataKey="entries"
+              stackId="a"
+              fill="#329DFF"
+              hide={hiddenKeys.includes("entries")}
+            />
+
+            <Bar
+              dataKey="exit"
+              stackId="a"
+              fill="#76BDFF"
+              hide={hiddenKeys.includes("exit")}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
