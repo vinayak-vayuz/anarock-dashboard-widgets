@@ -17,11 +17,11 @@ import EmptyState from "../../utils/EmptyState";
 function AccessPointsUsage({ data = [] }) {
   // Updated data with entries + exit
   const staticData = [
-    { name: "Google", entries: 4, exit: 4 },
-    { name: "Uber", entries: 3, exit: 3 },
-    { name: "ANAROCK", entries: 3, exit: 3 },
-    { name: "Flipkart", entries: 2, exit: 2 },
-    { name: "HP", entries: 22, exit: 1 },
+    { block_name: "Google", entries: 4, exit: 4 },
+    { block_name: "Uber", entries: 3, exit: 3 },
+    { block_name: "ANAROCK", entries: 3, exit: 3 },
+    { block_name: "Flipkart", entries: 2, exit: 2 },
+    { block_name: "HP", entries: 22, exit: 1 },
   ];
   const [hiddenKeys, setHiddenKeys] = React.useState([]);
 
@@ -74,7 +74,7 @@ function AccessPointsUsage({ data = [] }) {
             <ReferenceLine y={0} stroke="#EBEBEB" />
 
             <XAxis
-              dataKey="name"
+              dataKey="block_name"
               tick={{ fontSize: 12, fill: "#64748B" }}
               axisLine={false}
               tickLine={false}
@@ -93,7 +93,7 @@ function AccessPointsUsage({ data = [] }) {
   content={(props) => {
     if (!props.active || !props.label) return null;
 
-    const fullData = finalData.find(item => item.name === props.label);
+    const fullData = finalData.find(item => item.block_name === props.label);
 
     return (
       <div
@@ -124,7 +124,7 @@ function AccessPointsUsage({ data = [] }) {
                 backgroundColor: "#3C81F6",
               }}
             />
-            <div style={{ color: "#aaa" }}>entries</div>
+            <div style={{ color: "#aaa" }}>Entries</div>
             <div style={{ fontWeight: 700 }}>
               {fullData?.entries ?? 0}
             </div>
@@ -142,7 +142,7 @@ function AccessPointsUsage({ data = [] }) {
                 backgroundColor: "#93C5FD",
               }}
             />
-            <div style={{ color: "#aaa" }}>exit</div>
+            <div style={{ color: "#aaa" }}>Exit</div>
             <div style={{ fontWeight: 700 }}>
               {fullData?.exit ?? 0}
             </div>
@@ -157,8 +157,8 @@ function AccessPointsUsage({ data = [] }) {
   height={36}
   content={() => {
     const items = [
-      { key: "entries", label: "entries", color: "#3C81F6" },
-      { key: "exit", label: "exit", color: "#93C5FD" },
+      { key: "entries", label: "Entries", color: "#3C81F6" },
+      { key: "exit", label: "Exit", color: "#93C5FD" },
     ];
 
     return (

@@ -6,7 +6,7 @@ import EmptyState from "../../utils/EmptyState";
 
 function AccessOverview({ data = null }) {
   const staticApiData = {
-    total: 79.6,
+    total_entries: 79.6,
     entries: 59350,
     exit: 40950,
   };
@@ -36,7 +36,7 @@ function AccessOverview({ data = null }) {
     { name: "Exit", value: totalExit, color: "#329DFF" },
   ];
 
-  const totalAccess = safeNumber(finalData.total);
+  const totalAccess = safeNumber(finalData.total_entries);
 
   return (
     <Card className="h-[362px]" title="Access Overview" titleWeight="semi-bold">
@@ -66,7 +66,7 @@ function AccessOverview({ data = null }) {
                 <Pie
                   data={chartData}
                   dataKey="value"
-                  innerRadius={60}
+                  innerRadius={65}
                   outerRadius={100}
                   startAngle={360}
                   endAngle={-180}
