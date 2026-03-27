@@ -14,6 +14,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../components/datepicker.css";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 
 const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
   const [endDate, setEndDate] = useState(new Date());
@@ -158,7 +159,9 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
               />
 <Tooltip
   cursor={false}
-  content={({ active, payload, label, coordinate }) => {
+  content={(props) => {
+    const { active, payload, label } = props;
+
     if (!active || !payload?.length) return null;
 
     const formattedLabel = new Date(label).toLocaleDateString("en-GB", {
@@ -166,29 +169,14 @@ const WeeklyVisitorCard = ({ data = [], onDateChange }) => {
       month: "short",
     });
 
-    // ✅ Check if current point is last
-    const isLastPoint =
-      payload[0]?.payload === chartData[chartData.length - 1];
-
-    const xPosition = isLastPoint
-      ? coordinate.x - 70
-      : coordinate.x;
-
     return (
-      <div
-        style={{
-          position: "absolute",
-          transform: `translate(${xPosition}px, ${coordinate.y - 40}px)`,
-          pointerEvents: "none",
-          zIndex: 99999,
-        }}
-      >
+      <FixTooltip {...props} data={chartData}>
         <CommercialCustomTooltip
           active={active}
           payload={payload}
           label={formattedLabel}
         />
-      </div>
+      </FixTooltip>
     );
   }}
 />

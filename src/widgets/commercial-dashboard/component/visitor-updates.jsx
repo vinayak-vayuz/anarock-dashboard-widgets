@@ -12,6 +12,7 @@ import Tippy from "@tippyjs/react/headless";
 
 import Card from "../../components/Card";
 import { LuDoorOpen } from "react-icons/lu";
+import FixTooltip from "../../utils/Tooltip";
 
 /* -------------------- STATIC DATA -------------------- */
 
@@ -331,7 +332,13 @@ function VisitorUpdates({ data }) {
                 domain={[0, yAxisMax]}
                 tick={{ fill: "#64748B", fontSize: 10, fontWeight: 400 }}
               />
-              <RTooltip content={<HourlyTooltip />} />
+              <RTooltip
+  content={(props) => (
+    <FixTooltip {...props} data={chart_data}>
+      <HourlyTooltip {...props} />
+    </FixTooltip>
+  )}
+/>
               <Line
                 type="monotone"
                 dataKey="walkins"
