@@ -3,6 +3,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/CardNoLogo";
 import { CommercialCustomTooltip } from "../../utils";
 import EmptyState from "../../utils/EmptyState";
+import FixTooltip from "../../utils/Tooltip";
 
 function AccessOverview({ data = null }) {
   const staticApiData = {
@@ -79,9 +80,12 @@ function AccessOverview({ data = null }) {
                 </Pie>
 
                 <Tooltip
-                  content={<CommercialCustomTooltip />}
-                  wrapperStyle={{ zIndex: 9999 }}
-                />
+  content={(props) => (
+    <FixTooltip {...props} data={chartData}>
+      <CommercialCustomTooltip {...props} />
+    </FixTooltip>
+  )}
+/>
               </PieChart>
             </ResponsiveContainer>
           </div>

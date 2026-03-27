@@ -2,6 +2,7 @@ import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/Card";
 import { LuReceiptText } from "react-icons/lu";
+import FixTooltip from "../../utils/Tooltip";
 const CustomTooltip = ({ active, payload }) => {
   if (!active || !payload || !payload.length) return null;
 
@@ -97,10 +98,13 @@ function TicketStatus({ data = null }) {
                   <Cell key={index} fill={entry.color} />
                 ))}
               </Pie>
-              <Tooltip
-                content={<CustomTooltip />}
-                wrapperStyle={{ zIndex: 1000 }}
-              />
+             <Tooltip
+  content={(props) => (
+    <FixTooltip {...props} data={chartData}>
+      <CustomTooltip {...props} />
+    </FixTooltip>
+  )}
+/>
             </PieChart>
           </ResponsiveContainer>
 
