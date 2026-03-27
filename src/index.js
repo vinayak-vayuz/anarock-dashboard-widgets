@@ -57,7 +57,7 @@ export { default as CardAccess } from "./widgets/commercial-smart-access/compone
 export { default as MobileAccess } from "./widgets/commercial-smart-access/component/CardAccess";
 export { default as AccessPointsUsage } from "./widgets/commercial-smart-access/component/AccessPointsUsage";
 
-export { default as Tickets } from "./widgets/community/component/UnitStatusPie";
+export { default as Tickets } from "./widgets/commercial-helpdesk/component/Tickets";
 export { default as TicketsperCategory } from "./widgets/commercial-helpdesk/component/TicketsPerCategory";
 export { default as MetricCard } from "./widgets/commercial-helpdesk/component/Resolution";
 
