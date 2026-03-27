@@ -10,7 +10,8 @@ import {
 } from "recharts";
 import { MessageSquare } from "lucide-react";
 import EmptyState from "../../utils/EmptyState";
-import {CustomTooltip}  from "../../utils";
+import {CommercialCustomTooltip}  from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 
 /* Dummy fallback data */
 const dummyData = [
@@ -92,11 +93,21 @@ const chartData = baseData.map((item) => ({
                 tick={<CustomYAxisTick />}
               />
 
-                 <Tooltip
-                              content={<CustomTooltip />}
-                              cursor={{ fill: "transparent" }}
-                              position={{ x: 300, y: 0 }}
-              />
+
+<Tooltip
+  cursor={{ fill: "transparent" }}
+  position={{ x: 300, y: 0 }}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={chartData}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
 
               {/* Fixed bar color */}
               <Bar

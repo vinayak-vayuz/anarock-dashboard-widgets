@@ -12,6 +12,7 @@ import {
   Legend,
 } from "recharts";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 import EmptyState from "../../utils/EmptyState";
 
 function AccessPointsUsage({ data = [] }) {
@@ -95,65 +96,45 @@ function AccessPointsUsage({ data = [] }) {
 
 <Tooltip
   cursor={false}
-  wrapperStyle={{ zIndex: 1000 }}
-  content={(props) => {
-    if (!props.active || !props.label) return null;
+  content={(props) => (
+    <FixTooltip {...props} data={finalData}>
+      {(() => {
+        if (!props.active || !props.label) return null;
 
-    const fullData = finalData.find(item => item.block_name === props.label);
+        const fullData = finalData.find(
+          (item) => item.block_name === props.label
+        );
 
-    return (
-      <div
-        style={{
-          background: "#111",
-          color: "#fff",
-          padding: "8px 14px",
-          borderRadius: "6px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "6px",
-          fontSize: "13px",
-        }}
-      >
-        <div style={{ fontWeight: 600 }}>
-          {props.label}
-        </div>
+        return (
+          <div
+            className="bg-[#111] text-white px-[14px] py-[8px] rounded-[6px] flex flex-col gap-[6px] text-[13px]"
+          >
+            <div className="font-semibold">{props.label}</div>
 
-        {!hiddenKeys.includes("entries") && (
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <div
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                backgroundColor: "#329DFF",
-              }}
-            />
-            <div style={{ color: "#aaa" }}>Entries</div>
-            <div style={{ fontWeight: 700 }}>
-              {fullData?.entries ?? 0}
-            </div>
+            {!hiddenKeys.includes("entries") && (
+              <div className="flex items-center gap-[8px]">
+                <div className="w-2 h-2 rounded-full bg-[#329DFF]" />
+                <div className="text-[#aaa]">Entries</div>
+                <div className="font-bold">
+                  {fullData?.entries ?? 0}
+                </div>
+              </div>
+            )}
+
+            {!hiddenKeys.includes("exit") && (
+              <div className="flex items-center gap-[8px]">
+                <div className="w-2 h-2 rounded-full bg-[#76BDFF]" />
+                <div className="text-[#aaa]">Exit</div>
+                <div className="font-bold">
+                  {fullData?.exit ?? 0}
+                </div>
+              </div>
+            )}
           </div>
-        )}
-
-        {!hiddenKeys.includes("exit") && (
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <div
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                backgroundColor: "#76BDFF",
-              }}
-            />
-            <div style={{ color: "#aaa" }}>Exit</div>
-            <div style={{ fontWeight: 700 }}>
-              {fullData?.exit ?? 0}
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  }}
+        );
+      })()}
+    </FixTooltip>
+  )}
 />
 
             <Legend

@@ -3,6 +3,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/CardNoLogo";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
+
 function GuardPatrols({ data }) {
 
   const chartData = [
@@ -55,10 +57,19 @@ function GuardPatrols({ data }) {
                 ))}
               </Pie>
 
-              <Tooltip
-                cursor={false}
-                content={<CommercialCustomTooltip />}
-              />
+             <Tooltip
+  cursor={false}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={chartData}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
             </PieChart>
           </ResponsiveContainer>
 

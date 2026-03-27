@@ -3,6 +3,7 @@ import Card from "../../components/CardNoLogo";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 
 const dummyData = [
   { facility_name: "Table Tennis", paid_revenue: "24000.00" },
@@ -79,14 +80,21 @@ function AmenityWiseRevenue({ data, currencyType }) {
                   </Pie>
 
                   <Tooltip
-                    cursor={false}
-                    content={(props) => (
-                      <CommercialCustomTooltip
-                        {...props}
-                        formatter={(value) => formatCurrency(value)}
-                      />
-                    )}
-                  />
+  cursor={false}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={pieData}>
+        <CommercialCustomTooltip
+          {...props}
+          formatter={(value) => formatCurrency(value)}
+        />
+      </FixTooltip>
+    );
+  }}
+/>
                 </PieChart>
               </ResponsiveContainer>
             </div>

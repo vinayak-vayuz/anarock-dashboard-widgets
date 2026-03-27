@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 const MaintenanceStatus = ({ data , title }) => {
   const [hiddenBars, setHiddenBars] = useState({});
 
@@ -126,56 +127,49 @@ const MaintenanceStatus = ({ data , title }) => {
                   allowDecimals={false}
                 />
 
-                <Tooltip
-                  cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
-                  content={({ active, payload, label }) => {
-                    if (!active || !payload || !payload.length) return null;
+              <Tooltip
+  cursor={{ fill: "rgba(148, 163, 184, 0.12)" }}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active || !props.payload || !props.payload.length) return null;
 
-                    return (
-                      <div
-                        style={{
-                          backgroundColor: "#000",
-                          borderRadius: "10px",
-                          padding: "10px 14px",
-                          fontSize: "12px",
-                          color: "#fff"
-                        }}
-                      >
-                        <div style={{ marginBottom: "6px", fontWeight: 600 }}>
-                          {label}
-                        </div>
+    return (
+      <FixTooltip {...props} data={chartData}>
+        <div
+          className="bg-black rounded-[10px] px-[14px] py-[10px] text-[12px] text-white"
+        >
+          <div className="mb-[6px] font-semibold">
+            {props.label}
+          </div>
 
-                        {payload.map((item, index) => {
-                          const color = item.color || item.fill || "#fff";
+          {props.payload.map((item, index) => {
+            const color = item.color || item.fill || "#fff";
 
-                          return (
-                            <div
-                              key={index}
-                              style={{ display: "flex", alignItems: "center", gap: "6px" }}
-                            >
-                              {/* Color Dot */}
-                              <span
-                                style={{
-                                  width: "8px",
-                                  height: "8px",
-                                  borderRadius: "50%",
-                                  backgroundColor: color,
-                                  display: "inline-block"
-                                }}
-                              />
-
-                              <span style={{ color: "#D1D3D4" }}>{item.name}</span>
-
-                              <span style={{ color: "#fff", fontWeight: 600 }}>
-                                {item.value}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  }}
+            return (
+              <div
+                key={index}
+                className="flex items-center gap-[6px]"
+              >
+                <span
+                  className="w-2 h-2 rounded-full inline-block"
+                  style={{ backgroundColor: color }}
                 />
+
+                <span className="text-[#D1D3D4]">
+                  {item.name}
+                </span>
+
+                <span className="text-white font-semibold">
+                  {item.value}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </FixTooltip>
+    );
+  }}
+/>
                 <Legend
                   verticalAlign="bottom"
                   align="center"

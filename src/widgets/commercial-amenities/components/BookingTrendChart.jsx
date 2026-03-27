@@ -11,6 +11,8 @@ import {
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
+
 /* Dummy fallback data */
 const dummyData = [
   { building_name: "Google", no_of_booking: 1 },
@@ -72,11 +74,19 @@ function BookingTrendChart({ data }) {
                 tickFormatter={(value) => `${value ?? 0}`}
               />
 
-              <Tooltip
-                cursor={false}
-                content={<CommercialCustomTooltip />}
-              />
+             <Tooltip
+  cursor={false}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
 
+    return (
+      <FixTooltip {...props} data={chartData}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
               {/* Fixed bar color */}
               <Bar
                 dataKey="no_of_booking"

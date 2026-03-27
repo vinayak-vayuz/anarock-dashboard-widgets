@@ -11,6 +11,7 @@ import {
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 /* Dummy fallback data */
 const dummyData = [
   { building_name: "Google", no_of_visitors: 1000 },
@@ -72,9 +73,17 @@ const OrganisationWiseVisitorsCard = ({ data ,title,bar}) => {
               />
 
               <Tooltip
-                cursor={false}
-                content={<CommercialCustomTooltip />}
-              />
+  cursor={false}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={chartData}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
 
               {/* Fixed bar color */}
               <Bar

@@ -10,7 +10,8 @@ import {
 } from "recharts";
 import Card from "../../components/CardNoLogo";
 import EmptyState from "../../utils/EmptyState";
-import { CustomTooltip } from "../../utils";
+import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 
 const CustomYAxisTick = ({ x, y, payload }) => {
   const words = payload.value.split(" ");
@@ -83,10 +84,19 @@ function TicketsPerCategory({ data = [] }) {
               />
 
               <Tooltip
-                content={<CustomTooltip />}
-                cursor={{ fill: "transparent" }}
-                position={{ x: 300, y: 0 }}
-              />
+  cursor={{ fill: "transparent" }}
+  position={{ x: 300, y: 0 }}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={chartData}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
 
               <Bar dataKey="value" barSize={36} fill="#08B6D4" />
             </BarChart>

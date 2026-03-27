@@ -14,9 +14,6 @@ const FixTooltip = ({
 }) => {
   if (!active || !payload?.length) return null;
 
-  const isLastPoint =
-    payload[0]?.payload === data[data.length - 1];
-
 
   return (
     <div
@@ -30,7 +27,7 @@ const FixTooltip = ({
       <Tippy
         content={children}
         visible={true}
-        placement={isLastPoint ? "left" : "right"}
+        placement={ "right"}
         offset={[0, 5]} 
         arrow={true}
           theme="custom-black"   

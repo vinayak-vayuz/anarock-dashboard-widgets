@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import EmptyState from "../../utils/EmptyState";
 import { CommercialCustomTooltip } from "../../utils";
+import FixTooltip from "../../utils/Tooltip";
 
 const COLORS = ["#8CB33E", "#F59E0B", "#3B82F6", "#06B6D4", "#CFCFCF"];
 
@@ -88,10 +89,19 @@ const AssetsByType = ({ rows, totalAssets }) => {
               </Pie>
 
               {/* ✅ FIXED TOOLTIP */}
-              <Tooltip
-                cursor={false}
-                content={<CommercialCustomTooltip />}
-              />
+             <Tooltip
+  cursor={false}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={assets}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
             </PieChart>
           </ResponsiveContainer>
 
