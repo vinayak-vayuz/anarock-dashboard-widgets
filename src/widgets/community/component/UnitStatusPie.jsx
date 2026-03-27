@@ -54,36 +54,6 @@ const bottomGlowPlugin = {
   },
 };
 
-const centerTextPlugin = {
-  id: "centerText",
-  afterDraw(chart, args, pluginOptions) {
-    const { ctx } = chart;
-    const meta = chart.getDatasetMeta(0);
-    if (!meta?.data?.[0]) return;
-    const { x, y } = meta.data[0];
-
-    const {
-      top = "",
-      bottom = "",
-      topSize = 24,
-      bottomSize = 9,
-      topColor = "#121212",
-      bottomColor = "#121212",
-    } = pluginOptions || {};
-
-    ctx.save();
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillStyle = topColor;
-    ctx.font = `600 ${topSize}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-    ctx.fillText(top, x, y - 6);
-    ctx.fillStyle = bottomColor;
-    ctx.font = `500 ${bottomSize}px Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-    ctx.fillText(bottom, x, y + 22);
-    ctx.restore();
-  },
-};
-
 const Tickets = ({
   title = "Tickets",
   icon,
@@ -123,11 +93,11 @@ const Tickets = ({
   const resolvedCenterTopSize =
     data?.centerTopSize ??
     centerTopSize ??
-    (resolvedWidgetType === "commercial" ? 34 : 20);
+    (resolvedWidgetType === "commercial" ? 34 : 24);
   const resolvedCenterBottomSize =
     data?.centerBottomSize ??
     centerBottomSize ??
-    (resolvedWidgetType === "commercial" ? 14 : 10);
+    (resolvedWidgetType === "commercial" ? 14 : 9);
   const resolvedShowBottomGlow = data?.showBottomGlow ?? showBottomGlow;
   const resolvedBottomGlowColor = data?.bottomGlowColor ?? bottomGlowColor;
 
@@ -154,14 +124,6 @@ const Tickets = ({
       tooltip: {
         enabled: false,
         external: createChartJsExternalTooltip(),
-      },
-      centerText: {
-        top: `${total}`,
-        bottom: resolvedTotalLabel,
-        topSize: resolvedCenterTopSize,
-        bottomSize: resolvedCenterBottomSize,
-        topColor: centerTopColor,
-        bottomColor: centerBottomColor,
       },
       bottomGlow: {
         enabled: resolvedShowBottomGlow,
@@ -203,7 +165,7 @@ const Tickets = ({
                 {item.label}
               </div>
               <div
-                className="text-[28px] leading-[32px]"
+                className="text-[28px] leading-[32px] font-medium"
                 style={{ color: item.color }}
               >
                 {item.value}
@@ -212,17 +174,17 @@ const Tickets = ({
           ))}
 
           <div
-            className={`text-[12px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
+            className={`text-[10px] leading-[14px] flex gap-[4px] ${resolvedWidgetType === "commercial" ? "mt-[20px]" : ""}  items-center`}
             style={{ color: dynamicGrowthColor }}
           >
-            {isPositive && <FaCaretUp />}
-            {isNegative && <FaCaretDown />}
+            {/* {isPositive && <FaCaretUp />}
+            {isNegative && <FaCaretDown />} */}
 
             <div>
-              {resolvedGrowthPercentage.replace("+", "").replace("-", "")}
+              {resolvedGrowthPercentage}
             </div>
 
-            <div className="text-[#64748B] text-[12px] leading-[14px] ml-[4px] whitespace-nowrap">
+            <div className="text-[#64748B] text-[10px] leading-[14px] ml-[4px] whitespace-nowrap">
               {resolvedGrowthText}
             </div>
           </div>
@@ -234,13 +196,36 @@ const Tickets = ({
               resolvedWidgetType === "commercial"
                 ? "h-[260px] max-w-[263px]"
                 : "h-[158px] w-[158px]"
-            } ml-auto mr-2`}
+            } relative ml-auto mr-2`}
           >
             <Doughnut
               data={chartData}
               options={options}
-              plugins={[bottomGlowPlugin, centerTextPlugin]}
+              plugins={[bottomGlowPlugin]}
             />
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center">
+              <div
+                style={{
+                  color: centerTopColor,
+                  fontSize: resolvedCenterTopSize,
+                  fontWeight: 500,
+                  lineHeight: "28px",
+                }}
+              >
+                {total}
+              </div>
+              <div
+                style={{
+                  color: centerBottomColor,
+                  fontSize: resolvedCenterBottomSize,
+                  fontWeight: 400,
+                  lineHeight: "11px",
+                  marginTop: resolvedWidgetType === "commercial" ? 10 : 5,
+                }}
+              >
+                {resolvedTotalLabel}
+              </div>
+            </div>
           </div>
         </div>
       </div>
