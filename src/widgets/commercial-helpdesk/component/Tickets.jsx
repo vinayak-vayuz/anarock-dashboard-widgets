@@ -189,8 +189,8 @@ const Tickets = ({
   return (
     <Card
       title={resolvedTitle} 
-      className={`
-        ${resolvedWidgetType === "commercial" ? "h-[362px]" : "h-[238px]"}`}
+      className="h-[362px] leading-[24px]"
+        titleWeight="semi-bold"
     >
       <div className="grid grid-cols-12 gap-[16px] items-center">
         <div className="col-span-5 space-y-[12px]">

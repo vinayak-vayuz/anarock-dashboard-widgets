@@ -1,7 +1,7 @@
 import React from "react";
 import CommercialHeader from "../components/CommercialHeader";
 import { Headset } from "lucide-react";
-import Tickets from "../community/component/UnitStatusPie";
+import Tickets from "./component/Tickets";
 import { LuReceiptText } from "react-icons/lu";
 import MetricCard from "./component/Resolution";
 import { Timer } from "lucide-react";
