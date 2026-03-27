@@ -1,4 +1,4 @@
-import { Card, Chip, CustomTooltip } from "../../utils";
+import { Card, Chip ,CommercialCustomTooltip} from "../../utils";
 import { LuMessageSquare } from "react-icons/lu";
 import {
   Cell,
@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { ActionButtons } from "../../components/ActionButtons";
+import FixTooltip from "../../utils/Tooltip";
 
 export const dummyEngagementData = {
   total_notices: 12,
@@ -104,12 +105,22 @@ function Engagement({ isStatic, data, communities }) {
               }}
             />
 
-            <RTooltip
-              content={<CustomTooltip />}
-              cursor={{ fill: "transparent" }}
-              wrapperStyle={{ outline: "none" }}
-              position={{ x: 160, y: 0 }}
-            />
+           
+<RTooltip
+  cursor={{ fill: "transparent" }}
+  wrapperStyle={{ outline: "none" }}
+  position={{ x: 160, y: 0 }}
+  allowEscapeViewBox={{ x: true, y: true }}
+  content={(props) => {
+    if (!props.active) return null;
+
+    return (
+      <FixTooltip {...props} data={engagementBars}>
+        <CommercialCustomTooltip {...props} />
+      </FixTooltip>
+    );
+  }}
+/>
             <Bar dataKey="value" barSize={40} isAnimationActive={false}>
               {engagementBars.map((entry, i) => (
                 <Cell key={entry.name} fill={COLORS[i]} />
