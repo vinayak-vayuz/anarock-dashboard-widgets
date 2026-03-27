@@ -40,7 +40,7 @@ export default function App() {
           <Widgets.UnitStatus
             isStatic={true}
             title="Unit Status"
-            icon={<LuBuilding className="h-6 w-6 text-green-400" />}
+            icon={<LuBuilding className="size-[20px] text-[#1FA05B]" />}
             firstLabel="Sold"
             firstValue={847}
             firstColor="#12B981"

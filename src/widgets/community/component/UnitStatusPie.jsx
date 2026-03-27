@@ -1,4 +1,3 @@
-import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Card from "../../components/Card";
@@ -27,7 +26,10 @@ const bottomGlowPlugin = {
       clippedRadius * 1.08,
     );
 
-    gradient.addColorStop(0, pluginOptions.color ?? "rgba(186, 230, 253, 0.72)");
+    gradient.addColorStop(
+      0,
+      pluginOptions.color ?? "rgba(186, 230, 253, 0.72)",
+    );
     gradient.addColorStop(0.3, "rgba(186, 230, 253, 0.4)");
     gradient.addColorStop(0.58, "rgba(186, 230, 253, 0.16)");
     gradient.addColorStop(1, "rgba(186, 230, 253, 0)");
@@ -63,10 +65,10 @@ const centerTextPlugin = {
     const {
       top = "",
       bottom = "",
-      topSize = 20,
-      bottomSize = 10,
-      topColor = "#0F172A",
-      bottomColor = "#64748B",
+      topSize = 24,
+      bottomSize = 9,
+      topColor = "#121212",
+      bottomColor = "#121212",
     } = pluginOptions || {};
 
     ctx.save();
@@ -188,15 +190,18 @@ const Tickets = ({
     <Card
       title={resolvedTitle}
       icon={resolvedIcon}
-      className={
-        resolvedWidgetType === "commercial" ? "h-[362px]" : "h-[238px]"
-      }
+      className={`
+        ${resolvedWidgetType === "commercial" ? "h-[362px]" : "h-[238px]"}`}
     >
       <div className="grid grid-cols-12 gap-[16px] items-center">
-        <div className="col-span-5 space-y-[16px]">
+        <div className="col-span-5 space-y-[12px]">
           {items.map((item, index) => (
             <div key={index}>
-              <div className={`text-[12px] text-[#64748B] ${resolvedWidgetType === "commercial" ? "mb-[8px]" : ""}`}>{item.label}</div>
+              <div
+                className={`text-[12px] text-[#64748B] ${resolvedWidgetType === "commercial" ? "mb-[8px]" : "mb-[8px]"}`}
+              >
+                {item.label}
+              </div>
               <div
                 className="text-[28px] leading-[32px]"
                 style={{ color: item.color }}

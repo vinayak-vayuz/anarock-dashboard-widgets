@@ -30,7 +30,7 @@ export default function MetricCard({
           </div>
         )}
 
-        <div className="text-[16px] leading-[20px] font-medium text-[#64748B]">
+        <div className="text-[20px] leading-[100%] tracking-[-2%] font-medium text-[#64748B]">
           {title}
         </div>
       </div>
@@ -43,7 +43,7 @@ export default function MetricCard({
         <div className="mt-[12px] flex items-center gap-[8px]">
           {percentage && (
             <div
-              className="flex items-center gap-[4px] text-[12px] leading-[16px] font-medium"
+              className="flex items-center gap-[4px] text-[10px] leading-[14px] font-medium"
               style={{ color: percentageColor }}
             >
               {isPositive ? <FaCaretUp /> : <FaCaretDown />}
@@ -52,7 +52,7 @@ export default function MetricCard({
           )}
 
           {percentageText && (
-            <div className="text-[12px] leading-[16px] text-[#64748B]">
+            <div className="text-[10px] leading-[14px] text-[#64748B]">
               {percentageText}
             </div>
           )}
