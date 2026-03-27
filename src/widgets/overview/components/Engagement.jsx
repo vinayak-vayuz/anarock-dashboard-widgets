@@ -27,22 +27,22 @@ function Engagement({ isStatic, data, communities }) {
     {
       name: "Notice",
       value: Number(data?.total_notices || 0),
-      color: COLORS[0],
+      fill: COLORS[0],
     },
     {
       name: "Post",
       value: Number(data?.total_topics || data?.total_forum_topics || 0),
-      color: COLORS[1],
+      fill: COLORS[1],
     },
     {
       name: "Poll",
       value: Number(data?.total_polls || data?.total_poll_detail || 0),
-      color: COLORS[2],
+      fill: COLORS[2],
     },
     {
       name: "Survey",
       value: Number(data?.total_surveys || data?.total_survey_detail || 0),
-      color: COLORS[3],
+      fill: COLORS[3],
     },
   ];
 
@@ -122,10 +122,14 @@ function Engagement({ isStatic, data, communities }) {
   }}
 />
             <Bar dataKey="value" barSize={40} isAnimationActive={false}>
-              {engagementBars.map((entry, i) => (
-                <Cell key={entry.name} fill={COLORS[i]} />
-              ))}
-            </Bar>
+  {engagementBars.map((entry, i) => (
+    <Cell
+      key={entry.name}
+      fill={COLORS[i]}
+      dataKey="value"
+    />
+  ))}
+</Bar>
           </BarChart>
         </ResponsiveContainer>
       </div>
