@@ -13,27 +13,38 @@ const Dot = ({ color }) => (
   />
 );
 
-export const CustomTooltip = ({ active, payload, coordinate }) => {
+export const CustomTooltip = ({
+  active,
+  payload,
+  label,
+  titleFormatter,
+  hideTitleForSingle = true,
+  valueFormatter,
+  rowFormatter,
+}) => {
   if (!active || !payload || !payload.length) return null;
 
-  const tooltipHeight = 60;
-  const chartHeight = 235;
+  const rows =
+    typeof rowFormatter === "function"
+      ? rowFormatter({ payload, label })
+      : payload.map((item) => ({
+          color:
+            item.color || item.stroke || item.fill || item.payload?.color || "",
+          label: item?.name || item?.payload?.name || item?.dataKey || label,
+          value:
+            typeof valueFormatter === "function"
+              ? valueFormatter(item.value, item, label)
+              : item.value,
+        }));
 
-  let y = coordinate?.y || 0;
-
-  if (y + tooltipHeight / 2 > chartHeight) {
-    y = chartHeight - tooltipHeight / 2 - 8;
-  }
-
-  if (y - tooltipHeight / 2 < 0) {
-    y = tooltipHeight / 2 + 8;
-  }
+  const title =
+    typeof titleFormatter === "function" ? titleFormatter(label, payload) : "";
 
   return (
     <div
       className="relative bg-[#121212] text-white text-[12px] px-[16px] py-[8px] rounded-[8px] shadow-lg"
       style={{
-        transform: `translateY(${y}px) translateY(-50%)`,
+        transform: `translate(12px, -50%)`,
       }}
     >
       <div
@@ -43,11 +54,15 @@ export const CustomTooltip = ({ active, payload, coordinate }) => {
         border-r-[6px] border-r-[#121212]"
       />
 
-      {payload.map((item, i) => (
+      {title && !(hideTitleForSingle && rows.length === 1) && (
+        <div className="mb-[2px] font-semibold text-white">{title}</div>
+      )}
+
+      {rows.map((item, i) => (
         <div key={i} className="flex items-center gap-[8px] capitalize">
-          {item.payload.color && <Dot color={item.payload.color} />}
+          {item.color && <Dot color={item.color} />}
           <span className="text-[#D1D3D4] min-w-[70px]">
-            {item?.payload?.name}
+            {item.label}
           </span>
           <span className="font-semibold">{item.value}</span>
         </div>
@@ -55,6 +70,182 @@ export const CustomTooltip = ({ active, payload, coordinate }) => {
     </div>
   );
 };
+
+function createTooltipRow(row) {
+  const rowEl = document.createElement("div");
+  rowEl.style.display = "flex";
+  rowEl.style.alignItems = "center";
+  rowEl.style.gap = "8px";
+  rowEl.style.textTransform = "capitalize";
+
+  if (row.color) {
+    const dotEl = document.createElement("span");
+    dotEl.style.display = "inline-block";
+    dotEl.style.width = "8px";
+    dotEl.style.height = "8px";
+    dotEl.style.borderRadius = "9999px";
+    dotEl.style.backgroundColor = row.color;
+    dotEl.style.marginRight = "6px";
+    rowEl.appendChild(dotEl);
+  }
+
+  const labelEl = document.createElement("span");
+  labelEl.style.color = "#D1D3D4";
+  labelEl.style.minWidth = "70px";
+  labelEl.textContent = row.label ?? "";
+
+  const valueEl = document.createElement("span");
+  valueEl.style.fontWeight = "600";
+  valueEl.textContent = row.value ?? "";
+
+  rowEl.appendChild(labelEl);
+  rowEl.appendChild(valueEl);
+
+  return rowEl;
+}
+
+function getOrCreateChartJsTooltip(chart) {
+  const parent = chart.canvas.parentNode;
+  if (!parent) return null;
+
+  if (getComputedStyle(parent).position === "static") {
+    parent.style.position = "relative";
+  }
+
+  let tooltipEl = parent.querySelector("[data-chartjs-custom-tooltip]");
+
+  if (!tooltipEl) {
+    tooltipEl = document.createElement("div");
+    tooltipEl.dataset.chartjsCustomTooltip = "true";
+    tooltipEl.style.position = "absolute";
+    tooltipEl.style.left = "0";
+    tooltipEl.style.top = "0";
+    tooltipEl.style.opacity = "0";
+    tooltipEl.style.pointerEvents = "none";
+    tooltipEl.style.transform = "translate(12px, -50%)";
+    tooltipEl.style.transition = "opacity 120ms ease";
+    tooltipEl.style.zIndex = "20";
+
+    const bodyEl = document.createElement("div");
+    bodyEl.dataset.chartjsCustomTooltipBody = "true";
+    bodyEl.style.position = "relative";
+    bodyEl.style.background = "#121212";
+    bodyEl.style.color = "#FFFFFF";
+    bodyEl.style.fontSize = "12px";
+    bodyEl.style.padding = "8px 16px";
+    bodyEl.style.borderRadius = "8px";
+    bodyEl.style.boxShadow = "0 10px 30px rgba(15, 23, 42, 0.28)";
+    bodyEl.style.display = "flex";
+    bodyEl.style.flexDirection = "column";
+    bodyEl.style.gap = "6px";
+    bodyEl.style.whiteSpace = "nowrap";
+
+    const arrowEl = document.createElement("div");
+    arrowEl.style.position = "absolute";
+    arrowEl.style.left = "-6px";
+    arrowEl.style.top = "50%";
+    arrowEl.style.transform = "translateY(-50%)";
+    arrowEl.style.width = "0";
+    arrowEl.style.height = "0";
+    arrowEl.style.borderTop = "6px solid transparent";
+    arrowEl.style.borderBottom = "6px solid transparent";
+    arrowEl.style.borderRight = "6px solid #121212";
+
+    bodyEl.appendChild(arrowEl);
+    tooltipEl.appendChild(bodyEl);
+    parent.appendChild(tooltipEl);
+  }
+
+  return tooltipEl;
+}
+
+export function createChartJsExternalTooltip({
+  titleFormatter,
+  hideTitleForSingle = true,
+  rowsFormatter,
+} = {}) {
+  return ({ chart, tooltip }) => {
+    const tooltipEl = getOrCreateChartJsTooltip(chart);
+    if (!tooltipEl) return;
+
+    if (!tooltip || tooltip.opacity === 0) {
+      tooltipEl.style.opacity = "0";
+      return;
+    }
+
+    const bodyEl = tooltipEl.querySelector("[data-chartjs-custom-tooltip-body]");
+    if (!bodyEl) return;
+
+    const title =
+      typeof titleFormatter === "function"
+        ? titleFormatter(tooltip)
+        : tooltip.title?.[0] || "";
+
+    const rows =
+      typeof rowsFormatter === "function"
+        ? rowsFormatter(tooltip)
+        : (tooltip.dataPoints || []).map((point) => {
+            const background = Array.isArray(point.dataset.backgroundColor)
+              ? point.dataset.backgroundColor[point.dataIndex]
+              : point.dataset.backgroundColor;
+            const border = Array.isArray(point.dataset.borderColor)
+              ? point.dataset.borderColor[point.dataIndex]
+              : point.dataset.borderColor;
+
+            return {
+              label: point.dataset.label || point.label || "",
+              value: point.formattedValue ?? point.raw ?? "",
+              color: border || background || "#3B82F6",
+            };
+          });
+
+    bodyEl.replaceChildren();
+
+    const arrowEl = document.createElement("div");
+    arrowEl.style.position = "absolute";
+    arrowEl.style.left = "-6px";
+    arrowEl.style.top = "50%";
+    arrowEl.style.transform = "translateY(-50%)";
+    arrowEl.style.width = "0";
+    arrowEl.style.height = "0";
+    arrowEl.style.borderTop = "6px solid transparent";
+    arrowEl.style.borderBottom = "6px solid transparent";
+    arrowEl.style.borderRight = "6px solid #121212";
+    bodyEl.appendChild(arrowEl);
+
+    if (title && !(hideTitleForSingle && rows.length === 1)) {
+      const titleEl = document.createElement("div");
+      titleEl.style.color = "#FFFFFF";
+      titleEl.style.fontWeight = "600";
+      titleEl.style.marginBottom = "2px";
+      titleEl.textContent = title;
+      bodyEl.appendChild(titleEl);
+    }
+
+    rows.forEach((row) => {
+      bodyEl.appendChild(createTooltipRow(row));
+    });
+
+    const parentRect = chart.canvas.parentNode.getBoundingClientRect();
+    tooltipEl.style.opacity = "1";
+    tooltipEl.style.left = `${tooltip.caretX}px`;
+    tooltipEl.style.top = `${tooltip.caretY}px`;
+
+    requestAnimationFrame(() => {
+      const rect = tooltipEl.getBoundingClientRect();
+      const maxLeft = Math.max(parentRect.width - rect.width - 8, 8);
+      const nextLeft = Math.min(Math.max(tooltip.caretX, 8), maxLeft);
+      const nextTop = Math.min(
+        Math.max(tooltip.caretY, rect.height / 2 + 8),
+        parentRect.height - rect.height / 2 - 8,
+      );
+
+      tooltipEl.style.left = `${nextLeft}px`;
+      tooltipEl.style.top = `${nextTop}px`;
+    });
+  };
+}
+
 export const CommercialCustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
 

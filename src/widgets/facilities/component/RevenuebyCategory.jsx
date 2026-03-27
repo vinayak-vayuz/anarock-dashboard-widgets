@@ -10,6 +10,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+import { createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -27,10 +28,6 @@ const RevenuebyCategory = ({ data }) => {
   const labels = items.map((item) => item.label);
   const values = items.map((item) => Number(item.value ?? 0));
   const units = items.map((item) => Number(item.units ?? 0));
-
-  console.log(data, items, 'daaattttaa');
-
-
   const chartData = {
     labels,
     datasets: [
@@ -49,17 +46,28 @@ const RevenuebyCategory = ({ data }) => {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: "#0F172A",
-        titleColor: "#FFFFFF",
-        bodyColor: "#FFFFFF",
-        displayColors: false,
-        padding: 12,
-        caretSize: 6,
-        callbacks: {
-          title: (items) => labels[items[0].dataIndex],
-          label: (ctx) => `Due: AED ${(ctx.parsed.y / 1000).toFixed(1)}K`,
-          afterLabel: (ctx) => `Units Count: ${units[ctx.dataIndex]}`,
-        },
+        enabled: false,
+        external: createChartJsExternalTooltip({
+          titleFormatter: (tooltip) => tooltip.title?.[0] || "",
+          hideTitleForSingle: false,
+          rowsFormatter: (tooltip) => {
+            const point = tooltip.dataPoints?.[0];
+            if (!point) return [];
+
+            return [
+              {
+                label: "Revenue",
+                value: `AED ${(Number(point.raw ?? 0) / 1000).toFixed(1)}K`,
+                color: point.dataset.backgroundColor,
+              },
+              {
+                label: "Units Count",
+                value: `${units[point.dataIndex] ?? 0}`,
+                color: point.dataset.backgroundColor,
+              },
+            ];
+          },
+        }),
       },
     },
     scales: {

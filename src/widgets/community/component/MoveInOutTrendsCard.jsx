@@ -11,6 +11,7 @@ import {
 import { Line } from "react-chartjs-2";
 import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
+import { createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(
   CategoryScale,
@@ -94,16 +95,12 @@ const MoveInOutTrendsCard = ({
         },
       },
       tooltip: {
-        backgroundColor: "#0F172A",
-        titleColor: "#FFFFFF",
-        bodyColor: "#FFFFFF",
-        displayColors: false,
-        padding: 12,
-        caretSize: 0,
-        callbacks: {
-          title: (items) => prettyMonth(items[0].label),
-          label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
-        },
+        enabled: false,
+        external: createChartJsExternalTooltip({
+          titleFormatter: (tooltip) =>
+            tooltip.title?.[0] ? prettyMonth(tooltip.title[0]) : "",
+          hideTitleForSingle: false,
+        }),
       },
     },
     scales: {

@@ -3,7 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { GoHome } from "react-icons/go";
 import Card from "../../components/Card";
-import { Chip } from "../../utils";
+import { Chip, createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -76,8 +76,8 @@ const ResidentOverviewCard = ({
     plugins: {
       legend: { display: false },
       tooltip: {
-        callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed}` },
-        displayColors: false,
+        enabled: false,
+        external: createChartJsExternalTooltip(),
       },
       centerText: {
         top: `${totalMembers}`,

@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+import { createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -47,14 +48,17 @@ const ExpenseCategories = ({ data }) => {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: "#0F172A",
-        titleColor: "#FFFFFF",
-        bodyColor: "#FFFFFF",
-        displayColors: false,
-        padding: 10,
-        callbacks: {
-          label: (ctx) => `${ctx.label}: AED ${ctx.formattedValue}`,
-        },
+        enabled: false,
+        external: createChartJsExternalTooltip({
+          rowsFormatter: (tooltip) =>
+            (tooltip.dataPoints || []).map((point) => ({
+              label: point.label,
+              value: `AED ${point.formattedValue}`,
+              color: Array.isArray(point.dataset.backgroundColor)
+                ? point.dataset.backgroundColor[point.dataIndex]
+                : point.dataset.backgroundColor,
+            })),
+        }),
       },
     },
   };

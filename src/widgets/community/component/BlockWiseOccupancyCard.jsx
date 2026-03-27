@@ -10,6 +10,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import Card from "../../components/Card";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
+import { createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -85,9 +86,10 @@ const BlockWiseOccupancyCard = ({
         },
       },
       tooltip: {
-        callbacks: {
-          label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
-        },
+        enabled: false,
+        external: createChartJsExternalTooltip({
+          hideTitleForSingle: false,
+        }),
       },
     },
     scales: {

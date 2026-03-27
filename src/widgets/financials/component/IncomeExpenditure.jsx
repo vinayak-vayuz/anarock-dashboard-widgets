@@ -8,6 +8,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -85,16 +86,12 @@ const IncomeExpenditure = ({ data, labels, moveIn, moveOut }) => {
         },
       },
       tooltip: {
-        backgroundColor: "#0F172A",
-        titleColor: "#FFFFFF",
-        bodyColor: "#FFFFFF",
-        displayColors: false,
-        padding: 12,
-        caretSize: 0,
-        callbacks: {
-          title: (items) => prettyMonth(items[0].label),
-          label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y}`,
-        },
+        enabled: false,
+        external: createChartJsExternalTooltip({
+          titleFormatter: (tooltip) =>
+            tooltip.title?.[0] ? prettyMonth(tooltip.title[0]) : "",
+          hideTitleForSingle: false,
+        }),
       },
     },
 

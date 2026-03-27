@@ -10,6 +10,7 @@ import {
 import { Bar } from "react-chartjs-2";
 import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import Card from "../../components/Card";
+import { createChartJsExternalTooltip } from "../../utils";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
@@ -69,19 +70,17 @@ const BudgetVsActuals = ({ data = {} }) => {
         },
       },
       tooltip: {
-        backgroundColor: "#0F172A",
-        titleColor: "#FFFFFF",
-        bodyColor: "#FFFFFF",
-        displayColors: false,
-        padding: 12,
-        caretSize: 6,
-        callbacks: {
-          title: (items) => labels[items[0].dataIndex],
-          label: (ctx) => {
-            const value = ctx.parsed.y;
-            return `${ctx.dataset.label}: AED ${(value / 1000).toFixed(1)}K`;
-          },
-        },
+        enabled: false,
+        external: createChartJsExternalTooltip({
+          titleFormatter: (tooltip) => tooltip.title?.[0] || "",
+          hideTitleForSingle: false,
+          rowsFormatter: (tooltip) =>
+            (tooltip.dataPoints || []).map((point) => ({
+              label: point.dataset.label || point.label,
+              value: `AED ${(Number(point.raw ?? 0) / 1000).toFixed(1)}K`,
+              color: point.dataset.backgroundColor,
+            })),
+        }),
       },
     },
     scales: {

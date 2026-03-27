@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import Card from "../../components/Card";
-import { OpenInNewOutlined as OpenInNewOutlinedIcon } from "@mui/icons-material";
 import EmptyState from "../../utils/EmptyState";
+import { CustomTooltip } from "../../utils";
 
 const DEFAULT_DATA = [
   { name: "Gym Equipment", value: 1000000, color: "#08B6D4" },
@@ -12,92 +12,9 @@ const DEFAULT_DATA = [
   { name: "Administration", value: 520000, color: "#10B981" },
 ];
 
-export const CustomTooltip = ({
-  active,
-  payload,
-  currency,
-  coordinate,
-  viewBox,
-}) => {
-  if (!active || !payload || !payload.length) return null;
-  const { name, value, payload: p } = payload[0];
-
-  const chartMidX = (viewBox?.width ?? 200) / 2;
-  const isRight = (coordinate?.x ?? 0) > chartMidX;
-
-  const arrowStyle = {
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    width: 0,
-    height: 0,
-    borderTop: "6px solid transparent",
-    borderBottom: "6px solid transparent",
-    ...(isRight
-      ? {
-          right: -6,
-          borderLeft: "6px solid #1a1a1a",
-          borderRight: "none",
-        }
-      : {
-          left: -6,
-          borderRight: "6px solid #1a1a1a",
-          borderLeft: "none",
-        }),
-  };
-
-  return (
-    <div style={{ position: "relative", display: "inline-flex" }}>
-      <div style={arrowStyle} />
-
-      <div
-        style={{
-          background: "#1a1a1a",
-          borderRadius: "8px",
-          padding: "6px 14px 6px 10px",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          minWidth: "140px",
-          pointerEvents: "none",
-        }}
-      >
-        <span
-          style={{
-            display: "inline-block",
-            width: 9,
-            height: 9,
-            borderRadius: "50%",
-            background: p.color,
-            flexShrink: 0,
-          }}
-        />
-        <span
-          style={{ color: "#fff", fontSize: 13, flex: 1, whiteSpace: "nowrap" }}
-        >
-          {name}
-        </span>
-        <span
-          style={{
-            color: "#fff",
-            fontSize: 13,
-            fontWeight: 600,
-            paddingLeft: 12,
-            whiteSpace: "nowrap",
-          }}
-        >
-          {currency && currency} {Number(value).toLocaleString()}
-        </span>
-      </div>
-    </div>
-  );
-};
-
 function AssetValueBreakdown({ data, currency = "AED" }) {
   const chartItems =
     Array.isArray(data) && data.length > 0 ? data : DEFAULT_DATA;
-
-  const [activeItem, setActiveItem] = useState(null);
 
   const total = chartItems.reduce((sum, d) => sum + Number(d.value ?? 0), 0);
 
@@ -120,7 +37,7 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
         <div className="flex flex-col items-center justify-center">
           <div className="w-[214px] h-[181px] relative">
             <ResponsiveContainer width="100%" height="100%">
-              <PieChart onMouseLeave={() => setActiveItem(null)}>
+              <PieChart>
                 <Pie
                   data={chartItems}
                   innerRadius={60}
@@ -128,69 +45,33 @@ function AssetValueBreakdown({ data, currency = "AED" }) {
                   paddingAngle={2}
                   dataKey="value"
                   nameKey="name"
-                  onMouseEnter={(data) => setActiveItem(data)}
-                  onMouseLeave={() => setActiveItem(null)}
                 >
                   {chartItems.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
+                <Tooltip
+                  content={
+                    <CustomTooltip
+                      valueFormatter={(value) =>
+                        `${currency} ${Number(value).toLocaleString()}`
+                      }
+                    />
+                  }
+                  wrapperStyle={{ zIndex: 9999 }}
+                />
               </PieChart>
             </ResponsiveContainer>
 
-            {/* Center — shows tooltip info on hover, total otherwise */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              {activeItem ? (
-                <div
-                  style={{
-                    background: "#1a1a1a",
-                    borderRadius: "8px",
-                    padding: "6px 12px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                  }}
-                >
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: 9,
-                      height: 9,
-                      borderRadius: "50%",
-                      background: activeItem.color,
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      color: "#fff",
-                      fontSize: 11,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {activeItem.name}
-                  </span>
-                  <span
-                    style={{
-                      color: "#fff",
-                      fontSize: 11,
-                      fontWeight: 600,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {currency} {Number(activeItem.value).toLocaleString()}
-                  </span>
+            <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <div className="font-semibold text-[18px] leading-[12px] mb-[6px]">
+                  {currency} {formattedTotal}
                 </div>
-              ) : (
-                <div>
-                  <div className="font-semibold text-3xl leading-[12px] mb-[9px]">
-                    {currency} {formattedTotal}
-                  </div>
-                  <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
-                    Total Assets
-                  </div>
+                <div className="text-[10px] leading-[12.59px] text-[#121212] mt-[6px]">
+                  Total Assets
                 </div>
-              )}
+              </div>
             </div>
           </div>
 

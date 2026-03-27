@@ -3,6 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Card from "../../components/Card";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { createChartJsExternalTooltip } from "../../utils";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const bottomGlowPlugin = {
@@ -149,10 +150,8 @@ const Tickets = ({
     plugins: {
       legend: { display: false },
       tooltip: {
-        callbacks: {
-          label: (ctx) => `${ctx.label}: ${ctx.parsed}`,
-        },
-        displayColors: false,
+        enabled: false,
+        external: createChartJsExternalTooltip(),
       },
       centerText: {
         top: `${total}`,

@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Card from "../../components/Card";
+import { CustomTooltip } from "../../utils";
 
 const STATUS_CONFIG = [
   { key: "closed_count", label: "Closed", color: "#12B981" },
@@ -60,71 +61,6 @@ const DUMMY_LEVELS = [
     total: 10,
   },
 ];
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (!active || !payload) return null;
-
-  const TOOLTIP_CONFIG = [
-    { key: "open_count", label: "Open", color: "#EF4444" },
-    { key: "in_progress_count", label: "In Progress", color: "#F59D0D" },
-    { key: "closed_count", label: "Closed", color: "#12B981" },
-  ];
-
-  return (
-    <div
-      style={{
-        backgroundColor: "#0B0B0B",
-        padding: "14px 40px 14px 18px",
-        borderRadius: "10px",
-        color: "#ffffff",
-      }}
-    >
-      <div
-        style={{
-          color: "#ffffff",
-          fontSize: "12px",
-          fontWeight: "900",
-          marginBottom: "10px",
-        }}
-      >
-        {label}
-      </div>
-      {TOOLTIP_CONFIG.map((status, idx) => {
-        const value = payload[0]?.payload[status.key] || 0;
-        const boldValue = toBoldNumber(value);
-
-        return (
-          <div
-            key={status.key}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginBottom: idx < TOOLTIP_CONFIG.length - 1 ? "8px" : "0",
-              fontSize: "12px",
-            }}
-          >
-            <div
-              style={{
-                width: "8px",
-                height: "8px",
-                backgroundColor: status.color,
-                transform: "rotate(45deg)",
-                marginRight: "8px",
-              }}
-            />
-            <span style={{ color: "D1D3D4", minWidth: "100px" }}>
-              {status.label}
-            </span>
-            <span style={{ marginLeft: "auto", fontWeight: "700" }}>
-              {boldValue}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
 
 const CustomLegend = () => {
   const LEGEND_ORDER = [
@@ -203,10 +139,26 @@ const ComplaintsByLevelChart = ({ data }) => {
               (_, i) => i * stepSize
             )}
           />
-          <Tooltip content={<CustomTooltip />} cursor={false} />
+          <Tooltip
+            content={
+              <CustomTooltip
+                titleFormatter={(tooltipLabel) => tooltipLabel}
+                hideTitleForSingle={false}
+                rowFormatter={({ payload }) =>
+                  payload.map((item) => ({
+                    color: item.color || item.fill || item.payload?.color || "",
+                    label: item.name || item.dataKey,
+                    value: toBoldNumber(item.value ?? 0),
+                  }))
+                }
+              />
+            }
+            cursor={false}
+          />
 
           <Bar
             dataKey="open_count"
+            name="Open"
             stackId="a"
             fill="#EF4444"
             barSize={44}
@@ -214,6 +166,7 @@ const ComplaintsByLevelChart = ({ data }) => {
           />
           <Bar
             dataKey="in_progress_count"
+            name="In Progress"
             stackId="a"
             fill="#F59D0D"
             barSize={44}
@@ -221,6 +174,7 @@ const ComplaintsByLevelChart = ({ data }) => {
           />
           <Bar
             dataKey="closed_count"
+            name="Closed"
             stackId="a"
             fill="#12B981"
             barSize={44}
