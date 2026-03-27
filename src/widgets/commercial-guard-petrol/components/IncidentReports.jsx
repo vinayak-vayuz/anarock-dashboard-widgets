@@ -48,11 +48,11 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
           {incidentReportsDetails?.length > 0 ? (
             incidentReportsDetails.map((item, index) => {
               const severityColor =
-                item?.severity === "Danger"
+                item?.escalation_level === "Danger"
                   ? "text-[#AB0000]"
-                  : item?.severity === "High"
-                    ? "text-[#E7A015]"
-                    : "text-[#1FA05B]";
+                  : item?.escalation_level === "High"
+                  ? "text-[#E7A015]"
+                  : "text-[#1FA05B]";
 
               return (
                 <div
@@ -61,7 +61,7 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
                 >
                   <div className="flex items-center gap-[8px]">
                     <div className="text-gray-700 font-medium">
-                      {item?.incident_code}
+                      {item?.incident_reporting_id}
                     </div>
                   </div>
 
@@ -69,7 +69,7 @@ function IncidentReports({ incidentReports, incidentReportsDetails }) {
                     className={`!text-[12px] font-semibold flex items-center gap-[4px] ${severityColor}`}
                   >
                     <div>
-                      {item?.severity_level} - {item?.severity}
+                      {item?.escalation_value} - {item?.escalation_level}
                     </div>
                   </div>
                 </div>
