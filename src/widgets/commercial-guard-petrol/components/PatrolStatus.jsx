@@ -8,17 +8,17 @@ function GuardPatrols({ data }) {
   const chartData = [
     {
       name: "Completed",
-      value: Number(data?.completed || 1110),
+      value: Number(data?.completed ),
       color: "#12B981",
     },
     {
       name: "Not - Completed",
-      value: Number(data?.not_completed || 20),
+      value: Number(data?.not_completed ),
       color: "#F69E0A",
     },
     {
       name: "Missed",
-      value: Number(data?.missed || 30),
+      value: Number(data?.missed ),
       color: "#EF4444",
     },
   ];
