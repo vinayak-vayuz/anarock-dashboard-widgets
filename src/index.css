@@ -51,3 +51,17 @@ li[class*="item-"] {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
 }
+.tippy-box[data-theme~='custom-black'] {
+  background: #121212; /* not pure black → matches UI */
+  color: #e5e5e5;
+  border-radius: 10px;
+  /* padding: 10px 12px; */
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Arrow */
+.tippy-box[data-theme~='custom-black'] > .tippy-arrow::before {
+  color: #121212;
+}
